@@ -1,0 +1,7 @@
+@import '../config.scss';
+
+.inner {
+    order: 1;
+    width: calc(100% - #{$size-axis});
+    height: calc(100% - #{$size-axis});
+}

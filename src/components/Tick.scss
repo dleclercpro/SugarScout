@@ -1,0 +1,22 @@
+@import '../config.scss';
+
+.tick {
+    display: flex;
+    color: $color-white;
+
+    .axis--x & {
+        justify-content: flex-end;
+        align-items: center;
+        flex: 1;
+        padding: 0 5px 8px 0;
+        border-right: 2px dashed $color-white;
+    }
+
+    .axis--y & {
+        justify-content: center;
+        align-items: flex-end;
+        flex: 1;
+        padding: 0 0 5px 8px;
+        border-bottom: 2px dashed $color-white;
+    }
+}

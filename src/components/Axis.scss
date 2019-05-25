@@ -1,0 +1,19 @@
+@import '../config.scss';
+
+.axis {
+    display: flex;
+
+    &--x {
+        order: 3;
+        flex-direction: row;
+        justify-content: flex-start;
+        width: calc(100% - #{$size-axis});
+    }
+
+    &--y {
+        order: 2;
+        flex-direction: column;
+        justify-content: flex-end;
+        height: calc(100% - #{$size-axis});
+    }
+}

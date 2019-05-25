@@ -1,0 +1,1 @@
+export const getRange = (x) => [...Array(x).keys()]
