@@ -1,22 +1,41 @@
 @import '../config.scss';
 
+$border: 1px dashed $color-white;
+
 .tick {
     display: flex;
+    flex: 1;
     color: $color-white;
+    font-weight: bold;
 
     .axis--x & {
         justify-content: flex-end;
-        align-items: center;
-        flex: 1;
-        padding: 0 5px 8px 0;
-        border-right: 2px dashed $color-white;
+        align-items: flex-start;
+        width: 100%;
+        border-right: $border;
+        padding-right: 5px;
+    }
+
+    .axis--3h & {
+        width: calc(100% / 3);
+    }
+
+    .axis--6h & {
+        width: calc(100% / 6);
+    }
+
+    .axis--12h & {
+        width: calc(100% / 12);
+    }
+
+    .axis--24h & {
+        width: calc(100% / 24);
     }
 
     .axis--y & {
-        justify-content: center;
+        justify-content: flex-start;
         align-items: flex-end;
-        flex: 1;
-        padding: 0 0 5px 8px;
-        border-bottom: 2px dashed $color-white;
+        border-bottom: $border;
+        padding-bottom: 5px;
     }
 }

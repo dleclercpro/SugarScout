@@ -1,19 +1,34 @@
 @import '../config.scss';
 
 .axis {
-    display: flex;
+    position: relative;
+    overflow: hidden;
 
     &--x {
         order: 3;
-        flex-direction: row;
-        justify-content: flex-start;
         width: calc(100% - #{$size-axis});
+        height: $size-axis;
+
+        > .wrapper {
+            flex-direction: row;
+        }
     }
 
     &--y {
         order: 2;
-        flex-direction: column;
-        justify-content: flex-end;
+        width: $size-axis;
         height: calc(100% - #{$size-axis});
+
+        > .wrapper {
+            flex-direction: column;
+        }
+    }
+
+    > .wrapper {
+        display: flex;
+        justify-content: flex-end;
+        position: absolute;
+        width: 100%;
+        height: 100%;
     }
 }
