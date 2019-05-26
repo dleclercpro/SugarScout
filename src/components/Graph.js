@@ -50,9 +50,9 @@ class Graph extends React.Component {
         const range = lib.getRangeFromTo(hour - this.state.axes.x.scale, hour)
 
         // Define ticks
-        const ticks = range.map((t) => ({
-            label: (t >= 0 ? t : t + 24) + ':00',
-            value: now - toNow - (hour - t) * 60 * 60 * 1000,
+        const ticks = range.map((h) => ({
+            label: (h >= 0 ? h : h + 24) + ':00',
+            value: now - toNow - (hour - h) * 60 * 60 * 1000,
         }))
 
         // Store them
