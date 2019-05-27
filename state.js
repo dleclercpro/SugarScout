@@ -16,7 +16,7 @@ const state = {
                 zero: new Date(),
                 scale: 6,
             },
-            BG: {
+            bg: {
                 units: 'mmol/L',
                 range: [0, 15],
                 scale: 'linear',
@@ -30,43 +30,78 @@ const state = {
     },
     pump: {
         company: 'Medtronic',
-        name: 'MiniMed Paradigm 722',
+        model: 'MiniMed Paradigm 722',
         units: {
-            BG: 'mmol/L',
+            bg: 'mmol/L',
             basal: 'U/h',
             carbs: 'g',
         },
-        battery: 0,
-        reservoir: 0,
-        basal: 0,
-        BGTargets: [{
-            t: {
-                h: 0,
-                m: 0,
+        settings: {
+            dia: 5,
+            maxBasal: 15.0,
+            maxBolus: 25.0,
+        },
+        power: '2019.05.24 - 04:36:12',
+        battery: [
+            {
+                t: 0,
+                value: 1.24,
             },
-            BG: 5.2,
-        }],
-        TB: 0,
-        IOB: 0,
-        ISF: 0,
-        CSF: 0,
-        CAGE: 0,
+        ],
+        reservoir: [
+            {
+                t: 0,
+                value: 186.1,
+            },
+        ],
+        bgTargets: [
+            {
+                t: 0,
+                values: [5.2, 5.2],
+            },
+        ],
+        basal: {
+            standard: [
+                {
+                    t: 0,
+                    value: 1.45,
+                },
+                {
+                    t: 1.0,
+                    value: 1.6,
+                },
+            ],
+            a: [],
+            b: [],
+        },
+        tb: 0,
+        iob: 0,
+        isf: 0,
+        csf: 0,
+        cage: 0,
     },
     cgm: {
         company: 'Dexcom',
-        name: 'G4',
+        model: 'G4',
         units: 'mmol/L',
-        battery: 0,
-        SAGE: 0,
+        battery: [
+            {
+                t: 0,
+                value: 90,
+            },
+        ],
+        sage: 0,
     },
-    BG: {
-        now: 5.0,
-        delta: 0, // deviation in last 5 minutes
-    },
+    bg: [
+        {
+            t: 0,
+            value: 4.2,
+        },
+    ],
     alerts: {
         pump: {
             battery: {
-                low: 1.3, // V
+                low: 1.3,
             },
             reservoir: {
                 low: 10,
@@ -77,7 +112,7 @@ const state = {
                 low: 20,
             }
         },
-        BG: {
+        bg: {
             veryLow: 3.2,
             low: 4.5,
             high: 8.0,
