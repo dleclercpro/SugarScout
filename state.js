@@ -17,7 +17,7 @@ const state = {
                 scale: 6,
             },
             BG: {
-                units: null,
+                units: 'mmol/L',
                 range: [0, 15],
                 scale: 'linear',
             },
@@ -66,7 +66,7 @@ const state = {
     alerts: {
         pump: {
             battery: {
-                low: 1.3 // V
+                low: 1.3, // V
             },
             reservoir: {
                 low: 10,
