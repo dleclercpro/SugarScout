@@ -1,4 +1,3 @@
-import fetch from 'cross-fetch'
 import * as actions from '../constants/ActionTypes'
 
 export const showBG = (index) => ({

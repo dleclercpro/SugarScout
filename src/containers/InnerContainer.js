@@ -4,6 +4,7 @@ import * as actions from '../actions'
 import Inner from '../components/Inner'
 
 const mapStateToProps = (state) => ({
+    scales: state.axes.t.scales,
     scale: state.axes.t.scale,
 })
 

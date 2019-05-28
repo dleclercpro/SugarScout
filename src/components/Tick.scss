@@ -12,7 +12,7 @@ $border: 1px dashed $color-white;
         justify-content: flex-end;
         align-items: flex-start;
         border-right: $border;
-        padding-right: 5px;
+        padding-right: 4px;
         transition: width ease-in-out $animation-speed;
         font-size: 20px;
     }
@@ -44,6 +44,6 @@ $border: 1px dashed $color-white;
         justify-content: flex-start;
         align-items: flex-end;
         border-bottom: $border;
-        padding-bottom: 5px;
+        padding-bottom: 4px;
     }
 }

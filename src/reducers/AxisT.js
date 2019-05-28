@@ -5,7 +5,8 @@ const INIT_STATE = {
     units: 'h',
     now: new Date(),
     toNow: 0,
-    scale: axis.SCALE_H,
+    scales: axis.SCALES_H,
+    scale: axis.DEFAULT_SCALE_H,
     nTicks: axis.N_TICKS,
     ticks: [],
 }
