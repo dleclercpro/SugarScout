@@ -4,8 +4,8 @@ import * as actions from '../actions'
 import AxisBG from '../components/AxisBG'
 
 const mapStateToProps = (state) => ({
-    range: state.axisBG.range,
-    ticks: state.axisBG.ticks,
+    range: state.axes.bg.range,
+    ticks: state.axes.bg.ticks,
 })
 
 const mapDispatchToProps = (dispatch) => ({

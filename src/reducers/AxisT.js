@@ -1,5 +1,5 @@
 import * as axis from '../constants/AxisT'
-import * as actions from '../constants/Actions'
+import * as actions from '../constants/ActionTypes'
 
 const INIT_STATE = {
     units: 'h',
@@ -11,7 +11,7 @@ const INIT_STATE = {
 
 const AxisT = (state = INIT_STATE, action) => {
     switch (action.type) {
-        case actions.UPDATE_TIME_SCALE:
+        case actions.UPDATE_TIME_AXIS_SCALE:
             return {
                 ...state,
                 units: action.units,

@@ -1,13 +1,9 @@
 import React from 'react'
-import Tick from './Tick'
+import Axis from './Axis'
 import * as lib from '../lib'
 import './Axis.scss'
 
-class AxisBG extends React.Component {
-
-    componentDidMount() {
-        this.build()
-    }
+class AxisBG extends Axis {
 
     build() {
 
@@ -28,13 +24,7 @@ class AxisBG extends React.Component {
         return (
             <div className='axis axis--BG'>
                 <div className='wrapper'>
-                    {this.props.ticks.map((tick, index) => (
-                        <Tick
-                            key={index}
-                            label={tick.label}
-                            value={tick.value}
-                        />
-                    ))}
+                    {this.generateTicks()}
                 </div>
             </div>
         )

@@ -1,13 +1,9 @@
 import React from 'react'
-import Tick from './Tick'
+import Axis from './Axis'
 import * as lib from '../lib'
 import './Axis.scss'
 
-class AxisT extends React.Component {
-
-    componentDidMount() {
-        this.build()
-    }
+class AxisT extends Axis {
 
     build() {
 
@@ -49,13 +45,7 @@ class AxisT extends React.Component {
         return (
             <div className={`axis axis--t scale-${this.props.scale}${this.props.units}`}>
                 <div className='wrapper' style={this.getStyles()}>
-                    {this.props.ticks.map((tick, index) => (
-                        <Tick
-                            key={index}
-                            label={tick.label}
-                            value={tick.value}
-                        />
-                    ))}
+                    {this.generateTicks()}
                 </div>
             </div>
         )

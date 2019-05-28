@@ -1,5 +1,5 @@
 import * as axis from '../constants/AxisBG'
-import * as actions from '../constants/Actions'
+import * as actions from '../constants/ActionTypes'
 
 const INIT_STATE = {
     units: 'mmol/L',

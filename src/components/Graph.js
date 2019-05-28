@@ -1,6 +1,6 @@
 import React from 'react'
-import GraphCorner from './GraphCorner'
-import GraphInnerContainer from '../containers/GraphInner';
+import Corner from './Corner'
+import InnerContainer from '../containers/InnerContainer';
 import AxisTContainer from '../containers/AxisTContainer';
 import AxisBGContainer from '../containers/AxisBGContainer';
 import './Graph.scss'
@@ -9,8 +9,8 @@ const Graph = (props) => (
     <div className='graph'>
         <AxisTContainer />
         <AxisBGContainer />
-        <GraphInnerContainer />
-        <GraphCorner />
+        <InnerContainer />
+        <Corner />
     </div>
 )
 

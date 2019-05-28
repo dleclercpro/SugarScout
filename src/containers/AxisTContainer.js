@@ -4,11 +4,11 @@ import * as actions from '../actions'
 import AxisT from '../components/AxisT'
 
 const mapStateToProps = (state) => ({
-    now: state.axisT.now,
-    toNow: state.axisT.toNow,
-    units: state.axisT.units,
-    scale: state.axisT.scale,
-    ticks: state.axisT.ticks,
+    now: state.axes.t.now,
+    toNow: state.axes.t.toNow,
+    units: state.axes.t.units,
+    scale: state.axes.t.scale,
+    ticks: state.axes.t.ticks,
 })
 
 const mapDispatchToProps = (dispatch) => ({
