@@ -4,7 +4,7 @@ import * as actions from '../actions'
 import Inner from '../components/Inner'
 
 const mapStateToProps = (state) => ({
-
+    scale: state.axes.t.scale,
 })
 
 const mapDispatchToProps = (dispatch) => ({

@@ -8,6 +8,7 @@ const mapStateToProps = (state) => ({
     toNow: state.axes.t.toNow,
     units: state.axes.t.units,
     scale: state.axes.t.scale,
+    nTicks: state.axes.t.nTicks,
     ticks: state.axes.t.ticks,
 })
 

@@ -14,26 +14,29 @@ $border: 1px dashed $color-white;
         border-right: $border;
         padding-right: 5px;
         transition: width ease-in-out $animation-speed;
+        font-size: 20px;
     }
 
-    .axis--t.scale-1h & {
+    .axis--t.scale-1-h & {
         width: 100%;
     }
 
-    .axis--t.scale-3h & {
+    .axis--t.scale-3-h & {
         width: calc(100% / 3);
     }
 
-    .axis--t.scale-6h & {
+    .axis--t.scale-6-h & {
         width: calc(100% / 6);
     }
 
-    .axis--t.scale-12h & {
+    .axis--t.scale-12-h & {
         width: calc(100% / 12);
+        font-size: 18px;
     }
 
-    .axis--t.scale-24h & {
+    .axis--t.scale-24-h & {
         width: calc(100% / 24);
+        font-size: 15px;
     }
 
     .axis--BG & {

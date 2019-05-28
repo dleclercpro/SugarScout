@@ -6,6 +6,7 @@ const INIT_STATE = {
     now: new Date(),
     toNow: 0,
     scale: axis.SCALE_H,
+    nTicks: axis.N_TICKS,
     ticks: [],
 }
 

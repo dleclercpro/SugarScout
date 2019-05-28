@@ -1,14 +1,16 @@
 import React from 'react'
 import './Inner.scss'
 
-const Inner = (props) => (
-    <div className="inner">
-        <button onClick={() => props.actions.updateTimeAxisScale(1)}>1h</button>
-        <button onClick={() => props.actions.updateTimeAxisScale(3)}>3h</button>
-        <button onClick={() => props.actions.updateTimeAxisScale(6)}>6h</button>
-        <button onClick={() => props.actions.updateTimeAxisScale(12)}>12h</button>
-        <button onClick={() => props.actions.updateTimeAxisScale(24)}>24h</button>
-    </div>
-)
+const Inner = (props) => {
+    const scales = [1, 3, 6, 12, 24]
+
+    return (
+        <div className="inner">
+            {scales.map((scale) => (
+                <button className={props.scale === scale ? 'is-active' : ''} onClick={() => props.actions.updateTimeAxisScale(scale)}>{scale}h</button>
+            ))}
+        </div>
+    )
+}
 
 export default Inner

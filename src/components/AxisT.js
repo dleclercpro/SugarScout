@@ -18,11 +18,8 @@ class AxisT extends Axis {
             this.props.now.getSeconds() * 1000 +
             this.props.now.getMilliseconds()
 
-        // Store it in state
-        this.props.actions.updateTimeAxisToNow(toNow)
-
         // Define range (h)
-        const range = lib.getRangeFromTo(hour - 24, hour)
+        const range = lib.getRangeFromTo(hour - this.props.nTicks + 1, hour)
 
         // Define ticks
         const ticks = range.map((h) => ({
@@ -30,7 +27,8 @@ class AxisT extends Axis {
             value: now - toNow - (hour - h) * 60 * 60 * 1000,
         }))
 
-        // Store them in state
+        // Update state
+        this.props.actions.updateTimeAxisToNow(toNow)
         this.props.actions.updateTimeAxisTicks(ticks)
         
     }
@@ -43,7 +41,7 @@ class AxisT extends Axis {
     
     render() {
         return (
-            <div className={`axis axis--t scale-${this.props.scale}${this.props.units}`}>
+            <div className={`axis axis--t scale-${this.props.scale}-${this.props.units}`}>
                 <div className='wrapper' style={this.getStyles()}>
                     {this.generateTicks()}
                 </div>

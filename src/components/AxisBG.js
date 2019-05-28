@@ -16,7 +16,7 @@ class AxisBG extends Axis {
             value: y,
         })).reverse()
         
-        // Store them in state
+        // Update state
         this.props.actions.updateBGAxisTicks(ticks)
     }
     
