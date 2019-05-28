@@ -15,6 +15,7 @@ $border: 1px dashed $color-white;
         padding-right: 4px;
         transition: width ease-in-out $animation-speed;
         font-size: 20px;
+        line-height: 18px;
     }
 
     .graph--1-h .axis--t & {
@@ -32,11 +33,13 @@ $border: 1px dashed $color-white;
     .graph--12-h .axis--t & {
         width: calc(100% / 12);
         font-size: 18px;
+        line-height: 16px;
     }
 
     .graph--24-h .axis--t & {
         width: calc(100% / 24);
         font-size: 15px;
+        line-height: 13px;
     }
 
     .axis--BG & {
@@ -44,6 +47,6 @@ $border: 1px dashed $color-white;
         justify-content: flex-start;
         align-items: flex-end;
         border-bottom: $border;
-        padding-bottom: 4px;
+        padding-bottom: 1px;
     }
 }
