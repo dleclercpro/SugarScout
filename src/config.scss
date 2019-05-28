@@ -1,16 +1,31 @@
 // FONTS
 $font: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 
-// COLORS
+// RAW COLORS
 $color-black: #000000;
 $color-grey: #333333;
 $color-white: #ffffff;
+$color-red: #e50000;
+$color-orange: #ff7500;
+$color-green: #99e500;
+
+// COLORS
 $color-font: $color-black;
 $color-background: #1b1b1b;
+$color-bg-very-low: $color-red;
+$color-bg-low: $color-orange;
+$color-bg-normal: $color-green;
+$color-bg-high: $color-orange;
+$color-bg-very-high: $color-red;
 
 // SIZES
 $size-font: 16px;
 $size-axis: 28px;
+$size-bg-scale-1-h: 10px;
+$size-bg-scale-3-h: 10px;
+$size-bg-scale-6-h: 8px;
+$size-bg-scale-12-h: 6px;
+$size-bg-scale-24-h: 5px;
 
 // ANIMATIONS
 $animation-speed: 500ms;

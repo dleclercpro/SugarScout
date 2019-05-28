@@ -1,10 +1,10 @@
 import React from 'react'
-import Graph from './Graph'
+import GraphContainer from '../containers/GraphContainer'
 import './App.scss'
 
 const App = () => (
     <div className='app'>
-        <Graph />
+        <GraphContainer />
     </div>
 )
 

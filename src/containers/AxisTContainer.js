@@ -6,7 +6,6 @@ import AxisT from '../components/AxisT'
 const mapStateToProps = (state) => ({
     now: state.axes.t.now,
     toNow: state.axes.t.toNow,
-    units: state.axes.t.units,
     scale: state.axes.t.scale,
     nTicks: state.axes.t.nTicks,
     ticks: state.axes.t.ticks,

@@ -1,14 +1,13 @@
 import * as time from '../constants/Time'
-import * as axis from '../constants/AxisT'
 import * as actions from '../constants/ActionTypes'
 
 const INIT_STATE = {
-    units: 'h',
-    now: new Date(),
+    units: time.UNIT,
+    now: new Date(2019, 4, 28, 0, 0, 0, 0),
     toNow: 0,
-    scales: time.SCALES_H,
-    scale: time.DEFAULT_SCALE_H,
-    nTicks: axis.N_TICKS,
+    scales: time.AXIS_SCALES,
+    scale: time.AXIS_SCALE,
+    nTicks: time.AXIS_N_TICKS,
     ticks: [],
 }
 

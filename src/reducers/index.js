@@ -1,12 +1,14 @@
-import * as Redux from 'redux'
+import { combineReducers } from 'redux'
 import AxisT from './AxisT'
 import AxisBG from './AxisBG'
+import AxisBasal from './AxisBasal';
 import CGM from './CGM';
 
-const rootReducer = Redux.combineReducers({
-    axes: Redux.combineReducers({
+const rootReducer = combineReducers({
+    axes: combineReducers({
         t: AxisT,
         bg: AxisBG,
+        basal: AxisBasal,
     }),
     cgm: CGM,
 })

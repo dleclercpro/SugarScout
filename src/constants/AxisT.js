@@ -1,1 +1,0 @@
-export const N_TICKS = 24

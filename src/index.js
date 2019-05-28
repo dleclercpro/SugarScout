@@ -8,11 +8,11 @@ import rootReducer from './reducers'
 import App from './components/App'
 import './index.scss'
 
-const logger = createLogger()
+const loggerMiddleware = createLogger()
 
 const store = createStore(
     rootReducer,
-    applyMiddleware(thunkMiddleware, logger)
+    applyMiddleware(thunkMiddleware, loggerMiddleware)
 )
 
 render(

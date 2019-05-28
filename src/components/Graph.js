@@ -6,7 +6,7 @@ import AxisBGContainer from '../containers/AxisBGContainer';
 import './Graph.scss'
 
 const Graph = (props) => (
-    <div className='graph'>
+    <div className={`graph graph--${props.scale}-h`}>
         <AxisTContainer />
         <AxisBGContainer />
         <InnerContainer />

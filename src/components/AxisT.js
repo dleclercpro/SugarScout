@@ -41,7 +41,7 @@ class AxisT extends Axis {
     
     render() {
         return (
-            <div className={`axis axis--t scale-${this.props.scale}-${this.props.units}`}>
+            <div className='axis axis--t'>
                 <div className='wrapper' style={this.getStyles()}>
                     {this.generateTicks()}
                 </div>

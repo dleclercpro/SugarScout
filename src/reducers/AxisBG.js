@@ -1,10 +1,13 @@
-import * as axis from '../constants/AxisBG'
+import * as bg from '../constants/BG'
 import * as actions from '../constants/ActionTypes'
 
 const INIT_STATE = {
-    units: 'mmol/L',
-    range: [axis.MIN_MMOL_L, axis.MAX_MMOL_L],
-    scale: 'linear',
+    units: bg.UNIT,
+    scale: bg.AXIS_SCALE,
+    range: [
+        bg.AXIS_MIN_MMOL_L,
+        bg.AXIS_MAX_MMOL_L
+    ],
     ticks: [],
 }
 

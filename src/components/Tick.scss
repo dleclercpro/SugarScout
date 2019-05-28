@@ -17,24 +17,24 @@ $border: 1px dashed $color-white;
         font-size: 20px;
     }
 
-    .axis--t.scale-1-h & {
+    .graph--1-h .axis--t & {
         width: 100%;
     }
 
-    .axis--t.scale-3-h & {
+    .graph--3-h .axis--t & {
         width: calc(100% / 3);
     }
 
-    .axis--t.scale-6-h & {
+    .graph--6-h .axis--t & {
         width: calc(100% / 6);
     }
 
-    .axis--t.scale-12-h & {
+    .graph--12-h .axis--t & {
         width: calc(100% / 12);
         font-size: 18px;
     }
 
-    .axis--t.scale-24-h & {
+    .graph--24-h .axis--t & {
         width: calc(100% / 24);
         font-size: 15px;
     }

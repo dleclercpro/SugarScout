@@ -1,4 +1,5 @@
 import React from 'react'
+import BGContainer from '../containers/BGContainer';
 import './Inner.scss'
 
 const Inner = (props) => (
@@ -8,6 +9,10 @@ const Inner = (props) => (
         ))}
 
         <button onClick={() => props.actions.fetchBGs()}>Fetch BGs</button>
+
+        {props.bgs.map((bg, index) => (
+            <BGContainer key={index} t={bg.t} value={bg.value} />
+        ))}
     </div>
 )
 

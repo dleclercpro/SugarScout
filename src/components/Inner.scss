@@ -1,9 +1,7 @@
 @import '../config.scss';
 
 .inner {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: relative;
     order: 1;
     width: calc(100% - #{$size-axis});
     height: calc(100% - #{$size-axis});

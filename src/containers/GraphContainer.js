@@ -1,21 +1,19 @@
 import * as Redux from 'redux'
 import * as ReactRedux from 'react-redux'
 import * as actions from '../actions'
-import Inner from '../components/Inner'
+import Graph from '../components/Graph'
 
 const mapStateToProps = (state) => ({
-    scales: state.axes.t.scales,
     scale: state.axes.t.scale,
-    bgs: state.cgm.data.bgs.data,
 })
 
 const mapDispatchToProps = (dispatch) => ({
     actions: Redux.bindActionCreators(actions, dispatch),
 })
 
-const InnerContainer = ReactRedux.connect(
+const GraphContainer = ReactRedux.connect(
     mapStateToProps,
     mapDispatchToProps,
-)(Inner)
+)(Graph)
 
-export default InnerContainer
+export default GraphContainer
