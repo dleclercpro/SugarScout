@@ -1,9 +1,9 @@
 @import '../config.scss';
+@import '../mixins.scss';
 
 .bg {
     position: absolute;
-    width: 10px;
-    height: 10px;
+    transform: translate(50%, -50%);
     border-radius: 50%;
     background: $color-white;
     transition: all ease-in-out $animation-speed;
@@ -29,27 +29,98 @@
     }
 
     .graph--1-h & {
-        width: $size-bg-scale-1-h;
-        height: $size-bg-scale-1-h;
+        width: 8px;
+        height: 8px;
+
+        @include mq(tablet) {
+            width: 10px;
+            height: 10px;
+        }
+
+        @include mq(desktop) {
+
+        }
+
+        @include mq(desktopXL) {
+
+        }
     }
 
     .graph--3-h & {
-        width: $size-bg-scale-3-h;
-        height: $size-bg-scale-3-h;
+        width: 5px;
+        height: 5px;
+
+        @include mq(tablet) {
+            width: 8px;
+            height: 8px;
+        }
+
+        @include mq(desktop) {
+            width: 10px;
+            height: 10px;
+        }
+
+        @include mq(desktopXL) {
+
+        }
     }
 
     .graph--6-h & {
-        width: $size-bg-scale-6-h;
-        height: $size-bg-scale-6-h;
+        width: 4px;
+        height: 4px;
+
+        @include mq(tablet) {
+            width: 6px;
+            height: 6px;
+        }
+
+        @include mq(desktop) {
+            width: 7px;
+            height: 7px;
+        }
+
+        @include mq(desktopXL) {
+            width: 8px;
+            height: 8px;
+        }
     }
 
     .graph--12-h & {
-        width: $size-bg-scale-12-h;
-        height: $size-bg-scale-12-h;
+        display: none;
+
+        @include mq(tablet) {
+            display: block;
+            width: 4px;
+            height: 4px;
+        }
+
+        @include mq(desktop) {
+            width: 5px;
+            height: 5px;
+        }
+
+        @include mq(desktopXL) {
+            width: 6px;
+            height: 6px;
+        }
     }
 
     .graph--24-h & {
-        width: $size-bg-scale-24-h;
-        height: $size-bg-scale-24-h;
+        display: none;
+
+        @include mq(tablet) {
+            
+        }
+
+        @include mq(desktop) {
+            display: block;
+            width: 4px;
+            height: 4px;
+        }
+
+        @include mq(desktopXL) {
+            width: 5px;
+            height: 5px;
+        }
     }
 }

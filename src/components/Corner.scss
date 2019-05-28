@@ -1,7 +1,23 @@
 @import '../config.scss';
+@import '../mixins.scss';
 
 .corner {
     order: 4;
     width: $size-axis;
     height: $size-axis;
+
+    @include mq(tablet) {
+        width: $size-axis-tablet;
+        height: $size-axis-tablet;
+    }
+
+    @include mq(desktop) {
+        width: $size-axis-desktop;
+        height: $size-axis-desktop;
+    }
+
+    @include mq(desktopXL) {
+        width: $size-axis-desktop-xl;
+        height: $size-axis-desktop-xl;
+    }
 }

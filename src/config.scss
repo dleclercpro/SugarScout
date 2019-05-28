@@ -1,3 +1,10 @@
+// BREAKPOINTS
+$breakpoints: (
+    tablet: 600px,
+    desktop: 1024px,
+    desktopXL: 1280px,
+);
+
 // FONTS
 $font: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 
@@ -20,7 +27,10 @@ $color-bg-very-high: $color-red;
 
 // SIZES
 $size-font: 16px;
-$size-axis: 28px;
+$size-axis: 18px;
+$size-axis-tablet: 22px;
+$size-axis-desktop: 26px;
+$size-axis-desktop-xl: 28px;
 $size-bg-scale-1-h: 10px;
 $size-bg-scale-3-h: 10px;
 $size-bg-scale-6-h: 8px;

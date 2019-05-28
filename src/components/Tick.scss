@@ -1,4 +1,5 @@
 @import '../config.scss';
+@import '../mixins.scss';
 
 $border: 1px dashed $color-white;
 
@@ -15,31 +16,88 @@ $border: 1px dashed $color-white;
         padding-right: 4px;
         transition: width ease-in-out $animation-speed;
         font-size: 20px;
-        line-height: 18px;
+        line-height: 10px;
+
+        @include mq(tablet) {
+            line-height: 12px;
+        }
+
+        @include mq(desktop) {
+            line-height: 15px;
+        }
     }
 
     .graph--1-h .axis--t & {
         width: 100%;
+        font-size: 14px;
+
+        @include mq(tablet) {
+            font-size: 18px;
+        }
+
+        @include mq(desktop) {
+            font-size: 20px;
+        }
     }
 
     .graph--3-h .axis--t & {
         width: calc(100% / 3);
+        font-size: 14px;
+
+        @include mq(tablet) {
+            font-size: 18px;
+        }
+
+        @include mq(desktop) {
+            font-size: 20px;
+        }
     }
 
     .graph--6-h .axis--t & {
         width: calc(100% / 6);
+        font-size: 12px;
+
+        @include mq(tablet) {
+            font-size: 16px;
+        }
+
+        @include mq(desktop) {
+            font-size: 20px;
+        }
     }
 
+    // Doesn't fit in XS devides
     .graph--12-h .axis--t & {
+        display: none;
         width: calc(100% / 12);
-        font-size: 18px;
-        line-height: 16px;
+
+        @include mq(tablet) {
+            display: flex;
+            font-size: 14px;
+        }
+
+        @include mq(desktop) {
+            font-size: 18px;
+        }
     }
 
+    // Doesn't fit in XS devides
     .graph--24-h .axis--t & {
-        width: calc(100% / 24);
-        font-size: 15px;
-        line-height: 13px;
+        display: none;
+        width: calc(100% / 24);        
+
+        @include mq(tablet) {
+            
+        }
+
+        @include mq(desktop) {
+            display: flex;
+            font-size: 13px;
+        }
+
+        @include mq(desktopXL) {
+            font-size: 16px;
+        }
     }
 
     .axis--BG & {
@@ -48,5 +106,10 @@ $border: 1px dashed $color-white;
         align-items: flex-end;
         border-bottom: $border;
         padding-bottom: 1px;
+        font-size: 14px;
+
+        @include mq(desktop) {
+            font-size: 16px;
+        }
     }
 }
