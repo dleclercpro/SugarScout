@@ -1,0 +1,42 @@
+@import '../config.scss';
+
+$border: 1px dashed $color-white;
+
+.tick {
+    display: flex;
+    color: $color-white;
+    font-weight: bold;
+
+    .axis--t & {
+        flex: 0 0 auto;
+        justify-content: flex-end;
+        align-items: flex-start;
+        border-right: $border;
+        padding-right: 5px;
+        transition: width ease-in-out $animation-speed;
+    }
+
+    .axis--t.scale-3h & {
+        width: calc(100% / 3);
+    }
+
+    .axis--t.scale-6h & {
+        width: calc(100% / 6);
+    }
+
+    .axis--t.scale-12h & {
+        width: calc(100% / 12);
+    }
+
+    .axis--t.scale-24h & {
+        width: calc(100% / 24);
+    }
+
+    .axis--BG & {
+        flex: 1;
+        justify-content: flex-start;
+        align-items: flex-end;
+        border-bottom: $border;
+        padding-bottom: 5px;
+    }
+}

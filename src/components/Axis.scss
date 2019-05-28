@@ -1,0 +1,35 @@
+@import '../config.scss';
+
+.axis {
+    position: relative;
+
+    &--t {
+        order: 3;
+        width: calc(100% - #{$size-axis});
+        height: $size-axis;
+
+        > .wrapper {
+            flex-direction: row;
+            transition: right ease-in-out $animation-speed;
+        }
+    }
+
+    &--BG {
+        order: 2;
+        width: $size-axis;
+        height: calc(100% - #{$size-axis});
+
+        > .wrapper {
+            flex-direction: column;
+        }
+    }
+
+    > .wrapper {
+        display: flex;
+        justify-content: flex-end;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+}

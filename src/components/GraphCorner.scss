@@ -1,0 +1,7 @@
+@import '../config.scss';
+
+.graph-corner {
+    order: 4;
+    width: $size-axis;
+    height: $size-axis;
+}

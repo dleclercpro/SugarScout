@@ -1,11 +1,11 @@
 import React from 'react'
-
+import Graph from './Graph'
 import './App.scss'
 
-const App = () => {
-  return (
-    <div className="app"></div>
-  );
-};
+const App = () => (
+    <div className='app'>
+        <Graph />
+    </div>
+)
 
 export default App
