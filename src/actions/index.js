@@ -1,3 +1,4 @@
+import * as lib from '../lib'
 import * as actions from '../constants/ActionTypes'
 
 export const showBG = (index) => ({
@@ -26,30 +27,35 @@ export const updateBGAxisTicks = (ticks) => ({
     ticks,
 })
 
-export const fetchBGsRequest = () => ({
-    type: actions.FETCH_BGS_REQUEST,
+export const fetchDataRequest = (dataType) => ({
+    type: actions.FETCH_DATA_REQUEST,
+    dataType,
 })
 
-export const fetchBGsFailure = (error) => ({
-    type: actions.FETCH_BGS_FAILURE,
+export const fetchDataFailure = (dataType, error) => ({
+    type: actions.FETCH_DATA_FAILURE,
+    dataType,
     error,
 })
 
-export const fetchBGsSuccess = (data) => ({
-    type: actions.FETCH_BGS_SUCCESS,
+export const fetchDataSuccess = (dataType, data) => ({
+    type: actions.FETCH_DATA_SUCCESS,
+    dataType,
     data,
 })
 
-export const fetchBGs = () => ((dispatch) => {
-    dispatch(fetchBGsRequest())
-
-    return fetch('../reports/BG.json')
+export const fetchData = (dispatch, dataType, src, callback = json => json) => {
+    dispatch(fetchDataRequest(dataType))
+    return fetch(src)
         .then(
             response => response.json(),
-            error => dispatch(fetchBGsFailure(error))
+            error => dispatch(fetchDataFailure(dataType, error))
         )
         .then(
-            json => dispatch(fetchBGsSuccess(json))
+            json => dispatch(fetchDataSuccess(dataType, callback(json)))
         )
-    }
-)
+}
+
+export const fetchBGs = () => ((dispatch) => (
+    fetchData(dispatch, 'bgs', '../reports/BG.json', lib.convertJSONBGs)
+))

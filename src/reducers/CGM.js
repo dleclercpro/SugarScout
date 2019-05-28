@@ -1,26 +1,31 @@
 import * as actions from '../constants/ActionTypes'
 
-const INIT_STATE = {
-    company: 'Dexcom',
-    model: 'G4',
-    firmware: '',
-    units: 'mmol/L',
-    bg: {},
-}
-
-const INIT_STATE_BG = {
+const INIT_STATE_DATA = {
     isFetching: false,
     isError: false,
     data: [],
 }
 
+const INIT_STATE = {
+    company: 'Dexcom',
+    model: 'G4',
+    firmware: '',
+    units: 'mmol/L',
+    data: {
+        bgs: INIT_STATE_DATA,
+        calibrations: INIT_STATE_DATA,
+    },
+}
+
 const CGM = (state = INIT_STATE, action) => {
     switch (action.type) {
-        case actions.FETCH_BGS_REQUEST:
-        case actions.FETCH_BGS_FAILURE:
-        case actions.FETCH_BGS_SUCCESS:
+        case actions.FETCH_DATA_REQUEST:
+        case actions.FETCH_DATA_FAILURE:
+        case actions.FETCH_DATA_SUCCESS:
             return Object.assign({}, state, {
-                bg: fetchBGs(state.bg, action)
+                data: Object.assign({}, state.data, {
+                    [action.dataType]: fetchData(state.data[action.dataType], action),
+                })
             })
 
         default:
@@ -28,26 +33,29 @@ const CGM = (state = INIT_STATE, action) => {
     }
 }
 
-const fetchBGs = (state = INIT_STATE_BG, action) => {
+const fetchData = (state = INIT_STATE_DATA, action) => {
     switch (action.type) {
-        case actions.FETCH_BGS_REQUEST:
-            return Object.assign({}, state, {
+        case actions.FETCH_DATA_REQUEST:
+            return {
+                ...state,
                 isFetching: true,
                 isError: false,
-            })
+            }
 
-        case actions.FETCH_BGS_FAILURE:
-            return Object.assign({}, state, {
+        case actions.FETCH_DATA_FAILURE:
+            return {
+                ...state,
                 isFetching: false,
                 isError: true,
-            })
+            }
 
-        case actions.FETCH_BGS_SUCCESS:
-            return Object.assign({}, state, {
+        case actions.FETCH_DATA_SUCCESS:
+            return {
+                ...state,
                 isFetching: false,
                 isError: false,
                 data: action.data,
-            })
+            }
 
         default:
             return state

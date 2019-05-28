@@ -1,3 +1,4 @@
+import * as time from '../constants/Time'
 import * as axis from '../constants/AxisT'
 import * as actions from '../constants/ActionTypes'
 
@@ -5,8 +6,8 @@ const INIT_STATE = {
     units: 'h',
     now: new Date(),
     toNow: 0,
-    scales: axis.SCALES_H,
-    scale: axis.DEFAULT_SCALE_H,
+    scales: time.SCALES_H,
+    scale: time.DEFAULT_SCALE_H,
     nTicks: axis.N_TICKS,
     ticks: [],
 }
