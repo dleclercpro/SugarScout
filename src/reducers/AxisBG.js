@@ -13,10 +13,10 @@ const INIT_STATE = {
 
 const AxisBG = (state = INIT_STATE, action) => {
     switch (action.type) {
-        case actions.UPDATE_BG_AXIS_TICKS:
+        case actions.UPDATE_BG_AXIS:
             return {
                 ...state,
-                ticks: action.ticks,
+                ...action.args,
             }
 
         default:

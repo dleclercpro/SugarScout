@@ -28,9 +28,10 @@ class AxisT extends Axis {
         }))
 
         // Update state
-        this.props.actions.updateTimeAxisToNow(toNow)
-        this.props.actions.updateTimeAxisTicks(ticks)
-        
+        this.props.actions.updateTimeAxis({
+            toNow,
+            ticks,
+        })
     }
 
     getStyles() {

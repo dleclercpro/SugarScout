@@ -1,7 +1,4 @@
-@import '../config.scss';
-@import '../mixins.scss';
-
-$border: 1px dashed $color-white;
+@import '../common.scss';
 
 .tick {
     display: flex;
@@ -12,7 +9,7 @@ $border: 1px dashed $color-white;
         flex: 0 0 auto;
         justify-content: flex-end;
         align-items: flex-start;
-        border-right: $border;
+        border-right: $border-axis-tick;
         padding-right: 4px;
         transition: width ease-in-out $animation-speed;
         font-size: 20px;
@@ -68,11 +65,11 @@ $border: 1px dashed $color-white;
 
     // Doesn't fit in XS devides
     .graph--12-h .axis--t & {
-        display: none;
+        color: transparent;
         width: calc(100% / 12);
 
         @include mq(tablet) {
-            display: flex;
+            color: $color-white;
             font-size: 14px;
         }
 
@@ -83,7 +80,7 @@ $border: 1px dashed $color-white;
 
     // Doesn't fit in XS devides
     .graph--24-h .axis--t & {
-        display: none;
+        color: transparent;
         width: calc(100% / 24);        
 
         @include mq(tablet) {
@@ -91,7 +88,7 @@ $border: 1px dashed $color-white;
         }
 
         @include mq(desktop) {
-            display: flex;
+            color: $color-white;
             font-size: 13px;
         }
 
@@ -104,7 +101,7 @@ $border: 1px dashed $color-white;
         flex: 1;
         justify-content: flex-start;
         align-items: flex-end;
-        border-bottom: $border;
+        border-bottom: $border-axis-tick;
         padding-bottom: 1px;
         font-size: 14px;
 

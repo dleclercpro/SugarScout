@@ -1,30 +1,20 @@
 import * as lib from '../lib'
 import * as actions from '../constants/ActionTypes'
 
-export const showBG = (index) => ({
-    type: actions.SHOW_BG,
-    index,
+export const updateBubble = (info, time) => ({
+    type: actions.UPDATE_BUBBLE,
+    info,
+    time,
 })
 
-export const updateTimeAxisScale = (scale, units = 'h') => ({
-    type: actions.UPDATE_TIME_AXIS_SCALE,
-    scale,
-    units,
+export const updateTimeAxis = (args) => ({
+    type: actions.UPDATE_TIME_AXIS,
+    args,
 })
 
-export const updateTimeAxisToNow = (toNow) => ({
-    type: actions.UPDATE_TIME_AXIS_TO_NOW,
-    toNow,
-})
-
-export const updateTimeAxisTicks = (ticks) => ({
-    type: actions.UPDATE_TIME_AXIS_TICKS,
-    ticks,
-})
-
-export const updateBGAxisTicks = (ticks) => ({
-    type: actions.UPDATE_BG_AXIS_TICKS,
-    ticks,
+export const updateBGAxis = (args) => ({
+    type: actions.UPDATE_BG_AXIS,
+    args,
 })
 
 export const fetchDataRequest = (dataType) => ({

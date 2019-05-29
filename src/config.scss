@@ -10,6 +10,7 @@ $font: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvet
 
 // RAW COLORS
 $color-black: #000000;
+$color-dark-grey: #1b1b1b;
 $color-grey: #333333;
 $color-white: #ffffff;
 $color-red: #e50000;
@@ -18,7 +19,7 @@ $color-green: #99e500;
 
 // COLORS
 $color-font: $color-black;
-$color-background: #1b1b1b;
+$color-background: $color-dark-grey;
 $color-bg-very-low: $color-red;
 $color-bg-low: $color-orange;
 $color-bg-normal: $color-green;
@@ -31,11 +32,9 @@ $size-axis: 18px;
 $size-axis-tablet: 22px;
 $size-axis-desktop: 26px;
 $size-axis-desktop-xl: 28px;
-$size-bg-scale-1-h: 10px;
-$size-bg-scale-3-h: 10px;
-$size-bg-scale-6-h: 8px;
-$size-bg-scale-12-h: 6px;
-$size-bg-scale-24-h: 5px;
+
+// BORDERS
+$border-axis-tick: 1px dashed $color-white;
 
 // ANIMATIONS
 $animation-speed: 500ms;

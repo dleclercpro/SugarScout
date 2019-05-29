@@ -7,10 +7,10 @@ import './Graph.scss'
 
 const Graph = (props) => (
     <div className={`graph graph--${props.scale}-h`}>
-        <AxisTContainer />
-        <AxisBGContainer />
         <InnerContainer />
         <Corner />
+        <AxisTContainer />
+        <AxisBGContainer />
     </div>
 )
 

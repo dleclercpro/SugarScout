@@ -17,7 +17,9 @@ class AxisBG extends Axis {
         })).reverse()
         
         // Update state
-        this.props.actions.updateBGAxisTicks(ticks)
+        this.props.actions.updateBGAxis({
+            ticks
+        })
     }
     
     render() {

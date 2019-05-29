@@ -13,23 +13,10 @@ const INIT_STATE = {
 
 const AxisT = (state = INIT_STATE, action) => {
     switch (action.type) {
-        case actions.UPDATE_TIME_AXIS_SCALE:
+        case actions.UPDATE_TIME_AXIS:
             return {
                 ...state,
-                units: action.units,
-                scale: action.scale,
-            }
-
-        case actions.UPDATE_TIME_AXIS_TO_NOW:
-            return {
-                ...state,
-                toNow: action.toNow,
-            }
-
-        case actions.UPDATE_TIME_AXIS_TICKS:
-            return {
-                ...state,
-                ticks: action.ticks,
+                ...action.args,
             }
 
         default:
