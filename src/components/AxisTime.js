@@ -1,7 +1,7 @@
 import React from 'react'
 import Axis from './Axis'
 import * as lib from '../lib'
-import './Axis.scss'
+import './AxisTime.scss'
 
 class AxisTime extends Axis {
 

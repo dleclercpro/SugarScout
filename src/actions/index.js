@@ -1,6 +1,10 @@
 import * as lib from '../lib'
 import * as actions from '../constants/ActionTypes'
 
+export const resetBubble = () => ({
+    type: actions.RESET_BUBBLE,
+})
+
 export const updateBubble = (args) => ({
     type: actions.UPDATE_BUBBLE,
     args,

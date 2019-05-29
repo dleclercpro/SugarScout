@@ -1,0 +1,27 @@
+@import '../common.scss';
+@import './Axis.scss';
+
+.axis--bg {
+    order: 2;
+    width: $size-axis;
+    height: calc(100% - #{$size-axis});
+
+    @include mq(tablet) {
+        width: $size-axis-tablet;
+        height: calc(100% - #{$size-axis-tablet});
+    }
+
+    @include mq(desktop) {
+        width: $size-axis-desktop;
+        height: calc(100% - #{$size-axis-desktop});
+    }
+
+    @include mq(desktopXL) {
+        width: $size-axis-desktop-xl;
+        height: calc(100% - #{$size-axis-desktop-xl});
+    }
+
+    > .wrapper {
+        flex-direction: column;
+    }
+}

@@ -5,6 +5,7 @@ import * as actions from '../actions'
 
 const mapStateToProps = (state) => ({
     status: state.bubble.status,
+    type: state.bubble.type,
     position: state.bubble.position,
     time: state.bubble.time,
     info: state.bubble.info,

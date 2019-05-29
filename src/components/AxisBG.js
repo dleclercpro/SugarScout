@@ -1,9 +1,13 @@
 import React from 'react'
 import Axis from './Axis'
 import * as lib from '../lib'
-import './Axis.scss'
+import './AxisBG.scss'
 
 class AxisBG extends Axis {
+
+    componentDidMount() {
+        this.build()
+    }
 
     build() {
 
@@ -24,7 +28,7 @@ class AxisBG extends Axis {
     
     render() {
         return (
-            <div className='axis axis--BG'>
+            <div className='axis axis--bg'>
                 <div className='wrapper'>
                     {this.generateTicks()}
                 </div>

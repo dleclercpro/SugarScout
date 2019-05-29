@@ -23,8 +23,12 @@ class Bubble extends React.Component {
 
     render() {
         return (
-            <div ref={this.node} className={`bubble ${this.props.status === 'visible' ? 'is-visible' : ''}`} style={this.props.position}>
-                <p className='info'>{this.props.info}</p>
+            <div ref={this.node} className={`bubble ${this.props.type} ${this.props.status === 'visible' ? 'is-visible' : ''}`} style={this.props.position}>
+                <p className='info'>
+                    <span className='value'>{this.props.info.value}</span>
+                    {' '}
+                    <span className='units'>{this.props.info.units}</span>
+                </p>
                 <p className='time'>{lib.convertEpochToFormattedTime(this.props.time)}</p>
             </div>
         )

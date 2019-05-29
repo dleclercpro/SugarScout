@@ -12,15 +12,15 @@ class Inner extends React.Component {
     render() {
         return (
             <div className='inner'>
+                <BubbleContainer />
+
                 {this.props.scales.map((scale, index) => (
                     <ButtonTimeScaleContainer key={index} scale={scale} />
                 ))}
         
                 {this.props.bgs.map((bg, index) => (
                     <BGContainer key={index} time={bg.time} value={bg.value} />
-                ))}
-        
-                <BubbleContainer />
+                ))}                
             </div>
         )
     }

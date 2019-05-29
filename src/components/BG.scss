@@ -1,6 +1,6 @@
 @import '../common.scss';
 
-.bg {
+.point.bg {
     position: absolute;
     transform: translate(50%, -50%);
     border-radius: 50%;
@@ -9,23 +9,23 @@
     z-index: 10;
     cursor: pointer;
 
-    &--very-low {
+    &.bg--very-low {
         background: $color-bg-very-low;
     }
 
-    &--low {
+    &.bg--low {
         background: $color-bg-low;
     }
 
-    &--normal {
+    &.bg--normal {
         background: $color-bg-normal;
     }
 
-    &--high {
+    &.bg--high {
         background: $color-bg-high;
     }
 
-    &--very-high {
+    &.bg--very-high {
         background: $color-bg-very-high;
     }
 

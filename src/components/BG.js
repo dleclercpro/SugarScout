@@ -1,9 +1,10 @@
 import React from 'react'
+import Point from './Point';
 import * as bg from '../constants/BG'
 import * as lib from '../lib'
 import './BG.scss'
 
-class BG extends React.Component {
+class BG extends Point {
 
     getType() {
         if (this.props.value <= bg.VERY_LOW) {
@@ -38,21 +39,23 @@ class BG extends React.Component {
     showBubble = () => {
         this.props.actions.updateBubble({
             status: 'visible',
+            type: 'bg bg--' + this.getType(),
             position: this.getStyles(),
             time: this.props.time,
-            info: lib.formatBG(this.props.value) + ' ' + bg.UNIT,
+            info: {
+                value: lib.formatBG(this.props.value),
+                units: bg.UNIT,
+            },
         })
     }
 
     hideBubble = () => {
-        this.props.actions.updateBubble({
-            status: 'invisible',
-        })
+        this.props.actions.resetBubble()
     }
 
     render() {
         return (
-            <div className={`bg bg--${this.getType()}`}
+            <div className={`point bg bg--${this.getType()}`}
                 style={this.getStyles()}
                 onMouseEnter={this.showBubble}
                 onMouseLeave={this.hideBubble}

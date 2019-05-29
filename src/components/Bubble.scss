@@ -22,6 +22,63 @@
 
     > .info {
         font-weight: bold;
-        margin-bottom: 4px;
+
+        > .value,
+        > .units {
+            color: $color-white;
+        }
+    }
+
+    &.bg {
+
+        &--very-low {
+
+            > .info {
+
+                > .value {
+                    color: $color-bg-very-low;
+                }
+            }
+        }
+    
+        &--low {
+
+            > .info {
+
+                > .value {
+                    color: $color-bg-low;
+                }
+            }
+        }
+    
+        &--normal {
+            
+            > .info {
+
+                > .value {
+                    color: $color-bg-normal;
+                }
+            }
+        }
+    
+        &--high {
+
+            > .info {
+
+                > .value {
+                    color: $color-bg-high;
+                }
+            }
+        }
+    
+        &--very-high {
+
+            > .info {
+
+                > .value {
+                    color: $color-bg-very-high;
+                }
+            }
+        }
     }
 }

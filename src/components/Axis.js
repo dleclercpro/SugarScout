@@ -19,7 +19,7 @@ class AxisBG extends React.Component {
     }
 
     build() {
-        return
+        throw new Error('To implement.')
     }
 }
 

@@ -22,82 +22,80 @@
         @include mq(desktop) {
             line-height: 15px;
         }
-    }
 
-    .graph--1-h .axis--time & {
-        width: 100%;
-        font-size: 14px;
-
-        @include mq(tablet) {
-            font-size: 18px;
-        }
-
-        @include mq(desktop) {
-            font-size: 20px;
-        }
-    }
-
-    .graph--3-h .axis--time & {
-        width: calc(100% / 3);
-        font-size: 14px;
-
-        @include mq(tablet) {
-            font-size: 18px;
-        }
-
-        @include mq(desktop) {
-            font-size: 20px;
-        }
-    }
-
-    .graph--6-h .axis--time & {
-        width: calc(100% / 6);
-        font-size: 12px;
-
-        @include mq(tablet) {
-            font-size: 16px;
-        }
-
-        @include mq(desktop) {
-            font-size: 20px;
-        }
-    }
-
-    // Doesn't fit in XS devides
-    .graph--12-h .axis--time & {
-        color: transparent;
-        width: calc(100% / 12);
-
-        @include mq(tablet) {
-            color: $color-white;
+        .graph--1-h & {
+            width: 100%;
             font-size: 14px;
+    
+            @include mq(tablet) {
+                font-size: 18px;
+            }
+    
+            @include mq(desktop) {
+                font-size: 20px;
+            }
+        }
+    
+        .graph--3-h & {
+            width: calc(100% / 3);
+            font-size: 14px;
+    
+            @include mq(tablet) {
+                font-size: 18px;
+            }
+    
+            @include mq(desktop) {
+                font-size: 20px;
+            }
+        }
+    
+        .graph--6-h & {
+            width: calc(100% / 6);
+            font-size: 12px;
+    
+            @include mq(tablet) {
+                font-size: 16px;
+            }
+    
+            @include mq(desktop) {
+                font-size: 20px;
+            }
+        }
+        
+        .graph--12-h & {
+            color: transparent;
+            width: calc(100% / 12);
+    
+            @include mq(tablet) {
+                color: $color-white;
+                font-size: 14px;
+            }
+    
+            @include mq(desktop) {
+                font-size: 18px;
+            }
         }
 
-        @include mq(desktop) {
-            font-size: 18px;
+        .graph--24-h & {
+            color: transparent;
+            width: calc(100% / 24);        
+    
+            @include mq(tablet) {
+                
+            }
+    
+            @include mq(desktop) {
+                color: $color-white;
+                font-size: 13px;
+            }
+    
+            @include mq(desktopXL) {
+                font-size: 16px;
+            }
         }
     }
 
-    // Doesn't fit in XS devides
-    .graph--24-h .axis--time & {
-        color: transparent;
-        width: calc(100% / 24);        
-
-        @include mq(tablet) {
-            
-        }
-
-        @include mq(desktop) {
-            color: $color-white;
-            font-size: 13px;
-        }
-
-        @include mq(desktopXL) {
-            font-size: 16px;
-        }
-    }
-
-    .axis--BG & {
+    .axis--bg & {
         flex: 1;
         justify-content: flex-start;
         align-items: flex-end;
