@@ -3,7 +3,7 @@
 .axis {
     position: relative;
 
-    &--t {
+    &--time {
         order: 3;
         width: calc(100% - #{$size-axis});
         height: $size-axis;

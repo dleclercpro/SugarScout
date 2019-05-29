@@ -4,8 +4,8 @@ import BG from '../components/BG'
 import * as actions from '../actions'
 
 const mapStateToProps = (state) => ({
-    now: state.axes.t.now,
-    tScale: state.axes.t.scale,
+    now: state.axes.time.now,
+    timeScale: state.axes.time.scale,
     bgRange: state.axes.bg.range,
 })
 

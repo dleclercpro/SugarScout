@@ -1,21 +1,23 @@
 import * as Redux from 'redux'
 import * as ReactRedux from 'react-redux'
 import * as actions from '../actions'
-import Inner from '../components/Inner'
+import AxisTime from '../components/AxisTime'
 
 const mapStateToProps = (state) => ({
-    scales: state.axes.time.scales,
+    now: state.axes.time.now,
+    toNow: state.axes.time.toNow,
     scale: state.axes.time.scale,
-    bgs: state.cgm.data.bgs.data,
+    nTicks: state.axes.time.nTicks,
+    ticks: state.axes.time.ticks,
 })
 
 const mapDispatchToProps = (dispatch) => ({
     actions: Redux.bindActionCreators(actions, dispatch),
 })
 
-const InnerContainer = ReactRedux.connect(
+const AxisTimeContainer = ReactRedux.connect(
     mapStateToProps,
     mapDispatchToProps,
-)(Inner)
+)(AxisTime)
 
-export default InnerContainer
+export default AxisTimeContainer

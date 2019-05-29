@@ -8,6 +8,7 @@ class Bubble extends React.Component {
         this.node = React.createRef()
     }
 
+    /*
     fixPosition() {
         const el = this.node.current
         const [width, height] = [el.clientWidth, el.clientHeight]
@@ -18,12 +19,13 @@ class Bubble extends React.Component {
             right: offsetRight >= 0 ? this.props.position.right : (width / 2) / parentWidth * 100 + '%',
         }
     }
+    */
 
     render() {
         return (
-            <div ref={this.node} className={`bubble ${this.props.status === 'visible' ? 'is-active' : ''}`} style={this.props.position}>
+            <div ref={this.node} className={`bubble ${this.props.status === 'visible' ? 'is-visible' : ''}`} style={this.props.position}>
                 <p className='info'>{this.props.info}</p>
-                <p className='time'>{lib.convertEpochToFormattedTime(this.props.t)}</p>
+                <p className='time'>{lib.convertEpochToFormattedTime(this.props.time)}</p>
             </div>
         )
     }

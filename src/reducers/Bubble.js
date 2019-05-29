@@ -7,7 +7,7 @@ const INIT_STATE = {
         top: 0,
         right: 0,
     },
-    t: '',
+    time: '',
     info: '',
 }
 

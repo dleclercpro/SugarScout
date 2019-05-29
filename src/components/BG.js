@@ -26,8 +26,8 @@ class BG extends React.Component {
     getStyles() {
         const height = this.props.bgRange[1] - this.props.bgRange[0]
         const dh = this.props.bgRange[1] - this.props.value 
-        const width = this.props.tScale * 60 * 60 * 1000
-        const dw = this.props.now - this.props.t
+        const width = this.props.timeScale * 60 * 60 * 1000
+        const dw = this.props.now - this.props.time
 
         return {
             top: dh / height * 100 + '%',
@@ -39,7 +39,7 @@ class BG extends React.Component {
         this.props.actions.updateBubble({
             status: 'visible',
             position: this.getStyles(),
-            t: this.props.t,
+            time: this.props.time,
             info: lib.formatBG(this.props.value) + ' ' + bg.UNIT,
         })
     }

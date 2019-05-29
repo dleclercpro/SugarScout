@@ -1,29 +1,29 @@
 import React from 'react'
 import BubbleContainer from '../containers/BubbleContainer';
 import BGContainer from '../containers/BGContainer';
+import ButtonTimeScaleContainer from '../containers/ButtonTimeScaleContainer';
 import './Inner.scss'
 
-const Inner = (props) => (
-    <div className='inner'>
-        {props.scales.map((scale, index) => (
-            <button key={index}
-                className={props.scale === scale ? 'is-active' : ''}
-                onClick={() => props.actions.updateTimeAxis({
-                    scale
-                })}
-            >
-            {scale}h
-            </button>
-        ))}
+class Inner extends React.Component {
+    componentDidMount() {
+        this.props.actions.fetchBGs()
+    }
 
-        <button onClick={() => props.actions.fetchBGs()}>Fetch BGs</button>
-
-        {props.bgs.map((bg, index) => (
-            <BGContainer key={index} t={bg.t} value={bg.value} />
-        ))}
-
-        <BubbleContainer />
-    </div>
-)
+    render() {
+        return (
+            <div className='inner'>
+                {this.props.scales.map((scale, index) => (
+                    <ButtonTimeScaleContainer key={index} scale={scale} />
+                ))}
+        
+                {this.props.bgs.map((bg, index) => (
+                    <BGContainer key={index} time={bg.time} value={bg.value} />
+                ))}
+        
+                <BubbleContainer />
+            </div>
+        )
+    }
+}
 
 export default Inner

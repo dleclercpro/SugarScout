@@ -1,6 +1,7 @@
 @import '../common.scss';
 
 .bubble {
+    display: none;
     position: absolute;
     padding: 20px 25px;
     background: $color-bubble;
@@ -8,7 +9,7 @@
     transform: translate(calc(100% + 8px), calc(-100% - 8px));
     z-index: 50;
 
-    &.is-active {
+    &.is-visible {
         display: block;
     }
 

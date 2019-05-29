@@ -3,7 +3,7 @@ import Axis from './Axis'
 import * as lib from '../lib'
 import './Axis.scss'
 
-class AxisT extends Axis {
+class AxisTime extends Axis {
 
     build() {
 
@@ -42,7 +42,7 @@ class AxisT extends Axis {
     
     render() {
         return (
-            <div className='axis axis--t'>
+            <div className='axis axis--time'>
                 <div className='wrapper' style={this.getStyles()}>
                     {this.generateTicks()}
                 </div>
@@ -51,4 +51,4 @@ class AxisT extends Axis {
     }
 }
 
-export default AxisT
+export default AxisTime

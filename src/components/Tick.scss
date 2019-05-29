@@ -5,7 +5,7 @@
     color: $color-white;
     font-weight: bold;
 
-    .axis--t & {
+    .axis--time & {
         flex: 0 0 auto;
         justify-content: flex-end;
         align-items: flex-start;
@@ -24,7 +24,7 @@
         }
     }
 
-    .graph--1-h .axis--t & {
+    .graph--1-h .axis--time & {
         width: 100%;
         font-size: 14px;
 
@@ -37,7 +37,7 @@
         }
     }
 
-    .graph--3-h .axis--t & {
+    .graph--3-h .axis--time & {
         width: calc(100% / 3);
         font-size: 14px;
 
@@ -50,7 +50,7 @@
         }
     }
 
-    .graph--6-h .axis--t & {
+    .graph--6-h .axis--time & {
         width: calc(100% / 6);
         font-size: 12px;
 
@@ -64,7 +64,7 @@
     }
 
     // Doesn't fit in XS devides
-    .graph--12-h .axis--t & {
+    .graph--12-h .axis--time & {
         color: transparent;
         width: calc(100% / 12);
 
@@ -79,7 +79,7 @@
     }
 
     // Doesn't fit in XS devides
-    .graph--24-h .axis--t & {
+    .graph--24-h .axis--time & {
         color: transparent;
         width: calc(100% / 24);        
 

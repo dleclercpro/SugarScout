@@ -4,7 +4,7 @@ import * as actions from '../actions'
 import Graph from '../components/Graph'
 
 const mapStateToProps = (state) => ({
-    scale: state.axes.t.scale,
+    scale: state.axes.time.scale,
 })
 
 const mapDispatchToProps = (dispatch) => ({

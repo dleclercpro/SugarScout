@@ -11,7 +11,7 @@ const state = {
     graph: {
         theme: 'dark',
         axes: {
-            t: {
+            time: {
                 units: 'h',
                 zero: new Date(),
                 scale: 6,
@@ -44,30 +44,30 @@ const state = {
         power: '2019.05.24 - 04:36:12',
         battery: [
             {
-                t: 0,
+                time: 0,
                 value: 1.24,
             },
         ],
         reservoir: [
             {
-                t: 0,
+                time: 0,
                 value: 186.1,
             },
         ],
         bgTargets: [
             {
-                t: 0,
+                time: 0,
                 values: [5.2, 5.2],
             },
         ],
         basal: {
             standard: [
                 {
-                    t: 0,
+                    time: 0,
                     value: 1.45,
                 },
                 {
-                    t: 1.0,
+                    time: 1.0,
                     value: 1.6,
                 },
             ],
@@ -86,7 +86,7 @@ const state = {
         units: 'mmol/L',
         battery: [
             {
-                t: 0,
+                time: 0,
                 value: 90,
             },
         ],
@@ -94,7 +94,7 @@ const state = {
     },
     bg: [
         {
-            t: 0,
+            time: 0,
             value: 4.2,
         },
     ],

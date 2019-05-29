@@ -12,7 +12,7 @@ export const getRangeFromTo = (start, end) => {
 export const convertJSONBGs = (json) => {
     return Object.keys(json).reduce((BGs, t) => {
         BGs.push({
-            t: moment(t, time.FORMAT).valueOf(), // Epoch time in current time zone (ms)
+            time: moment(t, time.FORMAT).valueOf(), // Epoch time in current time zone (ms)
             value: json[t]
         })
         return BGs
