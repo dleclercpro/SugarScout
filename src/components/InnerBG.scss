@@ -1,0 +1,23 @@
+@import '../common.scss';
+
+.inner.inner--bg {
+    position: relative;
+    order: 3;
+    width: calc(100% - #{map-get($size-axes, bg)});
+    height: calc(#{$height-bg-axis} - #{map-get($size-axes, time)});
+
+    @include mq(tablet) {
+        width: calc(100% - #{map-get($size-axes-tablet, bg)});
+        height: calc(#{$height-bg-axis} - #{map-get($size-axes-tablet, time)});
+    }
+
+    @include mq(desktop) {
+        width: calc(100% - #{map-get($size-axes-desktop, bg)});
+        height: calc(#{$height-bg-axis} - #{map-get($size-axes-desktop, time)});
+    }
+
+    @include mq(desktopXL) {
+        width: calc(100% - #{map-get($size-axes-desktop-xl, bg)});
+        height: calc(#{$height-bg-axis} - #{map-get($size-axes-desktop-xl, time)});
+    }
+}
