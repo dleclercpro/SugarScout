@@ -8,25 +8,49 @@ $breakpoints: (
 // FONTS
 $font: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 
-// RAW COLORS
+// COLORS
 $color-black: #000000;
+$color-deep-black: #00001b;
 $color-dark-grey: #1b1b1b;
-$color-grey: #333333;
+$color-grey: #999999;
 $color-white: #ffffff;
+$color-purple: #800080;
 $color-red: #e50000;
-$color-orange: #ff7500;
+$color-orange: #ff9d2f;
 $color-green: #99e500;
 $color-transparent-black: rgba(0, 0, 0, 0.8);
+$color-transparent-white: rgba(255, 255, 255, 0.8);
 
-// COLORS
-$color-font: $color-black;
-$color-background: $color-dark-grey;
-$color-bubble: $color-transparent-black;
-$color-bg-very-low: $color-red;
-$color-bg-low: $color-orange;
-$color-bg-normal: $color-green;
-$color-bg-high: $color-orange;
-$color-bg-very-high: $color-red;
+// THEMES
+$light-theme: (
+    background: $color-white,
+    font: $color-black,
+    ticks: 1px dashed $color-black,
+    bubble: $color-transparent-white,
+    bg: (
+        very-low: $color-red,
+        low: $color-orange,
+        normal: $color-black,
+        high: $color-orange,
+        very-high: $color-red,
+    ),
+);
+$dark-theme: (
+    background: $color-deep-black,
+    font: $color-white,
+    ticks: 1px dashed $color-white,
+    bubble: $color-transparent-black,
+    bg: (
+        very-low: $color-purple,
+        low: $color-orange,
+        normal: $color-grey,
+        high: $color-orange,
+        very-high: $color-purple,
+    ),
+);
+
+// CHOSEN THEME
+$theme: $dark-theme;
 
 // SIZES
 $size-font: 16px;
@@ -46,9 +70,6 @@ $size-axes-desktop-xl: (
     time: 25px,
     bg: 27px,
 );
-
-// BORDERS
-$border-axis-tick: 1px dashed $color-white;
 
 // ANIMATIONS
 $animation-speed: 500ms;

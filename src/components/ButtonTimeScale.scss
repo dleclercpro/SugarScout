@@ -6,7 +6,6 @@
     border-radius: 10px;
     padding: 8px 20px;
     font-weight: bold;
-    color: $color-white;
     outline: none;
 
     &:not(:last-child) {
@@ -19,8 +18,8 @@
     }
 
     &.is-active {
-        background: $color-white;
+        background: map-get($theme, font);
         border: 3px solid $color-white;
-        color: $color-background;
+        color: map-get($theme, background);
     }
 }

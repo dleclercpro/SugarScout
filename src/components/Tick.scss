@@ -2,14 +2,13 @@
 
 .tick {
     display: flex;
-    color: $color-white;
     font-weight: bold;
 
     .axis--time & {
         flex: 0 0 auto;
         justify-content: flex-end;
         align-items: flex-start;
-        border-right: $border-axis-tick;
+        border-right: map-get($theme, ticks);
         padding-right: 4px;
         transition: width ease-in-out $animation-speed;
         font-size: 20px;
@@ -63,11 +62,11 @@
         }
 
         .graph--12-h & {
-            color: transparent;
+            display: none;
             width: calc(100% / 12);
     
             @include mq(tablet) {
-                color: $color-white;
+                display: flex;
                 font-size: 14px;
             }
     
@@ -77,7 +76,7 @@
         }
 
         .graph--24-h & {
-            color: transparent;
+            display: none;
             width: calc(100% / 24);        
     
             @include mq(tablet) {
@@ -85,7 +84,7 @@
             }
     
             @include mq(desktop) {
-                color: $color-white;
+                display: flex;
                 font-size: 13px;
             }
     
@@ -99,7 +98,7 @@
         flex: 1;
         justify-content: flex-start;
         align-items: flex-end;
-        border-bottom: $border-axis-tick;
+        border-bottom: map-get($theme, ticks);
         padding-bottom: 1px;
         font-size: 12px;
 

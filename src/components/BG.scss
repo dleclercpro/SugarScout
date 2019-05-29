@@ -4,29 +4,28 @@
     position: absolute;
     transform: translate(50%, -50%);
     border-radius: 50%;
-    background: $color-white;
     transition: all ease-in-out $animation-speed;
     z-index: 10;
     cursor: pointer;
 
     &.bg--very-low {
-        background: $color-bg-very-low;
+        background: map-get(map-get($theme, bg), very-low);
     }
 
     &.bg--low {
-        background: $color-bg-low;
+        background: map-get(map-get($theme, bg), low);
     }
 
     &.bg--normal {
-        background: $color-bg-normal;
+        background: map-get(map-get($theme, bg), normal);
     }
 
     &.bg--high {
-        background: $color-bg-high;
+        background: map-get(map-get($theme, bg), high);
     }
 
     &.bg--very-high {
-        background: $color-bg-very-high;
+        background: map-get(map-get($theme, bg), very-high);
     }
 
     .graph--1-h & {
