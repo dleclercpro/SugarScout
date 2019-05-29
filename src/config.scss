@@ -19,14 +19,16 @@ $color-red: #e50000;
 $color-orange: #ff9d2f;
 $color-green: #99e500;
 $color-transparent-black: rgba(0, 0, 0, 0.8);
-$color-transparent-white: rgba(255, 255, 255, 0.8);
 
 // THEMES
 $light-theme: (
     background: $color-white,
     font: $color-black,
     ticks: 1px dashed $color-black,
-    bubble: $color-transparent-white,
+    bubble: (
+        background: $color-white,
+        border: 3px solid $color-black,
+    ),
     bg: (
         very-low: $color-red,
         low: $color-orange,
@@ -39,7 +41,10 @@ $dark-theme: (
     background: $color-deep-black,
     font: $color-white,
     ticks: 1px dashed $color-white,
-    bubble: $color-transparent-black,
+    bubble: (
+        background: $color-transparent-black,
+        border: none,
+    ),
     bg: (
         very-low: $color-purple,
         low: $color-orange,

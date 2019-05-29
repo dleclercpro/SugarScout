@@ -3,8 +3,9 @@
 .bubble {
     display: none;
     position: absolute;
-    padding: 20px 25px;
-    background: map-get($theme, bubble);
+    padding: 20px 30px;
+    background: map-get(map-get($theme, bubble), background);
+    border: map-get(map-get($theme, bubble), border);
     border-radius: 8px;
     transform: translate(calc(100% + 8px), calc(-100% - 8px));
     z-index: 50;
