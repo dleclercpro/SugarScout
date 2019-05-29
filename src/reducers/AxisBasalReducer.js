@@ -1,4 +1,5 @@
 import * as basal from '../constants/Basal'
+import * as actions from '../constants/ActionTypes'
 
 const INIT_STATE = {
     units: basal.UNIT,
@@ -12,6 +13,12 @@ const INIT_STATE = {
 
 const AxisBasalReducer = (state = INIT_STATE, action) => {
     switch (action.type) {
+        case actions.UPDATE_BASAL_AXIS:
+            return {
+                ...state,
+                ...action.args,
+            }
+
         default:
             return state
     }

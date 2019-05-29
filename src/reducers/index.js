@@ -3,6 +3,7 @@ import BubbleReducer from './BubbleReducer';
 import AxisTimeReducer from './AxisTimeReducer'
 import AxisBGReducer from './AxisBGReducer'
 import AxisBasalReducer from './AxisBasalReducer';
+import PumpReducer from './PumpReducer';
 import CGMReducer from './CGMReducer';
 
 const rootReducer = combineReducers({
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
         bg: AxisBGReducer,
         basal: AxisBasalReducer,
     }),
+    pump: PumpReducer,
     cgm: CGMReducer,
 })
 

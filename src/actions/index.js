@@ -20,6 +20,11 @@ export const updateBGAxis = (args) => ({
     args,
 })
 
+export const updateBasalAxis = (args) => ({
+    type: actions.UPDATE_BASAL_AXIS,
+    args,
+})
+
 export const fetchDataRequest = (dataType) => ({
     type: actions.FETCH_DATA_REQUEST,
     dataType,

@@ -2,23 +2,23 @@
 @import './Axis.scss';
 
 .axis--bg {
-    order: 2;
+    order: 4;
     width: map-get($size-axes, bg);
-    height: calc(100% - #{map-get($size-axes, time)});
+    height: calc(#{$height-bg-axis} - #{map-get($size-axes, time)});
 
     @include mq(tablet) {
         width: map-get($size-axes-tablet, bg);
-        height: calc(100% - #{map-get($size-axes-tablet, time)});
+        height: calc(#{$height-bg-axis} - #{map-get($size-axes-tablet, time)});
     }
 
     @include mq(desktop) {
         width: map-get($size-axes-desktop, bg);
-        height: calc(100% - #{map-get($size-axes-desktop, time)});
+        height: calc(#{$height-bg-axis} - #{map-get($size-axes-desktop, time)});
     }
 
     @include mq(desktopXL) {
         width: map-get($size-axes-desktop-xl, bg);
-        height: calc(100% - #{map-get($size-axes-desktop-xl, time)});
+        height: calc(#{$height-bg-axis} - #{map-get($size-axes-desktop-xl, time)});
     }
 
     > .wrapper {

@@ -2,7 +2,7 @@
 @import './Axis.scss';
 
 .axis--time {
-    order: 3;
+    order: 5;
     width: calc(100% - #{map-get($size-axes, bg)});
     height: map-get($size-axes, time);
 

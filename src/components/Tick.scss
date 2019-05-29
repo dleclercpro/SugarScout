@@ -94,7 +94,8 @@
         }
     }
 
-    .axis--bg & {
+    .axis--bg &,
+    .axis--basal & {
         flex: 1;
         justify-content: flex-start;
         align-items: flex-end;

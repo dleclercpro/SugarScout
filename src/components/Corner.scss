@@ -1,7 +1,7 @@
 @import '../common.scss';
 
 .corner {
-    order: 4;
+    order: 6;
     width: map-get($size-axes, bg);
     height: map-get($size-axes, time);
 

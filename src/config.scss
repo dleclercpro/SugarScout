@@ -62,19 +62,25 @@ $size-font: 16px;
 $size-axes: (
     time: 16px,
     bg: 18px,
+    basal: 18px,
 );
 $size-axes-tablet: (
     time: 18px,
     bg: 20px,
+    basal: 20px,
 );
 $size-axes-desktop: (
     time: 23px,
     bg: 24px,
+    basal: 24px,
 );
 $size-axes-desktop-xl: (
     time: 25px,
     bg: 27px,
+    basal: 27px,
 );
+$height-bg-axis: 50%;
+$height-basal-axis: 50%;
 
 // ANIMATIONS
 $animation-speed: 500ms;

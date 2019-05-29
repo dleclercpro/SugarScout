@@ -5,10 +5,6 @@ import './AxisBG.scss'
 
 class AxisBG extends Axis {
 
-    componentDidMount() {
-        this.build()
-    }
-
     build() {
 
         // Get range (mmol/L)
