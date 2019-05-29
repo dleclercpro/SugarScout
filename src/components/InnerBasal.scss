@@ -5,7 +5,8 @@
     order: 1;
     width: calc(100% - #{map-get($size-axes, basal)});
     height: calc(#{$height-basal-axis} - #{map-get($size-axes, time)});
-
+    overflow-y: hidden;
+    
     @include mq(tablet) {
         width: calc(100% - #{map-get($size-axes-tablet, basal)});
         height: calc(#{$height-basal-axis} - #{map-get($size-axes-tablet, time)});
