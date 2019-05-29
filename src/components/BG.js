@@ -1,5 +1,6 @@
 import React from 'react'
 import * as bg from '../constants/BG'
+import * as lib from '../lib'
 import './BG.scss'
 
 class BG extends React.Component {
@@ -34,9 +35,28 @@ class BG extends React.Component {
         }
     }
 
+    showBubble = () => {
+        this.props.actions.updateBubble({
+            status: 'visible',
+            position: this.getStyles(),
+            t: this.props.t,
+            info: lib.formatBG(this.props.value) + ' ' + bg.UNIT,
+        })
+    }
+
+    hideBubble = () => {
+        this.props.actions.updateBubble({
+            status: 'invisible',
+        })
+    }
+
     render() {
         return (
-            <div className={`bg bg--${this.getType()}`} style={this.getStyles()}></div>
+            <div className={`bg bg--${this.getType()}`}
+                style={this.getStyles()}
+                onMouseEnter={this.showBubble}
+                onMouseLeave={this.hideBubble}
+            ></div>
         )
     }
 }

@@ -1,10 +1,9 @@
 import * as lib from '../lib'
 import * as actions from '../constants/ActionTypes'
 
-export const updateBubble = (info, time) => ({
+export const updateBubble = (args) => ({
     type: actions.UPDATE_BUBBLE,
-    info,
-    time,
+    args,
 })
 
 export const updateTimeAxis = (args) => ({

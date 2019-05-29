@@ -1,10 +1,10 @@
 import React from 'react'
-import Bubble from './Bubble';
+import BubbleContainer from '../containers/BubbleContainer';
 import BGContainer from '../containers/BGContainer';
 import './Inner.scss'
 
 const Inner = (props) => (
-    <div className="inner">
+    <div className='inner'>
         {props.scales.map((scale, index) => (
             <button key={index}
                 className={props.scale === scale ? 'is-active' : ''}
@@ -22,7 +22,7 @@ const Inner = (props) => (
             <BGContainer key={index} t={bg.t} value={bg.value} />
         ))}
 
-        <Bubble info={`${4.5} mmol/L`} time='2019.05.28 - 09:05:00' />
+        <BubbleContainer />
     </div>
 )
 

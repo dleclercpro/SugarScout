@@ -6,6 +6,8 @@
     border-radius: 50%;
     background: $color-white;
     transition: all ease-in-out $animation-speed;
+    z-index: 10;
+    cursor: pointer;
 
     &--very-low {
         background: $color-bg-very-low;
@@ -32,8 +34,8 @@
         height: 8px;
 
         @include mq(tablet) {
-            width: 10px;
-            height: 10px;
+            width: 12px;
+            height: 12px;
         }
 
         @include mq(desktop) {
@@ -55,8 +57,8 @@
         }
 
         @include mq(desktop) {
-            width: 10px;
-            height: 10px;
+            width: 12px;
+            height: 12px;
         }
 
         @include mq(desktopXL) {
@@ -74,13 +76,13 @@
         }
 
         @include mq(desktop) {
-            width: 7px;
-            height: 7px;
+            width: 8px;
+            height: 8px;
         }
 
         @include mq(desktopXL) {
-            width: 8px;
-            height: 8px;
+            width: 10px;
+            height: 10px;
         }
     }
 
@@ -89,18 +91,18 @@
 
         @include mq(tablet) {
             display: block;
-            width: 4px;
-            height: 4px;
-        }
-
-        @include mq(desktop) {
             width: 5px;
             height: 5px;
         }
 
-        @include mq(desktopXL) {
+        @include mq(desktop) {
             width: 6px;
             height: 6px;
+        }
+
+        @include mq(desktopXL) {
+            width: 8px;
+            height: 8px;
         }
     }
 
@@ -113,13 +115,13 @@
 
         @include mq(desktop) {
             display: block;
-            width: 4px;
-            height: 4px;
+            width: 5px;
+            height: 5px;
         }
 
         @include mq(desktopXL) {
-            width: 5px;
-            height: 5px;
+            width: 6px;
+            height: 6px;
         }
     }
 }

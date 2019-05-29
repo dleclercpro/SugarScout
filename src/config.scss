@@ -16,10 +16,12 @@ $color-white: #ffffff;
 $color-red: #e50000;
 $color-orange: #ff7500;
 $color-green: #99e500;
+$color-transparent-black: rgba(0, 0, 0, 0.8);
 
 // COLORS
 $color-font: $color-black;
 $color-background: $color-dark-grey;
+$color-bubble: $color-transparent-black;
 $color-bg-very-low: $color-red;
 $color-bg-low: $color-orange;
 $color-bg-normal: $color-green;
