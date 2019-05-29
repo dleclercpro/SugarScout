@@ -11,7 +11,7 @@ const INIT_STATE = {
     ticks: [],
 }
 
-const AxisBG = (state = INIT_STATE, action) => {
+const AxisBGReducer = (state = INIT_STATE, action) => {
     switch (action.type) {
         case actions.UPDATE_BG_AXIS:
             return {
@@ -24,4 +24,4 @@ const AxisBG = (state = INIT_STATE, action) => {
     }
 }
 
-export default AxisBG
+export default AxisBGReducer

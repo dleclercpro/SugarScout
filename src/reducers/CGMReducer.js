@@ -47,7 +47,7 @@ const fetchData = (state = INIT_STATE_DATA, action) => {
     }
 }
 
-const CGM = (state = INIT_STATE, action) => {
+const CGMReducer = (state = INIT_STATE, action) => {
     switch (action.type) {
         case actions.FETCH_DATA_REQUEST:
         case actions.FETCH_DATA_FAILURE:
@@ -63,4 +63,4 @@ const CGM = (state = INIT_STATE, action) => {
     }
 }
 
-export default CGM
+export default CGMReducer

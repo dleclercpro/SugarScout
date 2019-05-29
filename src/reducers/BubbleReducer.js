@@ -14,7 +14,7 @@ const INIT_STATE = {
     },
 }
 
-const Bubble = (state = INIT_STATE, action) => {
+const BubbleReducer = (state = INIT_STATE, action) => {
     switch (action.type) {
         case actions.UPDATE_BUBBLE:
             return {
@@ -29,4 +29,4 @@ const Bubble = (state = INIT_STATE, action) => {
     }
 }
 
-export default Bubble
+export default BubbleReducer

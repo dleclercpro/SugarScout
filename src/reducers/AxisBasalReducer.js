@@ -10,11 +10,11 @@ const INIT_STATE = {
     ticks: [],
 }
 
-const AxisBasal = (state = INIT_STATE, action) => {
+const AxisBasalReducer = (state = INIT_STATE, action) => {
     switch (action.type) {
         default:
             return state
     }
 }
 
-export default AxisBasal
+export default AxisBasalReducer

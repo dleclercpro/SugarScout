@@ -11,7 +11,7 @@ const INIT_STATE = {
     ticks: [],
 }
 
-const AxisTime = (state = INIT_STATE, action) => {
+const AxisTimeReducer = (state = INIT_STATE, action) => {
     switch (action.type) {
         case actions.UPDATE_TIME_AXIS:
             return {
@@ -24,4 +24,4 @@ const AxisTime = (state = INIT_STATE, action) => {
     }
 }
 
-export default AxisTime
+export default AxisTimeReducer
