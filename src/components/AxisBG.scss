@@ -3,22 +3,22 @@
 
 .axis--bg {
     order: 2;
-    width: $size-axis;
-    height: calc(100% - #{$size-axis});
+    width: map-get($size-axes, bg);
+    height: calc(100% - #{map-get($size-axes, time)});
 
     @include mq(tablet) {
-        width: $size-axis-tablet;
-        height: calc(100% - #{$size-axis-tablet});
+        width: map-get($size-axes-tablet, bg);
+        height: calc(100% - #{map-get($size-axes-tablet, time)});
     }
 
     @include mq(desktop) {
-        width: $size-axis-desktop;
-        height: calc(100% - #{$size-axis-desktop});
+        width: map-get($size-axes-desktop, bg);
+        height: calc(100% - #{map-get($size-axes-desktop, time)});
     }
 
     @include mq(desktopXL) {
-        width: $size-axis-desktop-xl;
-        height: calc(100% - #{$size-axis-desktop-xl});
+        width: map-get($size-axes-desktop-xl, bg);
+        height: calc(100% - #{map-get($size-axes-desktop-xl, time)});
     }
 
     > .wrapper {

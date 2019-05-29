@@ -3,21 +3,21 @@
 .inner {
     position: relative;
     order: 1;
-    width: calc(100% - #{$size-axis});
-    height: calc(100% - #{$size-axis});
+    width: calc(100% - #{map-get($size-axes, bg)});
+    height: calc(100% - #{map-get($size-axes, time)});
 
     @include mq(tablet) {
-        width: calc(100% - #{$size-axis-tablet});
-        height: calc(100% - #{$size-axis-tablet});
+        width: calc(100% - #{map-get($size-axes-tablet, bg)});
+        height: calc(100% - #{map-get($size-axes-tablet, time)});
     }
 
     @include mq(desktop) {
-        width: calc(100% - #{$size-axis-desktop});
-        height: calc(100% - #{$size-axis-desktop});
+        width: calc(100% - #{map-get($size-axes-desktop, bg)});
+        height: calc(100% - #{map-get($size-axes-desktop, time)});
     }
 
     @include mq(desktopXL) {
-        width: calc(100% - #{$size-axis-desktop-xl});
-        height: calc(100% - #{$size-axis-desktop-xl});
+        width: calc(100% - #{map-get($size-axes-desktop-xl, bg)});
+        height: calc(100% - #{map-get($size-axes-desktop-xl, time)});
     }
 }

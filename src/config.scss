@@ -30,10 +30,22 @@ $color-bg-very-high: $color-red;
 
 // SIZES
 $size-font: 16px;
-$size-axis: 18px;
-$size-axis-tablet: 22px;
-$size-axis-desktop: 26px;
-$size-axis-desktop-xl: 28px;
+$size-axes: (
+    time: 16px,
+    bg: 18px,
+);
+$size-axes-tablet: (
+    time: 18px,
+    bg: 20px,
+);
+$size-axes-desktop: (
+    time: 23px,
+    bg: 24px,
+);
+$size-axes-desktop-xl: (
+    time: 25px,
+    bg: 27px,
+);
 
 // BORDERS
 $border-axis-tick: 1px dashed $color-white;
