@@ -19,6 +19,10 @@ export const convertJSONBGs = (json) => {
     }, [])
 }
 
+export const convertJSONBasals = (json) => {
+    return json
+}
+
 export const convertEpochToFormattedTime = (epoch) => {
     return moment(epoch).format(time.FORMAT)
 }

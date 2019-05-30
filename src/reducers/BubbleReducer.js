@@ -1,32 +1,22 @@
-import * as actions from '../constants/ActionTypes'
+import * as States from '../constants/States'
+import * as ActionTypes from '../constants/ActionTypes'
 
-const INIT_STATE = {
-    status: 'invisible',
-    type: '',
-    position: {},
-    time: '',
-    info: {
-        value: '',
-        units: '',
-    },
-}
-
-const BubbleReducer = (state = INIT_STATE, action) => {
+const BubbleReducer = (state = States.INIT_BUBBLE_STATE, action) => {
     switch (action.type) {
-        case actions.UPDATE_BUBBLE:
+        case ActionTypes.UPDATE_BUBBLE:
             return {
                 ...state,
                 ...action.args,
             }
 
-        case actions.MOVE_BUBBLE:
+        case ActionTypes.MOVE_BUBBLE:
             return {
                 ...state,
                 position: action.position,
             }
 
-        case actions.RESET_BUBBLE:
-            return INIT_STATE
+        case ActionTypes.RESET_BUBBLE:
+            return States.INIT_BUBBLE_STATE
 
         default:
             return state

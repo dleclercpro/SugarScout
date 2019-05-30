@@ -1,5 +1,5 @@
 import React from 'react'
-import Point from './Point';
+import Point from './Point'
 import * as bg from '../constants/BG'
 import * as lib from '../lib'
 import './BG.scss'
@@ -49,7 +49,6 @@ class BG extends Point {
     }
 
     handleMouseMove = (e) => {
-        console.log(window.innerWidth, window.innerHeight)
         this.props.actions.moveBubble({
             top: e.clientY,
             left: e.clientX,

@@ -1,60 +1,16 @@
-import * as bg from '../constants/BG'
-import * as actions from '../constants/ActionTypes'
+import * as States from '../constants/States'
+import * as DataTypes from '../constants/DataTypes'
+import * as ActionTypes from '../constants/ActionTypes'
+import DataReducer from './DataReducer'
 
-const INIT_STATE_DATA = {
-    isFetching: false,
-    isError: false,
-    data: [],
-}
-
-const INIT_STATE = {
-    company: 'Dexcom',
-    model: 'G4',
-    firmware: '',
-    units: bg.UNIT,
-    data: {
-        bgs: INIT_STATE_DATA,
-        calibrations: INIT_STATE_DATA,
-    },
-}
-
-const fetchData = (state = INIT_STATE_DATA, action) => {
+const CGMReducer = (state = States.INIT_CGM_STATE, action) => {
     switch (action.type) {
-        case actions.FETCH_DATA_REQUEST:
-            return {
-                ...state,
-                isFetching: true,
-                isError: false,
-            }
-
-        case actions.FETCH_DATA_FAILURE:
-            return {
-                ...state,
-                isFetching: false,
-                isError: true,
-            }
-
-        case actions.FETCH_DATA_SUCCESS:
-            return {
-                ...state,
-                isFetching: false,
-                isError: false,
-                data: action.data,
-            }
-
-        default:
-            return state
-    }
-}
-
-const CGMReducer = (state = INIT_STATE, action) => {
-    switch (action.type) {
-        case actions.FETCH_DATA_REQUEST:
-        case actions.FETCH_DATA_FAILURE:
-        case actions.FETCH_DATA_SUCCESS:
+        case ActionTypes.FETCH_BG_DATA_REQUEST:
+        case ActionTypes.FETCH_BG_DATA_FAILURE:
+        case ActionTypes.FETCH_BG_DATA_SUCCESS:
             return Object.assign({}, state, {
                 data: Object.assign({}, state.data, {
-                    [action.dataType]: fetchData(state.data[action.dataType], action),
+                    [action.dataType]: DataReducer(DataTypes.DATA_BG, state.data[action.dataType], action),
                 })
             })
 
