@@ -12,7 +12,7 @@ export const getRangeFromTo = (start, end) => {
 export const convertJSONBGs = (json) => {
     return Object.keys(json).reduce((BGs, t) => {
         BGs.push({
-            time: moment(t, time.FORMAT).valueOf(), // Epoch time in current time zone (ms)
+            time: moment(t, time.FORMAT_LONG).valueOf(),
             value: json[t]
         })
         return BGs
@@ -20,11 +20,17 @@ export const convertJSONBGs = (json) => {
 }
 
 export const convertJSONBasals = (json) => {
-    return json
+    return Object.keys(json).reduce((basals, t) => {
+        basals.push({
+            time: moment(t, time.FORMAT_SHORT).valueOf(),
+            value: json[t]
+        })
+        return basals
+    }, [])
 }
 
-export const convertEpochToFormattedTime = (epoch) => {
-    return moment(epoch).format(time.FORMAT)
+export const convertEpochToLongFormatTime = (epoch) => {
+    return moment(epoch).format(time.FORMAT_LONG)
 }
 
 export const formatBG = (bg) => {

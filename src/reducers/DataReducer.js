@@ -2,10 +2,10 @@ import * as States from '../constants/States'
 import * as DataTypes from '../constants/DataTypes'
 import * as ActionTypes from '../constants/ActionTypes'
 
-const DataReducer = (dataType, state = States.INIT_DATA_STATE, action) => {
+const DataReducer = (state = States.INIT_DATA_STATE, action) => {
     let request, failure, success
 
-    switch (dataType) {
+    switch (action.dataType) {
         case DataTypes.DATA_BG:
             [ request, failure, success ] = [
                 ActionTypes.FETCH_BG_DATA_REQUEST,
@@ -23,7 +23,7 @@ const DataReducer = (dataType, state = States.INIT_DATA_STATE, action) => {
             break
 
         default:
-            throw new Error('Data reducer of type ' + dataType + ' not yet implemented.')
+            throw new Error('Data reducer of type ' + action.dataType + ' not yet implemented.')
     }
 
     switch (action.type) {

@@ -1,5 +1,6 @@
 export const UNIT = 'h'
-export const FORMAT = 'YYYY.MM.DD - HH:mm:ss'
+export const FORMAT_SHORT = 'HH:mm'
+export const FORMAT_LONG = 'YYYY.MM.DD - HH:mm:ss'
 export const NOW = new Date(2019, 4, 29, 9, 0, 0, 0)
 
 // Axis
