@@ -3,10 +3,7 @@ import * as actions from '../constants/ActionTypes'
 const INIT_STATE = {
     status: 'invisible',
     type: '',
-    position: {
-        top: 0,
-        right: 0,
-    },
+    position: {},
     time: '',
     info: {
         value: '',
@@ -21,6 +18,13 @@ const BubbleReducer = (state = INIT_STATE, action) => {
                 ...state,
                 ...action.args,
             }
+
+        case actions.MOVE_BUBBLE:
+            return {
+                ...state,
+                position: action.position,
+            }
+
         case actions.RESET_BUBBLE:
             return INIT_STATE
 

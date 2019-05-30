@@ -4,21 +4,21 @@
 .axis--basal {
     order: 2;
     width: map-get($size-axes, basal);
-    height: calc(#{$height-basal-axis} - #{map-get($size-axes, time)});
+    height: calc(#{$ratio-basal-axis} * (100% - #{map-get($size-axes, time)}));
 
     @include mq(tablet) {
         width: map-get($size-axes-tablet, basal);
-        height: calc(#{$height-basal-axis} - #{map-get($size-axes-tablet, time)});
+        height: calc(#{$ratio-basal-axis} * (100% - #{map-get($size-axes-tablet, time)}));
     }
 
     @include mq(desktop) {
         width: map-get($size-axes-desktop, basal);
-        height: calc(#{$height-basal-axis} - #{map-get($size-axes-desktop, time)});
+        height: calc(#{$ratio-basal-axis} * (100% - #{map-get($size-axes-desktop, time)}));
     }
 
     @include mq(desktopXL) {
         width: map-get($size-axes-desktop-xl, basal);
-        height: calc(#{$height-basal-axis} - #{map-get($size-axes-desktop-xl, time)});
+        height: calc(#{$ratio-basal-axis} * (100% - #{map-get($size-axes-desktop-xl, time)}));
     }
 
     > .wrapper {

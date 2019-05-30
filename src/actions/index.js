@@ -5,6 +5,11 @@ export const resetBubble = () => ({
     type: actions.RESET_BUBBLE,
 })
 
+export const moveBubble = (position) => ({
+    type: actions.MOVE_BUBBLE,
+    position,
+})
+
 export const updateBubble = (args) => ({
     type: actions.UPDATE_BUBBLE,
     args,

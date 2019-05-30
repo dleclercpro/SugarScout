@@ -1,5 +1,4 @@
 import React from 'react'
-import BubbleContainer from '../containers/BubbleContainer';
 import BGContainer from '../containers/BGContainer';
 import ButtonTimeScaleContainer from '../containers/ButtonTimeScaleContainer';
 import './InnerBG.scss'
@@ -11,9 +10,7 @@ class InnerBG extends React.Component {
 
     render() {
         return (
-            <div className='inner inner--bg'>
-                <BubbleContainer />
-                
+            <div className='inner inner--bg'>                
                 {this.props.scales.map((scale, index) => (
                     <ButtonTimeScaleContainer key={index} scale={scale} />
                 ))}

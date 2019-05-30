@@ -3,7 +3,7 @@ export const UNIT = 'mmol/L'
 // Axis
 export const AXIS_SCALE = 'linear'
 export const AXIS_MIN_MMOL_L = 0
-export const AXIS_MAX_MMOL_L = 15
+export const AXIS_MAX_MMOL_L = 16
 export const AXIS_MIN_MG_DL = AXIS_MIN_MMOL_L * 18
 export const AXIS_MAX_MG_DL = AXIS_MAX_MMOL_L * 18
 

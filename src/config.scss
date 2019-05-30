@@ -81,8 +81,8 @@ $size-axes-desktop-xl: (
 );
 
 // GRAPH CONFIG
-$height-bg-axis: 60%;
-$height-basal-axis: 100% - $height-bg-axis;
+$ratio-bg-axis: 0.6;
+$ratio-basal-axis: 1.0 - $ratio-bg-axis;
 
 // ANIMATIONS
 $animation-speed: 500ms;

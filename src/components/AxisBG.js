@@ -8,7 +8,7 @@ class AxisBG extends Axis {
     build() {
 
         // Get range (mmol/L)
-        const range = lib.getRangeFromTo(this.props.range[0], this.props.range[1])
+        const range = lib.getRangeFromTo(this.props.range[0], this.props.range[1] - 1)
 
         // Define ticks
         const ticks = range.map((y) => ({

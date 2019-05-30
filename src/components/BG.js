@@ -36,11 +36,10 @@ class BG extends Point {
         }
     }
 
-    showBubble = () => {
+    handleMouseEnter = (e) => {
         this.props.actions.updateBubble({
             status: 'visible',
             type: 'bg bg--' + this.getType(),
-            position: this.getStyles(),
             time: this.props.time,
             info: {
                 value: lib.formatBG(this.props.value),
@@ -49,7 +48,15 @@ class BG extends Point {
         })
     }
 
-    hideBubble = () => {
+    handleMouseMove = (e) => {
+        console.log(window.innerWidth, window.innerHeight)
+        this.props.actions.moveBubble({
+            top: e.clientY,
+            left: e.clientX,
+        })
+    }
+
+    handleMouseLeave = (e) => {
         this.props.actions.resetBubble()
     }
 
@@ -57,8 +64,9 @@ class BG extends Point {
         return (
             <div className={`point bg bg--${this.getType()}`}
                 style={this.getStyles()}
-                onMouseEnter={this.showBubble}
-                onMouseLeave={this.hideBubble}
+                onMouseEnter={this.handleMouseEnter}
+                onMouseMove={this.handleMouseMove}
+                onMouseLeave={this.handleMouseLeave}
             ></div>
         )
     }
