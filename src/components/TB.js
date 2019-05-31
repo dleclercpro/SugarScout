@@ -2,16 +2,24 @@ import React from 'react'
 import Bar from './Bar'
 import * as Basal from '../constants/Basal'
 import * as lib from '../lib'
-import './BG.scss'
+import './TB.scss'
 
-class BG extends Bar {
+class TB extends Bar {
 
     getType() {
         return ''
     }
 
     getStyles() {
+        const height = this.props.basalRange[1] - this.props.basalRange[0]
+        const dh = Math.abs(this.props.value) 
+        const width = this.props.timeScale * 60 * 60 * 1000
+        const dw = this.props.duration
 
+        return {
+            width: dw / width * 100 + '%',
+            height: dh / height * 100 + '%',
+        }
     }
 
     handleMouseEnter = (e) => {
@@ -49,4 +57,4 @@ class BG extends Bar {
     }
 }
 
-export default BG
+export default TB

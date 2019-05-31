@@ -10,7 +10,7 @@
         align-items: flex-start;
         border-right: map-get($theme, ticks);
         padding-right: 4px;
-        transition: width ease-in-out $animation-speed;
+        transition: all $transition-type $transition-speed;
         font-size: 20px;
         line-height: 10px;
 

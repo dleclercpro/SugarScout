@@ -18,7 +18,7 @@ class InnerBG extends React.Component {
         
                 {this.props[DataTypes.DATA_BG].map((bg, index) => (
                     <BGContainer key={index} time={bg.time} value={bg.value} />
-                ))}                
+                ))}
             </div>
         )
     }

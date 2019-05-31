@@ -76,4 +76,14 @@
             }
         }
     }
+
+    &.tb {
+
+        > .info {
+
+            > .value {
+                color: map-get($theme, basal);
+            }
+        }
+    }
 }

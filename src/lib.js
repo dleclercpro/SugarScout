@@ -39,7 +39,8 @@ export const convertJSONTBs = (json) => {
     return Object.keys(data).reduce((tbs, t) => {
         tbs.push({
             time: moment(t, Time.FORMAT_LONG).valueOf(),
-            value: data[t]
+            value: data[t][0],
+            duration: data[t][1] * 1000,
         })
         return tbs
     }, [])

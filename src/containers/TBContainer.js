@@ -1,16 +1,13 @@
 import * as Redux from 'redux'
 import * as ReactRedux from 'react-redux'
-import * as DataTypes from '../constants/DataTypes'
 import * as FetchActions from '../actions/FetchActions'
 import * as AxesActions from '../actions/AxesActions'
 import * as BubbleActions from '../actions/BubbleActions'
-import InnerBasal from '../components/InnerBasal'
+import TB from '../components/TB'
 
 const mapStateToProps = (state) => ({
-    scales: state.axes.time.scales,
-    scale: state.axes.time.scale,
-    [DataTypes.DATA_BASAL]: state.pump.data[DataTypes.DATA_BASAL].data,
-    [DataTypes.DATA_TB]: state.pump.data[DataTypes.DATA_TB].data,
+    timeScale: state.axes.time.scale,
+    basalRange: state.axes.basal.range,
 })
 
 const mapDispatchToProps = (dispatch) => ({
@@ -21,9 +18,9 @@ const mapDispatchToProps = (dispatch) => ({
     },
 })
 
-const InnerBasalContainer = ReactRedux.connect(
+const TBContainer = ReactRedux.connect(
     mapStateToProps,
     mapDispatchToProps,
-)(InnerBasal)
+)(TB)
 
-export default InnerBasalContainer
+export default TBContainer

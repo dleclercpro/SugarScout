@@ -23,6 +23,6 @@
 
     > .wrapper {
         flex-direction: row;
-        transition: right ease-in-out $animation-speed;
+        transition: all $transition-type $transition-speed;
     }
 }

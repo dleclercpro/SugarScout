@@ -1,3 +1,8 @@
+@import '../common.scss';
+
 .bar.tb {
-    
+    flex: 0 0 auto;
+    background: map-get($theme, basal);
+    cursor: pointer;
+    transition: all $transition-type $transition-speed;
 }

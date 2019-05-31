@@ -4,7 +4,7 @@
     position: absolute;
     transform: translate(50%, -50%);
     border-radius: 50%;
-    transition: all ease-in-out $animation-speed;
+    transition: all $transition-type $transition-speed;
     z-index: 10;
     cursor: pointer;
 

@@ -12,6 +12,7 @@ $font: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvet
 $color-black: #000000;
 $color-deep-black: #00001b;
 $color-dark-grey: #1b1b1b;
+$color-deep-grey: #404054;
 $color-grey: #999999;
 $color-white: #ffffff;
 $color-purple: #800080;
@@ -36,6 +37,7 @@ $light-theme: (
         high: $color-orange,
         very-high: $color-red,
     ),
+    basal: $color-purple,
 );
 $dark-theme: (
     background: $color-deep-black,
@@ -52,6 +54,7 @@ $dark-theme: (
         high: $color-orange,
         very-high: $color-purple,
     ),
+    basal: $color-deep-grey,
 );
 
 // CHOSEN THEME
@@ -84,5 +87,6 @@ $size-axes-desktop-xl: (
 $ratio-bg-axis: 0.6;
 $ratio-basal-axis: 1.0 - $ratio-bg-axis;
 
-// ANIMATIONS
-$animation-speed: 500ms;
+// TRANSITIONS
+$transition-type: ease-in-out;
+$transition-speed: 500ms;
