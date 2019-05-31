@@ -1,0 +1,79 @@
+@import '../common.scss';
+
+.bubble {
+    display: none;
+    position: absolute;
+    padding: 20px 30px;
+    background: map-get(map-get($theme, bubble), background);
+    border: map-get(map-get($theme, bubble), border);
+    border-radius: 8px;
+    transform: translate(8px, calc(-100% - 8px));
+    z-index: 50;
+
+    &.is-visible {
+        display: block;
+    }
+
+    > .info,
+    > .time {
+        white-space: nowrap;
+        margin: 0;
+    }
+
+    > .info {
+        font-weight: bold;
+    }
+
+    &.bg {
+
+        &--very-low {
+
+            > .info {
+
+                > .value {
+                    color: map-get(map-get($theme, bg), very-low);
+                }
+            }
+        }
+    
+        &--low {
+
+            > .info {
+
+                > .value {
+                    color: map-get(map-get($theme, bg), low);
+                }
+            }
+        }
+    
+        &--normal {
+            
+            > .info {
+
+                > .value {
+                    color: map-get(map-get($theme, bg), normal);
+                }
+            }
+        }
+    
+        &--high {
+
+            > .info {
+
+                > .value {
+                    color: map-get(map-get($theme, bg), high);
+                }
+            }
+        }
+    
+        &--very-high {
+
+            > .info {
+
+                > .value {
+                    color: map-get(map-get($theme, bg), very-high);
+                }
+            }
+        }
+    }
+}

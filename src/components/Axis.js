@@ -2,37 +2,25 @@ import React from 'react'
 import Tick from './Tick'
 import './Axis.scss'
 
-class Axis extends React.Component {
-    
-    constructor(props) {
-        super(props)
-        this.type = props.type
-        this.state = props.state
+class AxisBG extends React.Component {
+
+    componentDidMount() {
+        this.build()
     }
 
-    getStyles() {
-        if (this.type === 'x') {
-            return {
-                right: this.state.toNow / (this.state.scale * 60 * 60 * 1000) * 100 + '%'
-            }
-        }
+    generateTicks() {
+        return this.props.ticks.map((tick, index) => (
+            <Tick
+                key={index}
+                label={tick.label}
+                value={tick.value}
+            />
+        ))
     }
-    
-    render() {
-        return (
-            <div className={`axis axis--${this.type} ${this.state.scale ? 'axis--' + this.state.scale + 'h' : ''}`}>
-                <div className='wrapper' style={this.getStyles()}>
-                    {this.state.ticks.map((tick, index) => (
-                        <Tick
-                            key={index}
-                            label={tick.label}
-                            value={tick.value}
-                        />
-                    ))}
-                </div>
-            </div>
-        )
+
+    build() {
+        throw new Error('To implement.')
     }
 }
 
-export default Axis
+export default AxisBG

@@ -1,10 +1,12 @@
 import React from 'react'
-import Graph from './Graph'
+import GraphContainer from '../containers/GraphContainer'
+import BubbleContainer from '../containers/BubbleContainer'
 import './App.scss'
 
 const App = () => (
     <div className='app'>
-        <Graph />
+        <BubbleContainer />
+        <GraphContainer />
     </div>
 )
 

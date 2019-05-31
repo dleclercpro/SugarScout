@@ -1,41 +1,118 @@
-@import '../config.scss';
-
-$border: 1px dashed $color-white;
+@import '../common.scss';
 
 .tick {
     display: flex;
-    flex: 1;
-    color: $color-white;
     font-weight: bold;
 
-    .axis--x & {
+    .axis--time & {
+        flex: 0 0 auto;
         justify-content: flex-end;
         align-items: flex-start;
-        width: 100%;
-        border-right: $border;
-        padding-right: 5px;
+        border-right: map-get($theme, ticks);
+        padding-right: 4px;
+        transition: width ease-in-out $animation-speed;
+        font-size: 20px;
+        line-height: 10px;
+
+        @include mq(tablet) {
+            line-height: 12px;
+        }
+
+        @include mq(desktop) {
+            line-height: 15px;
+        }
+
+        .graph--1-h & {
+            width: 100%;
+            font-size: 14px;
+    
+            @include mq(tablet) {
+                font-size: 18px;
+            }
+    
+            @include mq(desktop) {
+                font-size: 20px;
+            }
+        }
+    
+        .graph--3-h & {
+            width: calc(100% / 3);
+            font-size: 14px;
+    
+            @include mq(tablet) {
+                font-size: 18px;
+            }
+    
+            @include mq(desktop) {
+                font-size: 20px;
+            }
+        }
+    
+        .graph--6-h & {
+            width: calc(100% / 6);
+            font-size: 12px;
+    
+            @include mq(tablet) {
+                font-size: 16px;
+            }
+    
+            @include mq(desktop) {
+                font-size: 20px;
+            }
+        }
+
+        .graph--12-h & {
+            display: none;
+            width: calc(100% / 12);
+    
+            @include mq(tablet) {
+                display: flex;
+                font-size: 14px;
+            }
+    
+            @include mq(desktop) {
+                font-size: 18px;
+            }
+        }
+
+        .graph--24-h & {
+            display: none;
+            width: calc(100% / 24);        
+    
+            @include mq(tablet) {
+                
+            }
+    
+            @include mq(desktop) {
+                display: flex;
+                font-size: 13px;
+            }
+    
+            @include mq(desktopXL) {
+                font-size: 16px;
+            }
+        }
     }
 
-    .axis--3h & {
-        width: calc(100% / 3);
-    }
-
-    .axis--6h & {
-        width: calc(100% / 6);
-    }
-
-    .axis--12h & {
-        width: calc(100% / 12);
-    }
-
-    .axis--24h & {
-        width: calc(100% / 24);
-    }
-
-    .axis--y & {
+    .axis--bg &,
+    .axis--basal & {
+        flex: 1;
         justify-content: flex-start;
         align-items: flex-end;
-        border-bottom: $border;
-        padding-bottom: 5px;
+        border-bottom: map-get($theme, ticks);
+        padding-bottom: 1px;
+        font-size: 12px;
+
+        @include mq(tablet) {
+            font-size: 14px;
+        }
+
+        @include mq(desktop) {
+            font-size: 15px;
+        }
+
+        @include mq(desktopXL) {
+            font-size: 16px;
+        }
     }
 }

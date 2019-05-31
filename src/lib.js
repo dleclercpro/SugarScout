@@ -1,3 +1,32 @@
-export const getRange = (x) => [...Array(x).keys()]
+import moment from 'moment'
+import * as time from './constants/Time'
 
-export const getRangeFromTo = (x0, x1) => getRange(x1 - x0 + 1).map((value) => value + x0)
+export const getRange = (x) => {
+    return [...Array(x).keys()]
+}
+
+export const getRangeFromTo = (start, end) => {
+    return getRange(end - start + 1).map((x) => x + start)
+}
+
+export const convertJSONBGs = (json) => {
+    return Object.keys(json).reduce((BGs, t) => {
+        BGs.push({
+            time: moment(t, time.FORMAT).valueOf(), // Epoch time in current time zone (ms)
+            value: json[t]
+        })
+        return BGs
+    }, [])
+}
+
+export const convertJSONBasals = (json) => {
+    return json
+}
+
+export const convertEpochToFormattedTime = (epoch) => {
+    return moment(epoch).format(time.FORMAT)
+}
+
+export const formatBG = (bg) => {
+    return bg.toFixed(1)
+}

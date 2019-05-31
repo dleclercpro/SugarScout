@@ -1,12 +1,88 @@
+// BREAKPOINTS
+$breakpoints: (
+    tablet: 600px,
+    desktop: 1024px,
+    desktopXL: 1280px,
+);
+
 // FONTS
 $font: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 
 // COLORS
 $color-black: #000000;
-$color-grey: #333333;
+$color-deep-black: #00001b;
+$color-dark-grey: #1b1b1b;
+$color-grey: #999999;
 $color-white: #ffffff;
-$color-font: $color-black;
-$color-background: #1b1b1b;
+$color-purple: #800080;
+$color-red: #e50000;
+$color-orange: #ff9d2f;
+$color-green: #99e500;
+$color-transparent-black: rgba(0, 0, 0, 0.8);
+
+// THEMES
+$light-theme: (
+    background: $color-white,
+    font: $color-black,
+    ticks: 1px dashed $color-black,
+    bubble: (
+        background: $color-white,
+        border: 3px solid $color-black,
+    ),
+    bg: (
+        very-low: $color-red,
+        low: $color-orange,
+        normal: $color-black,
+        high: $color-orange,
+        very-high: $color-red,
+    ),
+);
+$dark-theme: (
+    background: $color-deep-black,
+    font: $color-white,
+    ticks: 1px dashed $color-white,
+    bubble: (
+        background: $color-transparent-black,
+        border: none,
+    ),
+    bg: (
+        very-low: $color-purple,
+        low: $color-orange,
+        normal: $color-grey,
+        high: $color-orange,
+        very-high: $color-purple,
+    ),
+);
+
+// CHOSEN THEME
+$theme: $dark-theme;
 
 // SIZES
-$size-axis: 28px;
+$size-font: 16px;
+$size-axes: (
+    time: 16px,
+    bg: 18px,
+    basal: 18px,
+);
+$size-axes-tablet: (
+    time: 18px,
+    bg: 20px,
+    basal: 20px,
+);
+$size-axes-desktop: (
+    time: 23px,
+    bg: 24px,
+    basal: 24px,
+);
+$size-axes-desktop-xl: (
+    time: 25px,
+    bg: 27px,
+    basal: 27px,
+);
+
+// GRAPH CONFIG
+$ratio-bg-axis: 0.6;
+$ratio-basal-axis: 1.0 - $ratio-bg-axis;
+
+// ANIMATIONS
+$animation-speed: 500ms;

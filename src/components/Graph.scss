@@ -1,9 +1,10 @@
-@import '../config.scss';
+@import '../common.scss';
 
 .graph {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
     height: 100%;
-    background: $color-background;
+    background: map-get($theme, background);
+    overflow: hidden;
 }

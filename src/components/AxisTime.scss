@@ -1,0 +1,28 @@
+@import '../common.scss';
+@import './Axis.scss';
+
+.axis--time {
+    order: 5;
+    width: calc(100% - #{map-get($size-axes, bg)});
+    height: map-get($size-axes, time);
+
+    @include mq(tablet) {
+        width: calc(100% - #{map-get($size-axes-tablet, bg)});
+        height: map-get($size-axes-tablet, time);
+    }
+
+    @include mq(desktop) {
+        width: calc(100% - #{map-get($size-axes-desktop, bg)});
+        height: map-get($size-axes-desktop, time);
+    }
+
+    @include mq(desktopXL) {
+        width: calc(100% - #{map-get($size-axes-desktop-xl, bg)});
+        height: map-get($size-axes-desktop-xl, time);
+    }
+
+    > .wrapper {
+        flex-direction: row;
+        transition: right ease-in-out $animation-speed;
+    }
+}

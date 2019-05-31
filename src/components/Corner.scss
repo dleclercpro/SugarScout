@@ -1,7 +1,22 @@
-@import '../config.scss';
+@import '../common.scss';
 
 .corner {
-    order: 4;
-    width: $size-axis;
-    height: $size-axis;
+    order: 6;
+    width: map-get($size-axes, bg);
+    height: map-get($size-axes, time);
+
+    @include mq(tablet) {
+        width: map-get($size-axes-tablet, bg);
+        height: map-get($size-axes-tablet, time);
+    }
+
+    @include mq(desktop) {
+        width: map-get($size-axes-desktop, bg);
+        height: map-get($size-axes-desktop, time);
+    }
+
+    @include mq(desktopXL) {
+        width: map-get($size-axes-desktop-xl, bg);
+        height: map-get($size-axes-desktop-xl, time);
+    }
 }

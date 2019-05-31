@@ -1,0 +1,25 @@
+@import '../common.scss';
+
+.button-time-scale {
+    background: none;
+    border: 3px solid transparent;
+    border-radius: 10px;
+    padding: 8px 20px;
+    font-weight: bold;
+    outline: none;
+
+    &:not(:last-child) {
+        margin-right: 10px;
+    }
+
+    &:hover {
+        cursor: pointer;
+        border: 3px solid $color-white;
+    }
+
+    &.is-active {
+        background: map-get($theme, font);
+        border: 3px solid $color-white;
+        color: map-get($theme, background);
+    }
+}

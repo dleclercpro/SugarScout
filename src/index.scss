@@ -1,9 +1,10 @@
-@import './config.scss';
+@import './common.scss';
 
 * {
     box-sizing: border-box;
     font-family: $font;
-    color: $color-font;
+    font-size: $size-font;
+    color: map-get($theme, font);
 }
 
 html {

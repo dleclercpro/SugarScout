@@ -1,0 +1,27 @@
+@import '../common.scss';
+@import './Axis.scss';
+
+.axis--bg {
+    order: 4;
+    width: map-get($size-axes, bg);
+    height: calc(#{$ratio-bg-axis} * (100% - #{map-get($size-axes, time)}));
+
+    @include mq(tablet) {
+        width: map-get($size-axes-tablet, bg);
+        height: calc(#{$ratio-bg-axis} * (100% - #{map-get($size-axes-tablet, time)}));
+    }
+
+    @include mq(desktop) {
+        width: map-get($size-axes-desktop, bg);
+        height: calc(#{$ratio-bg-axis} * (100% - #{map-get($size-axes-desktop, time)}));
+    }
+
+    @include mq(desktopXL) {
+        width: map-get($size-axes-desktop-xl, bg);
+        height: calc(#{$ratio-bg-axis} * (100% - #{map-get($size-axes-desktop-xl, time)}));
+    }
+
+    > .wrapper {
+        flex-direction: column;
+    }
+}
