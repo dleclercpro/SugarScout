@@ -4,7 +4,7 @@ import * as Time from './Time'
 
 export const INIT_DATA_STATE = {
     isFetching: false,
-    isError: false,
+    error: '',
     data: [],
 }
 
@@ -14,8 +14,7 @@ export const INIT_CGM_STATE = {
     firmware: '',
     units: BG.UNIT,
     data: {
-        bgs: INIT_DATA_STATE,
-        calibrations: INIT_DATA_STATE,
+        bgs: Object.assign({}, INIT_DATA_STATE),
     },
 }
 
@@ -24,7 +23,8 @@ export const INIT_PUMP_STATE = {
     model: 'MiniMed Paradigm 722',
     firmware: '2.4A 1.1',
     data: {
-        basals: INIT_DATA_STATE,
+        basals: Object.assign({}, INIT_DATA_STATE),
+        tbs: Object.assign({}, INIT_DATA_STATE),
     },
 }
 

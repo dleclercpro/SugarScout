@@ -1,10 +1,10 @@
 import React from 'react'
-import Point from './Point'
+import Dot from './Dot'
 import * as bg from '../constants/BG'
 import * as lib from '../lib'
 import './BG.scss'
 
-class BG extends Point {
+class BG extends Dot {
 
     getType() {
         if (this.props.value <= bg.VERY_LOW) {
@@ -61,7 +61,7 @@ class BG extends Point {
 
     render() {
         return (
-            <div className={`point bg bg--${this.getType()}`}
+            <div className={`dot bg bg--${this.getType()}`}
                 style={this.getStyles()}
                 onMouseEnter={this.handleMouseEnter}
                 onMouseMove={this.handleMouseMove}

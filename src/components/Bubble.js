@@ -9,7 +9,7 @@ const Bubble = (props) => (
             {' '}
             <span className='units'>{props.info.units}</span>
         </p>
-        <p className='time'>{lib.convertEpochToFormattedTime(props.time)}</p>
+        <p className='time'>{lib.convertEpochToFormatTime(props.time)}</p>
     </div>
 )
 

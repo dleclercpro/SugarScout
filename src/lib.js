@@ -1,5 +1,5 @@
 import moment from 'moment'
-import * as time from './constants/Time'
+import * as Time from './constants/Time'
 
 export const getRange = (x) => {
     return [...Array(x).keys()]
@@ -10,23 +10,49 @@ export const getRangeFromTo = (start, end) => {
 }
 
 export const convertJSONBGs = (json) => {
-    return Object.keys(json).reduce((BGs, t) => {
+    const data = json
+    
+    return Object.keys(data).reduce((BGs, t) => {
         BGs.push({
-            time: moment(t, time.FORMAT).valueOf(), // Epoch time in current time zone (ms)
-            value: json[t]
+            time: moment(t, Time.FORMAT_LONG).valueOf(),
+            value: data[t]
         })
         return BGs
     }, [])
 }
 
-export const convertJSONBasals = (json) => {
-    return json
+export const convertJSONBasals = (profile, json) => {
+    const data = json['Basal Profile (' + profile + ')']
+    
+    return Object.keys(data).reduce((basals, t) => {
+        basals.push({
+            time: moment(t, Time.FORMAT_SHORT).valueOf(),
+            value: data[t]
+        })
+        return basals
+    }, [])
 }
 
-export const convertEpochToFormattedTime = (epoch) => {
-    return moment(epoch).format(time.FORMAT)
+export const convertJSONTBs = (json) => {
+    const data = json['Net Basals']
+
+    return Object.keys(data).reduce((tbs, t) => {
+        tbs.push({
+            time: moment(t, Time.FORMAT_LONG).valueOf(),
+            value: data[t]
+        })
+        return tbs
+    }, [])
+}
+
+export const convertEpochToFormatTime = (epoch, format = Time.FORMAT_LONG) => {
+    return moment(epoch).format(format)
 }
 
 export const formatBG = (bg) => {
     return bg.toFixed(1)
+}
+
+export const formatBasal = (basal) => {
+    return basal.toFixed(2)
 }

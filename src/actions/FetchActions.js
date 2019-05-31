@@ -38,6 +38,24 @@ const fetchBasalDataSuccess = (dataType, data) => ({
     data,
 })
 
+// TBs
+const fetchTBDataRequest = (dataType) => ({
+    type: ActionTypes.FETCH_TB_DATA_REQUEST,
+    dataType,
+})
+
+const fetchTBDataFailure = (dataType, error) => ({
+    type: ActionTypes.FETCH_TB_DATA_FAILURE,
+    dataType,
+    error,
+})
+
+const fetchTBDataSuccess = (dataType, data) => ({
+    type: ActionTypes.FETCH_TB_DATA_SUCCESS,
+    dataType,
+    data,
+})
+
 // Fetch helper
 const getFetchActions = (dataType) => {
     switch (dataType) {
@@ -46,6 +64,9 @@ const getFetchActions = (dataType) => {
 
         case DataTypes.DATA_BASAL:
             return [fetchBasalDataRequest, fetchBasalDataFailure, fetchBasalDataSuccess]
+
+        case DataTypes.DATA_TB:
+                return [fetchTBDataRequest, fetchTBDataFailure, fetchTBDataSuccess]
 
         default:
             throw new Error('Fetching this data type not yet implemented.')
@@ -80,6 +101,14 @@ export const fetchBasals = (profile = 'Standard') => ((dispatch) => (
     fetchData(dispatch,
         DataTypes.DATA_BASAL,
         '../reports/pump.json',
-        (json) => lib.convertJSONBasals(json['Basal Profile (' + profile + ')'])
+        (json) => lib.convertJSONBasals(profile, json)
+    )
+))
+
+export const fetchTBs = () => ((dispatch) => (
+    fetchData(dispatch,
+        DataTypes.DATA_TB,
+        '../reports/treatments.json',
+        (json) => lib.convertJSONTBs(json)
     )
 ))
