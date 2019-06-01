@@ -9,6 +9,9 @@ export const FETCH_TB_DATA_REQUEST = 'FETCH_TB_DATA_REQUEST'
 export const FETCH_TB_DATA_FAILURE = 'FETCH_TB_DATA_FAILURE'
 export const FETCH_TB_DATA_SUCCESS = 'FETCH_TB_DATA_SUCCESS'
 
+// Time
+export const UPDATE_TIME = 'UPDATE_TIME'
+
 // Bubble
 export const RESET_BUBBLE = 'RESET_BUBBLE'
 export const MOVE_BUBBLE = 'MOVE_BUBBLE'

@@ -12,8 +12,8 @@ class InnerBG extends React.Component {
     render() {
         return (
             <div className='inner inner--bg'>                
-                {this.props.scales.map((scale, index) => (
-                    <ButtonTimeScaleContainer key={index} scale={scale} />
+                {this.props.timeScales.map((scale, index) => (
+                    <ButtonTimeScaleContainer key={index} value={scale} />
                 ))}
         
                 {this.props[DataTypes.DATA_BG].map((bg, index) => (

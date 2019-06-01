@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux'
+import TimeReducer from './TimeReducer'
 import BubbleReducer from './BubbleReducer'
 import AxisTimeReducer from './AxisTimeReducer'
 import AxisBGReducer from './AxisBGReducer'
@@ -7,6 +8,7 @@ import PumpReducer from './PumpReducer'
 import CGMReducer from './CGMReducer'
 
 const rootReducer = combineReducers({
+    time: TimeReducer,
     bubble: BubbleReducer,
     axes: combineReducers({
         time: AxisTimeReducer,

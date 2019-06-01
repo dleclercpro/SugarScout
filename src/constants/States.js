@@ -2,6 +2,14 @@ import * as BG from './BG'
 import * as Basal from './Basal'
 import * as Time from './Time'
 
+export const INIT_TIME_STATE = {
+    now: Time.NOW || new Date(),
+    toNow: 0,                    // (ms)
+    lastTB: Time.NOW.getTime() - 60 * 60 * 1000,  // (ms)
+    scales: Time.SCALES,
+    scale: Time.SCALE,
+}
+
 export const INIT_DATA_STATE = {
     isFetching: false,
     error: '',
@@ -41,10 +49,6 @@ export const INIT_BUBBLE_STATE = {
 
 export const INIT_AXIS_TIME_STATE = {
     units: Time.UNIT,
-    now: Time.NOW || new Date(),
-    toNow: 0, // (ms)
-    scales: Time.AXIS_SCALES,
-    scale: Time.AXIS_SCALE,
     nTicks: Time.AXIS_N_TICKS,
     ticks: [],
 }

@@ -27,16 +27,20 @@ class AxisTime extends Axis {
             value: now - toNow - (hour - h) * 60 * 60 * 1000,
         }))
 
-        // Update state
-        this.props.actions.updateTimeAxis({
+        // Update time state
+        this.props.actions.updateTime({
             toNow,
+        })
+
+        // Update axis state
+        this.props.actions.updateTimeAxis({
             ticks,
         })
     }
 
     getStyles() {
         return {
-            right: this.props.toNow / (this.props.scale * 60 * 60 * 1000) * 100 + '%'
+            right: this.props.toNow / (this.props.timeScale * 60 * 60 * 1000) * 100 + '%'
         }
     }
     

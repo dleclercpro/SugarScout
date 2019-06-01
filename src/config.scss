@@ -37,7 +37,10 @@ $light-theme: (
         high: $color-orange,
         very-high: $color-red,
     ),
-    basal: $color-purple,
+    basal: (
+        background: $color-purple,
+        border: $color-black,
+    ),
 );
 $dark-theme: (
     background: $color-deep-black,
@@ -54,7 +57,10 @@ $dark-theme: (
         high: $color-orange,
         very-high: $color-purple,
     ),
-    basal: $color-deep-grey,
+    basal: (
+        background: $color-red,
+        border: 1px solid $color-black,
+    ),
 );
 
 // CHOSEN THEME

@@ -82,7 +82,7 @@
         > .info {
 
             > .value {
-                color: map-get($theme, basal);
+                color: map-get(map-get($theme, basal), background);
             }
         }
     }
