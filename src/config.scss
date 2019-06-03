@@ -94,5 +94,5 @@ $ratio-bg-axis: 0.6;
 $ratio-basal-axis: 1.0 - $ratio-bg-axis;
 
 // TRANSITIONS
-$transition-type: ease-in-out;
+$transition-type: cubic-bezier(0.4, 0, 0.2, 1);
 $transition-speed: 500ms;

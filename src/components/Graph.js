@@ -7,15 +7,26 @@ import AxisBGContainer from '../containers/AxisBGContainer'
 import AxisBasalContainer from '../containers/AxisBasalContainer'
 import './Graph.scss'
 
-const Graph = (props) => (
-    <div className={`graph graph--${props.timeScale}-h`}>
-        <InnerBGContainer />
-        <InnerBasalContainer />
-        <Corner />
-        <AxisTimeContainer />
-        <AxisBGContainer />
-        <AxisBasalContainer />
-    </div>
-)
+class Graph extends React.Component {
+
+    componentDidMount() {
+        this.props.actions.fetchBGs()
+        this.props.actions.fetchBasals()
+        this.props.actions.fetchTBs()
+    }
+
+    render() {
+        return (
+            <div className={`graph graph--${this.props.timeScale}-h`}>
+                <InnerBGContainer />
+                <InnerBasalContainer />
+                <Corner />
+                <AxisTimeContainer />
+                <AxisBGContainer />
+                <AxisBasalContainer />
+            </div>
+        )
+    }
+}
 
 export default Graph

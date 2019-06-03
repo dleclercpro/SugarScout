@@ -2,30 +2,29 @@
 
 .dot.bg {
     position: absolute;
-    transform: translate(50%, -50%);
     border-radius: 50%;
     transition: all $transition-type $transition-speed;
     z-index: 10;
     cursor: pointer;
 
     &.bg--very-low {
-        background: map-get(map-get($theme, bg), very-low);
+        fill: map-get(map-get($theme, bg), very-low);
     }
 
     &.bg--low {
-        background: map-get(map-get($theme, bg), low);
+        fill: map-get(map-get($theme, bg), low);
     }
 
     &.bg--normal {
-        background: map-get(map-get($theme, bg), normal);
+        fill: map-get(map-get($theme, bg), normal);
     }
 
     &.bg--high {
-        background: map-get(map-get($theme, bg), high);
+        fill: map-get(map-get($theme, bg), high);
     }
 
     &.bg--very-high {
-        background: map-get(map-get($theme, bg), very-high);
+        fill: map-get(map-get($theme, bg), very-high);
     }
 
     .graph--1-h & {

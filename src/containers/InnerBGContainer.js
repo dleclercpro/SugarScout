@@ -3,21 +3,27 @@ import * as ReactRedux from 'react-redux'
 import * as DataTypes from '../constants/DataTypes'
 import * as TimeActions from '../actions/TimeActions'
 import * as FetchActions from '../actions/FetchActions'
+import * as InnerActions from '../actions/InnerActions'
 import * as AxesActions from '../actions/AxesActions'
 import * as BubbleActions from '../actions/BubbleActions'
 import InnerBG from '../components/InnerBG'
 
 const mapStateToProps = (state) => ({
+    width: state.inner.bg.width,
+    height: state.inner.bg.height,
     timeScales: state.time.scales,
     [DataTypes.DATA_BG]: state.cgm.data[DataTypes.DATA_BG].data,
 })
 
 const mapDispatchToProps = (dispatch) => ({
     actions: {
-        ...Redux.bindActionCreators(TimeActions, dispatch),
-        ...Redux.bindActionCreators(FetchActions, dispatch),
-        ...Redux.bindActionCreators(AxesActions, dispatch),
-        ...Redux.bindActionCreators(BubbleActions, dispatch),
+        ...Redux.bindActionCreators({
+            ...TimeActions,
+            ...FetchActions,
+            ...InnerActions,
+            ...AxesActions,
+            ...BubbleActions,
+        }, dispatch),
     },
 })
 

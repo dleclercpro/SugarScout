@@ -4,8 +4,8 @@ import * as Time from './Time'
 
 export const INIT_TIME_STATE = {
     now: Time.NOW || new Date(),
-    toNow: 0,                    // (ms)
-    lastTB: Time.NOW.getTime() - 60 * 60 * 1000,  // (ms)
+    toNow: 0,
+    lastTB: Time.NOW.getTime(),
     scales: Time.SCALES,
     scale: Time.SCALE,
 }
@@ -44,6 +44,17 @@ export const INIT_BUBBLE_STATE = {
     info: {
         value: '',
         units: '',
+    },
+}
+
+export const INIT_INNER_STATE = {
+    bg: {
+        width: -1,
+        height: -1,
+    },
+    basal: {
+        width: -1,
+        height: -1,
     },
 }
 

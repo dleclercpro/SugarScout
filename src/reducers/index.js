@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux'
 import TimeReducer from './TimeReducer'
 import BubbleReducer from './BubbleReducer'
+import InnerReducer from './InnerReducer'
 import AxisTimeReducer from './AxisTimeReducer'
 import AxisBGReducer from './AxisBGReducer'
 import AxisBasalReducer from './AxisBasalReducer'
@@ -10,6 +11,7 @@ import CGMReducer from './CGMReducer'
 const rootReducer = combineReducers({
     time: TimeReducer,
     bubble: BubbleReducer,
+    inner: InnerReducer,
     axes: combineReducers({
         time: AxisTimeReducer,
         bg: AxisBGReducer,

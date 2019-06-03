@@ -4,14 +4,10 @@ import TBContainer from '../containers/TBContainer'
 import './InnerBasal.scss'
 
 class InnerBasal extends React.Component {
-    componentDidMount() {
-        this.props.actions.fetchBasals()
-        this.props.actions.fetchTBs()
-    }
 
     getStyles() {
         return {
-            right: (this.props.now - this.props.lastTBTime) / (this.props.timeScale * 60 * 60 * 1000) * 100 + '%'
+            right: (this.props.now.getTime() - this.props.lastTBTime) / (this.props.timeScale * 60 * 60 * 1000) * 100 + '%'
         }
     }
 

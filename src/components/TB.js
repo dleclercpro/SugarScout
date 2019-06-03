@@ -1,10 +1,9 @@
 import React from 'react'
-import Bar from './Bar'
 import * as Basal from '../constants/Basal'
 import * as lib from '../lib'
 import './TB.scss'
 
-class TB extends Bar {
+class TB extends React.Component {
 
     getType() {
         return ''

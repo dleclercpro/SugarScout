@@ -3,6 +3,7 @@ import * as ReactRedux from 'react-redux'
 import * as DataTypes from '../constants/DataTypes'
 import * as TimeActions from '../actions/TimeActions'
 import * as FetchActions from '../actions/FetchActions'
+import * as InnerActions from '../actions/InnerActions'
 import * as AxesActions from '../actions/AxesActions'
 import * as BubbleActions from '../actions/BubbleActions'
 import InnerBasal from '../components/InnerBasal'
@@ -17,10 +18,13 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     actions: {
-        ...Redux.bindActionCreators(TimeActions, dispatch),
-        ...Redux.bindActionCreators(FetchActions, dispatch),
-        ...Redux.bindActionCreators(AxesActions, dispatch),
-        ...Redux.bindActionCreators(BubbleActions, dispatch),
+        ...Redux.bindActionCreators({
+            ...TimeActions,
+            ...FetchActions,
+            ...InnerActions,
+            ...AxesActions,
+            ...BubbleActions,
+        }, dispatch),
     },
 })
 

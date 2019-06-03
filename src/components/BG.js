@@ -1,10 +1,9 @@
 import React from 'react'
-import Dot from './Dot'
 import * as bg from '../constants/BG'
 import * as lib from '../lib'
 import './BG.scss'
 
-class BG extends Dot {
+class BG extends React.Component {
 
     getType() {
         if (this.props.value <= bg.VERY_LOW) {
@@ -24,16 +23,18 @@ class BG extends Dot {
         }
     }
 
-    getStyles() {
-        const height = this.props.bgRange[1] - this.props.bgRange[0]
-        const dh = this.props.bgRange[1] - this.props.value 
-        const width = this.props.timeScale * 60 * 60 * 1000
-        const dw = this.props.now - this.props.time
+    getPosX() {
+        const dX = this.props.timeScale * 60 * 60 * 1000
+        const dx = this.props.now.getTime() - this.props.time
+        
+        return (dX - dx) / dX * this.props.innerWidth
+    }
 
-        return {
-            top: dh / height * 100 + '%',
-            right: dw / width * 100 + '%',
-        }
+    getPosY() {
+        const dY = this.props.bgRange[1] - this.props.bgRange[0]
+        const dy = this.props.bgRange[1] - this.props.value
+
+        return dy / dY * this.props.innerHeight
     }
 
     handleMouseEnter = (e) => {
@@ -61,12 +62,14 @@ class BG extends Dot {
 
     render() {
         return (
-            <div className={`dot bg bg--${this.getType()}`}
-                style={this.getStyles()}
+            <circle className={`dot bg bg--${this.getType()}`}
+                cx={this.getPosX()}
+                cy={this.getPosY()}
+                r={4}
                 onMouseEnter={this.handleMouseEnter}
                 onMouseMove={this.handleMouseMove}
                 onMouseLeave={this.handleMouseLeave}
-            ></div>
+            />
         )
     }
 }
