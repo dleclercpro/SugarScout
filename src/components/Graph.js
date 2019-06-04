@@ -1,10 +1,10 @@
 import React from 'react'
-import Corner from './Corner'
 import InnerBGContainer from '../containers/InnerBGContainer'
 import InnerBasalContainer from '../containers/InnerBasalContainer'
 import AxisTimeContainer from '../containers/AxisTimeContainer'
 import AxisBGContainer from '../containers/AxisBGContainer'
 import AxisBasalContainer from '../containers/AxisBasalContainer'
+import Corner from './Corner'
 import './Graph.scss'
 
 class Graph extends React.Component {
@@ -17,14 +17,18 @@ class Graph extends React.Component {
 
     render() {
         return (
-            <div className={`graph graph--${this.props.timeScale}-h`}>
-                <InnerBGContainer />
-                <InnerBasalContainer />
-                <Corner />
+            <main className={`graph graph--${this.props.timeScale}-h`}>
+                <section className='graph-basal'>
+                    <InnerBasalContainer />
+                    <AxisBasalContainer />
+                </section>
+                <section className='graph-bg'>
+                    <InnerBGContainer />
+                    <AxisBGContainer />
+                </section>
                 <AxisTimeContainer />
-                <AxisBGContainer />
-                <AxisBasalContainer />
-            </div>
+                <Corner />
+            </main>
         )
     }
 }

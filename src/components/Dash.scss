@@ -1,0 +1,15 @@
+@import '../common.scss';
+
+.dash {
+    position: relative;
+    width: 100%;
+    height: 25%;
+    
+    > .buttons-timescale {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: flex;
+        z-index: 10;
+    }
+}

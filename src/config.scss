@@ -96,8 +96,8 @@ $size-axes-desktop-xl: (
 
 // GRAPH CONFIG
 $ratio-bg-axis: 0.6;
-$ratio-basal-axis: 1.0 - $ratio-bg-axis;
+$ratio-basal-axis: 0.4;
 
 // TRANSITIONS
 $transition-type: cubic-bezier(0.4, 0, 0.2, 1);
-$transition-speed: 500ms;
+$transition-speed: 300ms;

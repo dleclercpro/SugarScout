@@ -1,7 +1,6 @@
 import React from 'react'
 import * as DataTypes from '../constants/DataTypes'
 import BGContainer from '../containers/BGContainer'
-import ButtonTimeScaleContainer from '../containers/ButtonTimeScaleContainer'
 import './InnerBG.scss'
 
 class InnerBG extends React.Component {
@@ -33,12 +32,6 @@ class InnerBG extends React.Component {
                         <BGContainer key={index} time={bg.time} value={bg.value} />
                     ))}
                 </svg>
-
-                <div className='buttons-timescale'>
-                    {this.props.timeScales.map((scale, index) => (
-                        <ButtonTimeScaleContainer key={index} value={scale} />
-                    ))}
-                </div>
             </div>
         )
     }

@@ -1,39 +1,24 @@
 @import '../common.scss';
 
 .inner.inner--basal {
-    position: relative;
-    order: 1;
     width: calc(100% - #{map-get($size-axes, basal)});
-    height: calc(#{$ratio-basal-axis} * (100% - #{map-get($size-axes, time)}));
-    overflow: hidden;
-
-    // > .wrapper {
-    //     position: absolute;
-    //     display: flex;
-    //     justify-content: flex-end;
-    //     align-items: flex-end;
-    //     width: 100%;
-    //     height: 100%;
-    //     transition: all $transition-type $transition-speed;
-    // }
-
-    > svg {
-        width: 100%;
-        height: 100%;
-    }
+    height: 100%;
+    overflow-y: hidden;
     
     @include mq(width, tablet) {
         width: calc(100% - #{map-get($size-axes-tablet, basal)});
-        height: calc(#{$ratio-basal-axis} * (100% - #{map-get($size-axes-tablet, time)}));
     }
 
     @include mq(width, desktop) {
         width: calc(100% - #{map-get($size-axes-desktop, basal)});
-        height: calc(#{$ratio-basal-axis} * (100% - #{map-get($size-axes-desktop, time)}));
     }
 
     @include mq(width, desktopXL) {
         width: calc(100% - #{map-get($size-axes-desktop-xl, basal)});
-        height: calc(#{$ratio-basal-axis} * (100% - #{map-get($size-axes-desktop-xl, time)}));
+    }
+
+    > svg {
+        width: 100%;
+        height: 100%;
     }
 }

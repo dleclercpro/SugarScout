@@ -23,7 +23,7 @@
         color: map-get($theme, background);
     }
 
-    &--12-h {
+    &.scale-12-h {
         display: none;
 
         @include mq(width, tablet) {
@@ -31,7 +31,7 @@
         }
     }
 
-    &--24-h {
+    &.scale-24-h {
         display: none;  
 
         @include mq(width, desktop) {

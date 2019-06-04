@@ -26,13 +26,13 @@ class InnerBasal extends React.Component {
 
     render() {
         return (
-            <div ref={this.node} className='inner inner--basal'>
+            <section ref={this.node} className='inner inner--basal'>
                 <svg width={this.props.width} height={this.props.height} viewBox={`0 0 ${this.props.width} ${this.props.height}`}>
                     {this.props[DataTypes.DATA_TB].map((tb, index) => (
                         <TBContainer key={index} time={tb.time} value={tb.value} duration={tb.duration} />
                     ))}
                 </svg>
-            </div>
+            </section>
         )
     }
 }

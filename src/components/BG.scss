@@ -5,23 +5,48 @@
     cursor: pointer;
 
     &.bg--very-low {
-        fill: map-get(map-get($theme, bg), very-low);
+        $bg-color: map-get(map-get($theme, bg), very-low);
+        fill: $bg-color;
+
+        &:hover {
+            fill: darken($bg-color, 30%);
+        }
     }
 
     &.bg--low {
-        fill: map-get(map-get($theme, bg), low);
+        $bg-color: map-get(map-get($theme, bg), low);
+        fill: $bg-color;
+
+        &:hover {
+            fill: darken($bg-color, 30%);
+        }
     }
 
     &.bg--normal {
-        fill: map-get(map-get($theme, bg), normal);
+        $bg-color: map-get(map-get($theme, bg), normal);
+        fill: $bg-color;
+
+        &:hover {
+            fill: darken($bg-color, 30%);
+        }
     }
 
     &.bg--high {
-        fill: map-get(map-get($theme, bg), high);
+        $bg-color: map-get(map-get($theme, bg), high);
+        fill: $bg-color;
+
+        &:hover {
+            fill: darken($bg-color, 30%);
+        }
     }
 
     &.bg--very-high {
-        fill: map-get(map-get($theme, bg), very-high);
+        $bg-color: map-get(map-get($theme, bg), very-high);
+        fill: $bg-color;
+
+        &:hover {
+            fill: darken($bg-color, 30%);
+        }
     }
 
     .graph--1-h & {
@@ -29,14 +54,6 @@
 
         @include mq(width, tablet) {
             r: 6px;
-        }
-
-        @include mq(width, desktop) {
-
-        }
-
-        @include mq(width, desktopXL) {
-
         }
     }
 
@@ -49,10 +66,6 @@
 
         @include mq(width, desktop) {
             r: 6px;
-        }
-
-        @include mq(width, desktopXL) {
-
         }
     }
 
@@ -91,10 +104,6 @@
 
     .graph--24-h & {
         display: none;
-
-        @include mq(width, tablet) {
-            
-        }
 
         @include mq(width, desktop) {
             display: block;

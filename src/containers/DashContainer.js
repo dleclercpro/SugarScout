@@ -1,17 +1,14 @@
 import * as Redux from 'redux'
 import * as ReactRedux from 'react-redux'
-import * as DataTypes from '../constants/DataTypes'
 import * as TimeActions from '../actions/TimeActions'
 import * as FetchActions from '../actions/FetchActions'
 import * as InnerActions from '../actions/InnerActions'
 import * as AxesActions from '../actions/AxesActions'
 import * as BubbleActions from '../actions/BubbleActions'
-import InnerBG from '../components/InnerBG'
+import Dash from '../components/Dash'
 
 const mapStateToProps = (state) => ({
-    [DataTypes.DATA_BG]: state.cgm.data[DataTypes.DATA_BG].data,
-    width: state.inner.bg.width,
-    height: state.inner.bg.height,
+    timeScales: state.time.scales,
 })
 
 const mapDispatchToProps = (dispatch) => ({
@@ -26,9 +23,9 @@ const mapDispatchToProps = (dispatch) => ({
     },
 })
 
-const InnerBGContainer = ReactRedux.connect(
+const DashContainer = ReactRedux.connect(
     mapStateToProps,
     mapDispatchToProps,
-)(InnerBG)
+)(Dash)
 
-export default InnerBGContainer
+export default DashContainer

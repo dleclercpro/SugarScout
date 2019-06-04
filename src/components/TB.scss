@@ -1,7 +1,12 @@
 @import '../common.scss';
 
 .inner--basal > svg > .tb {
-    fill: map-get(map-get($theme, basal), background);
+    $bg-color: map-get(map-get($theme, basal), background);
     cursor: pointer;
     transition: all $transition-type $transition-speed;
+    fill: $bg-color;
+
+    &:hover {
+        fill: darken($bg-color, 10%);
+    }
 }

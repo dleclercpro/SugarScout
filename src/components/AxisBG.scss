@@ -4,21 +4,18 @@
 .axis--bg {
     order: 4;
     width: map-get($size-axes, bg);
-    height: calc(#{$ratio-bg-axis} * (100% - #{map-get($size-axes, time)}));
+    height: 100%;
 
     @include mq(width, tablet) {
         width: map-get($size-axes-tablet, bg);
-        height: calc(#{$ratio-bg-axis} * (100% - #{map-get($size-axes-tablet, time)}));
     }
 
     @include mq(width, desktop) {
         width: map-get($size-axes-desktop, bg);
-        height: calc(#{$ratio-bg-axis} * (100% - #{map-get($size-axes-desktop, time)}));
     }
 
     @include mq(width, desktopXL) {
         width: map-get($size-axes-desktop-xl, bg);
-        height: calc(#{$ratio-bg-axis} * (100% - #{map-get($size-axes-desktop-xl, time)}));
     }
 
     > .wrapper {
