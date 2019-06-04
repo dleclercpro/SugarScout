@@ -1,10 +1,7 @@
 @import '../common.scss';
 
 .inner--bg > svg > .bg {
-    position: absolute;
-    border-radius: 50%;
     transition: all $transition-type $transition-speed;
-    z-index: 10;
     cursor: pointer;
 
     &.bg--very-low {
@@ -28,12 +25,10 @@
     }
 
     .graph--1-h & {
-        width: 8px;
-        height: 8px;
+        r: 4px;
 
         @include mq(tablet) {
-            width: 12px;
-            height: 12px;
+            r: 6px;
         }
 
         @include mq(desktop) {
@@ -46,17 +41,14 @@
     }
 
     .graph--3-h & {
-        width: 5px;
-        height: 5px;
+        r: 2.5px;
 
         @include mq(tablet) {
-            width: 8px;
-            height: 8px;
+            r: 4px;
         }
 
         @include mq(desktop) {
-            width: 12px;
-            height: 12px;
+            r: 6px;
         }
 
         @include mq(desktopXL) {
@@ -65,22 +57,18 @@
     }
 
     .graph--6-h & {
-        width: 4px;
-        height: 4px;
+        r: 2px;
 
         @include mq(tablet) {
-            width: 6px;
-            height: 6px;
+            r: 3px;
         }
 
         @include mq(desktop) {
-            width: 8px;
-            height: 8px;
+            r: 4px;
         }
 
         @include mq(desktopXL) {
-            width: 10px;
-            height: 10px;
+            r: 5px;
         }
     }
 
@@ -89,18 +77,15 @@
 
         @include mq(tablet) {
             display: block;
-            width: 5px;
-            height: 5px;
+            r: 2.5px;
         }
 
         @include mq(desktop) {
-            width: 6px;
-            height: 6px;
+            r: 3px;
         }
 
         @include mq(desktopXL) {
-            width: 8px;
-            height: 8px;
+            r: 4px;
         }
     }
 
@@ -113,13 +98,11 @@
 
         @include mq(desktop) {
             display: block;
-            width: 5px;
-            height: 5px;
+            r: 2.5px;
         }
 
         @include mq(desktopXL) {
-            width: 6px;
-            height: 6px;
+            r: 3px;
         }
     }
 }

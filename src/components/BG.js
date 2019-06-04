@@ -65,7 +65,7 @@ class BG extends React.Component {
             <circle className={`bg bg--${this.getType()}`}
                 cx={this.getPosX()}
                 cy={this.getPosY()}
-                r={5}
+                r={3}
                 onMouseEnter={this.handleMouseEnter}
                 onMouseMove={this.handleMouseMove}
                 onMouseLeave={this.handleMouseLeave}

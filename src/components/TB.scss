@@ -1,7 +1,6 @@
 @import '../common.scss';
 
 .inner--basal > svg > .tb {
-    flex: 0 0 auto;
     fill: map-get(map-get($theme, basal), background);
     cursor: pointer;
     transition: all $transition-type $transition-speed;
