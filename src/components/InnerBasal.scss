@@ -7,14 +7,19 @@
     height: calc(#{$ratio-basal-axis} * (100% - #{map-get($size-axes, time)}));
     overflow: hidden;
 
-    > .wrapper {
-        position: absolute;
-        display: flex;
-        justify-content: flex-end;
-        align-items: flex-end;
+    // > .wrapper {
+    //     position: absolute;
+    //     display: flex;
+    //     justify-content: flex-end;
+    //     align-items: flex-end;
+    //     width: 100%;
+    //     height: 100%;
+    //     transition: all $transition-type $transition-speed;
+    // }
+
+    > svg {
         width: 100%;
         height: 100%;
-        transition: all $transition-type $transition-speed;
     }
     
     @include mq(tablet) {

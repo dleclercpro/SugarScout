@@ -5,26 +5,40 @@ import './TB.scss'
 
 class TB extends React.Component {
 
-    getType() {
-        return ''
+    getPosX() {
+        const dX = this.props.timeScale * 60 * 60 * 1000
+        const dx = this.props.now.getTime() - this.props.time
+
+        // Trick on half pixels
+        return Math.floor((dX - dx) / dX * this.props.innerWidth)
     }
 
-    getStyles() {
-        const height = this.props.basalRange[1] - this.props.basalRange[0]
-        const dh = Math.abs(this.props.value) 
-        const width = this.props.timeScale * 60 * 60 * 1000
+    getPosY() {
+        const dY = this.props.basalRange[1] - this.props.basalRange[0]
+        let dy = this.props.value >= 0 ? this.props.basalRange[1] - this.props.value : this.props.basalRange[1] 
+
+        return dy / dY * this.props.innerHeight
+    }
+
+    getWidth() {
+        const dW = this.props.timeScale * 60 * 60 * 1000
         const dw = this.props.duration
 
-        return {
-            width: dw / width * 100 + '%',
-            height: dh / height * 100 + '%',
-        }
+        // Trick on half pixels
+        return Math.ceil(dw / dW * this.props.innerWidth)
+    }
+
+    getHeight() {
+        const dH = this.props.basalRange[1] - this.props.basalRange[0]
+        const dh = Math.abs(this.props.value)
+
+        return dh / dH * this.props.innerHeight
     }
 
     handleMouseEnter = (e) => {
         this.props.actions.updateBubble({
             status: 'visible',
-            type: 'tb tb--' + this.getType(),
+            type: 'tb',
             time: this.props.time,
             info: {
                 value: lib.formatBasal(this.props.value),
@@ -46,12 +60,15 @@ class TB extends React.Component {
 
     render() {
         return (
-            <div className={`bar tb tb--${this.getType()}`}
-                style={this.getStyles()}
+            <rect className='tb'
+                x={this.getPosX()}
+                y={this.getPosY()}
+                width={this.getWidth()}
+                height={this.getHeight()}
                 onMouseEnter={this.handleMouseEnter}
                 onMouseMove={this.handleMouseMove}
                 onMouseLeave={this.handleMouseLeave}
-            ></div>
+            />
         )
     }
 }

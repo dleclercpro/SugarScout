@@ -1,6 +1,6 @@
 @import '../common.scss';
 
-.dot.bg {
+.inner--bg > svg > .bg {
     position: absolute;
     border-radius: 50%;
     transition: all $transition-type $transition-speed;

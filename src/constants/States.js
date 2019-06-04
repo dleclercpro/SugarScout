@@ -5,7 +5,6 @@ import * as Time from './Time'
 export const INIT_TIME_STATE = {
     now: Time.NOW || new Date(),
     toNow: 0,
-    lastTB: Time.NOW.getTime(),
     scales: Time.SCALES,
     scale: Time.SCALE,
 }
@@ -49,12 +48,12 @@ export const INIT_BUBBLE_STATE = {
 
 export const INIT_INNER_STATE = {
     bg: {
-        width: -1,
-        height: -1,
+        width: 0,
+        height: 0,
     },
     basal: {
-        width: -1,
-        height: -1,
+        width: 0,
+        height: 0,
     },
 }
 

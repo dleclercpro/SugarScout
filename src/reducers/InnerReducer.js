@@ -13,6 +13,16 @@ const InnerReducer = (state = States.INIT_INNER_STATE, action) => {
                 },
             }
 
+        case ActionTypes.UPDATE_INNER_BASAL_SIZE:
+            return {
+                ...state,
+                basal: {
+                    ...state.basal,
+                    width: action.width,
+                    height: action.height,
+                },
+            }
+
         default:
             return state
     }

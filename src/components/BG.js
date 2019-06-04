@@ -62,10 +62,10 @@ class BG extends React.Component {
 
     render() {
         return (
-            <circle className={`dot bg bg--${this.getType()}`}
+            <circle className={`bg bg--${this.getType()}`}
                 cx={this.getPosX()}
                 cy={this.getPosY()}
-                r={4}
+                r={5}
                 onMouseEnter={this.handleMouseEnter}
                 onMouseMove={this.handleMouseMove}
                 onMouseLeave={this.handleMouseLeave}

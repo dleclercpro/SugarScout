@@ -5,20 +5,24 @@ import './InnerBasal.scss'
 
 class InnerBasal extends React.Component {
 
-    getStyles() {
-        return {
-            right: (this.props.now.getTime() - this.props.lastTBTime) / (this.props.timeScale * 60 * 60 * 1000) * 100 + '%'
-        }
+    constructor(props) {
+        super(props)
+        this.node = React.createRef()
+    }
+
+    componentDidMount() {
+        const pos = this.node.current.getBoundingClientRect()
+        this.props.actions.updateInnerBasalSize(pos.width, pos.height)
     }
 
     render() {
         return (
-            <div className='inner inner--basal'>
-                <div className='wrapper wrapper--tb' style={this.getStyles()}>
+            <div ref={this.node} className='inner inner--basal'>
+                <svg width={this.props.width} height={this.props.height} viewBox={`0 0 ${this.props.width} ${this.props.height}`}>
                     {this.props[DataTypes.DATA_TB].map((tb, index) => (
                         <TBContainer key={index} time={tb.time} value={tb.value} duration={tb.duration} />
                     ))}
-                </div>
+                </svg>
             </div>
         )
     }

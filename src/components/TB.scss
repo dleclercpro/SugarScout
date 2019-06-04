@@ -1,9 +1,8 @@
 @import '../common.scss';
 
-.bar.tb {
+.inner--basal > svg > .tb {
     flex: 0 0 auto;
-    background: map-get(map-get($theme, basal), background);
-    border: map-get(map-get($theme, basal), border);
+    fill: map-get(map-get($theme, basal), background);
     cursor: pointer;
     transition: all $transition-type $transition-speed;
 }

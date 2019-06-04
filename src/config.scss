@@ -51,14 +51,14 @@ $dark-theme: (
         border: none,
     ),
     bg: (
-        very-low: $color-purple,
+        very-low: $color-red,
         low: $color-orange,
         normal: $color-grey,
         high: $color-orange,
-        very-high: $color-purple,
+        very-high: $color-red,
     ),
     basal: (
-        background: $color-red,
+        background: $color-purple,
         border: 1px solid $color-black,
     ),
 );

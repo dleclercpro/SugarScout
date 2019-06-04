@@ -9,9 +9,9 @@ import * as BubbleActions from '../actions/BubbleActions'
 import InnerBG from '../components/InnerBG'
 
 const mapStateToProps = (state) => ({
+    timeScales: state.time.scales,
     width: state.inner.bg.width,
     height: state.inner.bg.height,
-    timeScales: state.time.scales,
     [DataTypes.DATA_BG]: state.cgm.data[DataTypes.DATA_BG].data,
 })
 

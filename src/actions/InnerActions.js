@@ -5,3 +5,9 @@ export const updateInnerBGSize = (width, height) => ({
     width,
     height,
 })
+
+export const updateInnerBasalSize = (width, height) => ({
+    type: ActionTypes.UPDATE_INNER_BASAL_SIZE,
+    width,
+    height,
+})
