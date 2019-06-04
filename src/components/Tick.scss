@@ -14,11 +14,11 @@
         font-size: 20px;
         line-height: 10px;
 
-        @include mq(tablet) {
+        @include mq(width, tablet) {
             line-height: 12px;
         }
 
-        @include mq(desktop) {
+        @include mq(width, desktop) {
             line-height: 15px;
         }
 
@@ -26,11 +26,11 @@
             width: 100%;
             font-size: 14px;
     
-            @include mq(tablet) {
+            @include mq(width, tablet) {
                 font-size: 18px;
             }
     
-            @include mq(desktop) {
+            @include mq(width, desktop) {
                 font-size: 20px;
             }
         }
@@ -39,11 +39,11 @@
             width: calc(100% / 3);
             font-size: 14px;
     
-            @include mq(tablet) {
+            @include mq(width, tablet) {
                 font-size: 18px;
             }
     
-            @include mq(desktop) {
+            @include mq(width, desktop) {
                 font-size: 20px;
             }
         }
@@ -52,11 +52,11 @@
             width: calc(100% / 6);
             font-size: 12px;
     
-            @include mq(tablet) {
+            @include mq(width, tablet) {
                 font-size: 16px;
             }
     
-            @include mq(desktop) {
+            @include mq(width, desktop) {
                 font-size: 20px;
             }
         }
@@ -65,12 +65,12 @@
             display: none;
             width: calc(100% / 12);
     
-            @include mq(tablet) {
+            @include mq(width, tablet) {
                 display: flex;
                 font-size: 14px;
             }
     
-            @include mq(desktop) {
+            @include mq(width, desktop) {
                 font-size: 18px;
             }
         }
@@ -79,12 +79,12 @@
             display: none;
             width: calc(100% / 24);
     
-            @include mq(desktop) {
+            @include mq(width, desktop) {
                 display: flex;
                 font-size: 13px;
             }
     
-            @include mq(desktopXL) {
+            @include mq(width, desktopXL) {
                 font-size: 16px;
             }
         }
@@ -98,15 +98,23 @@
         padding-bottom: 1px;
         font-size: 12px;
 
-        @include mq(tablet) {
+        @include mq(height, small) {
+            font-size: 14px !important;
+
+            &:nth-child(2n) {
+                visibility: hidden;
+            }
+        }
+
+        @include mq(width, tablet) {
             font-size: 14px;
         }
 
-        @include mq(desktop) {
+        @include mq(width, desktop) {
             font-size: 15px;
         }
 
-        @include mq(desktopXL) {
+        @include mq(width, desktopXL) {
             font-size: 16px;
         }
     }

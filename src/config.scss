@@ -1,8 +1,13 @@
 // BREAKPOINTS
 $breakpoints: (
-    tablet: 600px,
-    desktop: 1024px,
-    desktopXL: 1280px,
+    width: (
+        tablet: 600px,
+        desktop: 1024px,
+        desktopXL: 1280px,
+    ),
+    height: (
+        small: 650px,
+    ),
 );
 
 // FONTS

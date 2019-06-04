@@ -1,23 +1,30 @@
 @import './config.scss';
 
 // MQ
-@mixin mq($breakpoint) {
+@mixin mq($type, $breakpoint) {
 
-    // If the breakpoint exists in the map.
-    @if map-has-key($breakpoints, $breakpoint) {
+    @if map-has-key($breakpoints, $type) {
+        $typedBreakpoints: map-get($breakpoints, $type);
 
-        // Get the breakpoint value.
-        $breakpoint-value: map-get($breakpoints, $breakpoint);
+        @if map-has-key($typedBreakpoints, $breakpoint) {
+            $breakpoint-value: map-get($typedBreakpoints, $breakpoint);
 
-        // Write the media query.
-        @media (min-width: $breakpoint-value) {
-            @content;
+            @if $type == 'width' {
+                @media (min-width: $breakpoint-value) {
+                    @content;
+                }
+            
+            } @else if $type == 'height' {
+                @media (max-height: $breakpoint-value) {
+                    @content;
+                }
+            }
+
+        } @else {
+            @warn 'Invalid breakpoint: #{$breakpoint}.';
         }
 
-    // If the breakpoint doesn't exist in the map.
     } @else {
-
-        // Log a warning.
-        @warn 'Invalid breakpoint: #{$breakpoint}.';
+        @warn 'Invalid breakpoint type: #{$type}.';
     }
 };

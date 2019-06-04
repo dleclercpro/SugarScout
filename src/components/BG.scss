@@ -27,15 +27,15 @@
     .graph--1-h & {
         r: 4px;
 
-        @include mq(tablet) {
+        @include mq(width, tablet) {
             r: 6px;
         }
 
-        @include mq(desktop) {
+        @include mq(width, desktop) {
 
         }
 
-        @include mq(desktopXL) {
+        @include mq(width, desktopXL) {
 
         }
     }
@@ -43,15 +43,15 @@
     .graph--3-h & {
         r: 2.5px;
 
-        @include mq(tablet) {
+        @include mq(width, tablet) {
             r: 4px;
         }
 
-        @include mq(desktop) {
+        @include mq(width, desktop) {
             r: 6px;
         }
 
-        @include mq(desktopXL) {
+        @include mq(width, desktopXL) {
 
         }
     }
@@ -59,15 +59,15 @@
     .graph--6-h & {
         r: 2px;
 
-        @include mq(tablet) {
+        @include mq(width, tablet) {
             r: 3px;
         }
 
-        @include mq(desktop) {
+        @include mq(width, desktop) {
             r: 4px;
         }
 
-        @include mq(desktopXL) {
+        @include mq(width, desktopXL) {
             r: 5px;
         }
     }
@@ -75,16 +75,16 @@
     .graph--12-h & {
         display: none;
 
-        @include mq(tablet) {
+        @include mq(width, tablet) {
             display: block;
             r: 2.5px;
         }
 
-        @include mq(desktop) {
+        @include mq(width, desktop) {
             r: 3px;
         }
 
-        @include mq(desktopXL) {
+        @include mq(width, desktopXL) {
             r: 4px;
         }
     }
@@ -92,16 +92,16 @@
     .graph--24-h & {
         display: none;
 
-        @include mq(tablet) {
+        @include mq(width, tablet) {
             
         }
 
-        @include mq(desktop) {
+        @include mq(width, desktop) {
             display: block;
             r: 2.5px;
         }
 
-        @include mq(desktopXL) {
+        @include mq(width, desktopXL) {
             r: 3px;
         }
     }

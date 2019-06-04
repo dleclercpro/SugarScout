@@ -6,17 +6,17 @@
     width: map-get($size-axes, basal);
     height: calc(#{$ratio-basal-axis} * (100% - #{map-get($size-axes, time)}));
 
-    @include mq(tablet) {
+    @include mq(width, tablet) {
         width: map-get($size-axes-tablet, basal);
         height: calc(#{$ratio-basal-axis} * (100% - #{map-get($size-axes-tablet, time)}));
     }
 
-    @include mq(desktop) {
+    @include mq(width, desktop) {
         width: map-get($size-axes-desktop, basal);
         height: calc(#{$ratio-basal-axis} * (100% - #{map-get($size-axes-desktop, time)}));
     }
 
-    @include mq(desktopXL) {
+    @include mq(width, desktopXL) {
         width: map-get($size-axes-desktop-xl, basal);
         height: calc(#{$ratio-basal-axis} * (100% - #{map-get($size-axes-desktop-xl, time)}));
     }

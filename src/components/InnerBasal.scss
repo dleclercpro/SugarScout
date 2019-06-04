@@ -22,17 +22,17 @@
         height: 100%;
     }
     
-    @include mq(tablet) {
+    @include mq(width, tablet) {
         width: calc(100% - #{map-get($size-axes-tablet, basal)});
         height: calc(#{$ratio-basal-axis} * (100% - #{map-get($size-axes-tablet, time)}));
     }
 
-    @include mq(desktop) {
+    @include mq(width, desktop) {
         width: calc(100% - #{map-get($size-axes-desktop, basal)});
         height: calc(#{$ratio-basal-axis} * (100% - #{map-get($size-axes-desktop, time)}));
     }
 
-    @include mq(desktopXL) {
+    @include mq(width, desktopXL) {
         width: calc(100% - #{map-get($size-axes-desktop-xl, basal)});
         height: calc(#{$ratio-basal-axis} * (100% - #{map-get($size-axes-desktop-xl, time)}));
     }

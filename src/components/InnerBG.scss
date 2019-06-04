@@ -7,17 +7,17 @@
     height: calc(#{$ratio-bg-axis} * (100% - #{map-get($size-axes, time)}));
     overflow-y: hidden;
 
-    @include mq(tablet) {
+    @include mq(width, tablet) {
         width: calc(100% - #{map-get($size-axes-tablet, bg)});
         height: calc(#{$ratio-bg-axis} * (100% - #{map-get($size-axes-tablet, time)}));
     }
 
-    @include mq(desktop) {
+    @include mq(width, desktop) {
         width: calc(100% - #{map-get($size-axes-desktop, bg)});
         height: calc(#{$ratio-bg-axis} * (100% - #{map-get($size-axes-desktop, time)}));
     }
 
-    @include mq(desktopXL) {
+    @include mq(width, desktopXL) {
         width: calc(100% - #{map-get($size-axes-desktop-xl, bg)});
         height: calc(#{$ratio-bg-axis} * (100% - #{map-get($size-axes-desktop-xl, time)}));
     }
