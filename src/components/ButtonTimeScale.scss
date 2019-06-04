@@ -22,4 +22,20 @@
         border: 3px solid $color-white;
         color: map-get($theme, background);
     }
+
+    &--12-h {
+        display: none;
+
+        @include mq(tablet) {
+            display: block;
+        }
+    }
+
+    &--24-h {
+        display: none;  
+
+        @include mq(desktop) {
+            display: block;
+        }
+    }
 }
