@@ -6,10 +6,11 @@ import * as FetchActions from '../actions/FetchActions'
 import * as InnerActions from '../actions/InnerActions'
 import * as AxesActions from '../actions/AxesActions'
 import * as BubbleActions from '../actions/BubbleActions'
+import * as Selectors from '../selectors'
 import InnerBG from '../components/InnerBG'
 
 const mapStateToProps = (state) => ({
-    [DataTypes.DATA_BG]: state.cgm.data[DataTypes.DATA_BG].data,
+    [DataTypes.DATA_BG]: Selectors.getVisibleBGs(state),
     width: state.inner.bg.width,
     height: state.inner.bg.height,
 })
