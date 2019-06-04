@@ -10,9 +10,9 @@ import InnerBG from '../components/InnerBG'
 
 const mapStateToProps = (state) => ({
     timeScales: state.time.scales,
+    [DataTypes.DATA_BG]: state.cgm.data[DataTypes.DATA_BG].data,
     width: state.inner.bg.width,
     height: state.inner.bg.height,
-    [DataTypes.DATA_BG]: state.cgm.data[DataTypes.DATA_BG].data,
 })
 
 const mapDispatchToProps = (dispatch) => ({

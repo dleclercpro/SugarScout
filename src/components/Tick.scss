@@ -2,10 +2,10 @@
 
 .tick {
     display: flex;
+    flex: 0 0 auto;
     font-weight: bold;
 
     .axis--time & {
-        flex: 0 0 auto;
         justify-content: flex-end;
         align-items: flex-start;
         border-right: map-get($theme, ticks);
@@ -92,7 +92,6 @@
 
     .axis--bg &,
     .axis--basal & {
-        flex: 1;
         justify-content: flex-start;
         align-items: flex-end;
         border-bottom: map-get($theme, ticks);

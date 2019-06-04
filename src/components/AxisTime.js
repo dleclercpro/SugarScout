@@ -22,9 +22,9 @@ class AxisTime extends Axis {
         const range = lib.getRangeFromTo(hour - this.props.nTicks + 1, hour)
 
         // Define ticks
-        const ticks = range.map((h) => ({
-            label: (h >= 0 ? h : h + 24) + ':00',
-            value: now - toNow - (hour - h) * 60 * 60 * 1000,
+        const ticks = range.map((t) => ({
+            label: (t >= 0 ? t : t + 24) + ':00',
+            value: now - toNow - (hour - t) * 60 * 60 * 1000,
         }))
 
         // Update time state
@@ -48,7 +48,7 @@ class AxisTime extends Axis {
         return (
             <div className='axis axis--time'>
                 <div className='wrapper' style={this.getStyles()}>
-                    {this.generateTicks()}
+                    {this.generateXTicks()}
                 </div>
             </div>
         )

@@ -1,24 +1,18 @@
 import React from 'react'
 import Axis from './Axis'
-import * as lib from '../lib'
+import * as Basal from '../constants/Basal'
 import './AxisBasal.scss'
 
 class AxisBasal extends Axis {
 
     build() {
-
-        // Get range (mmol/L)
-        const range = lib.getRangeFromTo(this.props.range[0], this.props.range[1] - 1)
-
-        // Define ticks
-        const ticks = range.map((y) => ({
+        const ticks = Basal.AXIS_VALUES.map((y) => ({
             label: y,
             value: y,
-        })).reverse()
-        
-        // Update state
+        }))
+
         this.props.actions.updateBasalAxis({
-            ticks
+            ticks,
         })
     }
     
@@ -26,7 +20,7 @@ class AxisBasal extends Axis {
         return (
             <div className='axis axis--basal'>
                 <div className='wrapper'>
-                    {this.generateTicks()}
+                    {this.generateYTicks()}
                 </div>
             </div>
         )

@@ -1,24 +1,18 @@
 import React from 'react'
 import Axis from './Axis'
-import * as lib from '../lib'
+import * as BG from '../constants/BG'
 import './AxisBG.scss'
 
 class AxisBG extends Axis {
 
     build() {
-
-        // Get range (mmol/L)
-        const range = lib.getRangeFromTo(this.props.range[0], this.props.range[1] - 1)
-
-        // Define ticks
-        const ticks = range.map((y) => ({
+        const ticks = BG.AXIS_VALUES.map((y) => ({
             label: y,
             value: y,
-        })).reverse()
+        }))
         
-        // Update state
         this.props.actions.updateBGAxis({
-            ticks
+            ticks,
         })
     }
     
@@ -26,7 +20,7 @@ class AxisBG extends Axis {
         return (
             <div className='axis axis--bg'>
                 <div className='wrapper'>
-                    {this.generateTicks()}
+                    {this.generateYTicks()}
                 </div>
             </div>
         )

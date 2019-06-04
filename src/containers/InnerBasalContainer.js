@@ -11,10 +11,10 @@ import InnerBasal from '../components/InnerBasal'
 const mapStateToProps = (state) => ({
     now: state.time.now,
     timeScale: state.time.scale,
-    width: state.inner.basal.width,
-    height: state.inner.basal.height,
     [DataTypes.DATA_BASAL]: state.pump.data[DataTypes.DATA_BASAL].data,
     [DataTypes.DATA_TB]: state.pump.data[DataTypes.DATA_TB].data,
+    width: state.inner.basal.width,
+    height: state.inner.basal.height,
 })
 
 const mapDispatchToProps = (dispatch) => ({
