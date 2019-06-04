@@ -1,8 +1,13 @@
-import * as States from '../constants/States'
 import * as DataTypes from '../constants/DataTypes'
 import * as ActionTypes from '../constants/ActionTypes'
 
-const DataReducer = (state = States.INIT_DATA_STATE, action) => {
+export const INIT_DATA_STATE = {
+    isFetching: false,
+    error: '',
+    data: [],
+}
+
+const DataReducer = (state = INIT_DATA_STATE, action) => {
     let request, failure, success
 
     switch (action.dataType) {

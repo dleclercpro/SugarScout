@@ -1,7 +1,17 @@
-import * as States from '../constants/States'
+import * as Basal from '../constants/Basal'
 import * as ActionTypes from '../constants/ActionTypes'
 
-const AxisBasalReducer = (state = States.INIT_AXIS_BASAL_STATE, action) => {
+export const INIT_AXIS_BASAL_STATE = {
+    units: Basal.UNIT,
+    scale: Basal.AXIS_SCALE,
+    range: [
+        Basal.AXIS_MIN_U_H,
+        Basal.AXIS_MAX_U_H
+    ],
+    ticks: [],
+}
+
+const AxisBasalReducer = (state = INIT_AXIS_BASAL_STATE, action) => {
     switch (action.type) {
         case ActionTypes.UPDATE_BASAL_AXIS:
             return {

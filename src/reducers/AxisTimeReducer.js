@@ -1,7 +1,13 @@
-import * as States from '../constants/States'
+import * as Time from '../constants/Time'
 import * as ActionTypes from '../constants/ActionTypes'
 
-const AxisTimeReducer = (state = States.INIT_AXIS_TIME_STATE, action) => {
+export const INIT_AXIS_TIME_STATE = {
+    units: Time.UNIT,
+    nTicks: Time.AXIS_N_TICKS,
+    ticks: [],
+}
+
+const AxisTimeReducer = (state = INIT_AXIS_TIME_STATE, action) => {
     switch (action.type) {
         case ActionTypes.UPDATE_TIME_AXIS:
             return {

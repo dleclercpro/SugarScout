@@ -1,8 +1,17 @@
-import * as States from '../constants/States'
 import * as ActionTypes from '../constants/ActionTypes'
-import DataReducer from './DataReducer'
+import DataReducer, { INIT_DATA_STATE } from './DataReducer'
 
-const PumpReducer = (state = States.INIT_PUMP_STATE, action) => {
+export const INIT_PUMP_STATE = {
+    company: 'Medtronic',
+    model: 'MiniMed Paradigm 722',
+    firmware: '2.4A 1.1',
+    data: {
+        basals: Object.assign({}, INIT_DATA_STATE),
+        tbs: Object.assign({}, INIT_DATA_STATE),
+    },
+}
+
+const PumpReducer = (state = INIT_PUMP_STATE, action) => {
     switch (action.type) {
         case ActionTypes.FETCH_BASAL_DATA_REQUEST:
         case ActionTypes.FETCH_BASAL_DATA_FAILURE:

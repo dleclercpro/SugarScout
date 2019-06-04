@@ -1,7 +1,17 @@
-import * as States from '../constants/States'
 import * as ActionTypes from '../constants/ActionTypes'
 
-const BubbleReducer = (state = States.INIT_BUBBLE_STATE, action) => {
+export const INIT_BUBBLE_STATE = {
+    status: 'invisible',
+    type: '',
+    position: {},
+    time: '',
+    info: {
+        value: '',
+        units: '',
+    },
+}
+
+const BubbleReducer = (state = INIT_BUBBLE_STATE, action) => {
     switch (action.type) {
         case ActionTypes.UPDATE_BUBBLE:
             return {
@@ -16,7 +26,7 @@ const BubbleReducer = (state = States.INIT_BUBBLE_STATE, action) => {
             }
 
         case ActionTypes.RESET_BUBBLE:
-            return States.INIT_BUBBLE_STATE
+            return INIT_BUBBLE_STATE
 
         default:
             return state

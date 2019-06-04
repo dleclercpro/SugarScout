@@ -1,7 +1,17 @@
-import * as States from '../constants/States'
+import * as BG from '../constants/BG'
 import * as ActionTypes from '../constants/ActionTypes'
 
-const AxisBGReducer = (state = States.INIT_AXIS_BG_STATE, action) => {
+export const INIT_AXIS_BG_STATE = {
+    units: BG.UNIT,
+    scale: BG.AXIS_SCALE,
+    range: [
+        BG.AXIS_MIN_MMOL_L,
+        BG.AXIS_MAX_MMOL_L
+    ],
+    ticks: [],
+}
+
+const AxisBGReducer = (state = INIT_AXIS_BG_STATE, action) => {
     switch (action.type) {
         case ActionTypes.UPDATE_BG_AXIS:
             return {

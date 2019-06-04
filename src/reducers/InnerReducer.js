@@ -1,7 +1,17 @@
-import * as States from '../constants/States'
 import * as ActionTypes from '../constants/ActionTypes'
 
-const InnerReducer = (state = States.INIT_INNER_STATE, action) => {
+export const INIT_INNER_STATE = {
+    bg: {
+        width: 0,
+        height: 0,
+    },
+    basal: {
+        width: 0,
+        height: 0,
+    },
+}
+
+const InnerReducer = (state = INIT_INNER_STATE, action) => {
     switch (action.type) {
         case ActionTypes.UPDATE_INNER_BG_SIZE:
             return {
