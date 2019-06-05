@@ -3,10 +3,14 @@
 .button-timescale {
     background: none;
     border: 3px solid transparent;
-    padding: 8px 20px;
+    padding: 4px 10px;
     font-weight: bold;
     outline: none;
     font-size: 18px;
+
+    @include mq(width, tablet) {
+        padding: 8px 20px;
+    }
 
     &:not(:last-child) {
         margin-right: 10px;
@@ -21,21 +25,5 @@
         background: map-get($theme, font);
         border: 3px solid $color-white;
         color: map-get($theme, background);
-    }
-
-    &.scale-12-h {
-        display: none;
-
-        @include mq(width, tablet) {
-            display: block;
-        }
-    }
-
-    &.scale-24-h {
-        display: none;  
-
-        @include mq(width, desktop) {
-            display: block;
-        }
     }
 }
