@@ -6,7 +6,7 @@ export const INIT_CGM_STATE = {
     company: 'Dexcom',
     model: 'G4',
     firmware: '',
-    units: BG.UNIT,
+    units: BG.UNITS,
     data: {
         bgs: Object.assign({}, INIT_DATA_STATE),
     },

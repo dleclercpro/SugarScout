@@ -42,7 +42,7 @@ class TB extends React.Component {
             time: this.props.time,
             info: {
                 value: lib.formatBasal(this.props.value),
-                units: Basal.UNIT,
+                units: Basal.UNITS,
             },
         })
     }

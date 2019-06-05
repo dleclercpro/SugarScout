@@ -9,6 +9,12 @@ export const getRangeFromTo = (start, end) => {
     return getRange(end - start + 1).map((x) => x + start)
 }
 
+export const compareEpochTimeData = (a, b) => {
+    if (a.time < b.time) { return -1 }
+    if (a.time > b.time) { return 1 }
+    return 0
+}
+
 export const convertJSONBGs = (json) => {
     const data = json
     
@@ -18,7 +24,7 @@ export const convertJSONBGs = (json) => {
             value: data[t]
         })
         return BGs
-    }, [])
+    }, []).sort(compareEpochTimeData)
 }
 
 export const convertJSONBasals = (profile, json) => {
@@ -30,7 +36,7 @@ export const convertJSONBasals = (profile, json) => {
             value: data[t]
         })
         return basals
-    }, [])
+    }, []).sort(compareEpochTimeData)
 }
 
 export const convertJSONTBs = (json) => {
@@ -43,7 +49,7 @@ export const convertJSONTBs = (json) => {
             duration: data[t][1] * 1000,
         })
         return tbs
-    }, [])
+    }, []).sort(compareEpochTimeData)
 }
 
 export const convertEpochToFormatTime = (epoch, format = Time.FORMAT_LONG) => {

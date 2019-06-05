@@ -1,4 +1,4 @@
-export const UNIT = 'U/h'
+export const UNITS = 'U/h'
 
 // Axis
 export const AXIS_SCALE = 'linear'

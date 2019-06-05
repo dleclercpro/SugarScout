@@ -5,24 +5,6 @@ import './BG.scss'
 
 class BG extends React.Component {
 
-    getType() {
-        if (this.props.value <= bg.VERY_LOW) {
-            return 'very-low'
-        }
-        if (bg.VERY_LOW < this.props.value && this.props.value <= bg.LOW) {
-            return 'low'
-        }
-        if (bg.LOW < this.props.value && this.props.value < bg.HIGH) {
-            return 'normal'
-        }
-        if (bg.HIGH <= this.props.value && this.props.value < bg.VERY_HIGH) {
-            return 'high'
-        }
-        if (bg.VERY_HIGH <= this.props.value) {
-            return 'very-high'
-        }
-    }
-
     getPosX() {
         const dX = this.props.timeScale * 60 * 60 * 1000
         const dx = this.props.now.getTime() - this.props.time
@@ -40,11 +22,11 @@ class BG extends React.Component {
     handleMouseEnter = (e) => {
         this.props.actions.updateBubble({
             status: 'visible',
-            type: 'bg bg--' + this.getType(),
+            type: 'bg bg--' + getType(this.props.value),
             time: this.props.time,
             info: {
                 value: lib.formatBG(this.props.value),
-                units: bg.UNIT,
+                units: bg.UNITS,
             },
         })
     }
@@ -62,7 +44,7 @@ class BG extends React.Component {
 
     render() {
         return (
-            <circle className={`bg bg--${this.getType()}`}
+            <circle className={`bg bg--${getType(this.props.value)}`}
                 cx={this.getPosX()}
                 cy={this.getPosY()}
                 r={3}
@@ -72,6 +54,25 @@ class BG extends React.Component {
             />
         )
     }
+}
+
+export const getType = (value) => {
+    if (value <= bg.VERY_LOW) {
+        return 'very-low'
+    }
+    if (bg.VERY_LOW < value && value <= bg.LOW) {
+        return 'low'
+    }
+    if (bg.LOW < value && value < bg.HIGH) {
+        return 'normal'
+    }
+    if (bg.HIGH <= value && value < bg.VERY_HIGH) {
+        return 'high'
+    }
+    if (bg.VERY_HIGH <= value) {
+        return 'very-high'
+    }
+    return 'unknown'
 }
 
 export default BG

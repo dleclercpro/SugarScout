@@ -1,4 +1,4 @@
-export const UNIT = 'mmol/L'
+export const UNITS = 'mmol/L'
 
 // Axis
 export const AXIS_SCALE = 'linear'

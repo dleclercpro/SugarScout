@@ -4,7 +4,11 @@
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    height: 75%;
+    height: $ratio-graph * 100%;
+
+    @include mq(width, desktop) {
+        height: $ratio-graph-desktop * 100%;
+    }
 
     > .graph-bg,
     > .graph-basal {
@@ -14,35 +18,35 @@
 
     > .graph-bg {
         order: 2;
-        height: calc(#{$ratio-bg-axis} * (100% - #{map-get($size-axes, time)}));
+        height: calc(#{$ratio-graph-bg} * (100% - #{map-get($size-axes, time)}));
     
         @include mq(width, tablet) {
-            height: calc(#{$ratio-bg-axis} * (100% - #{map-get($size-axes-tablet, time)}));
+            height: calc(#{$ratio-graph-bg} * (100% - #{map-get($size-axes-tablet, time)}));
         }
     
         @include mq(width, desktop) {
-            height: calc(#{$ratio-bg-axis} * (100% - #{map-get($size-axes-desktop, time)}));
+            height: calc(#{$ratio-graph-bg} * (100% - #{map-get($size-axes-desktop, time)}));
         }
     
         @include mq(width, desktopXL) {
-            height: calc(#{$ratio-bg-axis} * (100% - #{map-get($size-axes-desktop-xl, time)}));
+            height: calc(#{$ratio-graph-bg} * (100% - #{map-get($size-axes-desktop-xl, time)}));
         }
     }
 
     > .graph-basal {
         order: 1;
-        height: calc(#{$ratio-basal-axis} * (100% - #{map-get($size-axes, time)}));
+        height: calc(#{$ratio-graph-basal} * (100% - #{map-get($size-axes, time)}));
         
         @include mq(width, tablet) {
-            height: calc(#{$ratio-basal-axis} * (100% - #{map-get($size-axes-tablet, time)}));
+            height: calc(#{$ratio-graph-basal} * (100% - #{map-get($size-axes-tablet, time)}));
         }
     
         @include mq(width, desktop) {
-            height: calc(#{$ratio-basal-axis} * (100% - #{map-get($size-axes-desktop, time)}));
+            height: calc(#{$ratio-graph-basal} * (100% - #{map-get($size-axes-desktop, time)}));
         }
     
         @include mq(width, desktopXL) {
-            height: calc(#{$ratio-basal-axis} * (100% - #{map-get($size-axes-desktop-xl, time)}));
+            height: calc(#{$ratio-graph-basal} * (100% - #{map-get($size-axes-desktop-xl, time)}));
         }
     }
 }

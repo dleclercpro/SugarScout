@@ -9,8 +9,7 @@ class Axis extends React.Component {
     }
 
     generateXTicks() {
-        let visibleTicks = [...this.props.ticks]
-        visibleTicks.pop()
+        const visibleTicks = [...this.props.ticks]
 
         return visibleTicks.map((tick, index) => (
             <Tick
