@@ -62,12 +62,19 @@
         }
 
         .graph--12-h & {
-            display: none;
             width: calc(100% / 12);
+            font-size: 12px;
+
+            &:nth-child(2n) {
+                visibility: hidden;
+            }
     
             @include mq(width, tablet) {
-                display: flex;
                 font-size: 14px;
+
+                &:nth-child(2n) {
+                    visibility: visible;
+                }
             }
     
             @include mq(width, desktop) {
@@ -76,12 +83,25 @@
         }
 
         .graph--24-h & {
-            display: none;
+            font-size: 12px;
             width: calc(100% / 24);
+
+            &:nth-child(3n),
+            &:nth-child(3n + 1) {
+                visibility: hidden;
+            }
+
+            @include mq(width, tablet) {
+                font-size: 13px;
+            }
     
             @include mq(width, desktop) {
-                display: flex;
-                font-size: 13px;
+                font-size: 14px;
+
+                &:nth-child(3n),
+                &:nth-child(3n + 1) {
+                    visibility: visible;
+                }
             }
     
             @include mq(width, desktopXL) {

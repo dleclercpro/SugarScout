@@ -86,10 +86,9 @@
     }
 
     .graph--12-h & {
-        display: none;
+        r: 1.5px;
 
         @include mq(width, tablet) {
-            display: block;
             r: 2.5px;
         }
 
@@ -103,10 +102,13 @@
     }
 
     .graph--24-h & {
-        display: none;
+        r: 1.5px;
+
+        @include mq(width, tablet) {
+            r: 2px;
+        }
 
         @include mq(width, desktop) {
-            display: block;
             r: 2.5px;
         }
 

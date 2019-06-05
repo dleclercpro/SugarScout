@@ -7,22 +7,24 @@ class Dash extends React.Component {
     render() {
         return (
             <section className='dash'>
-                <div className='time'>
-                    <div className='clock'>
-                        {this.props.now}
+                <div className='wrapper'>
+                    <div className={`recent ${getType(this.props.lastBG.value)}`}>
+                        <p className='bg'>{this.props.lastBG.value}</p>
+                        <p className='trend'>
+                            <span className='arrow'>→</span>
+                            <span className='delta'>({this.props.lastDelta})</span>
+                        </p>
                     </div>
-                    <div className='buttons-timescale'>
-                        {this.props.timeScales.map((scale, index) => (
-                            <ButtonTimeScaleContainer key={index} value={scale} />
-                        ))}
+                    <div className='time'>
+                        <div className='clock'>
+                            {this.props.now}
+                        </div>
+                        <div className='buttons-timescale'>
+                            {this.props.timeScales.map((scale, index) => (
+                                <ButtonTimeScaleContainer key={index} value={scale} />
+                            ))}
+                        </div>
                     </div>
-                </div>
-                <div className={`recent ${getType(this.props.lastBG.value)}`}>
-                    <p className='bg'>{this.props.lastBG.value}</p>
-                    <p className='trend'>
-                        <span className='arrow'>→</span>
-                        <span className='delta'>({this.props.lastDelta})</span>
-                    </p>
                 </div>
             </section>
         )
