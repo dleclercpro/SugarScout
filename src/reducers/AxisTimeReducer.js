@@ -4,7 +4,6 @@ import * as ActionTypes from '../constants/ActionTypes'
 export const INIT_AXIS_TIME_STATE = {
     units: Time.UNITS,
     nTicks: Time.AXIS_N_TICKS,
-    ticks: [],
 }
 
 const AxisTimeReducer = (state = INIT_AXIS_TIME_STATE, action) => {

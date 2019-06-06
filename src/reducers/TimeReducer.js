@@ -8,6 +8,14 @@ export const INIT_TIME_STATE = {
     scale: Time.SCALE,
 }
 
+const getTimeToNow = (now) => {
+    return (
+        now.getMinutes() * 60 * 1000 +
+        now.getSeconds() * 1000 +
+        now.getMilliseconds()
+    )
+}
+
 const TimeReducer = (state = INIT_TIME_STATE, action) => {
     switch (action.type) {
         case ActionTypes.UPDATE_TIME:
@@ -19,7 +27,7 @@ const TimeReducer = (state = INIT_TIME_STATE, action) => {
         case ActionTypes.UPDATE_TIME_TO_NOW:
             return {
                 ...state,
-                toNow: action.toNow,
+                toNow: getTimeToNow(state.now),
             }
 
         case ActionTypes.UPDATE_TIMESCALE:

@@ -8,7 +8,6 @@ export const INIT_AXIS_BASAL_STATE = {
         Basal.AXIS_MIN_U_H,
         Basal.AXIS_MAX_U_H
     ],
-    ticks: [],
 }
 
 const AxisBasalReducer = (state = INIT_AXIS_BASAL_STATE, action) => {

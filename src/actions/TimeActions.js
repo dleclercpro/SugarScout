@@ -5,9 +5,8 @@ export const updateTime = (now) => ({
     now,
 })
 
-export const updateTimeToNow = (toNow) => ({
+export const updateTimeToNow = () => ({
     type: ActionTypes.UPDATE_TIME_TO_NOW,
-    toNow,
 })
 
 export const updateTimescale = (scale) => ({

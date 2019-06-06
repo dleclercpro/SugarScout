@@ -8,7 +8,6 @@ export const INIT_AXIS_BG_STATE = {
         BG.AXIS_MIN_MMOL_L,
         BG.AXIS_MAX_MMOL_L
     ],
-    ticks: [],
 }
 
 const AxisBGReducer = (state = INIT_AXIS_BG_STATE, action) => {
