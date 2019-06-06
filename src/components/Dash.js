@@ -1,6 +1,7 @@
 import React from 'react'
 import { getType } from './BG'
 import ButtonTimeScaleContainer from '../containers/ButtonTimeScaleContainer'
+import * as lib from '../lib'
 import './Dash.scss'
 
 class Dash extends React.Component {
@@ -9,10 +10,10 @@ class Dash extends React.Component {
             <section className='dash'>
                 <div className='wrapper'>
                     <div className={`recent ${getType(this.props.lastBG.value)}`}>
-                        <p className='bg'>{this.props.lastBG.value}</p>
+                        <p className='bg'>{lib.formatBG(this.props.lastBG.value)}</p>
                         <p className='trend'>
                             <span className='arrow'>→</span>
-                            <span className='delta'>({this.props.lastDelta})</span>
+                            <span className='delta'>({lib.formatBGDelta(this.props.lastDelta)})</span>
                         </p>
                     </div>
                     <div className='time'>

@@ -1,5 +1,6 @@
 import React from 'react'
 import Axis from './Axis'
+import * as Time from '../constants/Time'
 import * as lib from '../lib'
 import './AxisTime.scss'
 
@@ -23,7 +24,7 @@ class AxisTime extends Axis {
 
         // Define ticks
         const ticks = range.map((t) => ({
-            label: (t >= 0 ? t : t + 24) + ':00',
+            label: (t >= 0 ? t : t + Time.N_HOURS_DAY) + ':00',
             value: now - toNow - (hour - t) * 60 * 60 * 1000,
         }))
 

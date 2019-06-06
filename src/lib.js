@@ -39,17 +39,21 @@ export const convertJSONBasals = (profile, json) => {
     }, []).sort(compareEpochTimeData)
 }
 
-export const convertJSONTBs = (json) => {
+export const convertJSONNetBasals = (json) => {
     const data = json['Net Basals']
 
-    return Object.keys(data).reduce((tbs, t) => {
-        tbs.push({
+    const netBasals = Object.keys(data).reduce((nbs, t) => {
+        nbs.push({
             time: moment(t, Time.FORMAT_LONG).valueOf(),
-            value: data[t][0],
-            duration: data[t][1] * 1000,
+            value: data[t],
         })
-        return tbs
+        return nbs
     }, []).sort(compareEpochTimeData)
+
+    return netBasals.map((nb, index) => {
+        const duration = index + 1 === netBasals.length ? 0 : netBasals[index + 1].time - nb.time
+        return { ...nb, duration }
+    })
 }
 
 export const convertEpochToFormatTime = (epoch, format = Time.FORMAT_LONG) => {
@@ -58,6 +62,11 @@ export const convertEpochToFormatTime = (epoch, format = Time.FORMAT_LONG) => {
 
 export const formatBG = (bg) => {
     return bg.toFixed(1)
+}
+
+export const formatBGDelta = (dbg) => {
+    dbg = formatBG(dbg)
+    return dbg >= 0 ? '+' + dbg : dbg
 }
 
 export const formatBasal = (basal) => {

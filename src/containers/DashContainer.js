@@ -16,16 +16,15 @@ const getLastBG = (state) => {
 
     return nBGs ? bgs[nBGs - 1] : {
         time: -1,
-        value: '---',
+        value: -1,
     }
 }
 
 const getLastDelta = (state) => {
     const bgs = state.cgm.data[DataTypes.DATA_BG].data
     const nBGs = bgs.length
-    let delta = nBGs > 1 ? bgs[nBGs - 1].value - bgs[nBGs - 2].value : 0
 
-    return delta >= 0 ? '+' + delta : delta
+    return nBGs > 1 ? bgs[nBGs - 1].value - bgs[nBGs - 2].value : 0
 }
 
 const mapStateToProps = (state) => ({

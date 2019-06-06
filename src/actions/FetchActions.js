@@ -109,6 +109,6 @@ export const fetchTBs = () => ((dispatch) => (
     fetchData(dispatch,
         DataTypes.DATA_TB,
         '../reports/treatments.json',
-        (json) => lib.convertJSONTBs(json)
+        (json) => lib.convertJSONNetBasals(json)
     )
 ))
