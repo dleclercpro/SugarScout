@@ -29,9 +29,7 @@ class AxisTime extends Axis {
         }))
 
         // Update time state
-        this.props.actions.updateTime({
-            toNow,
-        })
+        this.props.actions.updateTimeToNow(toNow)
 
         // Update axis state
         this.props.actions.updateTimeAxis({

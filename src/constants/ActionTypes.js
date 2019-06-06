@@ -11,6 +11,8 @@ export const FETCH_TB_DATA_SUCCESS = 'FETCH_TB_DATA_SUCCESS'
 
 // Time
 export const UPDATE_TIME = 'UPDATE_TIME'
+export const UPDATE_TIME_TO_NOW = 'UPDATE_TIME_TO_NOW'
+export const UPDATE_TIMESCALE = 'UPDATE_TIMESCALE'
 
 // Bubble
 export const RESET_BUBBLE = 'RESET_BUBBLE'

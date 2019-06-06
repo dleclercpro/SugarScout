@@ -13,7 +13,19 @@ const TimeReducer = (state = INIT_TIME_STATE, action) => {
         case ActionTypes.UPDATE_TIME:
             return {
                 ...state,
-                ...action.args,
+                now: action.now,
+            }
+
+        case ActionTypes.UPDATE_TIME_TO_NOW:
+            return {
+                ...state,
+                toNow: action.toNow,
+            }
+
+        case ActionTypes.UPDATE_TIMESCALE:
+            return {
+                ...state,
+                scale: action.scale,
             }
 
         default:
