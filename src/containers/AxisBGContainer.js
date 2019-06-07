@@ -1,10 +1,6 @@
 import * as Redux from 'redux'
 import * as ReactRedux from 'react-redux'
-import * as TimeActions from 'actions/TimeActions'
-import * as FetchActions from 'actions/FetchActions'
-import * as InnerActions from 'actions/InnerActions'
-import * as AxesActions from 'actions/AxesActions'
-import * as BubbleActions from 'actions/BubbleActions'
+import Actions from 'actions'
 import AxisBG from 'components/AxisBG'
 
 const mapStateToProps = (state) => ({
@@ -13,15 +9,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    actions: {
-        ...Redux.bindActionCreators({
-            ...TimeActions,
-            ...FetchActions,
-            ...InnerActions,
-            ...AxesActions,
-            ...BubbleActions,
-        }, dispatch),
-    },
+    actions: {...Redux.bindActionCreators(Actions, dispatch)},
 })
 
 const AxisBGContainer = ReactRedux.connect(
