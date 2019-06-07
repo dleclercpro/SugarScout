@@ -3,7 +3,6 @@
 .inner.inner--basal {
     width: calc(100% - #{map-get($size-axes, basal)});
     height: 100%;
-    overflow-y: hidden;
     
     @include mq(width, tablet) {
         width: calc(100% - #{map-get($size-axes-tablet, basal)});

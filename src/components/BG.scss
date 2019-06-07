@@ -53,19 +53,19 @@
         r: 4px;
 
         @include mq(width, tablet) {
-            r: 6px;
+            r: 6.5px;
         }
     }
 
     .graph--3-h & {
-        r: 2.5px;
+        r: 3px;
 
         @include mq(width, tablet) {
             r: 4px;
         }
 
         @include mq(width, desktop) {
-            r: 6px;
+            r: 6.5px;
         }
     }
 

@@ -18,13 +18,13 @@ class Graph extends React.Component {
     render() {
         return (
             <main className={`graph graph--${this.props.timeScale}-h`}>
-                <section className='graph-basal'>
-                    <InnerBasalContainer />
-                    <AxisBasalContainer />
-                </section>
                 <section className='graph-bg'>
                     <InnerBGContainer />
                     <AxisBGContainer />
+                </section>
+                <section className='graph-basal'>
+                    <InnerBasalContainer />
+                    <AxisBasalContainer />
                 </section>
                 <AxisTimeContainer />
                 <Corner />
