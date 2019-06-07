@@ -1,6 +1,6 @@
 import * as ActionTypes from 'constants/ActionTypes'
 
-export const INIT_BUBBLE_STATE = {
+const INIT_BUBBLE_STATE = {
     status: 'invisible',
     type: '',
     position: {},

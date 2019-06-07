@@ -125,17 +125,45 @@
             order: 2;
             display: flex;
             justify-content: center;
+            align-items: center;
             flex-direction: column;
-            align-items: flex-end;
+
+            @include mq(width, desktop) {
+                align-items: flex-end;
+            }
     
             > .clock {
                 display: none;
-                margin-bottom: 15px;
+                margin-bottom: 5px;
                 font-weight: 600;
                 font-size: 38px;
                 
                 @include mq(width, desktop) {
                     display: block;
+                }
+            }
+
+            > .last-fetch {
+                display: none;
+                position: relative;
+                padding-left: 22px;
+                margin-bottom: 15px;
+
+                @include mq(width, desktop) {
+                    display: block;
+                }
+
+                &:before {
+                    position: absolute;
+                    top: 50%;
+                    left: 0;
+                    transform: translate(0, -50%);
+                    display: block;
+                    content: '';
+                    background-image: url('/assets/svg/loading.svg');
+                    background-repeat: no-repeat;
+                    width: 18px;
+                    height: 18px;
                 }
             }
         

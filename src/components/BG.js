@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { Component } from 'react'
 import * as bg from 'constants/BG'
 import * as lib from 'lib'
-import './BG.scss'
+import 'components/BG.scss'
 
-class BG extends React.Component {
+class BG extends Component {
 
     getPosX() {
         const dX = this.props.timeScale * 60 * 60 * 1000

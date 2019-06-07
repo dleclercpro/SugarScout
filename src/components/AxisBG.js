@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { Component } from 'react'
 import Tick from './Tick'
 import * as BG from 'constants/BG'
-import './AxisBG.scss'
+import 'components/AxisBG.scss'
 
-class AxisBG extends React.Component {
+class AxisBG extends Component {
 
     build() {
         const range = this.props.range[1] - this.props.range[0]

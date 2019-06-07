@@ -1,14 +1,10 @@
-import React from 'react'
+import React, { Component } from 'react'
 import Tick from './Tick'
 import * as Time from 'constants/Time'
 import * as lib from 'lib'
-import './AxisTime.scss'
+import 'components/AxisTime.scss'
 
-class AxisTime extends React.Component {
-
-    componentDidMount() {
-        this.props.actions.updateTimeToNow()
-    }
+class AxisTime extends Component {
 
     build() {
         const now = this.props.now.getTime()
@@ -16,7 +12,7 @@ class AxisTime extends React.Component {
 
         const range = lib.getRangeFromTo(hour - this.props.nTicks + 1, hour)
         const ticks = range.map((t) => ({
-            label: (t >= 0 ? t : t + Time.N_HOURS_DAY) + ':00',
+            label: (t >= 0 ? t : t + Time.N_HOURS_PER_DAY) + ':00',
             value: now - this.props.toNow - (hour - t) * 60 * 60 * 1000,
         }))
 

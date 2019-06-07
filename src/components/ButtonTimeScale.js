@@ -1,5 +1,5 @@
 import React from 'react'
-import './ButtonTimeScale.scss'
+import 'components/ButtonTimeScale.scss'
 
 const ButtonTimeScale = (props) => (
     <button

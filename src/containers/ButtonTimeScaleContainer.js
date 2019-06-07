@@ -1,5 +1,5 @@
-import * as Redux from 'redux'
-import * as ReactRedux from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 import Actions from 'actions'
 import ButtonTimeScale from 'components/ButtonTimeScale'
 
@@ -8,10 +8,10 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    actions: {...Redux.bindActionCreators(Actions, dispatch)},
+    actions: {...bindActionCreators(Actions, dispatch)},
 })
 
-const ButtonTimeScaleContainer = ReactRedux.connect(
+const ButtonTimeScaleContainer = connect(
     mapStateToProps,
     mapDispatchToProps,
 )(ButtonTimeScale)

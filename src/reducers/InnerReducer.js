@@ -1,6 +1,6 @@
 import * as ActionTypes from 'constants/ActionTypes'
 
-export const INIT_INNER_STATE = {
+const INIT_INNER_STATE = {
     bg: {
         width: 0,
         height: 0,

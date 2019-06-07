@@ -2,7 +2,7 @@ import * as BG from 'constants/BG'
 import * as ActionTypes from 'constants/ActionTypes'
 import DataReducer, { INIT_DATA_STATE } from './DataReducer'
 
-export const INIT_CGM_STATE = {
+const INIT_CGM_STATE = {
     company: 'Dexcom',
     model: 'G4',
     firmware: '',

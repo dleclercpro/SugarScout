@@ -1,6 +1,6 @@
 import React from 'react'
 import * as lib from 'lib'
-import './Bubble.scss'
+import 'components/Bubble.scss'
 
 const Bubble = (props) => (
     <div className={`bubble ${props.type} ${props.status === 'visible' ? 'is-visible' : ''}`} style={props.position}>

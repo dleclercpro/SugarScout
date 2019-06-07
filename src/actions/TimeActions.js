@@ -1,15 +1,16 @@
 import * as ActionTypes from 'constants/ActionTypes'
 
-export const updateTime = (now) => ({
+export const updateTime = () => ({
     type: ActionTypes.UPDATE_TIME,
-    now,
-})
-
-export const updateTimeToNow = () => ({
-    type: ActionTypes.UPDATE_TIME_TO_NOW,
+    now: new Date(),
 })
 
 export const updateTimescale = (scale) => ({
     type: ActionTypes.UPDATE_TIMESCALE,
     scale,
+})
+
+export const updateLastFetch = () => ({
+    type: ActionTypes.UPDATE_LAST_FETCH,
+    time: new Date(),
 })

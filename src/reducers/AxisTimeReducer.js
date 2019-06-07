@@ -1,7 +1,7 @@
 import * as Time from 'constants/Time'
 import * as ActionTypes from 'constants/ActionTypes'
 
-export const INIT_AXIS_TIME_STATE = {
+const INIT_AXIS_TIME_STATE = {
     units: Time.UNITS,
     nTicks: Time.AXIS_N_TICKS,
 }

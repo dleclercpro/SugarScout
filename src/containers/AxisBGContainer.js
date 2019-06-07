@@ -1,5 +1,5 @@
-import * as Redux from 'redux'
-import * as ReactRedux from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 import Actions from 'actions'
 import AxisBG from 'components/AxisBG'
 
@@ -9,10 +9,10 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    actions: {...Redux.bindActionCreators(Actions, dispatch)},
+    actions: {...bindActionCreators(Actions, dispatch)},
 })
 
-const AxisBGContainer = ReactRedux.connect(
+const AxisBGContainer = connect(
     mapStateToProps,
     mapDispatchToProps,
 )(AxisBG)

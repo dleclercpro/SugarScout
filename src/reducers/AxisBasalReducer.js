@@ -1,7 +1,7 @@
 import * as Basal from 'constants/Basal'
 import * as ActionTypes from 'constants/ActionTypes'
 
-export const INIT_AXIS_BASAL_STATE = {
+const INIT_AXIS_BASAL_STATE = {
     units: Basal.UNITS,
     scale: Basal.AXIS_SCALE,
     range: [

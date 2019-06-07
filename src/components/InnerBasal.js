@@ -1,13 +1,13 @@
-import React from 'react'
+import React, { Component, createRef } from 'react'
 import * as DataTypes from 'constants/DataTypes'
 import TBContainer from 'containers/TBContainer'
-import './InnerBasal.scss'
+import 'components/InnerBasal.scss'
 
-class InnerBasal extends React.Component {
+class InnerBasal extends Component {
 
     constructor(props) {
         super(props)
-        this.node = React.createRef()
+        this.node = createRef()
     }
 
     componentDidMount() {

@@ -6,7 +6,7 @@ import { createLogger } from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
 import rootReducer from './reducers'
 import AppContainer from './containers/AppContainer'
-import './index.scss'
+import 'index.scss'
 
 const loggerMiddleware = createLogger()
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import './Tick.scss'
+import 'components/Tick.scss'
 
 const Tick = (props) => {
     return (

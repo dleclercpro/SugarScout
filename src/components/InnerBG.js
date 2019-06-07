@@ -1,13 +1,13 @@
-import React from 'react'
+import React, { Component, createRef } from 'react'
 import * as DataTypes from 'constants/DataTypes'
 import BGContainer from 'containers/BGContainer'
-import './InnerBG.scss'
+import 'components/InnerBG.scss'
 
-class InnerBG extends React.Component {
+class InnerBG extends Component {
     
     constructor(props) {
         super(props)
-        this.node = React.createRef()
+        this.node = createRef()
     }
 
     componentDidMount() {

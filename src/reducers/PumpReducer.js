@@ -1,7 +1,7 @@
 import * as ActionTypes from 'constants/ActionTypes'
 import DataReducer, { INIT_DATA_STATE } from './DataReducer'
 
-export const INIT_PUMP_STATE = {
+const INIT_PUMP_STATE = {
     company: 'Medtronic',
     model: 'MiniMed Paradigm 722',
     firmware: '2.4A 1.1',

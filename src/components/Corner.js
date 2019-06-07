@@ -1,5 +1,5 @@
 import React from 'react'
-import './Corner.scss'
+import 'components/Corner.scss'
 
 const Corner = (props) => (
     <div className='corner'></div>

@@ -1,12 +1,12 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { getType } from './BG'
 import ButtonTimeScaleContainer from 'containers/ButtonTimeScaleContainer'
 import * as Time from 'constants/Time'
 import * as BG from 'constants/BG'
 import * as lib from 'lib'
-import './Dash.scss'
+import 'components/Dash.scss'
 
-class Dash extends React.Component {
+class Dash extends Component {
 
     getLastBG() {
         const bgs = this.props.bgs
@@ -77,6 +77,9 @@ class Dash extends React.Component {
                     <div className='time'>
                         <div className='clock'>
                             {lib.convertEpochToFormatTime(this.props.now.getTime(), Time.FORMAT_SHORT)}
+                        </div>
+                        <div className='last-fetch'>
+                            {lib.convertEpochToFormatTime(this.props.lastFetch.getTime(), Time.FORMAT_SHORT)}
                         </div>
                         <div className='buttons-timescale'>
                             {this.props.timeScales.map((scale, index) => (
