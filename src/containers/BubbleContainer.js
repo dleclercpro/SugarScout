@@ -13,6 +13,7 @@ const mapStateToProps = (state) => ({
     position: state.bubble.position,
     time: state.bubble.time,
     info: state.bubble.info,
+    duration: state.bubble.duration,
 })
 
 const mapDispatchToProps = (dispatch) => ({

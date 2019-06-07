@@ -4,11 +4,6 @@ export const INIT_BUBBLE_STATE = {
     status: 'invisible',
     type: '',
     position: {},
-    time: '',
-    info: {
-        value: '',
-        units: '',
-    },
 }
 
 const BubbleReducer = (state = INIT_BUBBLE_STATE, action) => {

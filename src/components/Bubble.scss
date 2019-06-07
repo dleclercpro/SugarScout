@@ -15,13 +15,27 @@
     }
 
     > .info,
+    > .duration,
     > .time {
         white-space: nowrap;
         margin: 0;
     }
 
+    > .info,
+    > .duration {
+        display: inline-block;
+    }
+
     > .info {
         font-weight: bold;
+    }
+
+    > .duration {
+        margin-left: 6px;
+    }
+
+    > .time {
+        display: block;
     }
 
     &.bg {

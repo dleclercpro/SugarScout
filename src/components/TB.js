@@ -44,6 +44,10 @@ class TB extends React.Component {
                 value: lib.formatBasal(this.props.value),
                 units: Basal.UNITS,
             },
+            duration: {
+                value: Math.round(this.props.duration / 60 / 1000),
+                units: 'm',
+            },
         })
     }
 
