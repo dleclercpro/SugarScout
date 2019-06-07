@@ -1,5 +1,5 @@
-import * as DataTypes from '../constants/DataTypes'
-import * as ActionTypes from '../constants/ActionTypes'
+import * as DataTypes from 'constants/DataTypes'
+import * as ActionTypes from 'constants/ActionTypes'
 
 export const INIT_DATA_STATE = {
     isFetching: false,

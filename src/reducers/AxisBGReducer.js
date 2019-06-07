@@ -1,5 +1,5 @@
-import * as BG from '../constants/BG'
-import * as ActionTypes from '../constants/ActionTypes'
+import * as BG from 'constants/BG'
+import * as ActionTypes from 'constants/ActionTypes'
 
 export const INIT_AXIS_BG_STATE = {
     units: BG.UNITS,

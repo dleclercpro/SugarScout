@@ -1,4 +1,4 @@
-import * as ActionTypes from '../constants/ActionTypes'
+import * as ActionTypes from 'constants/ActionTypes'
 
 export const updateTimeAxis = (args) => ({
     type: ActionTypes.UPDATE_TIME_AXIS,

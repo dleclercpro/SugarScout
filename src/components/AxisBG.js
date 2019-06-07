@@ -1,6 +1,6 @@
 import React from 'react'
 import Tick from './Tick'
-import * as BG from '../constants/BG'
+import * as BG from 'constants/BG'
 import './AxisBG.scss'
 
 class AxisBG extends React.Component {

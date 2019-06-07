@@ -1,6 +1,6 @@
 import React from 'react'
 import Tick from './Tick'
-import * as Basal from '../constants/Basal'
+import * as Basal from 'constants/Basal'
 import './AxisBasal.scss'
 
 class AxisBasal extends React.Component {

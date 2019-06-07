@@ -1,6 +1,6 @@
 import React from 'react'
-import * as bg from '../constants/BG'
-import * as lib from '../lib'
+import * as bg from 'constants/BG'
+import * as lib from 'lib'
 import './BG.scss'
 
 class BG extends React.Component {

@@ -1,6 +1,6 @@
 import React from 'react'
-import * as DataTypes from '../constants/DataTypes'
-import TBContainer from '../containers/TBContainer'
+import * as DataTypes from 'constants/DataTypes'
+import TBContainer from 'containers/TBContainer'
 import './InnerBasal.scss'
 
 class InnerBasal extends React.Component {

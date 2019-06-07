@@ -1,4 +1,4 @@
-@import '../common.scss';
+@import 'common.scss';
 
 .inner--basal > svg > .tb {
     $bg-color: map-get(map-get($theme, basal), background);

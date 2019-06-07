@@ -1,7 +1,7 @@
 import React from 'react'
 import Tick from './Tick'
-import * as Time from '../constants/Time'
-import * as lib from '../lib'
+import * as Time from 'constants/Time'
+import * as lib from 'lib'
 import './AxisTime.scss'
 
 class AxisTime extends React.Component {

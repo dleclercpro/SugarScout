@@ -1,5 +1,5 @@
-import * as Time from '../constants/Time'
-import * as DataTypes from '../constants/DataTypes'
+import * as Time from 'constants/Time'
+import * as DataTypes from 'constants/DataTypes'
 import { createSelector } from 'reselect'
 
 const getNow = (state) => state.time.now.getTime()

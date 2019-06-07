@@ -1,5 +1,5 @@
-import * as Time from '../constants/Time'
-import * as ActionTypes from '../constants/ActionTypes'
+import * as Time from 'constants/Time'
+import * as ActionTypes from 'constants/ActionTypes'
 
 export const INIT_TIME_STATE = {
     now: Time.NOW || new Date(),

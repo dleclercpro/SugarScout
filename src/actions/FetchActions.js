@@ -1,6 +1,6 @@
-import * as lib from '../lib'
-import * as DataTypes from '../constants/DataTypes'
-import * as ActionTypes from '../constants/ActionTypes'
+import * as lib from 'lib'
+import * as DataTypes from 'constants/DataTypes'
+import * as ActionTypes from 'constants/ActionTypes'
 
 // BGs
 const fetchBGDataRequest = (dataType) => ({
@@ -92,7 +92,7 @@ const fetchData = (dispatch, dataType, src, callback = json => json) => {
 export const fetchBGs = () => ((dispatch) => (
     fetchData(dispatch,
         DataTypes.DATA_BG,
-        '../reports/BG.json',
+        'reports/BG.json',
         lib.convertJSONBGs
     )
 ))
@@ -100,7 +100,7 @@ export const fetchBGs = () => ((dispatch) => (
 export const fetchBasals = (profile = 'Standard') => ((dispatch) => (
     fetchData(dispatch,
         DataTypes.DATA_BASAL,
-        '../reports/pump.json',
+        'reports/pump.json',
         (json) => lib.convertJSONBasals(profile, json)
     )
 ))
@@ -108,7 +108,7 @@ export const fetchBasals = (profile = 'Standard') => ((dispatch) => (
 export const fetchTBs = () => ((dispatch) => (
     fetchData(dispatch,
         DataTypes.DATA_TB,
-        '../reports/treatments.json',
+        'reports/treatments.json',
         (json) => lib.convertJSONNetBasals(json)
     )
 ))

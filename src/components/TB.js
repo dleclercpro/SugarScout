@@ -1,6 +1,6 @@
 import React from 'react'
-import * as Basal from '../constants/Basal'
-import * as lib from '../lib'
+import * as Basal from 'constants/Basal'
+import * as lib from 'lib'
 import './TB.scss'
 
 class TB extends React.Component {

@@ -1,4 +1,4 @@
-import * as ActionTypes from '../constants/ActionTypes'
+import * as ActionTypes from 'constants/ActionTypes'
 
 export const INIT_INNER_STATE = {
     bg: {

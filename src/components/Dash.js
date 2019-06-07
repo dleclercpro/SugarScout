@@ -1,9 +1,9 @@
 import React from 'react'
 import { getType } from './BG'
-import ButtonTimeScaleContainer from '../containers/ButtonTimeScaleContainer'
-import * as Time from '../constants/Time'
-import * as BG from '../constants/BG'
-import * as lib from '../lib'
+import ButtonTimeScaleContainer from 'containers/ButtonTimeScaleContainer'
+import * as Time from 'constants/Time'
+import * as BG from 'constants/BG'
+import * as lib from 'lib'
 import './Dash.scss'
 
 class Dash extends React.Component {

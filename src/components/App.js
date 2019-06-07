@@ -1,9 +1,9 @@
 import React from 'react'
-import DashContainer from '../containers/DashContainer'
-import GraphContainer from '../containers/GraphContainer'
-import BubbleContainer from '../containers/BubbleContainer'
-import * as Time from '../constants/Time'
-import './App.scss'
+import DashContainer from 'containers/DashContainer'
+import GraphContainer from 'containers/GraphContainer'
+import BubbleContainer from 'containers/BubbleContainer'
+import * as Time from 'constants/Time'
+import 'components/App.scss'
 
 class App extends React.Component {
 

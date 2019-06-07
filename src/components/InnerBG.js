@@ -1,6 +1,6 @@
 import React from 'react'
-import * as DataTypes from '../constants/DataTypes'
-import BGContainer from '../containers/BGContainer'
+import * as DataTypes from 'constants/DataTypes'
+import BGContainer from 'containers/BGContainer'
 import './InnerBG.scss'
 
 class InnerBG extends React.Component {

@@ -1,4 +1,4 @@
-import * as ActionTypes from '../constants/ActionTypes'
+import * as ActionTypes from 'constants/ActionTypes'
 
 export const updateTime = (now) => ({
     type: ActionTypes.UPDATE_TIME,
