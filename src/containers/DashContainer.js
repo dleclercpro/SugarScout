@@ -7,31 +7,11 @@ import * as InnerActions from '../actions/InnerActions'
 import * as AxesActions from '../actions/AxesActions'
 import * as BubbleActions from '../actions/BubbleActions'
 import Dash from '../components/Dash'
-import * as Time from '../constants/Time'
-import * as lib from '../lib'
-
-const getLastBG = (state) => {
-    const bgs = state.cgm.data[DataTypes.DATA_BG].data
-    const nBGs = bgs.length
-
-    return nBGs ? bgs[nBGs - 1] : {
-        time: -1,
-        value: -1,
-    }
-}
-
-const getLastDelta = (state) => {
-    const bgs = state.cgm.data[DataTypes.DATA_BG].data
-    const nBGs = bgs.length
-
-    return nBGs > 1 ? bgs[nBGs - 1].value - bgs[nBGs - 2].value : 0
-}
 
 const mapStateToProps = (state) => ({
-    now: lib.convertEpochToFormatTime(state.time.now.getTime(), Time.FORMAT_SHORT),
+    now: state.time.now,
     timeScales: state.time.scales,
-    lastBG: getLastBG(state),
-    lastDelta: getLastDelta(state),
+    bgs: state.cgm.data[DataTypes.DATA_BG].data,
 })
 
 const mapDispatchToProps = (dispatch) => ({

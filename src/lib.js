@@ -9,6 +9,17 @@ export const getRangeFromTo = (start, end) => {
     return getRange(end - start + 1).map((x) => x + start)
 }
 
+export const getArrayAverage = (array) => {
+    return array.reduce((a, b) => a + b, 0) / array.length
+}
+
+// TODO
+export const getLinearRegressionByLeastSquares = (array) => {
+    const m = 0
+    const b = 0
+    return [m, b]
+}
+
 export const compareEpochTimeData = (a, b) => {
     if (a.time < b.time) { return -1 }
     if (a.time > b.time) { return 1 }

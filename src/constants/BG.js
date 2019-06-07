@@ -13,3 +13,12 @@ export const VERY_LOW = 3.0
 export const LOW = 4.0
 export const HIGH = 7.0
 export const VERY_HIGH = 10.0
+
+// Trend
+export const N_BGS_TREND = 6
+export const TREND_DOUBLE_90_DOWN_MMOL_L_M = -0.5
+export const TREND_90_DOWN_MMOL_L_M = -0.3
+export const TREND_45_DOWN_MMOL_L_M = -0.2
+export const TREND_45_UP_MMOL_L_M = 0.2
+export const TREND_90_UP_MMOL_L_M = 0.3
+export const TREND_DOUBLE_90_UP_MMOL_L_M = 0.5
