@@ -21,7 +21,6 @@ class BG extends Component {
 
     handleMouseEnter = (e) => {
         this.props.actions.updateBubble({
-            status: 'visible',
             type: 'bg bg--' + getType(this.props.value),
             time: this.props.time,
             info: {
@@ -29,6 +28,7 @@ class BG extends Component {
                 units: bg.UNITS,
             },
         })
+        this.props.actions.showBubble()
     }
 
     handleMouseMove = (e) => {
@@ -39,7 +39,7 @@ class BG extends Component {
     }
 
     handleMouseLeave = (e) => {
-        this.props.actions.resetBubble()
+        this.props.actions.hideBubble()
     }
 
     render() {

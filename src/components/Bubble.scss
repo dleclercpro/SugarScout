@@ -1,7 +1,6 @@
 @import 'common.scss';
 
 .bubble {
-    display: none;
     position: absolute;
     padding: 20px 30px;
     background: map-get(map-get($theme, bubble), background);
@@ -10,8 +9,24 @@
     transform: translate(8px, calc(-100% - 8px));
     z-index: 50;
 
+    &.is-hidden {
+        animation: hide $transition-speed $transition-type forwards;
+    }
+
     &.is-visible {
-        display: block;
+        animation: show $transition-speed $transition-type forwards;
+    }
+
+    @keyframes show {
+        0% { opacity: 0; visibility: hidden; }
+        1% { visibility: show; }
+        100% { opacity: 1; }
+    }
+
+    @keyframes hide {
+        0% { opacity: 1; visibility: show; }
+        99% { opacity: 0; }
+        100% { visibility: hidden; }
     }
 
     > .info,

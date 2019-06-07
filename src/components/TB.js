@@ -37,7 +37,6 @@ class TB extends Component {
 
     handleMouseEnter = (e) => {
         this.props.actions.updateBubble({
-            status: 'visible',
             type: 'tb',
             time: this.props.time,
             info: {
@@ -49,6 +48,7 @@ class TB extends Component {
                 units: 'm',
             },
         })
+        this.props.actions.showBubble()
     }
 
     handleMouseMove = (e) => {
@@ -59,7 +59,7 @@ class TB extends Component {
     }
 
     handleMouseLeave = (e) => {
-        this.props.actions.resetBubble()
+        this.props.actions.hideBubble()
     }
 
     render() {

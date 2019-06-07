@@ -11,13 +11,14 @@ export const FETCH_TB_DATA_SUCCESS = 'FETCH_TB_DATA_SUCCESS'
 
 // Time
 export const UPDATE_TIME = 'UPDATE_TIME'
-export const UPDATE_TIME_TO_NOW = 'UPDATE_TIME_TO_NOW'
 export const UPDATE_TIMESCALE = 'UPDATE_TIMESCALE'
 export const UPDATE_LAST_FETCH = 'UPDATE_LAST_FETCH'
 
 // Bubble
 export const RESET_BUBBLE = 'RESET_BUBBLE'
 export const MOVE_BUBBLE = 'MOVE_BUBBLE'
+export const SHOW_BUBBLE = 'SHOW_BUBBLE'
+export const HIDE_BUBBLE = 'HIDE_BUBBLE'
 export const UPDATE_BUBBLE = 'UPDATE_BUBBLE'
 
 // Axes

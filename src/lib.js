@@ -76,8 +76,7 @@ export const formatBG = (bg) => {
 }
 
 export const formatBGDelta = (dbg) => {
-    dbg = formatBG(dbg)
-    return dbg >= 0 ? '+' + dbg : dbg
+    return dbg >= 0 ? '+' + formatBG(dbg) : formatBG(dbg)
 }
 
 export const formatBasal = (basal) => {

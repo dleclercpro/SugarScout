@@ -1,7 +1,7 @@
 import * as ActionTypes from 'constants/ActionTypes'
 
 const INIT_BUBBLE_STATE = {
-    status: 'invisible',
+    status: '',
     type: '',
     position: {},
 }
@@ -12,6 +12,18 @@ const BubbleReducer = (state = INIT_BUBBLE_STATE, action) => {
             return {
                 ...state,
                 ...action.args,
+            }
+
+        case ActionTypes.SHOW_BUBBLE:
+            return {
+                ...state,
+                status: 'visible',
+            }
+
+        case ActionTypes.HIDE_BUBBLE:
+            return {
+                ...state,
+                status: 'hidden',
             }
 
         case ActionTypes.MOVE_BUBBLE:
