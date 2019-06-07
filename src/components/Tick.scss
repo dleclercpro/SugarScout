@@ -12,10 +12,10 @@
         padding-right: 4px;
         transition: all $transition-type $transition-speed;
         font-size: 20px;
-        line-height: 10px;
+        line-height: 12px;
 
         @include mq(width, tablet) {
-            line-height: 12px;
+            line-height: 14px;
         }
 
         @include mq(width, desktop) {
@@ -118,7 +118,7 @@
         padding-bottom: 1px;
         font-size: 12px;
 
-        @include mq(height, small) {
+        @include mq(height, medium) {
             font-size: 14px !important;
 
             &:nth-child(2n) {
