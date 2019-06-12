@@ -33,7 +33,7 @@ const BubbleReducer = (state = INIT_BUBBLE_STATE, action) => {
             }
 
         case ActionTypes.RESET_BUBBLE:
-            return INIT_BUBBLE_STATE
+            return { ...INIT_BUBBLE_STATE }
 
         default:
             return state
