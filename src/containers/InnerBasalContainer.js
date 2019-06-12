@@ -8,8 +8,8 @@ import InnerBasal from 'components/InnerBasal'
 const mapStateToProps = (state) => ({
     now: state.time.now,
     timeScale: state.time.scale,
-    [DataTypes.DATA_BASAL]: state.pump.data[DataTypes.DATA_BASAL].data,
-    [DataTypes.DATA_TB]: Selectors.getVisibleTBs(state),
+    [DataTypes.DATA_BASALS]: state.pump.data[DataTypes.DATA_BASALS].data,
+    [DataTypes.DATA_NET_BASALS]: Selectors.getVisibleTBs(state),
     width: state.inner.basal.width,
     height: state.inner.basal.height,
 })

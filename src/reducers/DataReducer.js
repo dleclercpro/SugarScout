@@ -1,4 +1,3 @@
-import * as DataTypes from 'constants/DataTypes'
 import * as ActionTypes from 'constants/ActionTypes'
 
 export const INIT_DATA_STATE = {
@@ -8,67 +7,35 @@ export const INIT_DATA_STATE = {
 }
 
 const DataReducer = (state = INIT_DATA_STATE, action) => {
-    let request, failure, success
-
-    switch (action.dataType) {
-        case DataTypes.DATA_BG:
-            [ request, failure, success ] = [
-                ActionTypes.FETCH_BG_DATA_REQUEST,
-                ActionTypes.FETCH_BG_DATA_FAILURE,
-                ActionTypes.FETCH_BG_DATA_SUCCESS
-            ]
-            break
-
-        case DataTypes.DATA_BASAL:
-            [ request, failure, success ] = [
-                ActionTypes.FETCH_BASAL_DATA_REQUEST,
-                ActionTypes.FETCH_BASAL_DATA_FAILURE,
-                ActionTypes.FETCH_BASAL_DATA_SUCCESS
-            ]
-            break
-
-        case DataTypes.DATA_TB:
-            [ request, failure, success ] = [
-                ActionTypes.FETCH_TB_DATA_REQUEST,
-                ActionTypes.FETCH_TB_DATA_FAILURE,
-                ActionTypes.FETCH_TB_DATA_SUCCESS
-            ]
-            break
-
-        default:
-            throw new Error('Data reducer of type ' + action.dataType + ' not yet implemented.')
-    }
-
     switch (action.type) {
-        case request:
+        case ActionTypes.FETCH_BG_DATA_REQUEST:
+        case ActionTypes.FETCH_PUMP_DATA_REQUEST:
+        case ActionTypes.FETCH_TREATMENT_DATA_REQUEST:
             return {
                 ...state,
-                [action.dataType]: {
-                    ...state[action.dataType],
-                    isFetching: true,
-                    error: '',
-                },
+                isFetching: true,
+                error: '',
+                data: [],
             }
 
-        case failure:
+        case ActionTypes.FETCH_BG_DATA_FAILURE:
+        case ActionTypes.FETCH_PUMP_DATA_FAILURE:
+        case ActionTypes.FETCH_TREATMENT_DATA_FAILURE:
             return {
                 ...state,
-                [action.dataType]: {
-                    ...state[action.dataType],
-                    isFetching: false,
-                    error: action.error,
-                },
+                isFetching: false,
+                error: action.error,
+                data: [],
             }
 
-        case success:
+        case ActionTypes.FETCH_BG_DATA_SUCCESS:
+        case ActionTypes.FETCH_PUMP_DATA_SUCCESS:
+        case ActionTypes.FETCH_TREATMENT_DATA_SUCCESS:
             return {
                 ...state,
-                [action.dataType]: {
-                    ...state[action.dataType],
-                    isFetching: false,
-                    error: '',
-                    data: action.data,
-                },
+                isFetching: false,
+                error: '',
+                data: action.data,
             }
 
         default:

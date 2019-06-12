@@ -8,7 +8,7 @@ const mapStateToProps = (state) => ({
     now: state.time.now,
     timeScales: state.time.scales,
     lastFetch: state.time.lastFetch,
-    bgs: state.cgm.data[DataTypes.DATA_BG].data,
+    bgs: state.cgm.data[DataTypes.DATA_BGS].data,
 })
 
 const mapDispatchToProps = (dispatch) => ({

@@ -1,8 +1,7 @@
-import * as lib from 'lib'
 import * as DataTypes from 'constants/DataTypes'
 import * as ActionTypes from 'constants/ActionTypes'
 
-// BGs
+// BG data
 const fetchBGDataRequest = (dataType) => ({
     type: ActionTypes.FETCH_BG_DATA_REQUEST,
     dataType,
@@ -20,53 +19,53 @@ const fetchBGDataSuccess = (dataType, data) => ({
     data,
 })
 
-// Basals
-const fetchBasalDataRequest = (dataType) => ({
-    type: ActionTypes.FETCH_BASAL_DATA_REQUEST,
+// Pump data
+const fetchPumpDataRequest = (dataType) => ({
+    type: ActionTypes.FETCH_PUMP_DATA_REQUEST,
     dataType,
 })
 
-const fetchBasalDataFailure = (dataType, error) => ({
-    type: ActionTypes.FETCH_BASAL_DATA_FAILURE,
-    dataType,
-    error,
-})
-
-const fetchBasalDataSuccess = (dataType, data) => ({
-    type: ActionTypes.FETCH_BASAL_DATA_SUCCESS,
-    dataType,
-    data,
-})
-
-// TBs
-const fetchTBDataRequest = (dataType) => ({
-    type: ActionTypes.FETCH_TB_DATA_REQUEST,
-    dataType,
-})
-
-const fetchTBDataFailure = (dataType, error) => ({
-    type: ActionTypes.FETCH_TB_DATA_FAILURE,
+const fetchPumpDataFailure = (dataType, error) => ({
+    type: ActionTypes.FETCH_PUMP_DATA_FAILURE,
     dataType,
     error,
 })
 
-const fetchTBDataSuccess = (dataType, data) => ({
-    type: ActionTypes.FETCH_TB_DATA_SUCCESS,
+const fetchPumpDataSuccess = (dataType, data) => ({
+    type: ActionTypes.FETCH_PUMP_DATA_SUCCESS,
     dataType,
     data,
 })
 
-// Fetch helper
+// Treatment data
+const fetchTreatmentDataRequest = (dataType) => ({
+    type: ActionTypes.FETCH_TREATMENT_DATA_REQUEST,
+    dataType,
+})
+
+const fetchTreatmentDataFailure = (dataType, error) => ({
+    type: ActionTypes.FETCH_TREATMENT_DATA_FAILURE,
+    dataType,
+    error,
+})
+
+const fetchTreatmentDataSuccess = (dataType, data) => ({
+    type: ActionTypes.FETCH_TREATMENT_DATA_SUCCESS,
+    dataType,
+    data,
+})
+
+// Fetch helpers
 const getFetchActions = (dataType) => {
     switch (dataType) {
-        case DataTypes.DATA_BG:
+        case DataTypes.DATA_BGS:
             return [fetchBGDataRequest, fetchBGDataFailure, fetchBGDataSuccess]
 
-        case DataTypes.DATA_BASAL:
-            return [fetchBasalDataRequest, fetchBasalDataFailure, fetchBasalDataSuccess]
+        case DataTypes.DATA_BASALS:
+            return [fetchPumpDataRequest, fetchPumpDataFailure, fetchPumpDataSuccess]
 
-        case DataTypes.DATA_TB:
-                return [fetchTBDataRequest, fetchTBDataFailure, fetchTBDataSuccess]
+        case DataTypes.DATA_NET_BASALS:
+            return [fetchTreatmentDataRequest, fetchTreatmentDataFailure, fetchTreatmentDataSuccess]
 
         default:
             throw new Error('Fetching this data type not yet implemented.')
@@ -89,26 +88,23 @@ const fetchData = (dispatch, dataType, src, callback = json => json) => {
 }
 
 // Exports
-export const fetchBGs = () => ((dispatch) => (
+export const fetchBGData = () => ((dispatch) => (
     fetchData(dispatch,
-        DataTypes.DATA_BG,
-        'reports/BG.json',
-        lib.convertJSONBGs
+        DataTypes.DATA_BGS,
+        'reports/BG.json'
     )
 ))
 
-export const fetchBasals = (profile = 'Standard') => ((dispatch) => (
+export const fetchPumpData = (profile = 'Standard') => ((dispatch) => (
     fetchData(dispatch,
-        DataTypes.DATA_BASAL,
-        'reports/pump.json',
-        (json) => lib.convertJSONBasals(profile, json)
+        DataTypes.DATA_BASALS,
+        'reports/pump.json'
     )
 ))
 
-export const fetchTBs = () => ((dispatch) => (
+export const fetchTreatmentData = () => ((dispatch) => (
     fetchData(dispatch,
-        DataTypes.DATA_TB,
-        'reports/treatments.json',
-        (json) => lib.convertJSONNetBasals(json)
+        DataTypes.DATA_NET_BASALS,
+        'reports/treatments.json'
     )
 ))

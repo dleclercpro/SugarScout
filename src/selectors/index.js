@@ -3,8 +3,8 @@ import * as DataTypes from 'constants/DataTypes'
 import { createSelector } from 'reselect'
 
 const getNow = (state) => state.time.now.getTime()
-const getBGs = (state) => state.cgm.data[DataTypes.DATA_BG].data
-const getTBs = (state) => state.pump.data[DataTypes.DATA_TB].data
+const getBGs = (state) => state.cgm.data[DataTypes.DATA_BGS].data
+const getTBs = (state) => state.pump.data[DataTypes.DATA_NET_BASALS].data
 const timeWindow = Math.max(...Time.SCALES) * 60 * 60 * 1000
 
 export const getVisibleBGs = createSelector(

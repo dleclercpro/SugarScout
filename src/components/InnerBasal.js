@@ -28,7 +28,7 @@ class InnerBasal extends Component {
         return (
             <section ref={this.node} className='inner inner--basal'>
                 <svg width={this.props.width} height={this.props.height} viewBox={`0 0 ${this.props.width} ${this.props.height}`}>
-                    {this.props[DataTypes.DATA_TB].map((tb, index) => (
+                    {this.props[DataTypes.DATA_NET_BASALS].map((tb, index) => (
                         <TBContainer key={index} time={tb.time} value={tb.value} duration={tb.duration} />
                     ))}
                 </svg>
