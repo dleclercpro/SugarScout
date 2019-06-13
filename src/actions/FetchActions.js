@@ -1,3 +1,4 @@
+import * as DataTypes from 'constants/DataTypes'
 import * as ActionTypes from 'constants/ActionTypes'
 
 // BG data
@@ -57,13 +58,13 @@ const fetchTreatmentDataSuccess = (dataType, data) => ({
 // Fetch helpers
 const getFetchActions = (dataType) => {
     switch (dataType) {
-        case 'bgs':
+        case DataTypes.BG:
             return [fetchBGDataRequest, fetchBGDataFailure, fetchBGDataSuccess]
 
-        case 'basals':
+        case DataTypes.PUMP:
             return [fetchPumpDataRequest, fetchPumpDataFailure, fetchPumpDataSuccess]
 
-        case 'netBasals':
+        case DataTypes.TREATMENT:
             return [fetchTreatmentDataRequest, fetchTreatmentDataFailure, fetchTreatmentDataSuccess]
 
         default:
@@ -89,21 +90,21 @@ const fetchData = (dispatch, dataType, src, callback = json => json) => {
 // Exports
 export const fetchBGData = () => ((dispatch) => (
     fetchData(dispatch,
-        'bgs',
+        DataTypes.BG,
         'reports/BG.json'
     )
 ))
 
 export const fetchPumpData = (profile = 'Standard') => ((dispatch) => (
     fetchData(dispatch,
-        'basals',
+        DataTypes.PUMP,
         'reports/pump.json'
     )
 ))
 
 export const fetchTreatmentData = () => ((dispatch) => (
     fetchData(dispatch,
-        'netBasals',
+        DataTypes.TREATMENT,
         'reports/treatments.json'
     )
 ))

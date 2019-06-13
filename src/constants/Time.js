@@ -1,5 +1,5 @@
 export const UNITS = 'h'
-export const NOW = null
+export const NOW = new Date(2019, 5, 12, 9, 0, 0)
 export const N_HOURS_PER_DAY = 24
 
 // Formats
