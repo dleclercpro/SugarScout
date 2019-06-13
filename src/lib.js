@@ -1,5 +1,5 @@
 import moment from 'moment'
-import * as Time from './constants/Time'
+import * as Time from 'constants/Time'
 
 export const getRange = (x) => {
     return [...Array(x).keys()]

@@ -4,7 +4,7 @@ import InnerBasalContainer from 'containers/InnerBasalContainer'
 import AxisTimeContainer from 'containers/AxisTimeContainer'
 import AxisBGContainer from 'containers/AxisBGContainer'
 import AxisBasalContainer from 'containers/AxisBasalContainer'
-import Corner from './Corner'
+import Corner from 'components/Corner'
 import 'components/Graph.scss'
 
 const Graph = (props) => (

@@ -1,14 +1,14 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import * as DataTypes from 'constants/DataTypes'
 import Actions from 'actions'
+import * as Selectors from 'selectors'
 import Dash from 'components/Dash'
 
 const mapStateToProps = (state) => ({
     now: state.time.now,
     timeScales: state.time.scales,
     lastFetch: state.time.lastFetch,
-    bgs: state.cgm.data[DataTypes.DATA_BGS].data,
+    bgs: Selectors.getVisibleBGs(state),
 })
 
 const mapDispatchToProps = (dispatch) => ({

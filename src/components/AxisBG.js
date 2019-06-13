@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Tick from './Tick'
+import Tick from 'components/Tick'
 import * as BG from 'constants/BG'
 import 'components/AxisBG.scss'
 

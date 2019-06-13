@@ -1,15 +1,15 @@
 import { combineReducers } from 'redux'
-import TimeReducer from './TimeReducer'
-import BubbleReducer from './BubbleReducer'
-import InnerReducer from './InnerReducer'
-import AxisTimeReducer from './AxisTimeReducer'
-import AxisBGReducer from './AxisBGReducer'
-import AxisBasalReducer from './AxisBasalReducer'
-import PumpReducer from './PumpReducer'
-import CGMReducer from './CGMReducer'
+import TimeReducer from 'reducers/TimeReducer'
+import BubbleReducer from 'reducers/BubbleReducer'
+import InnerReducer from 'reducers/InnerReducer'
+import AxisTimeReducer from 'reducers/AxisTimeReducer'
+import AxisBGReducer from 'reducers/AxisBGReducer'
+import AxisBasalReducer from 'reducers/AxisBasalReducer'
+import DataReducer from 'reducers/DataReducer'
 
 const rootReducer = combineReducers({
     time: TimeReducer,
+    data: DataReducer,
     bubble: BubbleReducer,
     inner: InnerReducer,
     axes: combineReducers({
@@ -17,8 +17,6 @@ const rootReducer = combineReducers({
         bg: AxisBGReducer,
         basal: AxisBasalReducer,
     }),
-    pump: PumpReducer,
-    cgm: CGMReducer,
 })
 
 export default rootReducer

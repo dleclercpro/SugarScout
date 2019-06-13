@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Tick from './Tick'
+import Tick from 'components/Tick'
 import * as Time from 'constants/Time'
 import * as lib from 'lib'
 import 'components/AxisTime.scss'

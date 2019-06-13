@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { getType } from './BG'
+import { getType } from 'components/BG'
 import ButtonTimeScaleContainer from 'containers/ButtonTimeScaleContainer'
 import * as Time from 'constants/Time'
 import * as BG from 'constants/BG'
