@@ -28,8 +28,8 @@ class InnerBasal extends Component {
         return (
             <section ref={this.node} className='inner inner--basal'>
                 <svg width={this.props.width} height={this.props.height} viewBox={`0 0 ${this.props.width} ${this.props.height}`}>
-                    {this.props.netBasals.map((tb, index) => (
-                        <NetBasalContainer key={index} time={tb.time} value={tb.value} duration={tb.duration} />
+                    {this.props.netBasals.map((nb, index) => (
+                        <NetBasalContainer key={index} time={nb.time} value={nb.value} duration={nb.duration} />
                     ))}
                     {this.props.boluses.map((b, index) => (
                         <BolusContainer key={index} time={b.time} value={b.value} />
