@@ -9,6 +9,7 @@ const mapStateToProps = (state) => ({
     timeScale: state.time.scale,
     basals: state.data.pump.data.basals,
     netBasals: Selectors.getVisibleNetBasals(state),
+    boluses: Selectors.getVisibleBoluses(state),
     width: state.inner.basal.width,
     height: state.inner.basal.height,
 })

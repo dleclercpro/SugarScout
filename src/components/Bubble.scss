@@ -106,12 +106,22 @@
         }
     }
 
-    &.tb {
+    &.netBasal {
 
         > .info {
 
             > .value {
                 color: map-get(map-get($theme, basal), background);
+            }
+        }
+    }
+
+    &.bolus {
+
+        > .info {
+
+            > .value {
+                color: map-get($theme, bolus);
             }
         }
     }

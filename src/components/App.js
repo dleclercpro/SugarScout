@@ -17,7 +17,7 @@ class App extends Component {
         this.fetchData()
         this.timerData = setInterval(this.fetchData, Time.REFRESH_DATA_RATE)
         this.timer = setInterval(() => {
-            this.props.actions.updateTime()
+            //this.props.actions.updateTime()
         }, Time.REFRESH_APP_RATE)
     }
 

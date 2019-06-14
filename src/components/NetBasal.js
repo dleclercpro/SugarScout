@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import * as Basal from 'constants/Basal'
 import * as lib from 'lib'
-import 'components/TB.scss'
+import 'components/NetBasal.scss'
 
-class TB extends Component {
+class NetBasal extends Component {
 
     getPosX() {
         const dX = this.props.timeScale * 60 * 60 * 1000
@@ -15,7 +15,7 @@ class TB extends Component {
 
     getPosY() {
         const dY = this.props.basalRange[1] - this.props.basalRange[0]
-        let dy = this.props.value >= 0 ? this.props.basalRange[1] - this.props.value : this.props.basalRange[1] 
+        let dy = this.props.value >= 0 ? this.props.basalRange[1] - this.props.value : this.props.basalRange[1]
 
         return dy / dY * this.props.innerHeight
     }
@@ -37,7 +37,7 @@ class TB extends Component {
 
     handleMouseEnter = (e) => {
         this.props.actions.updateBubble({
-            type: 'tb',
+            target: 'netBasal',
             time: this.props.time,
             info: {
                 value: lib.formatBasal(this.props.value),
@@ -65,7 +65,7 @@ class TB extends Component {
 
     render() {
         return (
-            <rect className='tb'
+            <rect className='netBasal'
                 x={this.getPosX()}
                 y={this.getPosY()}
                 width={this.getWidth()}
@@ -78,4 +78,4 @@ class TB extends Component {
     }
 }
 
-export default TB
+export default NetBasal

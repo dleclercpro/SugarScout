@@ -1,7 +1,7 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import Actions from 'actions'
-import TB from 'components/TB'
+import NetBasal from 'components/NetBasal'
 
 const mapStateToProps = (state) => ({
     now: state.time.now,
@@ -15,9 +15,9 @@ const mapDispatchToProps = (dispatch) => ({
     actions: {...bindActionCreators(Actions, dispatch)},
 })
 
-const TBContainer = connect(
+const NetBasalContainer = connect(
     mapStateToProps,
     mapDispatchToProps,
-)(TB)
+)(NetBasal)
 
-export default TBContainer
+export default NetBasalContainer

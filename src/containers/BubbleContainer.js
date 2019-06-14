@@ -5,7 +5,7 @@ import Bubble from 'components/Bubble'
 
 const mapStateToProps = (state) => ({
     status: state.bubble.status,
-    type: state.bubble.type,
+    target: state.bubble.target,
     position: state.bubble.position,
     time: state.bubble.time,
     info: state.bubble.info,

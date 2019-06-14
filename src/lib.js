@@ -41,3 +41,7 @@ export const formatBGDelta = (dbg) => {
 export const formatBasal = (basal) => {
     return basal.toFixed(2)
 }
+
+export const formatBolus = (bolus) => {
+    return bolus.toFixed(1)
+}

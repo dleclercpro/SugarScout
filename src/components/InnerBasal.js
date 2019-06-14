@@ -1,5 +1,6 @@
 import React, { Component, createRef } from 'react'
-import TBContainer from 'containers/TBContainer'
+import NetBasalContainer from 'containers/NetBasalContainer'
+import BolusContainer from 'containers/BolusContainer'
 import 'components/InnerBasal.scss'
 
 class InnerBasal extends Component {
@@ -28,7 +29,10 @@ class InnerBasal extends Component {
             <section ref={this.node} className='inner inner--basal'>
                 <svg width={this.props.width} height={this.props.height} viewBox={`0 0 ${this.props.width} ${this.props.height}`}>
                     {this.props.netBasals.map((tb, index) => (
-                        <TBContainer key={index} time={tb.time} value={tb.value} duration={tb.duration} />
+                        <NetBasalContainer key={index} time={tb.time} value={tb.value} duration={tb.duration} />
+                    ))}
+                    {this.props.boluses.map((b, index) => (
+                        <BolusContainer key={index} time={b.time} value={b.value} />
                     ))}
                 </svg>
             </section>

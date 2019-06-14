@@ -1,10 +1,10 @@
 @import 'common.scss';
 
-.inner--basal > svg > .tb {
+.inner--basal > svg > .netBasal {
     $bg-color: map-get(map-get($theme, basal), background);
-    cursor: pointer;
-    transition: all $transition-type $transition-speed;
     fill: $bg-color;
+    transition: all $transition-type $transition-speed;
+    cursor: pointer;
 
     &:hover {
         fill: darken($bg-color, 10%);

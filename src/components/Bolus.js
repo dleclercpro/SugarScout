@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import * as bg from 'constants/BG'
+import * as bolus from 'constants/Bolus'
 import * as lib from 'lib'
-import 'components/BG.scss'
+import 'components/Bolus.scss'
 
-class BG extends Component {
+class Bolus extends Component {
 
     getPosX() {
         const dX = this.props.timeScale * 60 * 60 * 1000
@@ -13,19 +13,19 @@ class BG extends Component {
     }
 
     getPosY() {
-        const dY = this.props.bgRange[1] - this.props.bgRange[0]
-        const dy = this.props.bgRange[1] - this.props.value
+        const dY = this.props.basalRange[1] - this.props.basalRange[0]
+        const dy = this.props.basalRange[1]
 
         return dy / dY * this.props.innerHeight
     }
 
     handleMouseEnter = (e) => {
         this.props.actions.updateBubble({
-            target: 'bg bg--' + getType(this.props.value),
+            target: 'bolus',
             time: this.props.time,
             info: {
-                value: lib.formatBG(this.props.value),
-                units: bg.UNITS,
+                value: lib.formatBolus(this.props.value),
+                units: bolus.UNITS,
             },
         })
         this.props.actions.showBubble()
@@ -45,7 +45,7 @@ class BG extends Component {
 
     render() {
         return (
-            <circle className={`bg bg--${getType(this.props.value)}`}
+            <circle className='bolus'
                 cx={this.getPosX()}
                 cy={this.getPosY()}
                 r={3}
@@ -57,23 +57,4 @@ class BG extends Component {
     }
 }
 
-export const getType = (value) => {
-    if (value <= bg.VERY_LOW) {
-        return 'very-low'
-    }
-    if (bg.VERY_LOW < value && value <= bg.LOW) {
-        return 'low'
-    }
-    if (bg.LOW < value && value < bg.HIGH) {
-        return 'normal'
-    }
-    if (bg.HIGH <= value && value < bg.VERY_HIGH) {
-        return 'high'
-    }
-    if (bg.VERY_HIGH <= value) {
-        return 'very-high'
-    }
-    return 'unknown'
-}
-
-export default BG
+export default Bolus

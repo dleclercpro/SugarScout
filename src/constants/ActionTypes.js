@@ -15,11 +15,11 @@ export const UPDATE_TIMESCALE = 'UPDATE_TIMESCALE'
 export const UPDATE_LAST_FETCH = 'UPDATE_LAST_FETCH'
 
 // Bubble
-export const RESET_BUBBLE = 'RESET_BUBBLE'
 export const MOVE_BUBBLE = 'MOVE_BUBBLE'
 export const SHOW_BUBBLE = 'SHOW_BUBBLE'
 export const HIDE_BUBBLE = 'HIDE_BUBBLE'
 export const UPDATE_BUBBLE = 'UPDATE_BUBBLE'
+export const RESET_BUBBLE = 'RESET_BUBBLE'
 
 // Axes
 export const UPDATE_TIME_AXIS = 'UPDATE_TIME_AXIS'

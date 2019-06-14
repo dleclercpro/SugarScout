@@ -25,6 +25,7 @@ $color-purple: #800080;
 $color-red: #e50000;
 $color-orange: #ff9d2f;
 $color-green: #99e500;
+$color-blue: #0025dd;
 $color-transparent-black: rgba(0, 0, 0, 0.8);
 
 // THEMES
@@ -47,6 +48,7 @@ $light-theme: (
         background: $color-purple,
         border: $color-black,
     ),
+    bolus: $color-blue,
 );
 $dark-theme: (
     background: $color-deep-black,
@@ -67,6 +69,7 @@ $dark-theme: (
         background: $color-purple,
         border: 1px solid $color-black,
     ),
+    bolus: $color-blue,
 );
 
 // CHOSEN THEME

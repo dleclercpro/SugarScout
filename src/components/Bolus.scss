@@ -1,0 +1,80 @@
+@import 'common.scss';
+
+.inner--basal > svg > .bolus {
+    $bolus-color: map-get($theme, bolus);
+    fill: $bolus-color;
+    transition: all $transition-type $transition-speed;
+    cursor: pointer;
+
+    &:hover {
+        fill: darken($bolus-color, 30%);
+    }
+
+    .graph--1-h & {
+        r: 4px;
+
+        @include mq(width, tablet) {
+            r: 6.5px;
+        }
+    }
+
+    .graph--3-h & {
+        r: 3px;
+
+        @include mq(width, tablet) {
+            r: 4px;
+        }
+
+        @include mq(width, desktop) {
+            r: 6.5px;
+        }
+    }
+
+    .graph--6-h & {
+        r: 2px;
+
+        @include mq(width, tablet) {
+            r: 3px;
+        }
+
+        @include mq(width, desktop) {
+            r: 4px;
+        }
+
+        @include mq(width, desktopXL) {
+            r: 5px;
+        }
+    }
+
+    .graph--12-h & {
+        r: 1.5px;
+
+        @include mq(width, tablet) {
+            r: 2.5px;
+        }
+
+        @include mq(width, desktop) {
+            r: 3px;
+        }
+
+        @include mq(width, desktopXL) {
+            r: 4px;
+        }
+    }
+
+    .graph--24-h & {
+        r: 1.5px;
+
+        @include mq(width, tablet) {
+            r: 2px;
+        }
+
+        @include mq(width, desktop) {
+            r: 2.5px;
+        }
+
+        @include mq(width, desktopXL) {
+            r: 3px;
+        }
+    }
+}
