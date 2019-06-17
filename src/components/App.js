@@ -14,11 +14,9 @@ class App extends Component {
     }
 
     componentDidMount() {
-        this.fetchData()
         this.timerData = setInterval(this.fetchData, Time.REFRESH_DATA_RATE)
-        this.timer = setInterval(() => {
-            this.props.actions.updateTime()
-        }, Time.REFRESH_APP_RATE)
+        this.timer = setInterval(this.props.actions.updateTime, Time.REFRESH_APP_RATE)
+        this.fetchData()        
     }
 
     componentWillUnmount() {

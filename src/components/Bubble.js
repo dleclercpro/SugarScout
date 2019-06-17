@@ -10,14 +10,12 @@ class Bubble extends Component {
     }
 
     componentDidUpdate(prevProps) {
-
-        // Only update dimensions when bubble appears
         if (this.props.status === 'visible' && prevProps.status === 'hidden') {
-            this.updateDimensions()
+            this.updateSize()
         }
     }
 
-    updateDimensions = (e) => {
+    updateSize = (e) => {
         const { width, height } = this.node.current.getBoundingClientRect()
         this.props.actions.updateBubbleSize(width, height)
     }

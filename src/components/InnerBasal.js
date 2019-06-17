@@ -11,15 +11,15 @@ class InnerBasal extends Component {
     }
 
     componentDidMount() {
-        this.updateDimensions()
-        window.addEventListener('resize', this.updateDimensions)
+        this.updateSize()
+        window.addEventListener('resize', this.updateSize)
     }
 
     componentWillUnmount() {
-        window.removeEventListener('resize', this.updateDimensions)
+        window.removeEventListener('resize', this.updateSize)
     }
 
-    updateDimensions = (e) => {
+    updateSize = (e) => {
         const { width, height } = this.node.current.getBoundingClientRect()
         this.props.actions.updateInnerBasalSize(width, height)
     }
