@@ -1,9 +1,11 @@
 import * as ActionTypes from 'constants/ActionTypes'
 
 const INIT_BUBBLE_STATE = {
-    status: '',
+    status: 'hidden',
     target: '',
     position: {},
+    width: -1,
+    height: -1,
 }
 
 const BubbleReducer = (state = INIT_BUBBLE_STATE, action) => {
@@ -26,14 +28,18 @@ const BubbleReducer = (state = INIT_BUBBLE_STATE, action) => {
                 position: action.position,
             }
 
-        case ActionTypes.UPDATE_BUBBLE:
+        case ActionTypes.UPDATE_BUBBLE_INFOS:
             return {
                 ...state,
                 ...action.args,
             }
 
-        case ActionTypes.RESET_BUBBLE:
-            return { ...INIT_BUBBLE_STATE }
+        case ActionTypes.UPDATE_BUBBLE_SIZE:
+            return {
+                ...state,
+                width: action.width,
+                height: action.height,
+            }
 
         default:
             return state

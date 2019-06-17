@@ -20,7 +20,7 @@ class BG extends Component {
     }
 
     handleMouseEnter = (e) => {
-        this.props.actions.updateBubble({
+        this.props.actions.updateBubbleInfos({
             target: 'bg bg--' + getType(this.props.value),
             time: this.props.time,
             info: {
@@ -40,7 +40,6 @@ class BG extends Component {
 
     handleMouseLeave = (e) => {
         this.props.actions.hideBubble()
-        this.props.actions.resetBubble()
     }
 
     render() {

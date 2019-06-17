@@ -36,7 +36,7 @@ class NetBasal extends Component {
     }
 
     handleMouseEnter = (e) => {
-        this.props.actions.updateBubble({
+        this.props.actions.updateBubbleInfos({
             target: 'netBasal',
             time: this.props.time,
             info: {
@@ -60,7 +60,6 @@ class NetBasal extends Component {
 
     handleMouseLeave = (e) => {
         this.props.actions.hideBubble()
-        this.props.actions.resetBubble()
     }
 
     render() {

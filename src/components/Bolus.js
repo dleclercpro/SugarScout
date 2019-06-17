@@ -20,7 +20,7 @@ class Bolus extends Component {
     }
 
     handleMouseEnter = (e) => {
-        this.props.actions.updateBubble({
+        this.props.actions.updateBubbleInfos({
             target: 'bolus',
             time: this.props.time,
             info: {
@@ -40,7 +40,6 @@ class Bolus extends Component {
 
     handleMouseLeave = (e) => {
         this.props.actions.hideBubble()
-        this.props.actions.resetBubble()
     }
 
     render() {
