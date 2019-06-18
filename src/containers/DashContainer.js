@@ -8,9 +8,11 @@ const mapStateToProps = (state) => ({
     now: state.time.now,
     timeScales: state.time.scales,
     lastFetch: state.time.lastFetch,
-    bgs: Selectors.getVisibleBGs(state),
-    isfs: state.data.pump.data.isfs,
-    csfs: state.data.pump.data.csfs,
+    bg: Selectors.getCurrentBG(state),
+    dbg: Selectors.getCurrentBGDelta(state),
+    bgTrend: Selectors.getCurrentBGTrend(state),
+    isf: Selectors.getCurrentISF(state),
+    csf: Selectors.getCurrentCSF(state),
 })
 
 const mapDispatchToProps = (dispatch) => ({

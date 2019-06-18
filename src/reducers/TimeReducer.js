@@ -1,22 +1,13 @@
 import * as Time from 'constants/Time'
 import * as ActionTypes from 'constants/ActionTypes'
 
-const getTimeToNow = (now) => {
-    return (
-        now.getMinutes() * 60 * 1000 +
-        now.getSeconds() * 1000 +
-        now.getMilliseconds()
-    )
-}
-
 const now = Time.NOW || new Date()
 
 const INIT_TIME_STATE = {
     now: now,
-    toNow: getTimeToNow(now),
+    lastFetch: now,
     scales: Time.SCALES,
     scale: Time.SCALE,
-    lastFetch: now,
 }
 
 const TimeReducer = (state = INIT_TIME_STATE, action) => {
@@ -25,7 +16,6 @@ const TimeReducer = (state = INIT_TIME_STATE, action) => {
             return {
                 ...state,
                 now: action.now,
-                toNow: getTimeToNow(state.now),
             }
 
         case ActionTypes.UPDATE_TIMESCALE:
