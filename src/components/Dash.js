@@ -9,6 +9,7 @@ import 'components/Dash.scss'
 const Dash = (props) => {
     const currentBG = props.bg ? props.bg.value : -1
     const currentdBG = props.dbg ? props.dbg : 0
+    const currentBasal = props.basal ? props.basal.value : -1
     const currentISF = props.isf ? props.isf.value : -1
     const currentCSF = props.csf ? props.csf.value : -1
 
@@ -23,20 +24,29 @@ const Dash = (props) => {
                             <span className='delta'>({lib.formatBGDelta(currentdBG)})</span>
                         </p>
                     </div>
-                    <p className='isf'>
-                        <span className='title'>ISF:</span>
-                        {' '}
-                        {lib.formatISF(currentISF)}
-                        {' '}
-                        {Units.ISF}
-                    </p>
-                    <p className='csf'>
-                        <span className='title'>CSF:</span>
-                        {' '}
-                        {lib.formatCSF(currentCSF)}
-                        {' '}
-                        {Units.CSF}
-                    </p>
+                    <div className='pump'>
+                        <p className='basal'>
+                            <span className='title'>Basal:</span>
+                            {' '}
+                            {lib.formatBasal(currentBasal)}
+                            {' '}
+                            {Units.BASAL}
+                        </p>
+                        <p className='isf'>
+                            <span className='title'>ISF:</span>
+                            {' '}
+                            {lib.formatISF(currentISF)}
+                            {' '}
+                            {Units.ISF}
+                        </p>
+                        <p className='csf'>
+                            <span className='title'>CSF:</span>
+                            {' '}
+                            {lib.formatCSF(currentCSF)}
+                            {' '}
+                            {Units.CSF}
+                        </p>
+                    </div>
                 </div>
                 <div className='time'>
                     <div className='clock'>

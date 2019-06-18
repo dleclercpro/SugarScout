@@ -7,6 +7,7 @@ const timeWindow = Math.max(...Time.SCALES) * 60 * 60 * 1000
 
 const getNow = (state) => state.time.now.getTime()
 const getBGs = (state) => state.data.bgs.data.bgs
+const getBasals = (state) => state.data.pump.data.basals
 const getNetBasals = (state) => state.data.treatments.data.netBasals
 const getBoluses = (state) => state.data.treatments.data.boluses
 const getISFs = (state) => state.data.pump.data.isfs
@@ -43,6 +44,11 @@ export const getCurrentBG = createSelector(
 export const getCurrentBGDelta = createSelector(
     [getBGs],
     bgs => bgs.length > 1 ? bgs[bgs.length - 1].value - bgs[bgs.length - 2].value : undefined
+)
+
+export const getCurrentBasal = createSelector(
+    [getNow, getBasals],
+    getCurrentItem
 )
 
 export const getCurrentISF = createSelector(

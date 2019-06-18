@@ -27,12 +27,17 @@
         }
         
         > .recent {
+            display: flex;
             order: 1;
             margin-bottom: 10px;
 
             @include mq(height, small) {
                 margin-bottom: 0;
                 margin-right: 15px;
+            }
+
+            @include mq(width, tablet) {
+                flex-direction: column;
             }
     
             @include mq(width, desktop) {
@@ -43,6 +48,11 @@
             > .bg {
                 display: flex;
                 align-items: center;
+                margin-right: 15px;
+
+                @include mq(width, tablet) {
+                    margin-right: 0;
+                }
 
                 &.very-low {
                     color: map-get(map-get($theme, bg), very-low);
@@ -123,13 +133,17 @@
                 }
             }
 
-            > .isf,
-            > .csf {
-                margin: 0;
-                font-size: 16px;
+            > .pump {
 
-                > .title {
-                    font-weight: bold;
+                > .basal,
+                > .isf,
+                > .csf {
+                    margin: 0;
+                    font-size: 16px;
+    
+                    > .title {
+                        font-weight: bold;
+                    }
                 }
             }
         }

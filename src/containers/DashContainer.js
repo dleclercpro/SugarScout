@@ -11,6 +11,7 @@ const mapStateToProps = (state) => ({
     bg: Selectors.getCurrentBG(state),
     dbg: Selectors.getCurrentBGDelta(state),
     bgTrend: Selectors.getCurrentBGTrend(state),
+    basal: Selectors.getCurrentBasal(state),
     isf: Selectors.getCurrentISF(state),
     csf: Selectors.getCurrentCSF(state),
 })
