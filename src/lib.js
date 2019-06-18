@@ -45,3 +45,11 @@ export const formatBasal = (basal) => {
 export const formatBolus = (bolus) => {
     return bolus.toFixed(1)
 }
+
+export const formatISF = (isf) => {
+    return isf.toFixed(1)
+}
+
+export const formatCSF = (csf) => {
+    return csf.toFixed(0)
+}

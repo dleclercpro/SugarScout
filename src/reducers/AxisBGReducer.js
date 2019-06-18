@@ -1,8 +1,9 @@
+import * as Units from 'constants/Units'
 import * as BG from 'constants/BG'
 import * as ActionTypes from 'constants/ActionTypes'
 
 const INIT_AXIS_BG_STATE = {
-    units: BG.UNITS,
+    units: Units.BG,
     scale: BG.AXIS_SCALE,
     range: [
         BG.AXIS_MIN_MMOL_L,

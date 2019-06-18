@@ -1,5 +1,3 @@
-export const UNITS = 'mmol/L'
-
 // Axis
 export const AXIS_SCALE = 'linear'
 export const AXIS_MIN_MMOL_L = 0

@@ -28,6 +28,7 @@ class App extends Component {
         this.props.actions.fetchBGData()
         this.props.actions.fetchPumpData()
         this.props.actions.fetchTreatmentData()
+        this.props.actions.fetchHistoryData()
         this.props.actions.updateLastFetch()
     }
 

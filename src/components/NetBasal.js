@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import * as Basal from 'constants/Basal'
+import * as Units from 'constants/Units'
 import * as lib from 'lib'
 import 'components/NetBasal.scss'
 
@@ -41,7 +41,7 @@ class NetBasal extends Component {
             time: this.props.time,
             info: {
                 value: lib.formatBasal(this.props.value),
-                units: Basal.UNITS,
+                units: Units.BASAL,
             },
             duration: {
                 value: Math.round(this.props.duration / 60 / 1000),

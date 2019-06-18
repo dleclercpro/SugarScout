@@ -9,6 +9,8 @@ const mapStateToProps = (state) => ({
     timeScales: state.time.scales,
     lastFetch: state.time.lastFetch,
     bgs: Selectors.getVisibleBGs(state),
+    isfs: state.data.pump.data.isfs,
+    csfs: state.data.pump.data.csfs,
 })
 
 const mapDispatchToProps = (dispatch) => ({

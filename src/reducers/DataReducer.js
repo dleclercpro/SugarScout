@@ -3,61 +3,79 @@ import * as Time from 'constants/Time'
 import * as ActionTypes from 'constants/ActionTypes'
 import * as lib from 'lib'
 
-const getBGsFromJSON = (json) => {
-    const data = json
-    
-    return Object.keys(data).reduce((BGs, t) => ([
-        ...BGs,
+const getTimedDataFromJSON = (json, format, callback = data => data) => {
+    return callback(Object.keys(json).reduce((data, t) => ([
+        ...data,
         {
-            time: moment(t, Time.FORMAT_LONG).valueOf(),
-            value: data[t],
+            time: moment(t, format).valueOf(),
+            value: json[t],
         }
     ]), [])
-    .sort(lib.compareEpochTimeData)
+    .sort(lib.compareEpochTimeData))
 }
 
-const getBasalsFromJSON = (json, profile = 'Standard') => {
-    const data = json['Basal Profile (' + profile + ')']
-
-    return Object.keys(data).reduce((basals, t) => ([
-        ...basals,
-        {
-            time: moment(t, Time.FORMAT_SHORT).valueOf(),
-            value: data[t],
-        }
-    ]), [])
-    .sort(lib.compareEpochTimeData)
-}
-
-const getNetBasalsFromJSON = (json) => {
-    const data = json['Net Basals']
-
-    return Object.keys(data).reduce((netBasals, t) => ([
-        ...netBasals,
-        {
-            time: moment(t, Time.FORMAT_LONG).valueOf(),
-            value: data[t],
-        }
-    ]), [])
-    .sort(lib.compareEpochTimeData)
-    .map((netBasal, i, netBasals) => ({
-        ...netBasal,
-        duration: i + 1 === netBasals.length ? 0 : netBasals[i + 1].time - netBasal.time,
+const addDurationsToTimedData = (data) => {
+    return data.map((element, i) => ({
+        ...element,
+        duration: i + 1 === data.length ? 0 : data[i + 1].time - element.time,
     }))
 }
 
-const getBolusesFromJSON = (json) => {
-    const data = json['Boluses']
+const getBGsFromJSON = (json) => getTimedDataFromJSON(
+    json,
+    Time.FORMAT_LONG
+)
 
-    return Object.keys(data).reduce((boluses, t) => ([
-        ...boluses,
-        {
-            time: moment(t, Time.FORMAT_LONG).valueOf(),
-            value: data[t],
-        }
-    ]), [])
-    .sort(lib.compareEpochTimeData)
-}
+const getBasalsFromJSON = (json, profile = 'Standard') => getTimedDataFromJSON(
+    json['Basal Profile (' + profile + ')'],
+    Time.FORMAT_SHORT
+)
+
+const getNetBasalsFromJSON = (json) => getTimedDataFromJSON(
+    json['Net Basals'],
+    Time.FORMAT_LONG,
+    addDurationsToTimedData
+)
+
+const getBolusesFromJSON = (json) => getTimedDataFromJSON(
+    json['Boluses'],
+    Time.FORMAT_LONG
+)
+
+const getIOBsFromJSON = (json) => getTimedDataFromJSON(
+    json['IOB'],
+    Time.FORMAT_LONG
+)
+
+const getISFsFromJSON = (json) => getTimedDataFromJSON(
+    json['ISF'],
+    Time.FORMAT_SHORT
+)
+
+const getCSFsFromJSON = (json) => getTimedDataFromJSON(
+    json['CSF'],
+    Time.FORMAT_SHORT
+)
+
+const getBGTargetsFromJSON = (json) => getTimedDataFromJSON(
+    json['BG Targets'],
+    Time.FORMAT_SHORT
+)
+
+const getPumpReservoirLevelsFromJSON = (json) => getTimedDataFromJSON(
+    json['Pump']['Reservoir Levels'],
+    Time.FORMAT_LONG
+)
+
+const getPumpBatteryLevelsFromJSON = (json) => getTimedDataFromJSON(
+    json['Pump']['Battery Levels'],
+    Time.FORMAT_LONG
+)
+
+const getCGMBatteryLevelsFromJSON = (json) => getTimedDataFromJSON(
+    json['CGM']['Battery Levels'],
+    Time.FORMAT_LONG
+)
 
 const INIT_DATA_SUBSTATE = {
     isFetching: false,
@@ -95,9 +113,13 @@ const INIT_DATA_STATE = {
     history: {
         ...INIT_DATA_SUBSTATE,
         data: {
-            pumpReservoirLevels: [],
-            pumpBatteryLevels: [],
-            cgmBatteryLevels: [],
+            pump: {
+                reservoir: [],
+                battery: [],
+            },
+            cgm: {
+                battery: [],
+            },
         },
     },
 }
@@ -107,6 +129,7 @@ const DataReducer = (state = INIT_DATA_STATE, action) => {
         case ActionTypes.FETCH_BG_DATA_REQUEST:
         case ActionTypes.FETCH_PUMP_DATA_REQUEST:
         case ActionTypes.FETCH_TREATMENT_DATA_REQUEST:
+        case ActionTypes.FETCH_HISTORY_DATA_REQUEST:
             return {
                 ...state,
                 [action.dataType]: {
@@ -119,6 +142,7 @@ const DataReducer = (state = INIT_DATA_STATE, action) => {
         case ActionTypes.FETCH_BG_DATA_FAILURE:
         case ActionTypes.FETCH_PUMP_DATA_FAILURE:
         case ActionTypes.FETCH_TREATMENT_DATA_FAILURE:
+        case ActionTypes.FETCH_HISTORY_DATA_FAILURE:
             return {
                 ...state,
                 [action.dataType]: {
@@ -148,9 +172,9 @@ const DataReducer = (state = INIT_DATA_STATE, action) => {
                     error: '',
                     data: {
                         basals: getBasalsFromJSON(action.data),
-                        bgTargets: [],
-                        isfs: [],
-                        csfs: [],
+                        bgTargets: getBGTargetsFromJSON(action.data),
+                        isfs: getISFsFromJSON(action.data),
+                        csfs: getCSFsFromJSON(action.data),
                     },
                 }
             }
@@ -162,9 +186,27 @@ const DataReducer = (state = INIT_DATA_STATE, action) => {
                     isFetching: false,
                     error: '',
                     data: {
-                        iobs: [],
+                        iobs: getIOBsFromJSON(action.data),
                         boluses: getBolusesFromJSON(action.data),
                         netBasals: getNetBasalsFromJSON(action.data),
+                    },
+                },
+            }
+
+        case ActionTypes.FETCH_HISTORY_DATA_SUCCESS:
+            return {
+                ...state,
+                history: {
+                    isFetching: false,
+                    error: '',
+                    data: {
+                        pump: {
+                            reservoir: getPumpReservoirLevelsFromJSON(action.data),
+                            battery: getPumpBatteryLevelsFromJSON(action.data),
+                        },
+                        cgm: {
+                            battery: getCGMBatteryLevelsFromJSON(action.data),
+                        },
                     },
                 },
             }

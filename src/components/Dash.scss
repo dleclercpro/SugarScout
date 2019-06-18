@@ -28,8 +28,6 @@
         
         > .recent {
             order: 1;
-            display: flex;
-            align-items: center;
             margin-bottom: 10px;
 
             @include mq(height, small) {
@@ -41,82 +39,97 @@
                 margin-bottom: 0;
                 padding: 0 30px;
             }
-    
-            &.very-low {
-                color: map-get(map-get($theme, bg), very-low);
-            }
-        
-            &.low {
-                color: map-get(map-get($theme, bg), low);
-            }
-        
-            &.normal {
-                color: map-get(map-get($theme, bg), normal);
-            }
-        
-            &.high {
-                color: map-get(map-get($theme, bg), high);
-            }
-        
-            &.very-high {
-                color: map-get(map-get($theme, bg), very-high);
-            }
-    
-            > .bg,
-            > .trend {
-                margin: 0;
-                color: inherit;
-                font-weight: 600;
-            }
-    
+
             > .bg {
-                font-size: 54px;
-    
-                @include mq(width, tablet) {
-                    font-size: 70px;
-                }
-    
-                @include mq(width, desktop) {
-                    
-                }
-    
-                @include mq(width, desktopXL) {
-                    font-size: 84px;
-                }
-            }
-    
-            > .trend {
                 display: flex;
                 align-items: center;
-                margin-left: 5px;
-    
-                > .arrow {
-                    font-size: 48px;
+
+                &.very-low {
+                    color: map-get(map-get($theme, bg), very-low);
+                }
+            
+                &.low {
+                    color: map-get(map-get($theme, bg), low);
+                }
+            
+                &.normal {
+                    color: map-get(map-get($theme, bg), normal);
+                }
+            
+                &.high {
+                    color: map-get(map-get($theme, bg), high);
+                }
+            
+                &.very-high {
+                    color: map-get(map-get($theme, bg), very-high);
+                }
+                
+                > .value,
+                > .trend {
+                    margin: 0;
                     color: inherit;
-                    margin-top: -6px;
-    
+                    font-weight: 600;
+                }
+        
+                > .value {
+                    font-size: 54px;
+        
                     @include mq(width, tablet) {
-                        font-size: 54px;
-                        margin-top: -10px;
+                        font-size: 70px;
+                    }
+        
+                    @include mq(width, desktop) {
+                        
                     }
         
                     @include mq(width, desktopXL) {
-                        font-size: 60px;
+                        font-size: 84px;
                     }
                 }
-    
-                > .delta {
-                    font-size: 24px;
-                    color: inherit;
+        
+                > .trend {
+                    display: flex;
+                    align-items: center;
                     margin-left: 5px;
-    
-                    @include mq(width, tablet) {
-                        font-size: 28px;
+        
+                    > .arrow {
+                        font-size: 48px;
+                        color: inherit;
+                        margin-top: -6px;
+        
+                        @include mq(width, tablet) {
+                            font-size: 54px;
+                            margin-top: -10px;
+                        }
+            
+                        @include mq(width, desktopXL) {
+                            font-size: 60px;
+                        }
                     }
         
-                    @include mq(width, desktopXL) {
-                        font-size: 32px;
+                    > .delta {
+                        font-size: 24px;
+                        color: inherit;
+                        margin-left: 5px;
+        
+                        @include mq(width, tablet) {
+                            font-size: 28px;
+                        }
+            
+                        @include mq(width, desktopXL) {
+                            font-size: 32px;
+                        }
                     }
+                }
+            }
+
+            > .isf,
+            > .csf {
+                margin: 0;
+                font-size: 16px;
+
+                > .title {
+                    font-weight: bold;
                 }
             }
         }

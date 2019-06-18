@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import * as Units from 'constants/Units'
 import * as bg from 'constants/BG'
 import * as lib from 'lib'
 import 'components/BG.scss'
@@ -25,7 +26,7 @@ class BG extends Component {
             time: this.props.time,
             info: {
                 value: lib.formatBG(this.props.value),
-                units: bg.UNITS,
+                units: Units.BG,
             },
         })
         this.props.actions.showBubble()

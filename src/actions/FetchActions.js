@@ -55,6 +55,24 @@ const fetchTreatmentDataSuccess = (dataType, data) => ({
     data,
 })
 
+// History data
+const fetchHistoryDataRequest = (dataType) => ({
+    type: ActionTypes.FETCH_HISTORY_DATA_REQUEST,
+    dataType,
+})
+
+const fetchHistoryDataFailure = (dataType, error) => ({
+    type: ActionTypes.FETCH_HISTORY_DATA_FAILURE,
+    dataType,
+    error,
+})
+
+const fetchHistoryDataSuccess = (dataType, data) => ({
+    type: ActionTypes.FETCH_HISTORY_DATA_SUCCESS,
+    dataType,
+    data,
+})
+
 // Fetch helpers
 const getFetchActions = (dataType) => {
     switch (dataType) {
@@ -66,6 +84,9 @@ const getFetchActions = (dataType) => {
 
         case DataTypes.TREATMENT:
             return [fetchTreatmentDataRequest, fetchTreatmentDataFailure, fetchTreatmentDataSuccess]
+
+        case DataTypes.HISTORY:
+            return [fetchHistoryDataRequest, fetchHistoryDataFailure, fetchHistoryDataSuccess]
 
         default:
             throw new Error('Fetching this data type not yet implemented.')
@@ -95,7 +116,7 @@ export const fetchBGData = () => ((dispatch) => (
     )
 ))
 
-export const fetchPumpData = (profile = 'Standard') => ((dispatch) => (
+export const fetchPumpData = () => ((dispatch) => (
     fetchData(dispatch,
         DataTypes.PUMP,
         'reports/pump.json'
@@ -106,5 +127,12 @@ export const fetchTreatmentData = () => ((dispatch) => (
     fetchData(dispatch,
         DataTypes.TREATMENT,
         'reports/treatments.json'
+    )
+))
+
+export const fetchHistoryData = () => ((dispatch) => (
+    fetchData(dispatch,
+        DataTypes.HISTORY,
+        'reports/history.json'
     )
 ))

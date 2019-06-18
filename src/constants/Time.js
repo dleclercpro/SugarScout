@@ -1,4 +1,3 @@
-export const UNITS = 'h'
 export const NOW = null
 export const N_HOURS_PER_DAY = 24
 

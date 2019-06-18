@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import * as bolus from 'constants/Bolus'
+import * as Units from 'constants/Units'
 import * as lib from 'lib'
 import 'components/Bolus.scss'
 
@@ -25,7 +25,7 @@ class Bolus extends Component {
             time: this.props.time,
             info: {
                 value: lib.formatBolus(this.props.value),
-                units: bolus.UNITS,
+                units: Units.BOLUS,
             },
         })
         this.props.actions.showBubble()
