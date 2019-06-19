@@ -8,12 +8,21 @@ const mapStateToProps = (state) => ({
     now: state.time.now,
     timeScales: state.time.scales,
     lastFetch: state.time.lastFetch,
-    bg: Selectors.getCurrentBG(state),
+    bg: Selectors.getCurrentBG(state).value,
     dbg: Selectors.getCurrentBGDelta(state),
     bgTrend: Selectors.getCurrentBGTrend(state),
-    basal: Selectors.getCurrentBasal(state),
-    isf: Selectors.getCurrentISF(state),
-    csf: Selectors.getCurrentCSF(state),
+    basal: Selectors.getCurrentBasal(state).value,
+    isf: Selectors.getCurrentISF(state).value,
+    csf: Selectors.getCurrentCSF(state).value,
+    iob: Selectors.getCurrentIOB(state).value,
+    cob: Selectors.getCurrentCOB(state).value,
+    reservoir: Selectors.getCurrentReservoirLevel(state).value,
+    battery: {
+        pump: Selectors.getCurrentPumpBatteryLevel(state).value,
+        cgm: Selectors.getCurrentCGMBatteryLevel(state).value,
+    },
+    sage: 0,
+    cage: 0,
 })
 
 const mapDispatchToProps = (dispatch) => ({

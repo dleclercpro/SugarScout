@@ -30,26 +30,16 @@ export const convertEpochToFormatTime = (epoch, format = Time.FORMAT_LONG) => {
     return moment(epoch).format(format)
 }
 
-export const formatBG = (bg) => {
-    return bg.toFixed(1)
-}
-
-export const formatBGDelta = (dbg) => {
-    return dbg >= 0 ? '+' + formatBG(dbg) : formatBG(dbg)
-}
-
-export const formatBasal = (basal) => {
-    return basal.toFixed(2)
-}
-
-export const formatBolus = (bolus) => {
-    return bolus.toFixed(1)
-}
-
-export const formatISF = (isf) => {
-    return isf.toFixed(1)
-}
-
-export const formatCSF = (csf) => {
-    return csf.toFixed(0)
-}
+export const formatBG = bg => bg.toFixed(1)
+export const formatdBG = dbg => dbg >= 0 ? '+' + formatBG(dbg) : formatBG(dbg)
+export const formatBasal = basal => basal.toFixed(2)
+export const formatBolus = bolus => bolus.toFixed(1)
+export const formatISF = isf => isf.toFixed(1)
+export const formatCSF = csf => csf.toFixed(0)
+export const formatIOB = iob => iob.toFixed(1)
+export const formatCOB = cob => cob.toFixed(0)
+export const formatReservoir = reservoir => reservoir.toFixed(1)
+export const formatPumpBattery = battery => battery.toFixed(2)
+export const formatCGMBattery = battery => battery.toFixed(0)
+export const formatSAGE = age => age.toFixed(0)
+export const formatCAGE = age => age.toFixed(0)

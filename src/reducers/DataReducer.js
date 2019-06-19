@@ -105,9 +105,10 @@ const INIT_DATA_STATE = {
     treatments: {
         ...INIT_DATA_SUBSTATE,
         data: {
-            iobs: [],
             boluses: [],
             netBasals: [],
+            iobs: [],
+            cobs: [],
         },
     },
     history: {
@@ -186,9 +187,10 @@ const DataReducer = (state = INIT_DATA_STATE, action) => {
                     isFetching: false,
                     error: '',
                     data: {
-                        iobs: getIOBsFromJSON(action.data),
                         boluses: getBolusesFromJSON(action.data),
                         netBasals: getNetBasalsFromJSON(action.data),
+                        iobs: getIOBsFromJSON(action.data),
+                        cobs: [],
                     },
                 },
             }

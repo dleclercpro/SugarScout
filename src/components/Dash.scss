@@ -28,8 +28,9 @@
         
         > .recent {
             display: flex;
+            flex-direction: column;
             order: 1;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
 
             @include mq(height, small) {
                 margin-bottom: 0;
@@ -37,7 +38,7 @@
             }
 
             @include mq(width, tablet) {
-                flex-direction: column;
+                flex-direction: row;
             }
     
             @include mq(width, desktop) {
@@ -47,11 +48,14 @@
 
             > .bg {
                 display: flex;
+                justify-content: center;
                 align-items: center;
-                margin-right: 15px;
+                margin-bottom: 5px;
 
                 @include mq(width, tablet) {
-                    margin-right: 0;
+                    justify-content: flex-start;
+                    margin-bottom: 0;
+                    margin-right: 35px;
                 }
 
                 &.very-low {
@@ -133,16 +137,39 @@
                 }
             }
 
-            > .pump {
+            > .general {
 
-                > .basal,
-                > .isf,
-                > .csf {
+                @include mq(height, small) {
+                    display: none;
+                }
+
+                p {
                     margin: 0;
                     font-size: 16px;
+
+                    &:not(:last-child) {
+                        margin-right: 12px;
+                    }
     
                     > .title {
                         font-weight: bold;
+                    }
+                }
+
+                > .insulin,
+                > .on-board,
+                > .factors,
+                > .age,
+                > .battery {
+                    display: flex;
+                    justify-content: center;
+
+                    &:not(:last-child) {
+                        margin-bottom: 5px;
+                    }
+
+                    @include mq(width, tablet) {
+                        justify-content: flex-start;
                     }
                 }
             }

@@ -6,64 +6,115 @@ import * as Time from 'constants/Time'
 import * as lib from 'lib'
 import 'components/Dash.scss'
 
-const Dash = (props) => {
-    const currentBG = props.bg ? props.bg.value : -1
-    const currentdBG = props.dbg ? props.dbg : 0
-    const currentBasal = props.basal ? props.basal.value : -1
-    const currentISF = props.isf ? props.isf.value : -1
-    const currentCSF = props.csf ? props.csf.value : -1
-
-    return (
-        <section className='dash'>
-            <div className='wrapper'>
-                <div className='recent'>
-                    <div className={`bg ${getType(currentBG)}`}>
-                        <p className='value'>{lib.formatBG(currentBG)}</p>
-                        <p className='trend'>
-                            <span className='arrow'>{props.bgTrend}</span>
-                            <span className='delta'>({lib.formatBGDelta(currentdBG)})</span>
-                        </p>
-                    </div>
-                    <div className='pump'>
+const Dash = (props) => (
+    <section className='dash'>
+        <div className='wrapper'>
+            <div className='recent'>
+                <div className={`bg ${getType(props.bg)}`}>
+                    <p className='value'>{lib.formatBG(props.bg)}</p>
+                    <p className='trend'>
+                        <span className='arrow'>{props.bgTrend}</span>
+                        <span className='delta'>({lib.formatdBG(props.dbg)})</span>
+                    </p>
+                </div>
+                <div className='general'>
+                    <div className='insulin'>
                         <p className='basal'>
                             <span className='title'>Basal:</span>
                             {' '}
-                            {lib.formatBasal(currentBasal)}
+                            {lib.formatBasal(props.basal)}
                             {' '}
                             {Units.BASAL}
                         </p>
+                        <p className='reservoir'>
+                            <span className='title'>R:</span>
+                            {' '}
+                            {lib.formatReservoir(props.reservoir)}
+                            {' '}
+                            {Units.RESERVOIR}
+                        </p>
+                    </div>
+                    <div className='on-board'>
+                        <p className='iob'>
+                            <span className='title'>IOB:</span>
+                            {' '}
+                            {lib.formatIOB(props.iob)}
+                            {' '}
+                            {Units.IOB}
+                        </p>
+                        <p className='cob'>
+                            <span className='title'>COB:</span>
+                            {' '}
+                            {lib.formatCOB(props.cob)}
+                            {' '}
+                            {Units.COB}
+                        </p>
+                    </div>
+                    <div className='factors'>
                         <p className='isf'>
                             <span className='title'>ISF:</span>
                             {' '}
-                            {lib.formatISF(currentISF)}
+                            {lib.formatISF(props.isf)}
                             {' '}
                             {Units.ISF}
                         </p>
                         <p className='csf'>
                             <span className='title'>CSF:</span>
                             {' '}
-                            {lib.formatCSF(currentCSF)}
+                            {lib.formatCSF(props.csf)}
                             {' '}
                             {Units.CSF}
                         </p>
                     </div>
-                </div>
-                <div className='time'>
-                    <div className='clock'>
-                        {lib.convertEpochToFormatTime(props.now.getTime(), Time.FORMAT_SHORT)}
+                    <div className='age'>
+                        <p className='sage'>
+                            <span className='title'>SAGE:</span>
+                            {' '}
+                            {lib.formatSAGE(props.sage)}
+                            {' '}
+                            {Units.SENSOR_AGE}
+                        </p>
+                        <p className='cage'>
+                            <span className='title'>CAGE:</span>
+                            {' '}
+                            {lib.formatCAGE(props.cage)}
+                            {' '}
+                            {Units.CANULA_AGE}
+                        </p>
                     </div>
-                    <div className='last-fetch'>
-                        {lib.convertEpochToFormatTime(props.lastFetch.getTime(), Time.FORMAT_SHORT)}
-                    </div>
-                    <div className='buttons-timescale'>
-                        {props.timeScales.map((scale, index) => (
-                            <ButtonTimeScaleContainer key={index} value={scale} />
-                        ))}
+                    <div className='battery'>
+                        <p className='pump'>
+                            <span className='title'>Pump Battery:</span>
+                            {' '}
+                            {lib.formatPumpBattery(props.battery.pump)}
+                            {' '}
+                            {Units.PUMP_BATTERY}
+                        </p>
+                        <p className='cgm'>
+                            <span className='title'>CGM Battery:</span>
+                            {' '}
+                            {lib.formatCGMBattery(props.battery.cgm)}
+                            {' '}
+                            {Units.CGM_BATTERY}
+                        </p>
                     </div>
                 </div>
             </div>
-        </section>
-    )
-}
+            <div className='time'>
+                <div className='clock'>
+                    {lib.convertEpochToFormatTime(props.now.getTime(), Time.FORMAT_SHORT)}
+                </div>
+                <div className='last-fetch'>
+                    {lib.convertEpochToFormatTime(props.lastFetch.getTime(), Time.FORMAT_SHORT)}
+                </div>
+                <div className='buttons-timescale'>
+                    {props.timeScales.map((scale, index) => (
+                        <ButtonTimeScaleContainer key={index} value={scale} />
+                    ))}
+                </div>
+            </div>
+        </div>
+    </section>
+)
 
 export default Dash
