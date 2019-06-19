@@ -73,6 +73,13 @@
                 &.very-high {
                     color: map-get(map-get($theme, bg), very-high);
                 }
+
+                &.is-expired {
+
+                    > .value {
+                        text-decoration: line-through;
+                    }
+                }
                 
                 > .value,
                 > .trend {
@@ -160,13 +167,21 @@
                     &:not(:last-child) {
                         margin-right: 12px;
                     }
+                    
+                    > .title,
+                    > .value {
+                        font-size: inherit;
+                    }
     
                     > .title {
                         font-weight: bold;
-                        font-size: inherit;
+                    }
 
-                        @include mq(width, tablet) {
-                            font-size: inherit;
+                    &.is-expired {
+
+                        > .value {
+                            text-decoration: line-through;
+                            color: map-get(map-get($theme, font), expired);
                         }
                     }
                 }
@@ -233,7 +248,7 @@
                     transform: translate(0, -50%);
                     display: block;
                     content: '';
-                    background-image: url('fetching.svg');
+                    background-image: url('icon-fetching.svg');
                     background-repeat: no-repeat;
                     width: 18px;
                     height: 18px;

@@ -24,12 +24,12 @@
 
     &:hover {
         cursor: pointer;
-        border: 3px solid $color-white;
+        border: 3px solid map-get(map-get($theme, font), normal);
     }
 
     &.is-active {
-        background: map-get($theme, font);
-        border: 3px solid $color-white;
+        background: map-get(map-get($theme, font), normal);
+        border: 3px solid map-get(map-get($theme, font), normal);
         color: map-get($theme, background);
     }
 }

@@ -11,8 +11,10 @@ $breakpoints: (
     ),
 );
 
+
 // FONTS
 $font: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
 
 // COLORS
 $color-black: #000000;
@@ -28,10 +30,14 @@ $color-green: #99e500;
 $color-blue: #0025dd;
 $color-transparent-black: rgba(0, 0, 0, 0.8);
 
+
 // THEMES
 $light-theme: (
     background: $color-white,
-    font: $color-black,
+    font: (
+        normal: $color-black,
+        expired: $color-grey,
+    ),
     ticks: 1px dashed $color-black,
     bubble: (
         background: $color-white,
@@ -46,13 +52,16 @@ $light-theme: (
     ),
     basal: (
         background: $color-purple,
-        border: $color-black,
     ),
-    bolus: $color-blue,
+    bolus: $color-black,
 );
+
 $dark-theme: (
     background: $color-deep-black,
-    font: $color-white,
+    font: (
+        normal: $color-white,
+        expired: $color-grey,
+    ),
     ticks: 1px dashed $color-white,
     bubble: (
         background: $color-transparent-black,
@@ -67,36 +76,42 @@ $dark-theme: (
     ),
     basal: (
         background: $color-purple,
-        border: 1px solid $color-black,
     ),
     bolus: $color-blue,
 );
 
+
 // CHOSEN THEME
 $theme: $dark-theme;
 
+
 // SIZES
 $size-font: 16px;
+
 $size-axes: (
     time: 16px,
     bg: 18px,
     basal: 18px,
 );
+
 $size-axes-tablet: (
     time: 18px,
     bg: 20px,
     basal: 20px,
 );
+
 $size-axes-desktop: (
     time: 23px,
     bg: 24px,
     basal: 24px,
 );
+
 $size-axes-desktop-xl: (
     time: 25px,
     bg: 27px,
     basal: 27px,
 );
+
 
 // RATIOS
 $ratio-dash: 0.25;

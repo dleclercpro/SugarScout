@@ -7,34 +7,37 @@ import * as dash from 'constants/Dash'
 import * as lib from 'lib'
 import 'components/Dash.scss'
 
-const getPropOrDefault = (prop, def) => prop ? prop.getValue() : def.getValue()
+const getPropOrDef = (prop, def) => prop ? prop : def
 
 const Dash = (props) => {
-    const bg = getPropOrDefault(props.bg, dash.DEFAULT_BG)
-    const dbg = getPropOrDefault(props.dbg, dash.DEFAULT_DBG)
-    const bgTrend = getPropOrDefault(props.bgTrend, dash.DEFAULT_BG_TREND)
-    const basal = getPropOrDefault(props.basal, dash.DEFAULT_BASAL)
-    const reservoir = getPropOrDefault(props.reservoir, dash.DEFAULT_RESERVOIR)
-    const iob = getPropOrDefault(props.iob, dash.DEFAULT_IOB)
-    const cob = getPropOrDefault(props.cob, dash.DEFAULT_COB)
-    const isf = getPropOrDefault(props.isf, dash.DEFAULT_ISF)
-    const csf = getPropOrDefault(props.csf, dash.DEFAULT_CSF)
-    const sage = getPropOrDefault(props.sage, dash.DEFAULT_SENSOR_AGE)
-    const cage = getPropOrDefault(props.cage, dash.DEFAULT_CANULA_AGE)
+    const bg = getPropOrDef(props.bg, dash.DEFAULT_BG)
+    const dbg = getPropOrDef(props.dbg, dash.DEFAULT_DBG)
+    const bgTrend = getPropOrDef(props.bgTrend, dash.DEFAULT_BG_TREND)
+    const basal = getPropOrDef(props.basal, dash.DEFAULT_BASAL)
+    const reservoir = getPropOrDef(props.reservoir, dash.DEFAULT_RESERVOIR)
+    const iob = getPropOrDef(props.iob, dash.DEFAULT_IOB)
+    const cob = getPropOrDef(props.cob, dash.DEFAULT_COB)
+    const isf = getPropOrDef(props.isf, dash.DEFAULT_ISF)
+    const csf = getPropOrDef(props.csf, dash.DEFAULT_CSF)
+    const sage = getPropOrDef(props.sage, dash.DEFAULT_SENSOR_AGE)
+    const cage = getPropOrDef(props.cage, dash.DEFAULT_CANULA_AGE)
     const battery = {
-        pump: getPropOrDefault(props.battery.pump, dash.DEFAULT_PUMP_BATTERY),
-        cgm: getPropOrDefault(props.battery.cgm, dash.DEFAULT_CGM_BATTERY),
+        pump: getPropOrDef(props.battery.pump, dash.DEFAULT_PUMP_BATTERY),
+        cgm: getPropOrDef(props.battery.cgm, dash.DEFAULT_CGM_BATTERY),
     }
+
+    const currentTime = props.now.getTime()
+    const getAgeType = (time, maxAge) => time < currentTime - maxAge ? 'is-expired' : ''
 
     return (
         <section className='dash'>
             <div className='wrapper'>
                 <div className='recent'>
-                <div className={`bg ${getType(bg)}`}>
-                        <p className='value'>{lib.formatBG(bg)}</p>
+                    <div className={`bg ${getType(bg.getValue())} ${getAgeType(bg.getTime(), Time.MAX_AGE_BG)}`}>
+                        <p className='value'>{lib.formatBG(bg.getValue())}</p>
                         <p className='trend'>
-                            <span className='arrow'>{bgTrend}</span>
-                            <span className='delta'>({lib.formatdBG(dbg)})</span>
+                            <span className='arrow'>{bgTrend.getValue()}</span>
+                            <span className='delta'>({lib.formatdBG(dbg.getValue())})</span>
                         </p>
                     </div>
                     <div className='general'>
@@ -42,87 +45,107 @@ const Dash = (props) => {
                             <p className='basal'>
                                 <span className='title'>Basal:</span>
                                 {' '}
-                                {lib.formatBasal(basal)}
-                                {' '}
-                                {Units.BASAL}
+                                <span className='value'>
+                                    {lib.formatBasal(basal.getValue())}
+                                    {' '}
+                                    {Units.BASAL}
+                                </span>
                             </p>
-                            <p className='reservoir'>
+                            <p className={`reservoir ${getAgeType(reservoir.getTime(), Time.MAX_AGE_RESERVOIR)}`}>
                                 <span className='title'>R:</span>
                                 {' '}
-                                {lib.formatReservoir(reservoir)}
-                                {' '}
-                                {Units.RESERVOIR}
+                                <span className='value'>
+                                    {lib.formatReservoir(reservoir.getValue())}
+                                    {' '}
+                                    {Units.RESERVOIR}
+                                </span>
                             </p>
                         </div>
                         <div className='on-board'>
-                            <p className='iob'>
+                            <p className={`iob ${getAgeType(iob.getTime(), Time.MAX_AGE_IOB)}`}>
                                 <span className='title'>IOB:</span>
                                 {' '}
-                                {lib.formatIOB(iob)}
-                                {' '}
-                                {Units.IOB}
+                                <span className='value'>
+                                    {lib.formatIOB(iob.getValue())}
+                                    {' '}
+                                    {Units.IOB}
+                                </span>
                             </p>
-                            <p className='cob'>
+                            <p className={`cob ${getAgeType(cob.getTime(), Time.MAX_AGE_COB)}`}>
                                 <span className='title'>COB:</span>
                                 {' '}
-                                {lib.formatCOB(cob)}
-                                {' '}
-                                {Units.COB}
+                                <span className='value'>
+                                    {lib.formatCOB(cob.getValue())}
+                                    {' '}
+                                    {Units.COB}
+                                </span>
                             </p>
                         </div>
                         <div className='factors'>
                             <p className='isf'>
                                 <span className='title'>ISF:</span>
                                 {' '}
-                                {lib.formatISF(isf)}
-                                {' '}
-                                {Units.ISF}
+                                <span className='value'>
+                                    {lib.formatISF(isf.getValue())}
+                                    {' '}
+                                    {Units.ISF}
+                                </span>
                             </p>
                             <p className='csf'>
                                 <span className='title'>CSF:</span>
                                 {' '}
-                                {lib.formatCSF(csf)}
-                                {' '}
-                                {Units.CSF}
+                                <span className='value'>
+                                    {lib.formatCSF(csf.getValue())}
+                                    {' '}
+                                    {Units.CSF}
+                                </span>
                             </p>
                         </div>
                         <div className='age'>
-                            <p className='sage'>
+                            <p className={`sage ${getAgeType(sage.getTime(), Time.MAX_AGE_SAGE)}`}>
                                 <span className='title'>SAGE:</span>
                                 {' '}
-                                {lib.formatSAGE(sage)}
-                                {' '}
-                                {Units.SENSOR_AGE}
+                                <span className='value'>
+                                    {lib.formatSAGE(sage.getValue())}
+                                    {' '}
+                                    {Units.SENSOR_AGE}
+                                </span>
                             </p>
-                            <p className='cage'>
+                            <p className={`cage ${getAgeType(cage.getTime(), Time.MAX_AGE_CAGE)}`}>
                                 <span className='title'>CAGE:</span>
                                 {' '}
-                                {lib.formatCAGE(cage)}
-                                {' '}
-                                {Units.CANULA_AGE}
+                                <span className='value'>
+                                    {lib.formatCAGE(cage.getValue())}
+                                    {' '}
+                                    {Units.CANULA_AGE}
+                                </span>
                             </p>
                         </div>
                         <div className='battery'>
-                            <p className='pump'>
+                            <p className={`pump ${getAgeType(battery.pump.getTime(), Time.MAX_AGE_PUMP_BATTERY)}`}>
                                 <span className='title'>Pump Battery:</span>
                                 {' '}
-                                {lib.formatPumpBattery(battery.pump)}
-                                {' '}
-                                {Units.PUMP_BATTERY}
+                                <span className='value'>
+                                    {lib.formatPumpBattery(battery.pump.getValue())}
+                                    {' '}
+                                    {Units.PUMP_BATTERY}
+                                </span>
                             </p>
-                            <p className='cgm'>
+                            <p className={`cgm ${getAgeType(battery.cgm.getTime(), Time.MAX_AGE_CGM_BATTERY)}`}>
                                 <span className='title'>CGM Battery:</span>
                                 {' '}
-                                {lib.formatCGMBattery(battery.cgm)}
-                                {' '}
-                                {Units.CGM_BATTERY}
+                                <span className='value'>
+                                    {lib.formatCGMBattery(battery.cgm.getValue())}
+                                    {' '}
+                                    {Units.CGM_BATTERY}
+                                </span>
                             </p>
                         </div>
                     </div>
                 </div>
                 <div className='time'>
                     <div className='clock'>
-                        {lib.convertEpochToFormatTime(props.now.getTime(), Time.FORMAT_SHORT)}
+                        {lib.convertEpochToFormatTime(currentTime, Time.FORMAT_SHORT)}
                     </div>
                     <div className='last-fetch'>
                         {lib.convertEpochToFormatTime(props.lastFetch.getTime(), Time.FORMAT_SHORT)}
