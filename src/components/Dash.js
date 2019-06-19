@@ -7,7 +7,7 @@ import * as dash from 'constants/Dash'
 import * as lib from 'lib'
 import 'components/Dash.scss'
 
-const getPropOrDefault = (prop, def) => prop ? prop.value : def.value
+const getPropOrDefault = (prop, def) => prop ? prop.getValue() : def.getValue()
 
 const Dash = (props) => {
     const bg = getPropOrDefault(props.bg, dash.DEFAULT_BG)

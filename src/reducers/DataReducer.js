@@ -1,78 +1,79 @@
 import moment from 'moment'
 import * as Time from 'constants/Time'
+import * as DataTypes from 'constants/DataTypes'
 import * as ActionTypes from 'constants/ActionTypes'
 import * as lib from 'lib'
 
-const getTimedDataFromJSON = (json, format, callback = data => data) => {
-    return callback(Object.keys(json).reduce((data, t) => ([
+const getTimeDataFromJSON = (json, format, callback = x => x) => {
+    const timeData = Object.keys(json).reduce((data, t) => ([
         ...data,
-        {
-            time: moment(t, format).valueOf(),
-            value: json[t],
-        }
+        new DataTypes.TimeData( json[t], moment(t, format).valueOf() )
     ]), [])
-    .sort(lib.compareEpochTimeData))
+    .sort(lib.compareTimeData)
+
+    return callback(timeData)
 }
 
-const addDurationsToTimedData = (data) => {
-    return data.map((element, i) => ({
-        ...element,
-        duration: i + 1 === data.length ? 0 : data[i + 1].time - element.time,
-    }))
+const addDurationsToTimeData = (values) => {
+    values.forEach((value, i) => {
+        value.setDuration(i + 1 === values.length ? 0 : values[i + 1].getTime() - value.getTime())
+    })
+    
+    return values
 }
 
-const getBGsFromJSON = (json) => getTimedDataFromJSON(
+const getBGsFromJSON = (json) => getTimeDataFromJSON(
     json,
     Time.FORMAT_LONG
 )
 
-const getBasalsFromJSON = (json, profile = 'Standard') => getTimedDataFromJSON(
+const getBasalsFromJSON = (json, profile = 'Standard') => getTimeDataFromJSON(
     json['Basal Profile (' + profile + ')'],
     Time.FORMAT_SHORT
 )
 
-const getNetBasalsFromJSON = (json) => getTimedDataFromJSON(
+const getNetBasalsFromJSON = (json) => getTimeDataFromJSON(
     json['Net Basals'],
     Time.FORMAT_LONG,
-    addDurationsToTimedData
+    addDurationsToTimeData
 )
 
-const getBolusesFromJSON = (json) => getTimedDataFromJSON(
+const getBolusesFromJSON = (json) => getTimeDataFromJSON(
     json['Boluses'],
     Time.FORMAT_LONG
 )
 
-const getIOBsFromJSON = (json) => getTimedDataFromJSON(
+const getIOBsFromJSON = (json) => getTimeDataFromJSON(
     json['IOB'],
     Time.FORMAT_LONG
 )
 
-const getISFsFromJSON = (json) => getTimedDataFromJSON(
+const getISFsFromJSON = (json) => getTimeDataFromJSON(
     json['ISF'],
     Time.FORMAT_SHORT
 )
 
-const getCSFsFromJSON = (json) => getTimedDataFromJSON(
+const getCSFsFromJSON = (json) => getTimeDataFromJSON(
     json['CSF'],
     Time.FORMAT_SHORT
 )
 
-const getBGTargetsFromJSON = (json) => getTimedDataFromJSON(
+const getBGTargetsFromJSON = (json) => getTimeDataFromJSON(
     json['BG Targets'],
     Time.FORMAT_SHORT
 )
 
-const getPumpReservoirLevelsFromJSON = (json) => getTimedDataFromJSON(
+const getPumpReservoirLevelsFromJSON = (json) => getTimeDataFromJSON(
     json['Pump']['Reservoir Levels'],
     Time.FORMAT_LONG
 )
 
-const getPumpBatteryLevelsFromJSON = (json) => getTimedDataFromJSON(
+const getPumpBatteryLevelsFromJSON = (json) => getTimeDataFromJSON(
     json['Pump']['Battery Levels'],
     Time.FORMAT_LONG
 )
 
-const getCGMBatteryLevelsFromJSON = (json) => getTimedDataFromJSON(
+const getCGMBatteryLevelsFromJSON = (json) => getTimeDataFromJSON(
     json['CGM']['Battery Levels'],
     Time.FORMAT_LONG
 )

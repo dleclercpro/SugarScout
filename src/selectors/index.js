@@ -1,9 +1,15 @@
 import { createSelector } from 'reselect'
+import * as DataTypes from 'constants/DataTypes'
 import * as Time from 'constants/Time'
 import * as BG from 'constants/BG'
 import * as lib from 'lib'
 
-const getNow = (state) => state.time.now.getTime()
+
+// Time
+const getCurrentTime = (state) => state.time.now.getTime()
+
+
+// Data
 const getBGs = (state) => state.data.bgs.data.bgs
 const getBasals = (state) => state.data.pump.data.basals
 const getNetBasals = (state) => state.data.treatments.data.netBasals
@@ -19,13 +25,13 @@ const getCGMBatteryLevels = (state) => state.data.history.data.cgm.battery
 
 // Helpers
 const getVisibleItems = (now, items, window = Time.WINDOW) => {
-    return items.filter(item => item.time >= now - window)
+    return items.filter(item => item.getTime() >= now - window)
 }
 
 const getCurrentHourlyBracket = (now, brackets) => {
     return brackets
-        .filter(bracket => bracket.time <= now)
-        .reduce((prevBracket, bracket) => prevBracket.time > bracket.time ? prevBracket : bracket, brackets[0])
+        .filter(bracket => bracket.getTime() <= now)
+        .reduce((prevBracket, bracket) => prevBracket.getTime() > bracket.getTime() ? prevBracket : bracket, brackets[0])
 }
 
 const getLastItem = (items) => {
@@ -34,16 +40,16 @@ const getLastItem = (items) => {
 
 
 // Visible items
-export const getVisibleBGs = createSelector([getNow, getBGs], getVisibleItems)
-export const getVisibleNetBasals = createSelector([getNow, getNetBasals], getVisibleItems)
-export const getVisibleBoluses = createSelector([getNow, getBoluses], getVisibleItems)
-export const getVisibleIOBs = createSelector([getNow, getIOBs], getVisibleItems)
+export const getVisibleBGs = createSelector([getCurrentTime, getBGs], getVisibleItems)
+export const getVisibleNetBasals = createSelector([getCurrentTime, getNetBasals], getVisibleItems)
+export const getVisibleBoluses = createSelector([getCurrentTime, getBoluses], getVisibleItems)
+export const getVisibleIOBs = createSelector([getCurrentTime, getIOBs], getVisibleItems)
 
 
 // Current bracket
-export const getCurrentBasal = createSelector([getNow, getBasals], getCurrentHourlyBracket)
-export const getCurrentISF = createSelector([getNow, getISFs], getCurrentHourlyBracket)
-export const getCurrentCSF = createSelector([getNow, getCSFs], getCurrentHourlyBracket)
+export const getCurrentBasal = createSelector([getCurrentTime, getBasals], getCurrentHourlyBracket)
+export const getCurrentISF = createSelector([getCurrentTime, getISFs], getCurrentHourlyBracket)
+export const getCurrentCSF = createSelector([getCurrentTime, getCSFs], getCurrentHourlyBracket)
 
 
 // Last items
@@ -62,11 +68,11 @@ export const getCurrentBGDelta = createSelector(
     [getBGs],
     bgs => {
         if(bgs.length > 1) {
-            return {
-                time: -1,
-                value: bgs[bgs.length - 1].value - bgs[bgs.length - 2].value,
-            }
+            return new DataTypes.TimeData(
+                bgs[bgs.length - 1].getValue() - bgs[bgs.length - 2].getValue()
+            )
         }
+
         return undefined
     }
 )
@@ -78,52 +84,31 @@ export const getCurrentBGTrend = createSelector(
         const dBGdt = nBGs >= BG.N_BGS_TREND ? lib.getLinearRegressionByLeastSquares(bgs.slice(nBGs - BG.N_BGS_TREND))[0] : undefined
     
         if (dBGdt < BG.TREND_DOUBLE_90_DOWN_MMOL_L_M) {
-            return {
-                time: -1,
-                value: '↓↓',
-            }
+            return new DataTypes.TimeData('↓↓')
         }
     
         if (BG.TREND_DOUBLE_90_DOWN_MMOL_L_M <= dBGdt && dBGdt < BG.TREND_90_DOWN_MMOL_L_M) {
-            return {
-                time: -1,
-                value: '↓',
-            }
+            return new DataTypes.TimeData('↓')
         }
     
         if (BG.TREND_90_DOWN_MMOL_L_M <= dBGdt && dBGdt < BG.TREND_45_DOWN_MMOL_L_M) {
-            return {
-                time: -1,
-                value: '↘',
-            }
+            return new DataTypes.TimeData('↘')
         }
     
         if (BG.TREND_45_DOWN_MMOL_L_M <= dBGdt && dBGdt < BG.TREND_45_UP_MMOL_L_M) {
-            return {
-                time: -1,
-                value: '→',
-            }
+            return new DataTypes.TimeData('→')
         }
     
         if (BG.TREND_45_UP_MMOL_L_M <= dBGdt && dBGdt < BG.TREND_90_UP_MMOL_L_M) {
-            return {
-                time: -1,
-                value: '↗',
-            }
+            return new DataTypes.TimeData('↗')
         }
     
         if (BG.TREND_90_UP_MMOL_L_M <= dBGdt && dBGdt < BG.TREND_DOUBLE_90_UP_MMOL_L_M) {
-            return {
-                time: -1,
-                value: '↑',
-            }
+            return new DataTypes.TimeData('↑')
         }
     
         if (BG.TREND_DOUBLE_90_UP_MMOL_L_M <= dBGdt) {
-            return {
-                time: -1,
-                value: '↑↑',
-            }
+            return new DataTypes.TimeData('↑↑')
         }
 
         return undefined

@@ -28,7 +28,7 @@ class InnerBG extends Component {
             <div ref={this.node} className='inner inner--bg'>
                 <svg width={this.props.width} height={this.props.height} viewBox={`0 0 ${this.props.width} ${this.props.height}`}>
                     {this.props.bgs.map((bg, index) => (
-                        <BGContainer key={index} time={bg.time} value={bg.value} />
+                        <BGContainer key={index} time={bg.getTime()} value={bg.getValue()} />
                     ))}
                 </svg>
             </div>

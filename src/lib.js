@@ -20,9 +20,15 @@ export const getLinearRegressionByLeastSquares = (array) => {
     return [m, b]
 }
 
-export const compareEpochTimeData = (a, b) => {
-    if (a.time < b.time) { return -1 }
-    if (a.time > b.time) { return 1 }
+export const compareTimeData = (a, b) => {
+    if (a.getTime() < b.getTime()) {
+        return -1
+    }
+
+    if (a.getTime() > b.getTime()) {
+        return 1
+    }
+    
     return 0
 }
 
