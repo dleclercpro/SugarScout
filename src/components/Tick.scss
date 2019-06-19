@@ -120,10 +120,6 @@
 
         @include mq(height, medium) {
             font-size: 14px !important;
-
-            &:nth-child(2n) {
-                visibility: hidden;
-            }
         }
 
         @include mq(width, tablet) {
@@ -136,6 +132,25 @@
 
         @include mq(width, desktopXL) {
             font-size: 16px;
+        }
+    }
+
+    .axis--bg & {
+        @include mq(height, medium) {
+
+            &:nth-child(3n),
+            &:nth-child(3n + 1) {
+                visibility: hidden;
+            }
+        }
+    }
+
+    .axis--basal & {
+        @include mq(height, medium) {
+
+            &:nth-child(2n) {
+                visibility: hidden;
+            }
         }
     }
 }

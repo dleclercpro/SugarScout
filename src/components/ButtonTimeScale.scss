@@ -4,12 +4,17 @@
     background: none;
     border: 3px solid transparent;
     padding: 4px 10px;
+    font-size: 16px;
     font-weight: bold;
     outline: none;
-    font-size: 18px;
     transition: all $transition-speed $transition-type;
 
     @include mq(width, tablet) {
+        padding: 6px 15px;
+    }
+
+    @include mq(width, desktopXL) {
+        font-size: 18px;
         padding: 8px 20px;
     }
 

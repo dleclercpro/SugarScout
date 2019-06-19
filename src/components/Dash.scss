@@ -17,10 +17,6 @@
         height: 100%;
         padding: 0 30px;
 
-        @include mq(height, small) {
-            flex-direction: row;
-        }
-
         @include mq(width, desktop) {
             flex-direction: row;
             justify-content: space-between;
@@ -93,7 +89,7 @@
                     }
         
                     @include mq(width, desktop) {
-                        
+                        font-size: 54px;
                     }
         
                     @include mq(width, desktopXL) {
@@ -138,14 +134,28 @@
             }
 
             > .general {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
 
                 @include mq(height, small) {
                     display: none;
                 }
 
+                @include mq(width, tablet) {
+                    flex-direction: column;
+                    justify-content: flex-start;
+                    flex-wrap: nowrap;
+                }
+
                 p {
                     margin: 0;
-                    font-size: 16px;
+                    font-size: 14px;
+                    white-space: nowrap;
+
+                    @include mq(width, desktopXL) {
+                        font-size: 16px;
+                    }
 
                     &:not(:last-child) {
                         margin-right: 12px;
@@ -153,6 +163,11 @@
     
                     > .title {
                         font-weight: bold;
+                        font-size: inherit;
+
+                        @include mq(width, tablet) {
+                            font-size: inherit;
+                        }
                     }
                 }
 
@@ -163,9 +178,13 @@
                 > .battery {
                     display: flex;
                     justify-content: center;
+                    margin-right: 12px;
 
                     &:not(:last-child) {
-                        margin-bottom: 5px;
+
+                        @include mq(width, tablet) {
+                            margin-bottom: 5px;
+                        }
                     }
 
                     @include mq(width, tablet) {
