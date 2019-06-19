@@ -23,7 +23,7 @@ const getVisibleItems = (now, items, window = Time.WINDOW) => {
     return items.filter(item => item.time >= now - window)
 }
 
-const getCurrentBracket = (now, brackets, defaultBracket = undefined) => {
+const getCurrentHourlyBracket = (now, brackets, defaultBracket = undefined) => {
     if (brackets.length) {
         return brackets
             .filter(bracket => bracket.time <= now)
@@ -48,9 +48,9 @@ export const getVisibleIOBs = createSelector([getNow, getIOBs], getVisibleItems)
 
 
 // Current bracket
-export const getCurrentBasal = createSelector([getNow, getBasals], (now, brackets) => getCurrentBracket(now, brackets, Dash.DEFAULT_BASAL))
-export const getCurrentISF = createSelector([getNow, getISFs], (now, brackets) => getCurrentBracket(now, brackets, Dash.DEFAULT_ISF))
-export const getCurrentCSF = createSelector([getNow, getCSFs], (now, brackets) => getCurrentBracket(now, brackets, Dash.DEFAULT_CSF))
+export const getCurrentBasal = createSelector([getNow, getBasals], (now, brackets) => getCurrentHourlyBracket(now, brackets, Dash.DEFAULT_BASAL))
+export const getCurrentISF = createSelector([getNow, getISFs], (now, brackets) => getCurrentHourlyBracket(now, brackets, Dash.DEFAULT_ISF))
+export const getCurrentCSF = createSelector([getNow, getCSFs], (now, brackets) => getCurrentHourlyBracket(now, brackets, Dash.DEFAULT_CSF))
 
 
 // Last items
