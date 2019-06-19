@@ -1,7 +1,6 @@
 import { createSelector } from 'reselect'
 import * as Time from 'constants/Time'
 import * as BG from 'constants/BG'
-import * as Dash from 'constants/Dash'
 import * as lib from 'lib'
 
 const getNow = (state) => state.time.now.getTime()
@@ -23,20 +22,14 @@ const getVisibleItems = (now, items, window = Time.WINDOW) => {
     return items.filter(item => item.time >= now - window)
 }
 
-const getCurrentHourlyBracket = (now, brackets, defaultBracket = undefined) => {
-    if (brackets.length) {
-        return brackets
-            .filter(bracket => bracket.time <= now)
-            .reduce((prevBracket, bracket) => prevBracket.time > bracket.time ? prevBracket : bracket, brackets[0])
-    }
-    return defaultBracket
+const getCurrentHourlyBracket = (now, brackets) => {
+    return brackets
+        .filter(bracket => bracket.time <= now)
+        .reduce((prevBracket, bracket) => prevBracket.time > bracket.time ? prevBracket : bracket, brackets[0])
 }
 
-const getLastItem = (items, defaultItem = undefined) => {
-    if (items.length) {
-        return items[items.length - 1]
-    }
-    return defaultItem
+const getLastItem = (items) => {
+    return items[items.length - 1]
 }
 
 
@@ -48,24 +41,34 @@ export const getVisibleIOBs = createSelector([getNow, getIOBs], getVisibleItems)
 
 
 // Current bracket
-export const getCurrentBasal = createSelector([getNow, getBasals], (now, brackets) => getCurrentHourlyBracket(now, brackets, Dash.DEFAULT_BASAL))
-export const getCurrentISF = createSelector([getNow, getISFs], (now, brackets) => getCurrentHourlyBracket(now, brackets, Dash.DEFAULT_ISF))
-export const getCurrentCSF = createSelector([getNow, getCSFs], (now, brackets) => getCurrentHourlyBracket(now, brackets, Dash.DEFAULT_CSF))
+export const getCurrentBasal = createSelector([getNow, getBasals], getCurrentHourlyBracket)
+export const getCurrentISF = createSelector([getNow, getISFs], getCurrentHourlyBracket)
+export const getCurrentCSF = createSelector([getNow, getCSFs], getCurrentHourlyBracket)
 
 
 // Last items
-export const getCurrentBG = createSelector([getBGs], (items) => getLastItem(items, Dash.DEFAULT_BG))
-export const getCurrentIOB = createSelector([getIOBs], (items) => getLastItem(items, Dash.DEFAULT_IOB))
-export const getCurrentCOB = createSelector([getCOBs], (items) => getLastItem(items, Dash.DEFAULT_COB))
-export const getCurrentReservoirLevel = createSelector([getReservoirLevels], (items) => getLastItem(items, Dash.DEFAULT_RESERVOIR))
-export const getCurrentPumpBatteryLevel = createSelector([getPumpBatteryLevels], (items) => getLastItem(items, Dash.DEFAULT_PUMP_BATTERY))
-export const getCurrentCGMBatteryLevel = createSelector([getCGMBatteryLevels], (items) => getLastItem(items, Dash.DEFAULT_CGM_BATTERY))
+export const getCurrentBG = createSelector([getBGs], getLastItem)
+export const getCurrentIOB = createSelector([getIOBs], getLastItem)
+export const getCurrentCOB = createSelector([getCOBs], getLastItem)
+export const getCurrentSAGE = (state) => undefined
+export const getCurrentCAGE = (state) => undefined
+export const getCurrentReservoirLevel = createSelector([getReservoirLevels], getLastItem)
+export const getCurrentPumpBatteryLevel = createSelector([getPumpBatteryLevels], getLastItem)
+export const getCurrentCGMBatteryLevel = createSelector([getCGMBatteryLevels], getLastItem)
 
 
 // Misc
 export const getCurrentBGDelta = createSelector(
     [getBGs],
-    bgs => bgs.length > 1 ? bgs[bgs.length - 1].value - bgs[bgs.length - 2].value : Dash.DEFAULT_DELTA_BG
+    bgs => {
+        if(bgs.length > 1) {
+            return {
+                time: -1,
+                value: bgs[bgs.length - 1].value - bgs[bgs.length - 2].value,
+            }
+        }
+        return undefined
+    }
 )
 
 export const getCurrentBGTrend = createSelector(
@@ -73,37 +76,56 @@ export const getCurrentBGTrend = createSelector(
     bgs => {
         const nBGs = bgs.length
         const dBGdt = nBGs >= BG.N_BGS_TREND ? lib.getLinearRegressionByLeastSquares(bgs.slice(nBGs - BG.N_BGS_TREND))[0] : undefined
-
-        if (dBGdt === undefined) {
-            return ''
-        }
     
         if (dBGdt < BG.TREND_DOUBLE_90_DOWN_MMOL_L_M) {
-            return '↓↓'
+            return {
+                time: -1,
+                value: '↓↓',
+            }
         }
     
         if (BG.TREND_DOUBLE_90_DOWN_MMOL_L_M <= dBGdt && dBGdt < BG.TREND_90_DOWN_MMOL_L_M) {
-            return '↓'
+            return {
+                time: -1,
+                value: '↓',
+            }
         }
     
         if (BG.TREND_90_DOWN_MMOL_L_M <= dBGdt && dBGdt < BG.TREND_45_DOWN_MMOL_L_M) {
-            return '↘'
+            return {
+                time: -1,
+                value: '↘',
+            }
         }
     
         if (BG.TREND_45_DOWN_MMOL_L_M <= dBGdt && dBGdt < BG.TREND_45_UP_MMOL_L_M) {
-            return '→'
+            return {
+                time: -1,
+                value: '→',
+            }
         }
     
         if (BG.TREND_45_UP_MMOL_L_M <= dBGdt && dBGdt < BG.TREND_90_UP_MMOL_L_M) {
-            return '↗'
+            return {
+                time: -1,
+                value: '↗',
+            }
         }
     
         if (BG.TREND_90_UP_MMOL_L_M <= dBGdt && dBGdt < BG.TREND_DOUBLE_90_UP_MMOL_L_M) {
-            return '↑'
+            return {
+                time: -1,
+                value: '↑',
+            }
         }
     
         if (BG.TREND_DOUBLE_90_UP_MMOL_L_M <= dBGdt) {
-            return '↑↑'
+            return {
+                time: -1,
+                value: '↑↑',
+            }
         }
+
+        return undefined
     }
 )
