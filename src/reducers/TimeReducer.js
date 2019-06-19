@@ -15,7 +15,7 @@ const TimeReducer = (state = INIT_TIME_STATE, action) => {
         case ActionTypes.UPDATE_TIME:
             return {
                 ...state,
-                now: action.now,
+                now: action.time,
             }
 
         case ActionTypes.UPDATE_TIMESCALE:
@@ -24,7 +24,7 @@ const TimeReducer = (state = INIT_TIME_STATE, action) => {
                 scale: action.scale,
             }
 
-        case ActionTypes.UPDATE_LAST_FETCH:
+        case ActionTypes.UPDATE_LAST_DATA_FETCH:
             return {
                 ...state,
                 lastFetch: action.time,

@@ -11,7 +11,7 @@ export const SCALE = 6                             // (h)
 
 // Refresh
 export const REFRESH_APP_RATE = 15 * 1000          // (ms)
-export const REFRESH_DATA_RATE = 3 * 60 * 1000     // (ms)
+export const REFRESH_DATA_RATE = 1 * 60 * 1000     // (ms)
 
 // Axis
 export const AXIS_N_TICKS = N_HOURS_PER_DAY
