@@ -25,7 +25,6 @@ const Dash = (props) => {
         pump: getPropOrDefault(props.battery.pump, dash.DEFAULT_PUMP_BATTERY),
         cgm: getPropOrDefault(props.battery.cgm, dash.DEFAULT_CGM_BATTERY),
     }
-    console.log(props)
 
     return (
         <section className='dash'>
