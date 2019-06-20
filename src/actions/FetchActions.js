@@ -101,10 +101,10 @@ const fetchData = (dispatch, dataType, src, callback = json => json) => {
     return fetch(src)
         .then(
             response => response.json(),
-            error => dispatch(fetchDataFailure(dataType, error))
-        )
-        .then(
+        ).then(
             json => dispatch(fetchDataSuccess(dataType, callback(json)))
+        ).catch(
+            error => dispatch(fetchDataFailure(dataType, error))
         )
 }
 
