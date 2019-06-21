@@ -1,6 +1,7 @@
 import React, { Component, createRef } from 'react'
 import NetBasalContainer from 'containers/NetBasalContainer'
 import BolusContainer from 'containers/BolusContainer'
+import IOBContainer from 'containers/IOBContainer'
 import 'components/InnerBasal.scss'
 
 class InnerBasal extends Component {
@@ -33,6 +34,9 @@ class InnerBasal extends Component {
                     ))}
                     {this.props.boluses.map((b, index) => (
                         <BolusContainer key={index} time={b.getTime()} value={b.getValue()} />
+                    ))}
+                    {this.props.iobs.map((iob, index) => (
+                        <IOBContainer key={index} time={iob.getTime()} value={iob.getValue()} />
                     ))}
                 </svg>
             </section>

@@ -125,4 +125,14 @@
             }
         }
     }
+
+    &.iob {
+
+        > .info {
+
+            > .value {
+                color: map-get($theme, iob);
+            }
+        }
+    }
 }

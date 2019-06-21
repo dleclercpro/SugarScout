@@ -24,6 +24,7 @@ $color-deep-grey: #404054;
 $color-grey: #999999;
 $color-white: #ffffff;
 $color-purple: #800080;
+$color-pink: #db7093;
 $color-red: #e50000;
 $color-orange: #ff9d2f;
 $color-green: #99e500;
@@ -54,6 +55,7 @@ $light-theme: (
         background: $color-purple,
     ),
     bolus: $color-black,
+    iob: $color-grey,
 );
 
 $dark-theme: (
@@ -78,6 +80,7 @@ $dark-theme: (
         background: $color-purple,
     ),
     bolus: $color-blue,
+    iob: $color-deep-grey,
 );
 
 
