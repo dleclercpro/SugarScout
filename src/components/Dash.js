@@ -124,7 +124,7 @@ const Dash = (props) => (
                 <div className='clock'>
                     {lib.convertEpochToFormatTime(props.now.getTime(), Time.FORMAT_SHORT)}
                 </div>
-                <div className='last-fetch'>
+                <div className={`last-fetch ${props.isExpired(props.lastFetch.getTime(), Time.MAX_AGE_LAST_FETCH)}`}>
                     {lib.convertEpochToFormatTime(props.lastFetch.getTime(), Time.FORMAT_SHORT)}
                 </div>
                 <div className='buttons-timescale'>

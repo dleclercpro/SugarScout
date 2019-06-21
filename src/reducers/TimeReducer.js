@@ -5,7 +5,7 @@ const now = Time.NOW || new Date()
 
 const INIT_TIME_STATE = {
     now: now,
-    lastFetch: now,
+    lastFetch: new Date(1970, 0, 1, 0, 0, 0, 0),
     scales: Time.SCALES,
     scale: Time.SCALE,
 }

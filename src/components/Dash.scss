@@ -79,6 +79,10 @@
                     > .value {
                         text-decoration: line-through;
                     }
+
+                    > .trend {
+                        display: none;
+                    }
                 }
                 
                 > .value,
@@ -234,11 +238,16 @@
             > .last-fetch {
                 display: none;
                 position: relative;
-                padding-left: 22px;
+                padding-left: 28px;
                 margin-bottom: 15px;
 
                 @include mq(width, desktop) {
                     display: block;
+                }
+
+                &.is-expired {
+                    text-decoration: line-through;
+                    color: map-get(map-get($theme, font), expired);
                 }
 
                 &:before {
@@ -250,8 +259,16 @@
                     content: '';
                     background-image: url('../images/icons/icon-fetching.svg');
                     background-repeat: no-repeat;
-                    width: 18px;
-                    height: 18px;
+                    width: 24px;
+                    height: 24px;
+                }
+
+                &.is-expired {
+
+                    &:before {
+                    background-image: url('../images/icons/icon-fetching--expired.svg');
+
+                    }
                 }
             }
         

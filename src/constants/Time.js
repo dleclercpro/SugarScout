@@ -19,6 +19,7 @@ export const AXIS_N_TICKS = N_HOURS_PER_DAY
 
 // Max ages
 export const MAX_AGE_BG = 15 * 60 * 1000
+export const MAX_AGE_LAST_FETCH = REFRESH_DATA_RATE
 export const MAX_AGE_IOB = 20 * 60 * 1000
 export const MAX_AGE_COB = MAX_AGE_IOB
 export const MAX_AGE_SAGE = 1 * 60 * 60 * 1000

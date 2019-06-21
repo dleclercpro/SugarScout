@@ -14,9 +14,9 @@ class App extends Component {
     }
 
     componentDidMount() {
-        this.timerData = setInterval(this.fetchData, Time.REFRESH_DATA_RATE)
+        this.timerData = setInterval(this.fetchAllData, Time.REFRESH_DATA_RATE)
         this.timer = setInterval(this.props.actions.updateTime, Time.REFRESH_APP_RATE)
-        this.fetchData()        
+        this.fetchAllData()        
     }
 
     componentWillUnmount() {
@@ -24,12 +24,19 @@ class App extends Component {
         clearInterval(this.timer)
     }
 
-    fetchData = () => {
-        this.props.actions.updateLastDataFetch()
-        this.props.actions.fetchBGData()
-        this.props.actions.fetchPumpData()
-        this.props.actions.fetchTreatmentData()
-        this.props.actions.fetchHistoryData()
+    fetchAllData = () => {
+        Promise.all([
+            this.props.actions.fetchDataBG(),
+            this.props.actions.fetchDataPump(),
+            this.props.actions.fetchDataTreatment(),
+            this.props.actions.fetchDataHistory()
+        ])
+        .then(() => {
+            this.props.actions.updateLastDataFetch()
+        })
+        .catch(error => {
+            console.log('Could not fetch all data:\n' + error)
+        })
     }
 
     render() {
