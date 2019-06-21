@@ -246,7 +246,6 @@
                 }
 
                 &.is-expired {
-                    text-decoration: line-through;
                     color: map-get(map-get($theme, font), expired);
                 }
 
