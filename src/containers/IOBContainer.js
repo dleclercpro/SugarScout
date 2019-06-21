@@ -6,7 +6,7 @@ import IOB from 'components/IOB'
 const mapStateToProps = (state) => ({
     now: state.time.now,
     timeScale: state.time.scale,
-    basalRange: state.axes.basal.range,
+    range: state.axes.basal.range,
     innerWidth: state.inner.basal.width,
     innerHeight: state.inner.basal.height,
 })

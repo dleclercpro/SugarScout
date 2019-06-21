@@ -6,7 +6,7 @@ import BG from 'components/BG'
 const mapStateToProps = (state) => ({
     now: state.time.now,
     timeScale: state.time.scale,
-    bgRange: state.axes.bg.range,
+    range: state.axes.bg.range,
     innerWidth: state.inner.bg.width,
     innerHeight: state.inner.bg.height,
 })
