@@ -128,10 +128,10 @@ const INIT_DATA_STATE = {
 
 const DataReducer = (state = INIT_DATA_STATE, action) => {
     switch (action.type) {
-        case ActionTypes.FETCH_BG_DATA_REQUEST:
-        case ActionTypes.FETCH_PUMP_DATA_REQUEST:
-        case ActionTypes.FETCH_TREATMENT_DATA_REQUEST:
-        case ActionTypes.FETCH_HISTORY_DATA_REQUEST:
+        case ActionTypes.FETCH_DATA_BG_PENDING:
+        case ActionTypes.FETCH_DATA_PUMP_PENDING:
+        case ActionTypes.FETCH_DATA_TREATMENT_PENDING:
+        case ActionTypes.FETCH_DATA_HISTORY_PENDING:
             return {
                 ...state,
                 [action.dataType]: {
@@ -141,62 +141,62 @@ const DataReducer = (state = INIT_DATA_STATE, action) => {
                 },
             }
 
-        case ActionTypes.FETCH_BG_DATA_FAILURE:
-        case ActionTypes.FETCH_PUMP_DATA_FAILURE:
-        case ActionTypes.FETCH_TREATMENT_DATA_FAILURE:
-        case ActionTypes.FETCH_HISTORY_DATA_FAILURE:
+        case ActionTypes.FETCH_DATA_BG_REJECTED:
+        case ActionTypes.FETCH_DATA_PUMP_REJECTED:
+        case ActionTypes.FETCH_DATA_TREATMENT_REJECTED:
+        case ActionTypes.FETCH_DATA_HISTORY_REJECTED:
             return {
                 ...state,
                 [action.dataType]: {
                     ...state[action.dataType],
                     isFetching: false,
-                    error: action.error,
+                    error: action.payload,
                 },
             }
 
-        case ActionTypes.FETCH_BG_DATA_SUCCESS:
+        case ActionTypes.FETCH_DATA_BG_FULFILLED:
             return {
                 ...state,
                 bgs: {
                     isFetching: false,
                     error: '',
                     data: {
-                        bgs: getBGsFromJSON(action.data),
+                        bgs: getBGsFromJSON(action.payload),
                     },
                 },
             }
 
-        case ActionTypes.FETCH_PUMP_DATA_SUCCESS:
+        case ActionTypes.FETCH_DATA_PUMP_FULFILLED:
             return {
                 ...state,
                 pump: {
                     isFetching: false,
                     error: '',
                     data: {
-                        basals: getBasalsFromJSON(action.data),
-                        bgTargets: getBGTargetsFromJSON(action.data),
-                        isfs: getISFsFromJSON(action.data),
-                        csfs: getCSFsFromJSON(action.data),
+                        basals: getBasalsFromJSON(action.payload),
+                        bgTargets: getBGTargetsFromJSON(action.payload),
+                        isfs: getISFsFromJSON(action.payload),
+                        csfs: getCSFsFromJSON(action.payload),
                     },
                 }
             }
 
-        case ActionTypes.FETCH_TREATMENT_DATA_SUCCESS:
+        case ActionTypes.FETCH_DATA_TREATMENT_FULFILLED:
             return {
                 ...state,
                 treatments: {
                     isFetching: false,
                     error: '',
                     data: {
-                        boluses: getBolusesFromJSON(action.data),
-                        netBasals: getNetBasalsFromJSON(action.data),
-                        iobs: getIOBsFromJSON(action.data),
+                        boluses: getBolusesFromJSON(action.payload),
+                        netBasals: getNetBasalsFromJSON(action.payload),
+                        iobs: getIOBsFromJSON(action.payload),
                         cobs: [],
                     },
                 },
             }
 
-        case ActionTypes.FETCH_HISTORY_DATA_SUCCESS:
+        case ActionTypes.FETCH_DATA_HISTORY_FULFILLED:
             return {
                 ...state,
                 history: {
@@ -204,11 +204,11 @@ const DataReducer = (state = INIT_DATA_STATE, action) => {
                     error: '',
                     data: {
                         pump: {
-                            reservoir: getPumpReservoirLevelsFromJSON(action.data),
-                            battery: getPumpBatteryLevelsFromJSON(action.data),
+                            reservoir: getPumpReservoirLevelsFromJSON(action.payload),
+                            battery: getPumpBatteryLevelsFromJSON(action.payload),
                         },
                         cgm: {
-                            battery: getCGMBatteryLevelsFromJSON(action.data),
+                            battery: getCGMBatteryLevelsFromJSON(action.payload),
                         },
                     },
                 },

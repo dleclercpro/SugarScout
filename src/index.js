@@ -3,16 +3,16 @@ import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
 import { createLogger } from 'redux-logger'
-import thunkMiddleware from 'redux-thunk'
+import promise from 'redux-promise-middleware'
 import rootReducer from 'reducers'
 import AppContainer from 'containers/AppContainer'
 import 'index.scss'
 
-const loggerMiddleware = createLogger()
+const logger = createLogger()
 
 const store = createStore(
     rootReducer,
-    applyMiddleware(thunkMiddleware, loggerMiddleware)
+    applyMiddleware(promise, logger)
 )
 
 render(
