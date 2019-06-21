@@ -1,7 +1,7 @@
 import * as ActionTypes from 'constants/ActionTypes'
 
 const fetchData = (src, callback = json => json) => {
-    return fetch(src)
+    return fetch(src, { cache: 'no-store' })
         .then(response => response.json())
         .then(json => callback(json))
 }
