@@ -3,26 +3,29 @@ import { connect } from 'react-redux'
 import Actions from 'actions'
 import * as Selectors from 'selectors'
 import Dash from 'components/Dash'
+import * as dash from 'constants/Dash'
 
 const mapStateToProps = (state) => ({
+    isExpired: (time, maxAge) => time < state.time.now.getTime() - maxAge ? 'is-expired' : '',
+    
     now: state.time.now,
     timeScales: state.time.scales,
     lastFetch: state.time.lastFetch,
-    bg: Selectors.getCurrentBG(state),
-    dbg: Selectors.getCurrentBGDelta(state),
-    bgTrend: Selectors.getCurrentBGTrend(state),
-    basal: Selectors.getCurrentBasal(state),
-    isf: Selectors.getCurrentISF(state),
-    csf: Selectors.getCurrentCSF(state),
-    iob: Selectors.getCurrentIOB(state),
-    cob: Selectors.getCurrentCOB(state),
-    reservoir: Selectors.getCurrentReservoirLevel(state),
+    bg: Selectors.getCurrentBG(state) || dash.DEFAULT_BG,
+    dbg: Selectors.getCurrentBGDelta(state) || dash.DEFAULT_DBG,
+    bgTrend: Selectors.getCurrentBGTrend(state) || dash.DEFAULT_BG_TREND,
+    basal: Selectors.getCurrentBasal(state) || dash.DEFAULT_BASAL,
+    isf: Selectors.getCurrentISF(state) || dash.DEFAULT_ISF,
+    csf: Selectors.getCurrentCSF(state) || dash.DEFAULT_CSF,
+    iob: Selectors.getCurrentIOB(state) || dash.DEFAULT_IOB,
+    cob: Selectors.getCurrentCOB(state) || dash.DEFAULT_COB,
+    reservoir: Selectors.getCurrentReservoirLevel(state) || dash.DEFAULT_RESERVOIR,
     battery: {
-        pump: Selectors.getCurrentPumpBatteryLevel(state),
-        cgm: Selectors.getCurrentCGMBatteryLevel(state),
+        pump: Selectors.getCurrentPumpBatteryLevel(state) || dash.DEFAULT_PUMP_BATTERY,
+        cgm: Selectors.getCurrentCGMBatteryLevel(state) || dash.DEFAULT_CGM_BATTERY,
     },
-    sage: Selectors.getCurrentSAGE(state),
-    cage: Selectors.getCurrentCAGE(state),
+    sage: Selectors.getCurrentSAGE(state) || dash.DEFAULT_SENSOR_AGE,
+    cage: Selectors.getCurrentCAGE(state) || dash.DEFAULT_CANULA_AGE,
 })
 
 const mapDispatchToProps = (dispatch) => ({

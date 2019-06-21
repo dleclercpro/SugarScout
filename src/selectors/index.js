@@ -82,7 +82,11 @@ export const getCurrentBGTrend = createSelector(
     bgs => {
         const nBGs = bgs.length
         const dBGdt = nBGs >= BG.N_BGS_TREND ? lib.getLinearRegressionByLeastSquares(bgs.slice(nBGs - BG.N_BGS_TREND))[0] : undefined
-    
+
+        if (dBGdt === undefined) {
+            return new DataTypes.TimeData('→')
+        }
+        
         if (dBGdt < BG.TREND_DOUBLE_90_DOWN_MMOL_L_M) {
             return new DataTypes.TimeData('↓↓')
         }
@@ -110,7 +114,5 @@ export const getCurrentBGTrend = createSelector(
         if (BG.TREND_DOUBLE_90_UP_MMOL_L_M <= dBGdt) {
             return new DataTypes.TimeData('↑↑')
         }
-
-        return undefined
     }
 )
