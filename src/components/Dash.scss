@@ -116,11 +116,10 @@
                     > .arrow {
                         font-size: 48px;
                         color: inherit;
-                        margin-top: -6px;
         
                         @include mq(width, tablet) {
                             font-size: 54px;
-                            margin-top: -10px;
+                            margin-top: -2px;
                         }
             
                         @include mq(width, desktopXL) {
@@ -132,6 +131,7 @@
                         font-size: 24px;
                         color: inherit;
                         margin-left: 5px;
+                        margin-top: 6px;
         
                         @include mq(width, tablet) {
                             font-size: 28px;
@@ -252,7 +252,7 @@
                     transform: translate(0, -50%);
                     display: block;
                     content: '';
-                    background-image: url('icon-fetching.svg');
+                    background-image: url('../images/icons/icon-fetching.svg');
                     background-repeat: no-repeat;
                     width: 18px;
                     height: 18px;
