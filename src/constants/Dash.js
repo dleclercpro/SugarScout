@@ -17,3 +17,28 @@ export const DEFAULT_PUMP_BATTERY = NEGATIVE_TIMED_VALUE
 export const DEFAULT_CGM_BATTERY = NEGATIVE_TIMED_VALUE
 export const DEFAULT_SENSOR_AGE = NEGATIVE_TIMED_VALUE
 export const DEFAULT_CANULA_AGE = NEGATIVE_TIMED_VALUE
+
+export const RESERVOIR_LEVELS = {
+    VERY_LOW: 20.0,
+    LOW: 50.0,
+}
+
+export const PUMP_BATTERY_LEVELS = {
+    VERY_LOW: 1.27,
+    LOW: 1.30,
+}
+
+export const CGM_BATTERY_LEVELS = {
+    VERY_LOW: 15,
+    LOW: 30,
+}
+
+export const SENSOR_AGES = {
+    VERY_OLD: 2 * 7 * 24,
+    OLD: 7 * 24,
+}
+
+export const CANULA_AGES = {
+    VERY_OLD: 3 * 24,
+    OLD: 2 * 24,
+}

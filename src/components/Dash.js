@@ -7,6 +7,22 @@ import * as dash from 'constants/Dash'
 import * as lib from 'lib'
 import 'components/Dash.scss'
 
+const getLevelType = (level, limits) => {
+    if (level <= limits.VERY_LOW) { return 'very-low' }
+    if (limits.VERY_LOW < level && level <= limits.LOW) { return 'low' }
+}
+
+const getAgeType = (level, limits) => {
+    if (level <= limits.VERY_OLD) { return 'very-old' }
+    if (limits.VERY_OLD < level && level <= limits.OLD) { return 'old' }
+}
+
+const getReservoirType = value => getLevelType(value, dash.RESERVOIR_LEVELS)
+const getPumpBatteryType = value => getLevelType(value, dash.PUMP_BATTERY_LEVELS)
+const getCGMBatteryType = value => getLevelType(value, dash.CGM_BATTERY_LEVELS)
+const getSAGEType = value => getAgeType(value, dash.SENSOR_AGES)
+const getCAGEType = value => getAgeType(value, dash.CANULA_AGES)
+
 const Dash = (props) => {
     return (
         <section className='dash'>
@@ -30,7 +46,7 @@ const Dash = (props) => {
                                     {Units.BASAL}
                                 </span>
                             </p>
-                            <p className={`reservoir ${props.isExpired(props.reservoir.getTime(), Time.MAX_AGE_RESERVOIR)}`}>
+                            <p className={`reservoir ${props.isExpired(props.reservoir.getTime(), Time.MAX_AGE_RESERVOIR)} ${getReservoirType(props.reservoir.getValue())}`}>
                                 <span className='title'>R:</span>
                                 {' '}
                                 <span className='value'>
@@ -81,7 +97,7 @@ const Dash = (props) => {
                             </p>
                         </div>
                         <div className='age'>
-                            <p className={`sage ${props.sage === dash.DEFAULT_SENSOR_AGE ? 'is-expired' : ''}`}>
+                            <p className={`sage ${props.sage === dash.DEFAULT_SENSOR_AGE ? 'is-invalid' : ''} ${getSAGEType(props.sage.getValue())}`}>
                                 <span className='title'>SAGE:</span>
                                 {' '}
                                 <span className='value'>
@@ -90,7 +106,7 @@ const Dash = (props) => {
                                     {Units.SENSOR_AGE}
                                 </span>
                             </p>
-                            <p className={`cage ${props.cage === dash.DEFAULT_CANULA_AGE ? 'is-expired' : ''}`}>
+                            <p className={`cage ${props.cage === dash.DEFAULT_CANULA_AGE ? 'is-invalid' : ''} ${getCAGEType(props.cage.getValue())}`}>
                                 <span className='title'>CAGE:</span>
                                 {' '}
                                 <span className='value'>
@@ -101,7 +117,7 @@ const Dash = (props) => {
                             </p>
                         </div>
                         <div className='battery'>
-                            <p className={`pump ${props.isExpired(props.battery.pump.getTime(), Time.MAX_AGE_PUMP_BATTERY)}`}>
+                            <p className={`pump ${props.isExpired(props.battery.pump.getTime(), Time.MAX_AGE_PUMP_BATTERY)} ${getPumpBatteryType(props.battery.pump.getValue())}`}>
                                 <span className='title'>Pump Battery:</span>
                                 {' '}
                                 <span className='value'>
@@ -110,7 +126,7 @@ const Dash = (props) => {
                                     {Units.PUMP_BATTERY}
                                 </span>
                             </p>
-                            <p className={`cgm ${props.isExpired(props.battery.cgm.getTime(), Time.MAX_AGE_CGM_BATTERY)}`}>
+                            <p className={`cgm ${props.isExpired(props.battery.cgm.getTime(), Time.MAX_AGE_CGM_BATTERY)} ${getCGMBatteryType(props.battery.cgm.getValue())}`}>
                                 <span className='title'>CGM Battery:</span>
                                 {' '}
                                 <span className='value'>

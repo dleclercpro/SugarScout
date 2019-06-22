@@ -175,17 +175,29 @@
                     > .title,
                     > .value {
                         font-size: inherit;
+                        color: inherit;
                     }
     
                     > .title {
                         font-weight: bold;
                     }
 
-                    &.is-expired {
+                    &.very-low,
+                    &.very-old {
+                        color: map-get(map-get($theme, bg), very-low);
+                    }
+                
+                    &.low,
+                    &.old {
+                        color: map-get(map-get($theme, bg), low);
+                    }
+
+                    &.is-expired,
+                    &.is-invalid {
+                        color: map-get(map-get($theme, font), expired) !important;
 
                         > .value {
                             text-decoration: line-through;
-                            color: map-get(map-get($theme, font), expired);
                         }
                     }
                 }
@@ -246,7 +258,7 @@
                 }
 
                 &.is-expired {
-                    color: map-get(map-get($theme, font), expired);
+                    color: map-get(map-get($theme, font), expired) !important;
                 }
 
                 &:before {
@@ -265,8 +277,7 @@
                 &.is-expired {
 
                     &:before {
-                    background-image: url('../images/icons/icon-fetching--expired.svg');
-
+                        background-image: url('../images/icons/icon-fetching--expired.svg');
                     }
                 }
             }
