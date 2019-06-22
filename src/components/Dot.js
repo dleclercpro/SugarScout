@@ -34,6 +34,7 @@ class Dot extends Component {
 
     handleMouseLeave = (e) => {
         this.props.actions.hideBubble()
+        this.props.actions.resetBubble()
     }
 
     render() {

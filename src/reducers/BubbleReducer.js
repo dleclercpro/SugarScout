@@ -10,6 +10,11 @@ const INIT_BUBBLE_STATE = {
 
 const BubbleReducer = (state = INIT_BUBBLE_STATE, action) => {
     switch (action.type) {
+        case ActionTypes.RESET_BUBBLE:
+            return {
+                ...INIT_BUBBLE_STATE,
+            }
+            
         case ActionTypes.SHOW_BUBBLE:
             return {
                 ...state,

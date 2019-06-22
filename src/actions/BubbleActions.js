@@ -1,5 +1,9 @@
 import * as ActionTypes from 'constants/ActionTypes'
 
+export const resetBubble = () => ({
+    type: ActionTypes.RESET_BUBBLE,
+})
+
 export const showBubble = () => ({
     type: ActionTypes.SHOW_BUBBLE,
 })
