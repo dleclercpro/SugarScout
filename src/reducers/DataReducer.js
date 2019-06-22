@@ -134,8 +134,8 @@ const DataReducer = (state = INIT_DATA_STATE, action) => {
         case ActionTypes.FETCH_DATA_HISTORY_PENDING:
             return {
                 ...state,
-                [action.dataType]: {
-                    ...state[action.dataType],
+                [action.meta.type]: {
+                    ...state[action.meta.type],
                     isFetching: true,
                     error: '',
                 },
@@ -147,8 +147,8 @@ const DataReducer = (state = INIT_DATA_STATE, action) => {
         case ActionTypes.FETCH_DATA_HISTORY_REJECTED:
             return {
                 ...state,
-                [action.dataType]: {
-                    ...state[action.dataType],
+                [action.meta.type]: {
+                    ...state[action.meta.type],
                     isFetching: false,
                     error: action.payload,
                 },
