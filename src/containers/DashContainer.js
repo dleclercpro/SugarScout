@@ -19,13 +19,13 @@ const mapStateToProps = (state) => ({
     csf: Selectors.getCurrentCSF(state) || dash.DEFAULT_CSF,
     iob: Selectors.getCurrentIOB(state) || dash.DEFAULT_IOB,
     cob: Selectors.getCurrentCOB(state) || dash.DEFAULT_COB,
+    sage: Selectors.getCurrentSAGE(state) || dash.DEFAULT_SENSOR_AGE,
+    cage: Selectors.getCurrentCAGE(state) || dash.DEFAULT_CANULA_AGE,
     reservoir: Selectors.getCurrentReservoirLevel(state) || dash.DEFAULT_RESERVOIR,
     battery: {
         pump: Selectors.getCurrentPumpBatteryLevel(state) || dash.DEFAULT_PUMP_BATTERY,
         cgm: Selectors.getCurrentCGMBatteryLevel(state) || dash.DEFAULT_CGM_BATTERY,
     },
-    sage: Selectors.getCurrentSAGE(state) || dash.DEFAULT_SENSOR_AGE,
-    cage: Selectors.getCurrentCAGE(state) || dash.DEFAULT_CANULA_AGE,
 })
 
 const mapDispatchToProps = (dispatch) => ({

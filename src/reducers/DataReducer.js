@@ -78,6 +78,11 @@ const getCGMBatteryLevelsFromJSON = (json) => getTimeDataFromJSON(
     Time.FORMAT_LONG
 )
 
+const getCGMStatusesFromJSON = (json) => getTimeDataFromJSON(
+    json['CGM']['Sensor Statuses'],
+    Time.FORMAT_LONG
+)
+
 const INIT_DATA_SUBSTATE = {
     isFetching: false,
     error: '',
@@ -93,9 +98,6 @@ const INIT_DATA_STATE = {
             isfs: [],
             csfs: [],
         },
-    },
-    cgm: {
-        ...INIT_DATA_SUBSTATE,
     },
     bgs: {
         ...INIT_DATA_SUBSTATE,
@@ -116,11 +118,12 @@ const INIT_DATA_STATE = {
         ...INIT_DATA_SUBSTATE,
         data: {
             pump: {
-                reservoir: [],
                 battery: [],
+                reservoir: [],
             },
             cgm: {
                 battery: [],
+                statuses: [],
             },
         },
     },
@@ -204,11 +207,12 @@ const DataReducer = (state = INIT_DATA_STATE, action) => {
                     error: '',
                     data: {
                         pump: {
-                            reservoir: getPumpReservoirLevelsFromJSON(action.payload),
                             battery: getPumpBatteryLevelsFromJSON(action.payload),
+                            reservoir: getPumpReservoirLevelsFromJSON(action.payload),
                         },
                         cgm: {
                             battery: getCGMBatteryLevelsFromJSON(action.payload),
+                            statuses: getCGMStatusesFromJSON(action.payload),
                         },
                     },
                 },

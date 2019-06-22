@@ -3,138 +3,141 @@ import { getType } from 'components/BG'
 import ButtonTimeScaleContainer from 'containers/ButtonTimeScaleContainer'
 import * as Units from 'constants/Units'
 import * as Time from 'constants/Time'
+import * as dash from 'constants/Dash'
 import * as lib from 'lib'
 import 'components/Dash.scss'
 
-const Dash = (props) => (
-    <section className='dash'>
-        <div className='wrapper'>
-            <div className='recent'>
-                <div className={`bg ${getType(props.bg.getValue())} ${props.isExpired(props.bg.getTime(), Time.MAX_AGE_BG)}`}>
-                    <p className='value'>{lib.formatBG(props.bg.getValue())}</p>
-                    <p className='trend'>
-                        <span className='arrow'>{props.bgTrend.getValue()}</span>
-                        <span className='delta'>({lib.formatdBG(props.dbg.getValue())})</span>
-                    </p>
+const Dash = (props) => {
+    return (
+        <section className='dash'>
+            <div className='wrapper'>
+                <div className='recent'>
+                    <div className={`bg ${getType(props.bg.getValue())} ${props.isExpired(props.bg.getTime(), Time.MAX_AGE_BG)}`}>
+                        <p className='value'>{lib.formatBG(props.bg.getValue())}</p>
+                        <p className='trend'>
+                            <span className='arrow'>{props.bgTrend.getValue()}</span>
+                            <span className='delta'>({lib.formatdBG(props.dbg.getValue())})</span>
+                        </p>
+                    </div>
+                    <div className='general'>
+                        <div className='insulin'>
+                            <p className='basal'>
+                                <span className='title'>Basal:</span>
+                                {' '}
+                                <span className='value'>
+                                    {lib.formatBasal(props.basal.getValue())}
+                                    {' '}
+                                    {Units.BASAL}
+                                </span>
+                            </p>
+                            <p className={`reservoir ${props.isExpired(props.reservoir.getTime(), Time.MAX_AGE_RESERVOIR)}`}>
+                                <span className='title'>R:</span>
+                                {' '}
+                                <span className='value'>
+                                    {lib.formatReservoir(props.reservoir.getValue())}
+                                    {' '}
+                                    {Units.RESERVOIR}
+                                </span>
+                            </p>
+                        </div>
+                        <div className='on-board'>
+                            <p className={`iob ${props.isExpired(props.iob.getTime(), Time.MAX_AGE_IOB)}`}>
+                                <span className='title'>IOB:</span>
+                                {' '}
+                                <span className='value'>
+                                    {lib.formatIOB(props.iob.getValue())}
+                                    {' '}
+                                    {Units.IOB}
+                                </span>
+                            </p>
+                            <p className={`cob ${props.isExpired(props.cob.getTime(), Time.MAX_AGE_COB)}`}>
+                                <span className='title'>COB:</span>
+                                {' '}
+                                <span className='value'>
+                                    {lib.formatCOB(props.cob.getValue())}
+                                    {' '}
+                                    {Units.COB}
+                                </span>
+                            </p>
+                        </div>
+                        <div className='factors'>
+                            <p className='isf'>
+                                <span className='title'>ISF:</span>
+                                {' '}
+                                <span className='value'>
+                                    {lib.formatISF(props.isf.getValue())}
+                                    {' '}
+                                    {Units.ISF}
+                                </span>
+                            </p>
+                            <p className='csf'>
+                                <span className='title'>CSF:</span>
+                                {' '}
+                                <span className='value'>
+                                    {lib.formatCSF(props.csf.getValue())}
+                                    {' '}
+                                    {Units.CSF}
+                                </span>
+                            </p>
+                        </div>
+                        <div className='age'>
+                            <p className={`sage ${props.sage === dash.DEFAULT_SENSOR_AGE ? 'is-expired' : ''}`}>
+                                <span className='title'>SAGE:</span>
+                                {' '}
+                                <span className='value'>
+                                    {lib.formatSAGE(props.sage.getValue())}
+                                    {' '}
+                                    {Units.SENSOR_AGE}
+                                </span>
+                            </p>
+                            <p className={`cage ${props.cage === dash.DEFAULT_CANULA_AGE ? 'is-expired' : ''}`}>
+                                <span className='title'>CAGE:</span>
+                                {' '}
+                                <span className='value'>
+                                    {lib.formatCAGE(props.cage.getValue())}
+                                    {' '}
+                                    {Units.CANULA_AGE}
+                                </span>
+                            </p>
+                        </div>
+                        <div className='battery'>
+                            <p className={`pump ${props.isExpired(props.battery.pump.getTime(), Time.MAX_AGE_PUMP_BATTERY)}`}>
+                                <span className='title'>Pump Battery:</span>
+                                {' '}
+                                <span className='value'>
+                                    {lib.formatPumpBattery(props.battery.pump.getValue())}
+                                    {' '}
+                                    {Units.PUMP_BATTERY}
+                                </span>
+                            </p>
+                            <p className={`cgm ${props.isExpired(props.battery.cgm.getTime(), Time.MAX_AGE_CGM_BATTERY)}`}>
+                                <span className='title'>CGM Battery:</span>
+                                {' '}
+                                <span className='value'>
+                                    {lib.formatCGMBattery(props.battery.cgm.getValue())}
+                                    {' '}
+                                    {Units.CGM_BATTERY}
+                                </span>
+                            </p>
+                        </div>
+                    </div>
                 </div>
-                <div className='general'>
-                    <div className='insulin'>
-                        <p className='basal'>
-                            <span className='title'>Basal:</span>
-                            {' '}
-                            <span className='value'>
-                                {lib.formatBasal(props.basal.getValue())}
-                                {' '}
-                                {Units.BASAL}
-                            </span>
-                        </p>
-                        <p className={`reservoir ${props.isExpired(props.reservoir.getTime(), Time.MAX_AGE_RESERVOIR)}`}>
-                            <span className='title'>R:</span>
-                            {' '}
-                            <span className='value'>
-                                {lib.formatReservoir(props.reservoir.getValue())}
-                                {' '}
-                                {Units.RESERVOIR}
-                            </span>
-                        </p>
+                <div className='time'>
+                    <div className='clock'>
+                        {lib.convertEpochToFormatTime(props.now.getTime(), Time.FORMAT_SHORT)}
                     </div>
-                    <div className='on-board'>
-                        <p className={`iob ${props.isExpired(props.iob.getTime(), Time.MAX_AGE_IOB)}`}>
-                            <span className='title'>IOB:</span>
-                            {' '}
-                            <span className='value'>
-                                {lib.formatIOB(props.iob.getValue())}
-                                {' '}
-                                {Units.IOB}
-                            </span>
-                        </p>
-                        <p className={`cob ${props.isExpired(props.cob.getTime(), Time.MAX_AGE_COB)}`}>
-                            <span className='title'>COB:</span>
-                            {' '}
-                            <span className='value'>
-                                {lib.formatCOB(props.cob.getValue())}
-                                {' '}
-                                {Units.COB}
-                            </span>
-                        </p>
+                    <div className={`last-fetch ${props.isExpired(props.lastFetch.getTime(), Time.MAX_AGE_LAST_FETCH)}`}>
+                        {lib.convertEpochToFormatTime(props.lastFetch.getTime(), Time.FORMAT_SHORT)}
                     </div>
-                    <div className='factors'>
-                        <p className='isf'>
-                            <span className='title'>ISF:</span>
-                            {' '}
-                            <span className='value'>
-                                {lib.formatISF(props.isf.getValue())}
-                                {' '}
-                                {Units.ISF}
-                            </span>
-                        </p>
-                        <p className='csf'>
-                            <span className='title'>CSF:</span>
-                            {' '}
-                            <span className='value'>
-                                {lib.formatCSF(props.csf.getValue())}
-                                {' '}
-                                {Units.CSF}
-                            </span>
-                        </p>
-                    </div>
-                    <div className='age'>
-                        <p className={`sage ${props.isExpired(props.sage.getTime(), Time.MAX_AGE_SAGE)}`}>
-                            <span className='title'>SAGE:</span>
-                            {' '}
-                            <span className='value'>
-                                {lib.formatSAGE(props.sage.getValue())}
-                                {' '}
-                                {Units.SENSOR_AGE}
-                            </span>
-                        </p>
-                        <p className={`cage ${props.isExpired(props.cage.getTime(), Time.MAX_AGE_CAGE)}`}>
-                            <span className='title'>CAGE:</span>
-                            {' '}
-                            <span className='value'>
-                                {lib.formatCAGE(props.cage.getValue())}
-                                {' '}
-                                {Units.CANULA_AGE}
-                            </span>
-                        </p>
-                    </div>
-                    <div className='battery'>
-                        <p className={`pump ${props.isExpired(props.battery.pump.getTime(), Time.MAX_AGE_PUMP_BATTERY)}`}>
-                            <span className='title'>Pump Battery:</span>
-                            {' '}
-                            <span className='value'>
-                                {lib.formatPumpBattery(props.battery.pump.getValue())}
-                                {' '}
-                                {Units.PUMP_BATTERY}
-                            </span>
-                        </p>
-                        <p className={`cgm ${props.isExpired(props.battery.cgm.getTime(), Time.MAX_AGE_CGM_BATTERY)}`}>
-                            <span className='title'>CGM Battery:</span>
-                            {' '}
-                            <span className='value'>
-                                {lib.formatCGMBattery(props.battery.cgm.getValue())}
-                                {' '}
-                                {Units.CGM_BATTERY}
-                            </span>
-                        </p>
+                    <div className='buttons-timescale'>
+                        {props.timeScales.map((scale, index) => (
+                            <ButtonTimeScaleContainer key={index} value={scale} />
+                        ))}
                     </div>
                 </div>
             </div>
-            <div className='time'>
-                <div className='clock'>
-                    {lib.convertEpochToFormatTime(props.now.getTime(), Time.FORMAT_SHORT)}
-                </div>
-                <div className={`last-fetch ${props.isExpired(props.lastFetch.getTime(), Time.MAX_AGE_LAST_FETCH)}`}>
-                    {lib.convertEpochToFormatTime(props.lastFetch.getTime(), Time.FORMAT_SHORT)}
-                </div>
-                <div className='buttons-timescale'>
-                    {props.timeScales.map((scale, index) => (
-                        <ButtonTimeScaleContainer key={index} value={scale} />
-                    ))}
-                </div>
-            </div>
-        </div>
-    </section>
-)
+        </section>
+    )
+}
 
 export default Dash

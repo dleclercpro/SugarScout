@@ -6,7 +6,7 @@ import * as lib from 'lib'
 
 
 // Time
-const getCurrentTime = (state) => state.time.now.getTime()
+const getCurrentTime = (state) => state.time.now
 
 
 // Data
@@ -21,21 +21,30 @@ const getCSFs = (state) => state.data.pump.data.csfs
 const getReservoirLevels = (state) => state.data.history.data.pump.reservoir
 const getPumpBatteryLevels = (state) => state.data.history.data.pump.battery
 const getCGMBatteryLevels = (state) => state.data.history.data.cgm.battery
+const getCGMStatuses = (state) => state.data.history.data.cgm.statuses
 
 
 // Helpers
 const getVisibleItems = (now, items, window = Time.WINDOW) => {
-    return items.filter(item => item.getTime() >= now - window)
+    return items.filter(item => item.getTime() >= now.getTime() - window)
 }
 
-const getCurrentHourlyBracket = (now, brackets) => {
+const getCurrentTimeBracket = (now, brackets) => {
     return brackets
-        .filter(bracket => bracket.getTime() <= now)
+        .filter(bracket => bracket.getTime() <= now.getTime())
         .reduce((prevBracket, bracket) => prevBracket.getTime() > bracket.getTime() ? prevBracket : bracket, brackets[0])
 }
 
 const getLastItem = (items) => {
-    return items[items.length - 1]
+    if (items) {
+        return items[items.length - 1]
+    }
+
+    return undefined
+}
+
+const getLastCGMStartStatus = (statuses) => {
+    return getLastItem(statuses.filter(status => status.getValue() === 'Started'))
 }
 
 
@@ -46,28 +55,45 @@ export const getVisibleBoluses = createSelector([getCurrentTime, getBoluses], ge
 export const getVisibleIOBs = createSelector([getCurrentTime, getIOBs], getVisibleItems)
 
 
-// Current bracket
-export const getCurrentBasal = createSelector([getCurrentTime, getBasals], getCurrentHourlyBracket)
-export const getCurrentISF = createSelector([getCurrentTime, getISFs], getCurrentHourlyBracket)
-export const getCurrentCSF = createSelector([getCurrentTime, getCSFs], getCurrentHourlyBracket)
+// Current time bracket
+export const getCurrentBasal = createSelector([getCurrentTime, getBasals], getCurrentTimeBracket)
+export const getCurrentISF = createSelector([getCurrentTime, getISFs], getCurrentTimeBracket)
+export const getCurrentCSF = createSelector([getCurrentTime, getCSFs], getCurrentTimeBracket)
 
 
 // Last items
 export const getCurrentBG = createSelector([getBGs], getLastItem)
 export const getCurrentIOB = createSelector([getIOBs], getLastItem)
 export const getCurrentCOB = createSelector([getCOBs], getLastItem)
-export const getCurrentSAGE = (state) => undefined
-export const getCurrentCAGE = (state) => undefined
 export const getCurrentReservoirLevel = createSelector([getReservoirLevels], getLastItem)
 export const getCurrentPumpBatteryLevel = createSelector([getPumpBatteryLevels], getLastItem)
 export const getCurrentCGMBatteryLevel = createSelector([getCGMBatteryLevels], getLastItem)
 
 
 // Misc
+export const getCurrentSAGE = createSelector(
+    [getCurrentTime, getCGMStatuses],
+    (now, statuses) => {
+        if (statuses) {
+            const last = getLastCGMStartStatus(statuses)
+
+            if (last) {
+                return new DataTypes.TimeData(
+                    (now.getTime() - last.getTime()) / 60 / 60 / 1000 // (h)
+                )
+            }
+        }
+
+        return undefined
+    }
+)
+
+export const getCurrentCAGE = (state) => undefined
+
 export const getCurrentBGDelta = createSelector(
     [getBGs],
     bgs => {
-        if(bgs.length > 1) {
+        if (bgs.length > 1) {
             return new DataTypes.TimeData(
                 bgs[bgs.length - 1].getValue() - bgs[bgs.length - 2].getValue()
             )
