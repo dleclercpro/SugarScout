@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import Actions from 'actions'
 import AxisTime from 'components/AxisTime'
 
-const getTimeToNow = (now) => (
+const getTimeSinceLastHour = (now) => (
     now.getMinutes() * 60 * 1000 +
     now.getSeconds() * 1000 +
     now.getMilliseconds()
@@ -11,7 +11,7 @@ const getTimeToNow = (now) => (
 
 const mapStateToProps = (state) => ({
     now: state.time.now,
-    toNow: getTimeToNow(state.time.now),
+    toNow: getTimeSinceLastHour(state.time.now),
     timeScale: state.time.scale,
     nTicks: state.axes.time.nTicks,
     ticks: state.axes.time.ticks,
