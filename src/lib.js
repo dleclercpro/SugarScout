@@ -13,22 +13,9 @@ export const getArrayAverage = (array) => {
     return array.reduce((a, b) => a + b, 0) / array.length
 }
 
-// TODO
-export const getLinearRegressionByLeastSquares = (array) => {
-    const m = 0
-    const b = 0
-    return [m, b]
-}
-
 export const compareTimeData = (a, b) => {
-    if (a.getTime() < b.getTime()) {
-        return -1
-    }
-
-    if (a.getTime() > b.getTime()) {
-        return 1
-    }
-    
+    if (a.getTime() < b.getTime()) { return -1 }
+    if (a.getTime() > b.getTime()) { return 1 }
     return 0
 }
 
@@ -49,3 +36,13 @@ export const formatPumpBattery = battery => battery.toFixed(2)
 export const formatCGMBattery = battery => battery.toFixed(0)
 export const formatSAGE = age => age.toFixed(0)
 export const formatCAGE = age => age.toFixed(0)
+
+export const getLevelType = (level, limits) => {
+    if (level <= limits.VERY_LOW) { return 'very-low' }
+    if (limits.VERY_LOW < level && level <= limits.LOW) { return 'low' }
+}
+
+export const getAgeType = (level, limits) => {
+    if (limits.OLD <= level && level < limits.VERY_OLD) { return 'old' }
+    if (limits.VERY_OLD <= level) { return 'very-old' }
+}

@@ -13,7 +13,7 @@ const mapStateToProps = (state) => ({
     lastFetch: state.time.lastFetch,
     bg: Selectors.getCurrentBG(state) || dash.DEFAULT_BG,
     dbg: Selectors.getCurrentBGDelta(state) || dash.DEFAULT_DBG,
-    bgTrend: Selectors.getCurrentBGTrend(state) || dash.DEFAULT_BG_TREND,
+    bgTrend: Selectors.getCurrentBGTrendArrow(state) || dash.DEFAULT_BG_TREND,
     basal: Selectors.getCurrentBasal(state) || dash.DEFAULT_BASAL,
     isf: Selectors.getCurrentISF(state) || dash.DEFAULT_ISF,
     csf: Selectors.getCurrentCSF(state) || dash.DEFAULT_CSF,

@@ -7,21 +7,11 @@ import * as dash from 'constants/Dash'
 import * as lib from 'lib'
 import 'components/Dash.scss'
 
-const getLevelType = (level, limits) => {
-    if (level <= limits.VERY_LOW) { return 'very-low' }
-    if (limits.VERY_LOW < level && level <= limits.LOW) { return 'low' }
-}
-
-const getAgeType = (level, limits) => {
-    if (level <= limits.VERY_OLD) { return 'very-old' }
-    if (limits.VERY_OLD < level && level <= limits.OLD) { return 'old' }
-}
-
-const getReservoirType = value => getLevelType(value, dash.RESERVOIR_LEVELS)
-const getPumpBatteryType = value => getLevelType(value, dash.PUMP_BATTERY_LEVELS)
-const getCGMBatteryType = value => getLevelType(value, dash.CGM_BATTERY_LEVELS)
-const getSAGEType = value => getAgeType(value, dash.SENSOR_AGES)
-const getCAGEType = value => getAgeType(value, dash.CANULA_AGES)
+const getReservoirType = value => lib.getLevelType(value, dash.RESERVOIR_LEVELS)
+const getPumpBatteryType = value => lib.getLevelType(value, dash.PUMP_BATTERY_LEVELS)
+const getCGMBatteryType = value => lib.getLevelType(value, dash.CGM_BATTERY_LEVELS)
+const getSAGEType = value => lib.getAgeType(value, dash.SENSOR_AGES)
+const getCAGEType = value => lib.getAgeType(value, dash.CANULA_AGES)
 
 const Dash = (props) => {
     return (

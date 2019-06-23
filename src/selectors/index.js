@@ -103,42 +103,56 @@ export const getCurrentBGDelta = createSelector(
     }
 )
 
-export const getCurrentBGTrend = createSelector(
+const getBGTrendArrow = (dBGdt) => {
+
+    if (dBGdt === undefined) {
+        return new DataTypes.TimeData('→')
+    }
+    
+    if (dBGdt < BG.TREND_DOUBLE_90_DOWN_MMOL_L_M) {
+        return new DataTypes.TimeData('↓↓')
+    }
+
+    if (BG.TREND_DOUBLE_90_DOWN_MMOL_L_M <= dBGdt && dBGdt < BG.TREND_90_DOWN_MMOL_L_M) {
+        return new DataTypes.TimeData('↓')
+    }
+
+    if (BG.TREND_90_DOWN_MMOL_L_M <= dBGdt && dBGdt < BG.TREND_45_DOWN_MMOL_L_M) {
+        return new DataTypes.TimeData('↘')
+    }
+
+    if (BG.TREND_45_DOWN_MMOL_L_M <= dBGdt && dBGdt < BG.TREND_45_UP_MMOL_L_M) {
+        return new DataTypes.TimeData('→')
+    }
+
+    if (BG.TREND_45_UP_MMOL_L_M <= dBGdt && dBGdt < BG.TREND_90_UP_MMOL_L_M) {
+        return new DataTypes.TimeData('↗')
+    }
+
+    if (BG.TREND_90_UP_MMOL_L_M <= dBGdt && dBGdt < BG.TREND_DOUBLE_90_UP_MMOL_L_M) {
+        return new DataTypes.TimeData('↑')
+    }
+
+    if (BG.TREND_DOUBLE_90_UP_MMOL_L_M <= dBGdt) {
+        return new DataTypes.TimeData('↑↑')
+    }
+}
+
+export const getCurrentBGTrendArrow = createSelector(
     [getBGs],
     bgs => {
         const nBGs = bgs.length
-        const dBGdt = nBGs >= BG.N_BGS_TREND ? lib.getLinearRegressionByLeastSquares(bgs.slice(nBGs - BG.N_BGS_TREND))[0] : undefined
+        let dBGdts = []
 
-        if (dBGdt === undefined) {
-            return new DataTypes.TimeData('→')
+        for (let i = 0; i < bgs.length - 1; i++) {
+            const dBG = bgs[i + 1].getValue() - bgs[i].getValue()
+            const dt = bgs[i + 1].getTime() - bgs[i].getTime()
+
+            dBGdts.push(dBG / dt)
         }
-        
-        if (dBGdt < BG.TREND_DOUBLE_90_DOWN_MMOL_L_M) {
-            return new DataTypes.TimeData('↓↓')
-        }
-    
-        if (BG.TREND_DOUBLE_90_DOWN_MMOL_L_M <= dBGdt && dBGdt < BG.TREND_90_DOWN_MMOL_L_M) {
-            return new DataTypes.TimeData('↓')
-        }
-    
-        if (BG.TREND_90_DOWN_MMOL_L_M <= dBGdt && dBGdt < BG.TREND_45_DOWN_MMOL_L_M) {
-            return new DataTypes.TimeData('↘')
-        }
-    
-        if (BG.TREND_45_DOWN_MMOL_L_M <= dBGdt && dBGdt < BG.TREND_45_UP_MMOL_L_M) {
-            return new DataTypes.TimeData('→')
-        }
-    
-        if (BG.TREND_45_UP_MMOL_L_M <= dBGdt && dBGdt < BG.TREND_90_UP_MMOL_L_M) {
-            return new DataTypes.TimeData('↗')
-        }
-    
-        if (BG.TREND_90_UP_MMOL_L_M <= dBGdt && dBGdt < BG.TREND_DOUBLE_90_UP_MMOL_L_M) {
-            return new DataTypes.TimeData('↑')
-        }
-    
-        if (BG.TREND_DOUBLE_90_UP_MMOL_L_M <= dBGdt) {
-            return new DataTypes.TimeData('↑↑')
-        }
+
+        const avgdBGdt = nBGs >= BG.N_BGS_TREND ? lib.getArrayAverage(dBGdts) / 60 / 1000 : undefined
+
+        return getBGTrendArrow(avgdBGdt)
     }
 )
