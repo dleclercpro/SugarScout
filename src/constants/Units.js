@@ -9,5 +9,5 @@ export const CSF = 'g/U'
 export const RESERVOIR = 'U'
 export const PUMP_BATTERY = 'V'
 export const CGM_BATTERY = '%'
-export const SENSOR_AGE = TIME
-export const CANULA_AGE = TIME
+export const AGE_DAYS = 'd'
+export const AGE_HOURS = TIME

@@ -91,18 +91,26 @@ const Dash = (props) => {
                                 <span className='title'>SAGE:</span>
                                 {' '}
                                 <span className='value'>
-                                    {lib.formatSAGE(props.sage.getValue())}
+                                    {lib.formatAgeDays(props.sage.getValue())}
                                     {' '}
-                                    {Units.SENSOR_AGE}
+                                    {Units.AGE_DAYS}
+                                    {' '}
+                                    {lib.formatAgeHours(props.sage.getValue())}
+                                    {' '}
+                                    {Units.AGE_HOURS}
                                 </span>
                             </p>
                             <p className={`cage ${props.cage === dash.DEFAULT_CANULA_AGE ? 'is-invalid' : ''} ${getCAGEType(props.cage.getValue())}`}>
                                 <span className='title'>CAGE:</span>
                                 {' '}
                                 <span className='value'>
-                                    {lib.formatCAGE(props.cage.getValue())}
+                                    {lib.formatAgeDays(props.cage.getValue())}
                                     {' '}
-                                    {Units.CANULA_AGE}
+                                    {Units.AGE_DAYS}
+                                    {' '}
+                                    {lib.formatAgeHours(props.cage.getValue())}
+                                    {' '}
+                                    {Units.AGE_HOURS}
                                 </span>
                             </p>
                         </div>
