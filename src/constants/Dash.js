@@ -34,8 +34,8 @@ export const CGM_BATTERY_LEVELS = {
 }
 
 export const SENSOR_AGES = {
-    VERY_OLD: 2 * 7 * 24,
-    OLD: 7 * 24,
+    VERY_OLD: 6 * 24,
+    OLD: 4 * 24,
 }
 
 export const CANULA_AGES = {

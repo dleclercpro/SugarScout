@@ -39,14 +39,7 @@ const getLastItem = (items) => {
     if (items) {
         return items[items.length - 1]
     }
-
-    return undefined
 }
-
-const getLastCGMStartStatus = (statuses) => {
-    return getLastItem(statuses.filter(status => status.getValue() === 'Started'))
-}
-
 
 // Visible items
 export const getVisibleBGs = createSelector([getCurrentTime, getBGs], getVisibleItems)
@@ -71,24 +64,27 @@ export const getCurrentCGMBatteryLevel = createSelector([getCGMBatteryLevels], g
 
 
 // Misc
-export const getCurrentSAGE = createSelector(
+export const getCurrentSensorAge = createSelector(
     [getCurrentTime, getCGMStatuses],
     (now, statuses) => {
         if (statuses) {
-            const last = getLastCGMStartStatus(statuses)
+            const lastStart = getLastItem(statuses.filter(status => status.getValue() === 'Started'))
+            const lastEnd = getLastItem(statuses.filter(status => status.getValue() === 'Stopped' || status.getValue() === 'Expired'))
 
-            if (last) {
-                return new DataTypes.TimeData(
-                    (now.getTime() - last.getTime()) / 60 / 60 / 1000 // (h)
-                )
+            if (lastStart && lastEnd) {
+                const age = now.getTime() - lastStart.getTime()
+                const hasBeenRestarted = lastStart.getTime() > lastEnd.getTime()
+                const hasExpired = age > Time.MAX_AGE_SENSOR
+
+                return hasBeenRestarted && !hasExpired ?
+                    new DataTypes.TimeData( age / 60 / 60 / 1000, lastStart.getTime() ) :
+                    undefined
             }
         }
-
-        return undefined
     }
 )
 
-export const getCurrentCAGE = (state) => undefined
+export const getCurrentCanulaAge = (state) => undefined
 
 export const getCurrentBGDelta = createSelector(
     [getBGs],
