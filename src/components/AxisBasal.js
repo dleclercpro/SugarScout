@@ -1,20 +1,21 @@
 import React, { Component } from 'react'
 import Tick from 'components/Tick'
 import * as Basal from 'constants/Basal'
+import * as lib from 'lib'
 import 'components/AxisBasal.scss'
 
 class AxisBasal extends Component {
 
-    build() {
-        const range = this.props.range[1] - this.props.range[0]
-        const ticks = Basal.AXIS_VALUES.map((y) => ({ label: y, value: y }))
-        const nTicks = ticks.length
-
+    getTicks() {
+        const range = this.props.ticks ? lib.getArrayRange(this.props.ticks) : lib.getArrayRange(Basal.AXIS_VALUES)
+        let ticks = this.props.ticks ? this.props.ticks : Basal.AXIS_VALUES
+        ticks = ticks.map((y) => ({ label: y, value: y }))
+        
         let visibleTicks = [...ticks]
         visibleTicks.pop()
 
         return visibleTicks.map((tick, index) => {
-            const nextTick = index + 1 === nTicks - 1 ? ticks[nTicks - 1] : ticks[index + 1]
+            const nextTick = ticks[index + 1]
             const size = Math.abs(nextTick.value - tick.value)
 
             return (
@@ -23,7 +24,7 @@ class AxisBasal extends Component {
                     label={tick.label}
                     value={tick.value}
                     style={{
-                        height: size / range * 100 + '%',
+                        height: size / (range[1] - range[0]) * 100 + '%',
                     }}
                 />
             )
@@ -34,7 +35,7 @@ class AxisBasal extends Component {
         return (
             <div className='axis axis--basal'>
                 <div className='wrapper'>
-                    {this.build()}
+                    {this.getTicks()}
                 </div>
             </div>
         )

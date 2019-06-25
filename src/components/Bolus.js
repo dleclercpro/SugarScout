@@ -13,8 +13,8 @@ class Bolus extends Component {
     }
 
     getPosY() {
-        const dY = this.props.basalRange[1] - this.props.basalRange[0]
-        const dy = this.props.basalRange[1]
+        const dY = this.props.range[1] - this.props.range[0]
+        const dy = this.props.range[1]
 
         return dy / dY * this.props.innerHeight
     }

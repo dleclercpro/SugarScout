@@ -2,9 +2,10 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import Actions from 'actions'
 import AxisBasal from 'components/AxisBasal'
+import * as Selectors from 'selectors'
 
 const mapStateToProps = (state) => ({
-    range: state.axes.basal.range,
+    ticks: Selectors.getBasalAxisTicks(state),
 })
 
 const mapDispatchToProps = (dispatch) => ({

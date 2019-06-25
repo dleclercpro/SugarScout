@@ -2,9 +2,10 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import Actions from 'actions'
 import AxisBG from 'components/AxisBG'
+import * as Selectors from 'selectors'
 
 const mapStateToProps = (state) => ({
-    range: state.axes.bg.range,
+    ticks: Selectors.getBGAxisTicks(state),
 })
 
 const mapDispatchToProps = (dispatch) => ({

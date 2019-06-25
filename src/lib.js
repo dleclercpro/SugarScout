@@ -9,6 +9,10 @@ export const getRangeFromTo = (start, end) => {
     return getRange(end - start + 1).map((x) => x + start)
 }
 
+export const getUniqueValues = (array) => {
+    return [...new Set(array)]
+}
+
 export const getArrayAverage = (array, callback = x => x) => {
     return array.reduce((a, b) => callback(a) + callback(b), 0) / array.length
 }
@@ -19,6 +23,10 @@ export const getArrayMin = (array, callback = x => x) => {
 
 export const getArrayMax = (array, callback = x => x) => {
     return array.reduce((a, b) => callback(a) > callback(b) ? a : b, array[0])
+}
+
+export const getArrayRange = (array) => {
+    return [getArrayMin(array), getArrayMax(array)]
 }
 
 export const getArrayLast = (elements) => {

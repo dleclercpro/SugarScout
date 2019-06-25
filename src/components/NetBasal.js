@@ -14,8 +14,8 @@ class NetBasal extends Component {
     }
 
     getPosY() {
-        const dY = this.props.basalRange[1] - this.props.basalRange[0]
-        let dy = this.props.value >= 0 ? this.props.basalRange[1] - this.props.value : this.props.basalRange[1]
+        const dY = this.props.range[1] - this.props.range[0]
+        let dy = this.props.value >= 0 ? this.props.range[1] - this.props.value : this.props.range[1]
 
         return dy / dY * this.props.innerHeight
     }
@@ -29,7 +29,7 @@ class NetBasal extends Component {
     }
 
     getHeight() {
-        const dH = this.props.basalRange[1] - this.props.basalRange[0]
+        const dH = this.props.range[1] - this.props.range[0]
         const dh = Math.abs(this.props.value)
 
         return dh / dH * this.props.innerHeight

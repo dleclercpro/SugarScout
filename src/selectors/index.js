@@ -2,6 +2,7 @@ import { createSelector } from 'reselect'
 import * as DataTypes from 'constants/DataTypes'
 import * as Time from 'constants/Time'
 import * as BG from 'constants/BG'
+import * as Basal from 'constants/Basal'
 import * as lib from 'lib'
 
 
@@ -36,7 +37,6 @@ const getCurrentTimeBracket = (now, brackets) => {
 }
 
 
-
 // Visible items
 export const getVisibleBGs = createSelector([getCurrentTime, getBGs], getVisibleItems)
 export const getVisibleNetBasals = createSelector([getCurrentTime, getNetBasals], getVisibleItems)
@@ -60,6 +60,32 @@ export const getCurrentCGMBatteryLevel = createSelector([getCGMBatteryLevels], l
 
 
 // Misc
+export const getAxisTicks = (values, defaults) => {
+
+    if (values.length) {
+        const min = lib.getArrayMin(values, x => x.getValue())
+        const max = lib.getArrayMax(values, x => x.getValue())
+
+        return lib.getUniqueValues([
+            ...defaults,
+            Math.floor(min.getValue()),
+            Math.ceil(max.getValue())
+        ])
+    }
+
+    return defaults
+}
+
+export const getBGAxisTicks = createSelector(
+    [getBGs],
+    bgs => getAxisTicks(bgs, BG.AXIS_VALUES)
+)
+
+export const getBasalAxisTicks = createSelector(
+    [getNetBasals, getIOBs],
+    (nbs, iobs) => getAxisTicks([...nbs, ...iobs], Basal.AXIS_VALUES)
+)
+
 export const getCurrentSensorAge = createSelector(
     [getCurrentTime, getCGMStatuses],
     (now, statuses) => {
