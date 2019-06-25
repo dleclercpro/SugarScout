@@ -8,8 +8,7 @@ class AxisBG extends Component {
 
     getTicks() {
         const range = this.props.ticks ? lib.getArrayRange(this.props.ticks) : lib.getArrayRange(BG.AXIS_VALUES)
-        let ticks = this.props.ticks ? this.props.ticks : BG.AXIS_VALUES
-        ticks = ticks.map((y) => ({ label: y, value: y }))
+        const ticks = (this.props.ticks ? this.props.ticks : BG.AXIS_VALUES).map((y) => ({ label: y, value: y }))
         
         let visibleTicks = [...ticks]
         visibleTicks.pop()
