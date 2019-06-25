@@ -1,14 +1,13 @@
 import React, { Component } from 'react'
 import Tick from 'components/Tick'
-import * as Basal from 'constants/Basal'
 import * as lib from 'lib'
 import 'components/AxisBasal.scss'
 
 class AxisBasal extends Component {
 
     getTicks() {
-        const range = this.props.ticks ? lib.getArrayRange(this.props.ticks) : lib.getArrayRange(Basal.AXIS_VALUES)
-        const ticks = (this.props.ticks ? this.props.ticks : Basal.AXIS_VALUES).map((y) => ({ label: y, value: y }))
+        const range = lib.getArrayRange(this.props.ticks)
+        const ticks = this.props.ticks.map((y) => ({ label: y, value: y }))
         
         let visibleTicks = [...ticks]
         visibleTicks.pop()
