@@ -5,7 +5,6 @@ import AxisBasal from 'components/AxisBasal'
 
 const mapStateToProps = (state) => ({
     range: state.axes.basal.range,
-    ticks: state.axes.basal.ticks,
 })
 
 const mapDispatchToProps = (dispatch) => ({

@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import Actions from 'actions'
 import * as Selectors from 'selectors'
 import Dash from 'components/Dash'
-import * as dash from 'constants/Dash'
+import * as defaults from 'constants/Defaults'
 
 const mapStateToProps = (state) => ({
     isExpired: (time, maxAge) => time < state.time.now.getTime() - maxAge ? 'is-expired' : '',
@@ -11,20 +11,20 @@ const mapStateToProps = (state) => ({
     now: state.time.now,
     timeScales: state.time.scales,
     lastFetch: state.time.lastFetch,
-    bg: Selectors.getCurrentBG(state) || dash.DEFAULT_BG,
-    dbg: Selectors.getCurrentBGDelta(state) || dash.DEFAULT_DBG,
-    bgTrend: Selectors.getCurrentBGTrendArrow(state) || dash.DEFAULT_BG_TREND,
-    basal: Selectors.getCurrentBasal(state) || dash.DEFAULT_BASAL,
-    isf: Selectors.getCurrentISF(state) || dash.DEFAULT_ISF,
-    csf: Selectors.getCurrentCSF(state) || dash.DEFAULT_CSF,
-    iob: Selectors.getCurrentIOB(state) || dash.DEFAULT_IOB,
-    cob: Selectors.getCurrentCOB(state) || dash.DEFAULT_COB,
-    sage: Selectors.getCurrentSensorAge(state) || dash.DEFAULT_SENSOR_AGE,
-    cage: Selectors.getCurrentCanulaAge(state) || dash.DEFAULT_CANULA_AGE,
-    reservoir: Selectors.getCurrentReservoirLevel(state) || dash.DEFAULT_RESERVOIR,
+    bg: Selectors.getCurrentBG(state) || defaults.BG,
+    dbg: Selectors.getCurrentBGDelta(state) || defaults.DBG,
+    bgTrend: Selectors.getCurrentBGTrendArrow(state) || defaults.BG_TREND,
+    basal: Selectors.getCurrentBasal(state) || defaults.BASAL,
+    isf: Selectors.getCurrentISF(state) || defaults.ISF,
+    csf: Selectors.getCurrentCSF(state) || defaults.CSF,
+    iob: Selectors.getCurrentIOB(state) || defaults.IOB,
+    cob: Selectors.getCurrentCOB(state) || defaults.COB,
+    sage: Selectors.getCurrentSensorAge(state) || defaults.SENSOR_AGE,
+    cage: Selectors.getCurrentCanulaAge(state) || defaults.CANULA_AGE,
+    reservoir: Selectors.getCurrentReservoirLevel(state) || defaults.RESERVOIR,
     battery: {
-        pump: Selectors.getCurrentPumpBatteryLevel(state) || dash.DEFAULT_PUMP_BATTERY,
-        cgm: Selectors.getCurrentCGMBatteryLevel(state) || dash.DEFAULT_CGM_BATTERY,
+        pump: Selectors.getCurrentPumpBatteryLevel(state) || defaults.PUMP_BATTERY,
+        cgm: Selectors.getCurrentCGMBatteryLevel(state) || defaults.CGM_BATTERY,
     },
 })
 

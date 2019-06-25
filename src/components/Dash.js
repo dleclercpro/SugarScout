@@ -3,15 +3,15 @@ import { getType } from 'components/BG'
 import ButtonTimeScaleContainer from 'containers/ButtonTimeScaleContainer'
 import * as Units from 'constants/Units'
 import * as Time from 'constants/Time'
-import * as dash from 'constants/Dash'
+import * as defaults from 'constants/Defaults'
 import * as lib from 'lib'
 import 'components/Dash.scss'
 
-const getReservoirType = value => lib.getLevelType(value, dash.RESERVOIR_LEVELS)
-const getPumpBatteryType = value => lib.getLevelType(value, dash.PUMP_BATTERY_LEVELS)
-const getCGMBatteryType = value => lib.getLevelType(value, dash.CGM_BATTERY_LEVELS)
-const getSAGEType = value => lib.getAgeType(value, dash.SENSOR_AGES)
-const getCAGEType = value => lib.getAgeType(value, dash.CANULA_AGES)
+const getReservoirType = value => lib.getLevelType(value, defaults.RESERVOIR_LEVELS)
+const getPumpBatteryType = value => lib.getLevelType(value, defaults.PUMP_BATTERY_LEVELS)
+const getCGMBatteryType = value => lib.getLevelType(value, defaults.CGM_BATTERY_LEVELS)
+const getSAGEType = value => lib.getAgeType(value, defaults.SENSOR_AGES)
+const getCAGEType = value => lib.getAgeType(value, defaults.CANULA_AGES)
 
 const Dash = (props) => {
     return (
@@ -87,7 +87,7 @@ const Dash = (props) => {
                             </p>
                         </div>
                         <div className='age'>
-                            <p className={`sage ${props.sage === dash.DEFAULT_SENSOR_AGE ? 'is-invalid' : ''} ${getSAGEType(props.sage.getValue())}`}>
+                            <p className={`sage ${props.sage === defaults.SENSOR_AGE ? 'is-invalid' : ''} ${getSAGEType(props.sage.getValue())}`}>
                                 <span className='title'>SAGE:</span>
                                 {' '}
                                 <span className='value'>
@@ -100,7 +100,7 @@ const Dash = (props) => {
                                     {Units.AGE_HOURS}
                                 </span>
                             </p>
-                            <p className={`cage ${props.cage === dash.DEFAULT_CANULA_AGE ? 'is-invalid' : ''} ${getCAGEType(props.cage.getValue())}`}>
+                            <p className={`cage ${props.cage === defaults.CANULA_AGE ? 'is-invalid' : ''} ${getCAGEType(props.cage.getValue())}`}>
                                 <span className='title'>CAGE:</span>
                                 {' '}
                                 <span className='value'>

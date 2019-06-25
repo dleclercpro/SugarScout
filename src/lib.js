@@ -9,8 +9,22 @@ export const getRangeFromTo = (start, end) => {
     return getRange(end - start + 1).map((x) => x + start)
 }
 
-export const getArrayAverage = (array) => {
-    return array.reduce((a, b) => a + b, 0) / array.length
+export const getArrayAverage = (array, callback = x => x) => {
+    return array.reduce((a, b) => callback(a) + callback(b), 0) / array.length
+}
+
+export const getArrayMin = (array, callback = x => x) => {
+    return array.reduce((a, b) => callback(a) < callback(b) ? a : b, array[0])
+}
+
+export const getArrayMax = (array, callback = x => x) => {
+    return array.reduce((a, b) => callback(a) > callback(b) ? a : b, array[0])
+}
+
+export const getArrayLast = (elements) => {
+    if (elements) {
+        return elements[elements.length - 1]
+    }
 }
 
 export const compareTimeData = (a, b) => {

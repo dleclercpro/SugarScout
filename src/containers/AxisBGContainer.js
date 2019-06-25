@@ -5,7 +5,6 @@ import AxisBG from 'components/AxisBG'
 
 const mapStateToProps = (state) => ({
     range: state.axes.bg.range,
-    ticks: state.axes.bg.ticks,
 })
 
 const mapDispatchToProps = (dispatch) => ({

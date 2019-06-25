@@ -35,11 +35,7 @@ const getCurrentTimeBracket = (now, brackets) => {
         .reduce((prevBracket, bracket) => prevBracket.getTime() > bracket.getTime() ? prevBracket : bracket, brackets[0])
 }
 
-const getLastItem = (items) => {
-    if (items) {
-        return items[items.length - 1]
-    }
-}
+
 
 // Visible items
 export const getVisibleBGs = createSelector([getCurrentTime, getBGs], getVisibleItems)
@@ -55,12 +51,12 @@ export const getCurrentCSF = createSelector([getCurrentTime, getCSFs], getCurren
 
 
 // Last items
-export const getCurrentBG = createSelector([getBGs], getLastItem)
-export const getCurrentIOB = createSelector([getIOBs], getLastItem)
-export const getCurrentCOB = createSelector([getCOBs], getLastItem)
-export const getCurrentReservoirLevel = createSelector([getReservoirLevels], getLastItem)
-export const getCurrentPumpBatteryLevel = createSelector([getPumpBatteryLevels], getLastItem)
-export const getCurrentCGMBatteryLevel = createSelector([getCGMBatteryLevels], getLastItem)
+export const getCurrentBG = createSelector([getBGs], lib.getArrayLast)
+export const getCurrentIOB = createSelector([getIOBs], lib.getArrayLast)
+export const getCurrentCOB = createSelector([getCOBs], lib.getArrayLast)
+export const getCurrentReservoirLevel = createSelector([getReservoirLevels], lib.getArrayLast)
+export const getCurrentPumpBatteryLevel = createSelector([getPumpBatteryLevels], lib.getArrayLast)
+export const getCurrentCGMBatteryLevel = createSelector([getCGMBatteryLevels], lib.getArrayLast)
 
 
 // Misc
@@ -68,8 +64,11 @@ export const getCurrentSensorAge = createSelector(
     [getCurrentTime, getCGMStatuses],
     (now, statuses) => {
         if (statuses) {
-            const lastStart = getLastItem(statuses.filter(status => status.getValue() === 'Started'))
-            const lastEnd = getLastItem(statuses.filter(status => status.getValue() === 'Stopped' || status.getValue() === 'Expired'))
+            const lastStart = lib.getArrayLast(statuses.filter(status => status.getValue() === 'Started'))
+            const lastEnd = lib.getArrayLast(statuses.filter(status =>
+                status.getValue() === 'Stopped' ||
+                status.getValue() === 'Expired'
+            ))
 
             if (lastStart && lastEnd) {
                 const age = now.getTime() - lastStart.getTime()
@@ -77,8 +76,7 @@ export const getCurrentSensorAge = createSelector(
                 const hasExpired = age > Time.MAX_AGE_SENSOR
 
                 return hasBeenRestarted && !hasExpired ?
-                    new DataTypes.TimeData( age / 60 / 60 / 1000, lastStart.getTime() ) :
-                    undefined
+                    new DataTypes.TimeData( age / 60 / 60 / 1000, lastStart.getTime() ) : undefined
             }
         }
     }
@@ -94,16 +92,10 @@ export const getCurrentBGDelta = createSelector(
                 bgs[bgs.length - 1].getValue() - bgs[bgs.length - 2].getValue()
             )
         }
-
-        return undefined
     }
 )
 
 const getBGTrendArrow = (dBGdt) => {
-
-    if (dBGdt === undefined) {
-        return new DataTypes.TimeData('→')
-    }
     
     if (dBGdt < BG.TREND_DOUBLE_90_DOWN_MMOL_L_M) {
         return new DataTypes.TimeData('↓↓')
@@ -147,8 +139,10 @@ export const getCurrentBGTrendArrow = createSelector(
             dBGdts.push(dBG / dt)
         }
 
-        const avgdBGdt = nBGs >= BG.N_BGS_TREND ? lib.getArrayAverage(dBGdts) / 60 / 1000 : undefined
+        if (nBGs >= BG.N_BGS_TREND) {
+            const avgdBGdt = lib.getArrayAverage(dBGdts) / 60 / 1000
 
-        return getBGTrendArrow(avgdBGdt)
+            return getBGTrendArrow(avgdBGdt)
+        }
     }
 )
