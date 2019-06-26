@@ -78,12 +78,12 @@ export const getAxisTicks = (values, defaults) => {
 }
 
 export const getBGAxisTicks = createSelector(
-    [getBGs],
+    [getVisibleBGs],
     bgs => getAxisTicks(bgs, BG.AXIS_VALUES)
 )
 
 export const getBasalAxisTicks = createSelector(
-    [getNetBasals, getIOBs],
+    [getVisibleNetBasals, getVisibleIOBs],
     (nbs, iobs) => getAxisTicks([...nbs, ...iobs], Basal.AXIS_VALUES)
 )
 
