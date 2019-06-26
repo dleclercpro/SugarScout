@@ -42,4 +42,35 @@ export const getType = (value) => {
     return 'unknown'
 }
 
+export const getTrendArrow = (dBGdt) => {
+    
+    if (dBGdt < bg.TREND_DOUBLE_90_DOWN_MMOL_L_M) {
+        return '↓↓'
+    }
+
+    if (bg.TREND_DOUBLE_90_DOWN_MMOL_L_M <= dBGdt && dBGdt < bg.TREND_90_DOWN_MMOL_L_M) {
+        return '↓'        
+    }
+
+    if (bg.TREND_90_DOWN_MMOL_L_M <= dBGdt && dBGdt < bg.TREND_45_DOWN_MMOL_L_M) {
+        return '↘'
+    }
+
+    if (bg.TREND_45_DOWN_MMOL_L_M <= dBGdt && dBGdt < bg.TREND_45_UP_MMOL_L_M) {
+        return '→'
+    }
+
+    if (bg.TREND_45_UP_MMOL_L_M <= dBGdt && dBGdt < bg.TREND_90_UP_MMOL_L_M) {
+        return '↗'
+    }
+
+    if (bg.TREND_90_UP_MMOL_L_M <= dBGdt && dBGdt < bg.TREND_DOUBLE_90_UP_MMOL_L_M) {
+        return '↑'
+    }
+
+    if (bg.TREND_DOUBLE_90_UP_MMOL_L_M <= dBGdt) {
+        return '↑↑'
+    }
+}
+
 export default BG

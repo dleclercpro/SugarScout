@@ -1,10 +1,10 @@
 import React from 'react'
-import { getType } from 'components/BG'
 import ButtonTimeScaleContainer from 'containers/ButtonTimeScaleContainer'
 import * as Units from 'constants/Units'
 import * as Time from 'constants/Time'
 import * as defaults from 'constants/Defaults'
 import * as lib from 'lib'
+import { getType } from 'components/BG'
 import 'components/Dash.scss'
 
 const getReservoirType = value => lib.getLevelType(value, defaults.RESERVOIR_LEVELS)

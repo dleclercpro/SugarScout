@@ -35,6 +35,8 @@ export const getArrayLast = (elements) => {
     }
 }
 
+export const roundTo = (x, n) => Math.round(x * 10 ** n) / 10 ** n
+
 export const compareTimeData = (a, b) => {
     if (a.getTime() < b.getTime()) { return -1 }
     if (a.getTime() > b.getTime()) { return 1 }

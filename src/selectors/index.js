@@ -3,6 +3,7 @@ import * as DataTypes from 'constants/DataTypes'
 import * as Time from 'constants/Time'
 import * as BG from 'constants/BG'
 import * as Basal from 'constants/Basal'
+import { getTrendArrow } from 'components/BG'
 import * as lib from 'lib'
 
 
@@ -121,54 +122,24 @@ export const getCurrentBGDelta = createSelector(
     }
 )
 
-const getBGTrendArrow = (dBGdt) => {
-    
-    if (dBGdt < BG.TREND_DOUBLE_90_DOWN_MMOL_L_M) {
-        return new DataTypes.TimeData('↓↓')
-    }
-
-    if (BG.TREND_DOUBLE_90_DOWN_MMOL_L_M <= dBGdt && dBGdt < BG.TREND_90_DOWN_MMOL_L_M) {
-        return new DataTypes.TimeData('↓')
-    }
-
-    if (BG.TREND_90_DOWN_MMOL_L_M <= dBGdt && dBGdt < BG.TREND_45_DOWN_MMOL_L_M) {
-        return new DataTypes.TimeData('↘')
-    }
-
-    if (BG.TREND_45_DOWN_MMOL_L_M <= dBGdt && dBGdt < BG.TREND_45_UP_MMOL_L_M) {
-        return new DataTypes.TimeData('→')
-    }
-
-    if (BG.TREND_45_UP_MMOL_L_M <= dBGdt && dBGdt < BG.TREND_90_UP_MMOL_L_M) {
-        return new DataTypes.TimeData('↗')
-    }
-
-    if (BG.TREND_90_UP_MMOL_L_M <= dBGdt && dBGdt < BG.TREND_DOUBLE_90_UP_MMOL_L_M) {
-        return new DataTypes.TimeData('↑')
-    }
-
-    if (BG.TREND_DOUBLE_90_UP_MMOL_L_M <= dBGdt) {
-        return new DataTypes.TimeData('↑↑')
-    }
-}
-
 export const getCurrentBGTrendArrow = createSelector(
     [getBGs],
     bgs => {
         const nBGs = bgs.length
         let dBGdts = []
 
-        for (let i = 0; i < bgs.length - 1; i++) {
-            const dBG = bgs[i + 1].getValue() - bgs[i].getValue()
-            const dt = bgs[i + 1].getTime() - bgs[i].getTime()
-
-            dBGdts.push(dBG / dt)
-        }
-
         if (nBGs >= BG.N_BGS_TREND) {
-            const avgdBGdt = lib.getArrayAverage(dBGdts) / 60 / 1000
 
-            return getBGTrendArrow(avgdBGdt)
+            for (let i = bgs.length - BG.N_BGS_TREND; i < bgs.length - 1; i++) {
+                const dBG = bgs[i + 1].getValue() - bgs[i].getValue()
+                const dt = (bgs[i + 1].getTime() - bgs[i].getTime()) / 1000 / 60 // (m)
+            
+                dBGdts.push(dBG / dt)
+            }
+        
+            const avgdBGdt = lib.roundTo(lib.getArrayAverage(dBGdts), 2)
+
+            return new DataTypes.TimeData(getTrendArrow(avgdBGdt))
         }
     }
 )
