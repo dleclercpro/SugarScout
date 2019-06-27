@@ -13,7 +13,7 @@ export const HIGH = 7.0
 export const VERY_HIGH = 10.0
 
 // Trend
-export const N_BGS_TREND = 6
+export const N_BGS_TREND = 5
 export const TREND_DOUBLE_90_DOWN_MMOL_L_M = -0.1
 export const TREND_90_DOWN_MMOL_L_M = -0.06
 export const TREND_45_DOWN_MMOL_L_M = -0.04

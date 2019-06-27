@@ -26,3 +26,4 @@ export const MAX_AGE_RESERVOIR = 30 * 60 * 1000
 export const MAX_AGE_PUMP_BATTERY = 1 * 60 * 60 * 1000
 export const MAX_AGE_CGM_BATTERY = MAX_AGE_PUMP_BATTERY
 export const MAX_AGE_SENSOR = 7 * 24 * 60 * 60 * 1000
+export const MAX_AGE_BGS_TREND = 30 * 60 * 1000

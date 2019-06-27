@@ -123,12 +123,12 @@ export const getCurrentBGDelta = createSelector(
 )
 
 export const getCurrentBGTrendArrow = createSelector(
-    [getBGs],
-    bgs => {
-        const nBGs = bgs.length
-        let dBGdts = []
-
-        if (nBGs >= BG.N_BGS_TREND) {
+    [getBGs, getCurrentTime],
+    (bgs, now) => {
+        bgs = bgs.filter(bg => bg.getTime() >= now.getTime() - Time.MAX_AGE_BGS_TREND)
+        console.log(bgs)
+        if (bgs.length >= BG.N_BGS_TREND) {
+            let dBGdts = []
 
             for (let i = bgs.length - BG.N_BGS_TREND; i < bgs.length - 1; i++) {
                 const dBG = bgs[i + 1].getValue() - bgs[i].getValue()
