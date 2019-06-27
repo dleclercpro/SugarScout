@@ -8,11 +8,12 @@ export const FORMAT_LONG = 'YYYY.MM.DD - HH:mm:ss'
 // Timescales
 export const SCALES = [1, 3, 6, 12, 24]                    // (h)
 export const SCALE = 6                                     // (h)
-export const WINDOW = Math.max(...SCALES) * 60 * 60 * 1000 // (ms)
+export const WINDOW = Math.max(...SCALES) * 60 * 60 * 1000
 
 // Refresh
-export const REFRESH_APP_RATE = 15 * 1000          // (ms)
-export const REFRESH_DATA_RATE = 1 * 60 * 1000     // (ms)
+export const REFRESH_APP_RATE = 15 * 1000
+export const REFRESH_DATA_RATE = 1 * 60 * 1000
+export const REFRESH_BG_RATE = 5 * 60 * 1000
 
 // Axis
 export const AXIS_N_TICKS = N_HOURS_PER_DAY

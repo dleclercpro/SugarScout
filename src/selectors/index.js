@@ -112,25 +112,30 @@ export const getCurrentSensorAge = createSelector(
 export const getCurrentCanulaAge = (state) => undefined
 
 export const getCurrentBGDelta = createSelector(
-    [getBGs],
-    bgs => {
-        if (bgs.length > 1) {
+    [getVisibleBGs, getCurrentTime],
+    (bgs, now) => {
+        bgs = bgs.filter(bg => bg.getTime() >= now.getTime() - Time.MAX_AGE_BGS_TREND)
+        const nBGs = bgs.length
+        const dt = nBGs > 1 ? bgs[nBGs - 1].getTime() - bgs[nBGs - 2].getTime() : -1
+
+        if (dt === Time.REFRESH_BG_RATE) {
             return new DataTypes.TimeData(
-                bgs[bgs.length - 1].getValue() - bgs[bgs.length - 2].getValue()
+                bgs[nBGs - 1].getValue() - bgs[nBGs - 2].getValue()
             )
         }
     }
 )
 
 export const getCurrentBGTrendArrow = createSelector(
-    [getBGs, getCurrentTime],
+    [getVisibleBGs, getCurrentTime],
     (bgs, now) => {
         bgs = bgs.filter(bg => bg.getTime() >= now.getTime() - Time.MAX_AGE_BGS_TREND)
-        console.log(bgs)
-        if (bgs.length >= BG.N_BGS_TREND) {
+        const nBGs = bgs.length
+
+        if (nBGs >= BG.N_BGS_TREND) {
             let dBGdts = []
 
-            for (let i = bgs.length - BG.N_BGS_TREND; i < bgs.length - 1; i++) {
+            for (let i = nBGs - BG.N_BGS_TREND; i < nBGs - 1; i++) {
                 const dBG = bgs[i + 1].getValue() - bgs[i].getValue()
                 const dt = (bgs[i + 1].getTime() - bgs[i].getTime()) / 1000 / 60 // (m)
             
