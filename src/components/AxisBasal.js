@@ -8,7 +8,7 @@ class AxisBasal extends Component {
     getTicks() {
         const range = lib.getArrayRange(this.props.ticks)
         const ticks = this.props.ticks.map((y) => ({ label: y, value: y }))
-        
+
         let visibleTicks = [...ticks]
         visibleTicks.pop()
 
