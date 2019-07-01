@@ -24,8 +24,8 @@ export const RESERVOIR_LEVELS = {
 }
 
 export const PUMP_BATTERY_LEVELS = {
-    VERY_LOW: 1.27,
-    LOW: 1.30,
+    VERY_LOW: 1.18,
+    LOW: 1.23,
 }
 
 export const CGM_BATTERY_LEVELS = {
