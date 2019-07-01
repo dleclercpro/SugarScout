@@ -64,13 +64,13 @@ export const getCurrentCGMBatteryLevel = createSelector([getCGMBatteryLevels], l
 export const getAxisTicks = (values, defaults) => {
 
     if (values.length) {
-        const min = lib.getArrayMin(values, x => x.getValue())
-        const max = lib.getArrayMax(values, x => x.getValue())
+        const min = Math.floor(lib.getArrayMin(values, x => x.getValue()).getValue())
+        const max = Math.ceil(lib.getArrayMax(values, x => x.getValue()).getValue())
 
         return lib.getUniqueValues([
+            Math.min(min, lib.getArrayMin(defaults)),
             ...defaults,
-            Math.floor(min.getValue()),
-            Math.ceil(max.getValue())
+            Math.max(max, lib.getArrayMax(defaults))
         ])
     }
 
