@@ -32,11 +32,11 @@ const BubbleReducer = (state = INIT_BUBBLE_STATE, action) => {
             let top = action.position.top - distanceFromMouse
             let left = action.position.left + distanceFromMouse
 
-            if (action.position.top - state.height < 0) {
+            if (top - state.height < 0) {
                 top += state.height + 2 * distanceFromMouse
             }
 
-            if (action.position.left + state.width > window.innerWidth) {
+            if (left + state.width > window.innerWidth) {
                 left -= state.width + 2 * distanceFromMouse
             }
 
