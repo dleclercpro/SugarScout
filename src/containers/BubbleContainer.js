@@ -1,24 +1,28 @@
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
-import Actions from 'actions'
-import Bubble from 'components/Bubble'
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import Actions from 'actions';
+import Bubble from 'components/Bubble';
 
-const mapStateToProps = (state) => ({
-    status: state.bubble.status,
-    target: state.bubble.target,
-    position: state.bubble.position,
-    time: state.bubble.time,
-    info: state.bubble.info,
-    duration: state.bubble.duration,
-})
+const mapStateToProps = (state) => {
+    const { position, target, status, time, info, duration } = state.bubble;
+    
+    return {
+        status,
+        target,
+        position,
+        time,
+        info,
+        duration,
+    };
+};
 
 const mapDispatchToProps = (dispatch) => ({
-    actions: {...bindActionCreators(Actions, dispatch)},
-})
+    actions: { ...bindActionCreators(Actions, dispatch) },
+});
 
 const BubbleContainer = connect(
     mapStateToProps,
     mapDispatchToProps,
-)(Bubble)
+)(Bubble);
 
-export default BubbleContainer
+export default BubbleContainer;

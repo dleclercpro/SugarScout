@@ -1,4 +1,4 @@
-import * as ActionTypes from 'constants/ActionTypes'
+import { UPDATE_INNER_BG_SIZE, UPDATE_INNER_BASAL_SIZE } from 'constants/ActionTypes';
 
 const INIT_INNER_STATE = {
     bg: {
@@ -9,11 +9,11 @@ const INIT_INNER_STATE = {
         width: 0,
         height: 0,
     },
-}
+};
 
 const InnerReducer = (state = INIT_INNER_STATE, action) => {
     switch (action.type) {
-        case ActionTypes.UPDATE_INNER_BG_SIZE:
+        case UPDATE_INNER_BG_SIZE:
             return {
                 ...state,
                 bg: {
@@ -21,9 +21,9 @@ const InnerReducer = (state = INIT_INNER_STATE, action) => {
                     width: action.width,
                     height: action.height,
                 },
-            }
+            };
 
-        case ActionTypes.UPDATE_INNER_BASAL_SIZE:
+        case UPDATE_INNER_BASAL_SIZE:
             return {
                 ...state,
                 basal: {
@@ -31,11 +31,11 @@ const InnerReducer = (state = INIT_INNER_STATE, action) => {
                     width: action.width,
                     height: action.height,
                 },
-            }
+            };
 
         default:
-            return state
+            return state;
     }
-}
+};
 
-export default InnerReducer
+export default InnerReducer;

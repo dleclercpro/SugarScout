@@ -1,10 +1,12 @@
-import React from 'react'
-import 'components/Tick.scss'
+import React from 'react';
+import 'components/Tick.scss';
 
 const Tick = (props) => {
+    const { label, style } = props;
+
     return (
-        <div className='tick' style={props.style}>{props.label}</div>
-    )
+        <div className='tick' style={style}>{label}</div>
+    );
 }
 
-export default Tick
+export default Tick;

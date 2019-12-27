@@ -1,20 +1,33 @@
-import React, { Component } from 'react'
-import Tick from 'components/Tick'
-import * as Time from 'constants/Time'
-import * as lib from 'lib'
-import 'components/AxisTime.scss'
+import React, { Component } from 'react';
+import Tick from 'components/Tick';
+import { D_TO_H, H_TO_MS } from 'constants/Time';
+import { getRangeFromTo } from 'lib';
+import 'components/AxisTime.scss';
 
 class AxisTime extends Component {
 
-    build() {
-        const now = this.props.now.getTime()
-        const hour = this.props.now.getHours()
+    getLabel(t) {
+        let label = t;
 
-        const range = lib.getRangeFromTo(hour - this.props.nTicks + 1, hour)
-        const ticks = range.map((t) => ({
-            label: (t >= 0 ? t : t + Time.N_HOURS_PER_DAY) + ':00',
-            value: now - this.props.toNow - (hour - t) * 60 * 60 * 1000,
-        }))
+        if (t < 0) {
+            label += D_TO_H;
+        }
+
+        return label + ':00';
+    }
+
+    getTicks() {
+        const { now, toNow, nTicks } = this.props;
+
+        const epoch = now.getTime();
+        const hour = now.getHours();
+
+        const hours = getRangeFromTo(hour - nTicks + 1, hour);
+        
+        const ticks = hours.map(t => ({
+            label: this.getLabel(t),
+            value: epoch - toNow - (hour - t) * H_TO_MS,
+        }));
 
         return ticks.map((tick, index) => (
             <Tick
@@ -23,23 +36,25 @@ class AxisTime extends Component {
                 value={tick.value}
                 style={{}}
             />
-        ))
+        ));
     }
 
-    getStyles() {
+    getStyle() {
+        const { toNow, timeScale } = this.props;
+
         return {
-            right: this.props.toNow / (this.props.timeScale * 60 * 60 * 1000) * 100 + '%'
-        }
+            right: toNow / (timeScale * H_TO_MS) * 100 + '%',
+        };
     }
     
     render() {
         return (
             <div className='axis axis--time'>
-                <div className='wrapper' style={this.getStyles()}>
-                    {this.build()}
+                <div className='wrapper' style={this.getStyle()}>
+                    {this.getTicks()}
                 </div>
             </div>
-        )
+        );
     }
 }
 

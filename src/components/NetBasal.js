@@ -1,66 +1,83 @@
-import React, { Component } from 'react'
-import * as Units from 'constants/Units'
-import * as lib from 'lib'
-import 'components/NetBasal.scss'
+import React, { Component } from 'react';
+import * as Units from 'constants/Units';
+import { H_TO_MS, M_TO_MS } from 'constants/Time';
+import * as fmt from 'fmt';
+import 'components/NetBasal.scss';
 
 class NetBasal extends Component {
 
     getPosX() {
-        const dX = this.props.timeScale * 60 * 60 * 1000
-        const dx = this.props.now.getTime() - this.props.time
+        const { now, time, timeScale, innerWidth } = this.props;
+
+        const dX = timeScale * H_TO_MS;
+        const dx = now.getTime() - time;
 
         // Trick on half pixels
-        return Math.floor((dX - dx) / dX * this.props.innerWidth)
+        return Math.floor((dX - dx) / dX * innerWidth);
     }
 
     getPosY() {
-        const dY = this.props.range[1] - this.props.range[0]
-        let dy = this.props.value >= 0 ? this.props.range[1] - this.props.value : this.props.range[1]
+        const { range, value, innerHeight } = this.props;
 
-        return dy / dY * this.props.innerHeight
+        const dY = range[1] - range[0];
+        let dy = value >= 0 ? range[1] - value : range[1];
+
+        return dy / dY * innerHeight;
     }
 
     getWidth() {
-        const dW = this.props.timeScale * 60 * 60 * 1000
-        const dw = this.props.duration
+        const { duration, timeScale, innerWidth } = this.props;
+
+        const dW = timeScale * H_TO_MS;
+        const dw = duration;
 
         // Trick on half pixels
-        return Math.ceil(dw / dW * this.props.innerWidth)
+        return Math.ceil(dw / dW * innerWidth);
     }
 
     getHeight() {
-        const dH = this.props.range[1] - this.props.range[0]
-        const dh = Math.abs(this.props.value)
+        const { range, value, innerHeight } = this.props;
 
-        return dh / dH * this.props.innerHeight
+        const dH = range[1] - range[0];
+        const dh = Math.abs(value);
+
+        return dh / dH * innerHeight;
     }
 
     handleMouseEnter = (e) => {
-        this.props.actions.updateBubbleInfos({
+        const { time, value, duration } = this.props;
+        const { updateBubbleInfos, showBubble } = this.props.actions;
+
+        updateBubbleInfos({
             target: 'netBasal',
-            time: this.props.time,
+            time: time,
             info: {
-                value: lib.formatBasal(this.props.value),
+                value: fmt.basal(value),
                 units: Units.BASAL,
             },
             duration: {
-                value: Math.round(this.props.duration / 60 / 1000),
+                value: Math.round(duration / M_TO_MS),
                 units: 'm',
             },
-        })
-        this.props.actions.showBubble()
+        });
+        
+        showBubble();
     }
 
     handleMouseMove = (e) => {
-        this.props.actions.moveBubble({
+        const { moveBubble } = this.props.actions;
+
+        moveBubble({
             top: e.clientY,
             left: e.clientX,
-        })
+        });
     }
 
     handleMouseLeave = (e) => {
-        this.props.actions.hideBubble()
-        this.props.actions.resetBubble()
+        const { hideBubble, resetBubble } = this.props.actions;
+        
+        hideBubble();
+        resetBubble();
     }
 
     render() {
@@ -74,8 +91,8 @@ class NetBasal extends Component {
                 onMouseMove={this.handleMouseMove}
                 onMouseLeave={this.handleMouseLeave}
             />
-        )
+        );
     }
 }
 
-export default NetBasal
+export default NetBasal;

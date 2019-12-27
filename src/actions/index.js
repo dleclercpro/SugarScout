@@ -1,8 +1,8 @@
-import * as AxesActions from 'actions/AxesActions'
-import * as BubbleActions from 'actions/BubbleActions'
-import * as FetchActions from 'actions/FetchActions'
-import * as InnerActions from 'actions/InnerActions'
-import * as TimeActions from 'actions/TimeActions'
+import * as AxesActions from 'actions/AxesActions';
+import * as BubbleActions from 'actions/BubbleActions';
+import * as FetchActions from 'actions/FetchActions';
+import * as InnerActions from 'actions/InnerActions';
+import * as TimeActions from 'actions/TimeActions';
 
 const Actions = {
     ...AxesActions,
@@ -10,6 +10,6 @@ const Actions = {
     ...FetchActions,
     ...InnerActions,
     ...TimeActions,
-}
+};
 
-export default Actions
+export default Actions;

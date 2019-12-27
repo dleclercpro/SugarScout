@@ -1,157 +1,92 @@
-import React from 'react'
-import ButtonTimeScaleContainer from 'containers/ButtonTimeScaleContainer'
-import * as Units from 'constants/Units'
-import * as Time from 'constants/Time'
-import * as defaults from 'constants/Defaults'
-import * as lib from 'lib'
-import { getType } from 'components/BG'
-import 'components/Dash.scss'
-
-const getReservoirType = value => lib.getLevelType(value, defaults.RESERVOIR_LEVELS)
-const getPumpBatteryType = value => lib.getLevelType(value, defaults.PUMP_BATTERY_LEVELS)
-const getCGMBatteryType = value => lib.getLevelType(value, defaults.CGM_BATTERY_LEVELS)
-const getSAGEType = value => lib.getAgeType(value, defaults.SENSOR_AGES)
-const getCAGEType = value => lib.getAgeType(value, defaults.CANULA_AGES)
+import React from 'react';
+import ButtonTimeScaleContainer from 'containers/ButtonTimeScaleContainer';
+import * as Units from 'constants/Units';
+import DashComponent from './DashComponent';
+import 'components/Dash.scss';
 
 const Dash = (props) => {
+    const {
+        now, lastFetch, timeScales,
+        bg, bgTrend, dbg, basal,
+        isf, csf, iob, cob, sage, cage,
+        reservoir, battery,
+        expiration, validity, type,
+    } = props;
+    
     return (
         <section className='dash'>
             <div className='wrapper'>
                 <div className='recent'>
-                    <div className={`bg ${getType(props.bg.getValue())} ${props.isExpired(props.bg.getTime(), Time.MAX_AGE_BG)}`}>
-                        <p className='value'>{lib.formatBG(props.bg.getValue())}</p>
+                    <div className={`bg ${type.bg} ${expiration.bg}`}>
+                        <p className='value'>{bg}</p>
                         <p className='trend'>
-                            <span className='arrow'>{props.bgTrend.getValue()}</span>
-                            <span className='delta'>({lib.formatdBG(props.dbg.getValue())})</span>
+                            <span className='arrow'>{bgTrend}</span>
+                            <span className='delta'>({dbg})</span>
                         </p>
                     </div>
                     <div className='general'>
                         <div className='insulin'>
-                            <p className='basal'>
-                                <span className='title'>Basal:</span>
-                                {' '}
-                                <span className='value'>
-                                    {lib.formatBasal(props.basal.getValue())}
-                                    {' '}
-                                    {Units.BASAL}
-                                </span>
-                            </p>
-                            <p className={`reservoir ${props.isExpired(props.reservoir.getTime(), Time.MAX_AGE_RESERVOIR)} ${getReservoirType(props.reservoir.getValue())}`}>
-                                <span className='title'>R:</span>
-                                {' '}
-                                <span className='value'>
-                                    {lib.formatReservoir(props.reservoir.getValue())}
-                                    {' '}
-                                    {Units.RESERVOIR}
-                                </span>
-                            </p>
+                            <DashComponent name='basal' label='Basal'>
+                                {basal}{' '}{Units.BASAL}
+                            </DashComponent>
+                            <DashComponent name='reservoir' label='R' classes={[expiration.reservoir, type.reservoir]}>
+                                {reservoir}{' '}{Units.RESERVOIR}
+                            </DashComponent>
                         </div>
                         <div className='on-board'>
-                            <p className={`iob ${props.isExpired(props.iob.getTime(), Time.MAX_AGE_IOB)}`}>
-                                <span className='title'>IOB:</span>
-                                {' '}
-                                <span className='value'>
-                                    {lib.formatIOB(props.iob.getValue())}
-                                    {' '}
-                                    {Units.IOB}
-                                </span>
-                            </p>
-                            <p className={`cob ${props.isExpired(props.cob.getTime(), Time.MAX_AGE_COB)}`}>
-                                <span className='title'>COB:</span>
-                                {' '}
-                                <span className='value'>
-                                    {lib.formatCOB(props.cob.getValue())}
-                                    {' '}
-                                    {Units.COB}
-                                </span>
-                            </p>
+                            <DashComponent name='iob' label='IOB' classes={[expiration.iob]}>
+                                {iob}{' '}{Units.IOB}
+                            </DashComponent>
+                            <DashComponent name='cob' label='COB' classes={[expiration.cob]}>
+                                {cob}{' '}{Units.COB}
+                            </DashComponent>
                         </div>
                         <div className='factors'>
-                            <p className='isf'>
-                                <span className='title'>ISF:</span>
-                                {' '}
-                                <span className='value'>
-                                    {lib.formatISF(props.isf.getValue())}
-                                    {' '}
-                                    {Units.ISF}
-                                </span>
-                            </p>
-                            <p className='csf'>
-                                <span className='title'>CSF:</span>
-                                {' '}
-                                <span className='value'>
-                                    {lib.formatCSF(props.csf.getValue())}
-                                    {' '}
-                                    {Units.CSF}
-                                </span>
-                            </p>
+                            <DashComponent name='isf' label='ISF'>
+                                {isf}{' '}{Units.ISF}
+                            </DashComponent>
+                            <DashComponent name='csf' label='CSF'>
+                                {csf}{' '}{Units.CSF}
+                            </DashComponent>
                         </div>
                         <div className='age'>
-                            <p className={`sage ${props.sage === defaults.SENSOR_AGE ? 'is-invalid' : ''} ${getSAGEType(props.sage.getValue())}`}>
-                                <span className='title'>SAGE:</span>
+                            <DashComponent name='sage' label='SAGE' classes={[validity.sage, type.sage]}>
+                                {sage.days}{' '}{Units.AGE_DAYS}
                                 {' '}
-                                <span className='value'>
-                                    {lib.formatAgeDays(props.sage.getValue())}
-                                    {' '}
-                                    {Units.AGE_DAYS}
-                                    {' '}
-                                    {lib.formatAgeHours(props.sage.getValue())}
-                                    {' '}
-                                    {Units.AGE_HOURS}
-                                </span>
-                            </p>
-                            <p className={`cage ${props.cage === defaults.CANULA_AGE ? 'is-invalid' : ''} ${getCAGEType(props.cage.getValue())}`}>
-                                <span className='title'>CAGE:</span>
+                                {sage.hours}{' '}{Units.AGE_HOURS}
+                            </DashComponent>
+                            <DashComponent name='cage' label='CAGE' classes={[validity.cage, type.cage]}>
+                                {cage.days}{' '}{Units.AGE_DAYS}
                                 {' '}
-                                <span className='value'>
-                                    {lib.formatAgeDays(props.cage.getValue())}
-                                    {' '}
-                                    {Units.AGE_DAYS}
-                                    {' '}
-                                    {lib.formatAgeHours(props.cage.getValue())}
-                                    {' '}
-                                    {Units.AGE_HOURS}
-                                </span>
-                            </p>
+                                {cage.hours}{' '}{Units.AGE_HOURS}
+                            </DashComponent>
                         </div>
                         <div className='battery'>
-                            <p className={`pump ${props.isExpired(props.battery.pump.getTime(), Time.MAX_AGE_PUMP_BATTERY)} ${getPumpBatteryType(props.battery.pump.getValue())}`}>
-                                <span className='title'>Pump Battery:</span>
-                                {' '}
-                                <span className='value'>
-                                    {lib.formatPumpBattery(props.battery.pump.getValue())}
-                                    {' '}
-                                    {Units.PUMP_BATTERY}
-                                </span>
-                            </p>
-                            <p className={`cgm ${props.isExpired(props.battery.cgm.getTime(), Time.MAX_AGE_CGM_BATTERY)} ${getCGMBatteryType(props.battery.cgm.getValue())}`}>
-                                <span className='title'>CGM Battery:</span>
-                                {' '}
-                                <span className='value'>
-                                    {lib.formatCGMBattery(props.battery.cgm.getValue())}
-                                    {' '}
-                                    {Units.CGM_BATTERY}
-                                </span>
-                            </p>
+                            <DashComponent name='pump' label='Pump Battery' classes={[expiration.battery.pump, type.battery.pump]}>
+                                {battery.pump}{' '}{Units.PUMP_BATTERY}
+                            </DashComponent>
+                            <DashComponent name='cgm' label='CGM Battery' classes={[expiration.battery.cgm, type.battery.cgm]}>
+                                {battery.cgm}{' '}{Units.CGM_BATTERY}
+                            </DashComponent>
                         </div>
                     </div>
                 </div>
                 <div className='time'>
                     <div className='clock'>
-                        {lib.convertEpochToFormatTime(props.now.getTime(), Time.FORMAT_SHORT)}
+                        {now}
                     </div>
-                    <div className={`last-fetch ${props.isExpired(props.lastFetch.getTime(), Time.MAX_AGE_LAST_FETCH)}`}>
-                        {lib.convertEpochToFormatTime(props.lastFetch.getTime(), Time.FORMAT_SHORT)}
+                    <div className={`last-fetch ${expiration.lastFetch}`}>
+                        {lastFetch}
                     </div>
                     <div className='buttons-timescale'>
-                        {props.timeScales.map((scale, index) => (
+                        {timeScales.map((scale, index) => (
                             <ButtonTimeScaleContainer key={index} value={scale} />
                         ))}
                     </div>
                 </div>
             </div>
         </section>
-    )
-}
+    );
+};
 
-export default Dash
+export default Dash;

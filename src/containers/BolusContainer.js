@@ -1,25 +1,31 @@
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
-import Actions from 'actions'
-import Bolus from 'components/Bolus'
-import * as Selectors from 'selectors'
-import * as lib from 'lib'
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import Actions from 'actions';
+import Bolus from 'components/Bolus';
+import { getBasalAxisTicks } from 'selectors';
+import { getArrayRange } from 'lib';
 
-const mapStateToProps = (state) => ({
-    now: state.time.now,
-    timeScale: state.time.scale,
-    range: lib.getArrayRange(Selectors.getBasalAxisTicks(state)),
-    innerWidth: state.inner.basal.width,
-    innerHeight: state.inner.basal.height,
-})
+const mapStateToProps = (state) => {
+    const { now, scale } = state.time;
+    const { width, height } = state.inner.basal;
+    const range = getArrayRange(getBasalAxisTicks(state));
+
+    return {
+        now,
+        timeScale: scale,
+        range,
+        innerWidth: width,
+        innerHeight: height,
+    };
+};
 
 const mapDispatchToProps = (dispatch) => ({
-    actions: {...bindActionCreators(Actions, dispatch)},
-})
+    actions: { ...bindActionCreators(Actions, dispatch) },
+});
 
 const BolusContainer = connect(
     mapStateToProps,
     mapDispatchToProps,
-)(Bolus)
+)(Bolus);
 
-export default BolusContainer
+export default BolusContainer;

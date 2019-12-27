@@ -1,27 +1,33 @@
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
-import Actions from 'actions'
-import * as Selectors from 'selectors'
-import InnerBasal from 'components/InnerBasal'
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import Actions from 'actions';
+import { getVisibleNetBasals, getVisibleBoluses, getVisibleIOBs } from 'selectors';
+import InnerBasal from 'components/InnerBasal';
 
-const mapStateToProps = (state) => ({
-    now: state.time.now,
-    timeScale: state.time.scale,
-    basals: state.data.pump.data.basals,
-    netBasals: Selectors.getVisibleNetBasals(state),
-    boluses: Selectors.getVisibleBoluses(state),
-    iobs: Selectors.getVisibleIOBs(state),
-    width: state.inner.basal.width,
-    height: state.inner.basal.height,
-})
+const mapStateToProps = (state) => {
+    const { now, scale } = state.time;
+    const { width, height } = state.inner.basal;
+    const { basals } = state.data.pump.data;
+
+    return {
+        now,
+        timeScale: scale,
+        basals,
+        netBasals: getVisibleNetBasals(state),
+        boluses: getVisibleBoluses(state),
+        iobs: getVisibleIOBs(state),
+        width,
+        height,
+    };
+};
 
 const mapDispatchToProps = (dispatch) => ({
-    actions: {...bindActionCreators(Actions, dispatch)},
-})
+    actions: { ...bindActionCreators(Actions, dispatch) },
+});
 
 const InnerBasalContainer = connect(
     mapStateToProps,
     mapDispatchToProps,
-)(InnerBasal)
+)(InnerBasal);
 
-export default InnerBasalContainer
+export default InnerBasalContainer;

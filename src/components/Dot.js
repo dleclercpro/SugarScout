@@ -1,40 +1,49 @@
-import React, { Component } from 'react'
-import 'components/Dot.scss'
+import React, { Component } from 'react';
+import { H_TO_MS } from 'constants/Time';
+import 'components/Dot.scss';
 
 class Dot extends Component {
 
     getClass() {
-        throw new Error('Method not implemented.')
+        throw new Error('Method not implemented.');
     }
 
     getPosX() {
-        const dX = this.props.timeScale * 60 * 60 * 1000
-        const dx = this.props.now.getTime() - this.props.time
+        const { now, time, timeScale, innerWidth } = this.props;
+
+        const dX = timeScale * H_TO_MS;
+        const dx = now.getTime() - time;
         
-        return (dX - dx) / dX * this.props.innerWidth
+        return (dX - dx) / dX * innerWidth;
     }
 
     getPosY() {
-        const dY = this.props.range[1] - this.props.range[0]
-        const dy = this.props.range[1] - this.props.value
+        const { range, value, innerHeight } = this.props;
 
-        return dy / dY * this.props.innerHeight
+        const dY = range[1] - range[0];
+        const dy = range[1] - value;
+
+        return dy / dY * innerHeight;
     }
 
     handleMouseEnter = (e) => {
-        throw new Error('Method not implemented.')
+        throw new Error('Method not implemented.');
     }
 
     handleMouseMove = (e) => {
-        this.props.actions.moveBubble({
+        const { moveBubble } = this.props.actions;
+
+        moveBubble({
             top: e.clientY,
             left: e.clientX,
-        })
+        });
     }
 
     handleMouseLeave = (e) => {
-        this.props.actions.hideBubble()
-        this.props.actions.resetBubble()
+        const { hideBubble, resetBubble } = this.props.actions;
+        
+        hideBubble();
+        resetBubble();
     }
 
     render() {
@@ -47,8 +56,8 @@ class Dot extends Component {
                 onMouseMove={this.handleMouseMove}
                 onMouseLeave={this.handleMouseLeave}
             />
-        )
+        );
     }
 }
 
-export default Dot
+export default Dot;

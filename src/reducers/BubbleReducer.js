@@ -1,4 +1,4 @@
-import * as ActionTypes from 'constants/ActionTypes'
+import { RESET_BUBBLE, SHOW_BUBBLE, HIDE_BUBBLE, MOVE_BUBBLE, RESIZE_BUBBLE, UPDATE_BUBBLE_INFOS } from 'constants/ActionTypes';
 
 const INIT_BUBBLE_STATE = {
     status: 'hidden',
@@ -6,61 +6,59 @@ const INIT_BUBBLE_STATE = {
     position: {},
     width: 0,
     height: 0,
-}
+};
 
 const BubbleReducer = (state = INIT_BUBBLE_STATE, action) => {
     switch (action.type) {
-        case ActionTypes.RESET_BUBBLE:
-            return {
-                ...INIT_BUBBLE_STATE,
-            }
+        case RESET_BUBBLE:
+            return { ...INIT_BUBBLE_STATE };
             
-        case ActionTypes.SHOW_BUBBLE:
+        case SHOW_BUBBLE:
             return {
                 ...state,
                 status: 'visible',
-            }
+            };
 
-        case ActionTypes.HIDE_BUBBLE:
+        case HIDE_BUBBLE:
             return {
                 ...state,
                 status: 'hidden',
-            }
+            };
 
-        case ActionTypes.MOVE_BUBBLE:
-            const distanceFromMouse = 8
-            let top = action.position.top - distanceFromMouse
-            let left = action.position.left + distanceFromMouse
+        case MOVE_BUBBLE:
+            const distanceFromMouse = 8;
+            let top = action.position.top - distanceFromMouse;
+            let left = action.position.left + distanceFromMouse;
 
             if (top - state.height < 0) {
-                top += state.height + 2 * distanceFromMouse
+                top += state.height + 2 * distanceFromMouse;
             }
 
             if (left + state.width > window.innerWidth) {
-                left -= state.width + 2 * distanceFromMouse
+                left -= state.width + 2 * distanceFromMouse;
             }
 
             return {
                 ...state,
                 position: { top, left },
-            }
+            };
 
-        case ActionTypes.UPDATE_BUBBLE_INFOS:
-            return {
-                ...state,
-                ...action.args,
-            }
-
-        case ActionTypes.UPDATE_BUBBLE_SIZE:
+        case RESIZE_BUBBLE:
             return {
                 ...state,
                 width: action.width,
                 height: action.height,
-            }
+            };
+
+        case UPDATE_BUBBLE_INFOS:
+            return {
+                ...state,
+                ...action.args,
+            };
 
         default:
-            return state
+            return state;
     }
-}
+};
 
-export default BubbleReducer
+export default BubbleReducer;

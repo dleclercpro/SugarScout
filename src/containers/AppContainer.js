@@ -1,19 +1,15 @@
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
-import Actions from 'actions'
-import App from 'components/App'
-
-const mapStateToProps = (state) => ({
-    
-})
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import Actions from 'actions';
+import App from 'components/App';
 
 const mapDispatchToProps = (dispatch) => ({
-    actions: {...bindActionCreators(Actions, dispatch)},
-})
+    actions: { ...bindActionCreators(Actions, dispatch) },
+});
 
 const AppContainer = connect(
-    mapStateToProps,
+    () => {},
     mapDispatchToProps,
-)(App)
+)(App);
 
-export default AppContainer
+export default AppContainer;

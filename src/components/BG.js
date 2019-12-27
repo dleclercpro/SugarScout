@@ -1,76 +1,81 @@
-import Dot from 'components/Dot'
-import * as Units from 'constants/Units'
-import * as bg from 'constants/BG'
-import * as lib from 'lib'
-import 'components/BG.scss'
+import Dot from 'components/Dot';
+import * as Units from 'constants/Units';
+import { VERY_LOW, LOW, HIGH, VERY_HIGH,
+    TREND_DOUBLE_90_DOWN_MMOL_L_M,
+    TREND_90_DOWN_MMOL_L_M,
+    TREND_45_DOWN_MMOL_L_M,
+    TREND_45_UP_MMOL_L_M,
+    TREND_90_UP_MMOL_L_M,
+    TREND_DOUBLE_90_UP_MMOL_L_M } from 'constants/BG';
+import * as fmt from 'fmt';
+import 'components/BG.scss';
 
 class BG extends Dot {
 
     getClass() {
-        return 'dot bg bg--' + getType(this.props.value)
+        const { value } = this.props;
+
+        return 'dot bg bg--' + getType(value);
     }
 
     handleMouseEnter = (e) => {
-        this.props.actions.updateBubbleInfos({
+        const { time, value } = this.props;
+        const { updateBubbleInfos, showBubble } = this.props.actions;
+
+        updateBubbleInfos({
             target: this.getClass(),
-            time: this.props.time,
+            time: time,
             info: {
-                value: lib.formatBG(this.props.value),
+                value: fmt.bg(value),
                 units: Units.BG,
             },
-        })
-        this.props.actions.showBubble()
+        });
+        
+        showBubble();
     }
 }
 
-export const getType = (value) => {
-    if (value <= bg.VERY_LOW) {
-        return 'very-low'
+export const getType = value => {
+    if (value <= VERY_LOW) {
+        return 'very-low';
     }
-    if (bg.VERY_LOW < value && value <= bg.LOW) {
-        return 'low'
+    if (VERY_LOW < value && value <= LOW) {
+        return 'low';
     }
-    if (bg.LOW < value && value < bg.HIGH) {
-        return 'normal'
+    if (LOW < value && value < HIGH) {
+        return 'normal';
     }
-    if (bg.HIGH <= value && value < bg.VERY_HIGH) {
-        return 'high'
+    if (HIGH <= value && value < VERY_HIGH) {
+        return 'high';
     }
-    if (bg.VERY_HIGH <= value) {
-        return 'very-high'
+    if (VERY_HIGH <= value) {
+        return 'very-high';
     }
-    return 'unknown'
+    return 'unknown';
 }
 
-export const getTrendArrow = (dBGdt) => {
-    
-    if (dBGdt < bg.TREND_DOUBLE_90_DOWN_MMOL_L_M) {
-        return '↓↓'
+export const getTrendArrow = dBGdt => {
+    if (dBGdt < TREND_DOUBLE_90_DOWN_MMOL_L_M) {
+        return '↓↓';
     }
-
-    if (bg.TREND_DOUBLE_90_DOWN_MMOL_L_M <= dBGdt && dBGdt < bg.TREND_90_DOWN_MMOL_L_M) {
-        return '↓'        
+    if (TREND_DOUBLE_90_DOWN_MMOL_L_M <= dBGdt && dBGdt < TREND_90_DOWN_MMOL_L_M) {
+        return '↓';       
     }
-
-    if (bg.TREND_90_DOWN_MMOL_L_M <= dBGdt && dBGdt < bg.TREND_45_DOWN_MMOL_L_M) {
-        return '↘'
+    if (TREND_90_DOWN_MMOL_L_M <= dBGdt && dBGdt < TREND_45_DOWN_MMOL_L_M) {
+        return '↘';
     }
-
-    if (bg.TREND_45_DOWN_MMOL_L_M <= dBGdt && dBGdt < bg.TREND_45_UP_MMOL_L_M) {
-        return '→'
+    if (TREND_45_DOWN_MMOL_L_M <= dBGdt && dBGdt < TREND_45_UP_MMOL_L_M) {
+        return '→';
     }
-
-    if (bg.TREND_45_UP_MMOL_L_M <= dBGdt && dBGdt < bg.TREND_90_UP_MMOL_L_M) {
-        return '↗'
+    if (TREND_45_UP_MMOL_L_M <= dBGdt && dBGdt < TREND_90_UP_MMOL_L_M) {
+        return '↗';
     }
-
-    if (bg.TREND_90_UP_MMOL_L_M <= dBGdt && dBGdt < bg.TREND_DOUBLE_90_UP_MMOL_L_M) {
-        return '↑'
+    if (TREND_90_UP_MMOL_L_M <= dBGdt && dBGdt < TREND_DOUBLE_90_UP_MMOL_L_M) {
+        return '↑';
     }
-
-    if (bg.TREND_DOUBLE_90_UP_MMOL_L_M <= dBGdt) {
-        return '↑↑'
+    if (TREND_DOUBLE_90_UP_MMOL_L_M <= dBGdt) {
+        return '↑↑';
     }
 }
 
-export default BG
+export default BG;

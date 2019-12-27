@@ -1,29 +1,36 @@
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
-import Actions from 'actions'
-import AxisTime from 'components/AxisTime'
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import Actions from 'actions';
+import { M_TO_MS, S_TO_MS } from 'constants/Time';
+import AxisTime from 'components/AxisTime';
 
 const getTimeSinceLastHour = (now) => (
-    now.getMinutes() * 60 * 1000 +
-    now.getSeconds() * 1000 +
+    now.getMinutes() * M_TO_MS +
+    now.getSeconds() * S_TO_MS +
     now.getMilliseconds()
-)
+);
 
-const mapStateToProps = (state) => ({
-    now: state.time.now,
-    toNow: getTimeSinceLastHour(state.time.now),
-    timeScale: state.time.scale,
-    nTicks: state.axes.time.nTicks,
-    ticks: state.axes.time.ticks,
-})
+const mapStateToProps = (state) => {
+    const { now, scale } = state.time;
+    const { nTicks, ticks } = state.axes.time;
+    const toNow = getTimeSinceLastHour(now);
+
+    return {
+        now,
+        toNow,
+        timeScale: scale,
+        nTicks,
+        ticks,
+    };
+};
 
 const mapDispatchToProps = (dispatch) => ({
-    actions: {...bindActionCreators(Actions, dispatch)},
-})
+    actions: { ...bindActionCreators(Actions, dispatch) },
+});
 
 const AxisTimeContainer = connect(
     mapStateToProps,
     mapDispatchToProps,
-)(AxisTime)
+)(AxisTime);
 
-export default AxisTimeContainer
+export default AxisTimeContainer;

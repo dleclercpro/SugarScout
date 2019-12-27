@@ -1,52 +1,58 @@
-import React, { Component, createRef } from 'react'
-import * as lib from 'lib'
-import 'components/Bubble.scss'
+import React, { Component, createRef } from 'react';
+import * as fmt from 'fmt';
+import 'components/Bubble.scss';
 
 class Bubble extends Component {
 
     constructor(props) {
-        super(props)
-        this.node = createRef()
+        super(props);
+        this.node = createRef();
     }
 
     componentDidUpdate(prevProps) {
-        if (this.props.status === 'visible' && prevProps.status === 'hidden') {
-            this.updateSize()
+        const { status } = this.props;
+        
+        if (status === 'visible' && prevProps.status === 'hidden') {
+            this.updateSize();
         }
     }
 
     updateSize = (e) => {
-        const { width, height } = this.node.current.getBoundingClientRect()
-        this.props.actions.updateBubbleSize(width, height)
+        const { resizeBubble } = this.props.actions;
+        const { width, height } = this.node.current.getBoundingClientRect();
+        
+        resizeBubble(width, height);
     }
 
     render() {
+        const { position, target, status, time, info, duration } = this.props;
+
         return (
-            <div ref={this.node} className={`bubble ${this.props.target} is-${this.props.status}`} style={this.props.position}>
-                {this.props.info &&
+            <div ref={this.node} className={`bubble ${target} is-${status}`} style={position}>
+                {info &&
                     <p className='info'>
-                        <span className='value'>{this.props.info.value}</span>
+                        <span className='value'>{info.value}</span>
                         {' '}
-                        <span className='units'>{this.props.info.units}</span>
+                        <span className='units'>{info.units}</span>
                     </p>
                 }
-                {this.props.duration &&
+                {duration &&
                     <p className='duration'>
                         [
-                            <span className='value'>{this.props.duration.value}</span>
+                            <span className='value'>{duration.value}</span>
                             {' '}
-                            <span className='units'>{this.props.duration.units}</span>
+                            <span className='units'>{duration.units}</span>
                         ]
                     </p>
                 }
-                {this.props.time &&
+                {time &&
                     <p className='time'>
-                        {lib.convertEpochToFormatTime(this.props.time)}
+                        {fmt.time(time)}
                     </p>
                 }
             </div>
-        )
+        );
     }
 }
 
-export default Bubble
+export default Bubble;

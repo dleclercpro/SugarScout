@@ -1,27 +1,27 @@
-import React, { Component } from 'react'
-import DashContainer from 'containers/DashContainer'
-import GraphContainer from 'containers/GraphContainer'
-import BubbleContainer from 'containers/BubbleContainer'
-import * as Time from 'constants/Time'
-import 'components/App.scss'
+import React, { Component } from 'react';
+import DashContainer from 'containers/DashContainer';
+import GraphContainer from 'containers/GraphContainer';
+import BubbleContainer from 'containers/BubbleContainer';
+import { REFRESH_APP_RATE, REFRESH_DATA_RATE } from 'constants/Time';
+import 'components/App.scss';
 
 class App extends Component {
 
     constructor(props) {
-        super(props)
-        this.timer = null
-        this.timerData = null
+        super(props);
+        this.timer = null;
+        this.timerData = null;
     }
 
     componentDidMount() {
-        this.timerData = setInterval(this.fetchAllData, Time.REFRESH_DATA_RATE)
-        this.timer = setInterval(this.props.actions.updateTime, Time.REFRESH_APP_RATE)
-        this.fetchAllData()        
+        this.timerData = setInterval(this.fetchAllData, REFRESH_DATA_RATE);
+        this.timer = setInterval(this.props.actions.updateTime, REFRESH_APP_RATE);
+        this.fetchAllData();
     }
 
     componentWillUnmount() {
-        clearInterval(this.timerData)
-        clearInterval(this.timer)
+        clearInterval(this.timerData);
+        clearInterval(this.timer);
     }
 
     fetchAllData = () => {
@@ -32,11 +32,11 @@ class App extends Component {
             this.props.actions.fetchDataHistory()
         ])
         .then(() => {
-            this.props.actions.updateLastDataFetch()
+            this.props.actions.updateLastDataFetch();
         })
         .catch(error => {
-            console.log('Could not fetch all data:\n' + error)
-        })
+            console.log('Could not fetch all data:\n' + error);
+        });
     }
 
     render() {
@@ -46,8 +46,8 @@ class App extends Component {
                 <DashContainer />
                 <GraphContainer />
             </div>
-        )
+        );
     }
 }
 
-export default App
+export default App;

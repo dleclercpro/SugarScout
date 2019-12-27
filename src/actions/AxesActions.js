@@ -1,16 +1,16 @@
-import * as ActionTypes from 'constants/ActionTypes'
+import { UPDATE_TIME_AXIS, UPDATE_BG_AXIS, UPDATE_BASAL_AXIS } from 'constants/ActionTypes';
 
 export const updateTimeAxis = (args) => ({
-    type: ActionTypes.UPDATE_TIME_AXIS,
+    type: UPDATE_TIME_AXIS,
     args,
-})
+});
 
 export const updateBGAxis = (args) => ({
-    type: ActionTypes.UPDATE_BG_AXIS,
+    type: UPDATE_BG_AXIS,
     args,
-})
+});
 
 export const updateBasalAxis = (args) => ({
-    type: ActionTypes.UPDATE_BASAL_AXIS,
+    type: UPDATE_BASAL_AXIS,
     args,
-})
+});

@@ -1,32 +1,33 @@
-import React, { Component } from 'react'
-import Tick from 'components/Tick'
-import * as lib from 'lib'
-import 'components/AxisBG.scss'
+import React, { Component } from 'react';
+import Tick from 'components/Tick';
+import { getArrayRange } from 'lib';
+import 'components/AxisBG.scss';
 
 class AxisBG extends Component {
 
     getTicks() {
-        const range = lib.getArrayRange(this.props.ticks)
-        const ticks = this.props.ticks.map((y) => ({ label: y, value: y }))
+        const { ticks } = this.props;
         
-        let visibleTicks = [...ticks]
-        visibleTicks.pop()
+        const range = getArrayRange(ticks);
+        const labeledTicks = ticks.map(y => ({ label: y, value: y }));
+        const visibleTicks = labeledTicks.slice(0, -1);
 
         return visibleTicks.map((tick, index) => {
-            const nextTick = ticks[index + 1]
-            const size = Math.abs(nextTick.value - tick.value)
+            const nextTick = labeledTicks[index + 1];
+            const size = Math.abs(nextTick.value - tick.value);
+            const style = {
+                height: size / (range[1] - range[0]) * 100 + '%',
+            };
 
             return (
                 <Tick
                     key={index}
                     label={tick.label}
                     value={tick.value}
-                    style={{
-                        height: size / (range[1] - range[0]) * 100 + '%',
-                    }}
+                    style={style}
                 />
-            )
-        })
+            );
+        });
     }
     
     render() {
@@ -36,7 +37,7 @@ class AxisBG extends Component {
                     {this.getTicks()}
                 </div>
             </div>
-        )
+        );
     }
 }
 

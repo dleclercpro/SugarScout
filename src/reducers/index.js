@@ -1,11 +1,11 @@
-import { combineReducers } from 'redux'
-import TimeReducer from 'reducers/TimeReducer'
-import BubbleReducer from 'reducers/BubbleReducer'
-import InnerReducer from 'reducers/InnerReducer'
-import AxisTimeReducer from 'reducers/AxisTimeReducer'
-import AxisBGReducer from 'reducers/AxisBGReducer'
-import AxisBasalReducer from 'reducers/AxisBasalReducer'
-import DataReducer from 'reducers/DataReducer'
+import { combineReducers } from 'redux';
+import TimeReducer from 'reducers/TimeReducer';
+import BubbleReducer from 'reducers/BubbleReducer';
+import InnerReducer from 'reducers/InnerReducer';
+import AxisTimeReducer from 'reducers/AxisTimeReducer';
+import AxisBGReducer from 'reducers/AxisBGReducer';
+import AxisBasalReducer from 'reducers/AxisBasalReducer';
+import DataReducer from 'reducers/DataReducer';
 
 const rootReducer = combineReducers({
     time: TimeReducer,
@@ -17,6 +17,6 @@ const rootReducer = combineReducers({
         bg: AxisBGReducer,
         basal: AxisBasalReducer,
     }),
-})
+});
 
-export default rootReducer
+export default rootReducer;

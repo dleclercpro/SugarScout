@@ -1,32 +1,32 @@
 export class TimeData {
 
     constructor(value, time = -1, duration = -1) {
-        this.time = time
-        this.value = value
-        this.duration = duration
+        this.time = time;
+        this.value = value;
+        this.duration = duration;
     }
 
     getTime = () => {
-        return this.time
+        return this.time;
     }
 
     getValue = () => {
-        return this.value
+        return this.value;
     }
     
     getDuration = () => {
-        return this.duration
+        return this.duration;
     }
 
     setTime = (time) => {
-        this.time = time
+        this.time = time;
     }
 
     setValue = (value) => {
-        this.value = value
+        this.value = value;
     }
 
     setDuration = (duration) => {
-        this.duration = duration
+        this.duration = duration;
     }
 }

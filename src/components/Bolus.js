@@ -1,45 +1,58 @@
-import React, { Component } from 'react'
-import * as Units from 'constants/Units'
-import * as lib from 'lib'
-import 'components/Bolus.scss'
+import React, { Component } from 'react';
+import * as Units from 'constants/Units';
+import { H_TO_MS } from 'constants/Time';
+import * as fmt from 'fmt';
+import 'components/Bolus.scss';
 
 class Bolus extends Component {
 
     getPosX() {
-        const dX = this.props.timeScale * 60 * 60 * 1000
-        const dx = this.props.now.getTime() - this.props.time
+        const { now, time, timeScale, innerWidth } = this.props;
+
+        const dX = timeScale * H_TO_MS;
+        const dx = now.getTime() - time;
         
-        return (dX - dx) / dX * this.props.innerWidth
+        return (dX - dx) / dX * innerWidth;
     }
 
     getPosY() {
-        const dY = this.props.range[1] - this.props.range[0]
-        const dy = this.props.range[1]
+        const { range, innerHeight } = this.props;
 
-        return dy / dY * this.props.innerHeight
+        const dY = range[1] - range[0];
+        const dy = range[1];
+
+        return dy / dY * innerHeight;
     }
 
     handleMouseEnter = (e) => {
-        this.props.actions.updateBubbleInfos({
+        const { time, value } = this.props;
+        const { updateBubbleInfos, showBubble } = this.props.actions;
+
+        updateBubbleInfos({
             target: 'bolus',
-            time: this.props.time,
+            time: time,
             info: {
-                value: lib.formatBolus(this.props.value),
+                value: fmt.bolus(value),
                 units: Units.BOLUS,
             },
-        })
-        this.props.actions.showBubble()
+        });
+
+        showBubble();
     }
 
     handleMouseMove = (e) => {
-        this.props.actions.moveBubble({
+        const { moveBubble } = this.props.actions;
+
+        moveBubble({
             top: e.clientY,
             left: e.clientX,
-        })
+        });
     }
 
     handleMouseLeave = (e) => {
-        this.props.actions.hideBubble()
+        const { hideBubble } = this.props.actions;
+
+        hideBubble();
     }
 
     render() {
@@ -52,7 +65,7 @@ class Bolus extends Component {
                 onMouseMove={this.handleMouseMove}
                 onMouseLeave={this.handleMouseLeave}
             />
-        )
+        );
     }
 }
 

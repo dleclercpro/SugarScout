@@ -1,93 +1,104 @@
-import moment from 'moment'
-import * as Time from 'constants/Time'
-import * as DataTypes from 'constants/DataTypes'
-import * as ActionTypes from 'constants/ActionTypes'
-import * as lib from 'lib'
+import moment from 'moment';
+import * as Time from 'constants/Time';
+import * as DataTypes from 'constants/DataTypes';
+import {
+    FETCH_DATA_BG_PENDING, FETCH_DATA_BG_FULFILLED, FETCH_DATA_BG_REJECTED,
+    FETCH_DATA_PUMP_PENDING, FETCH_DATA_PUMP_FULFILLED, FETCH_DATA_PUMP_REJECTED,
+    FETCH_DATA_TREATMENT_PENDING, FETCH_DATA_TREATMENT_FULFILLED, FETCH_DATA_TREATMENT_REJECTED,
+    FETCH_DATA_HISTORY_PENDING, FETCH_DATA_HISTORY_FULFILLED, FETCH_DATA_HISTORY_REJECTED,
+} from 'constants/ActionTypes';
+import { compareTimeData } from 'lib';
 
 const getTimeDataFromJSON = (json, format, callback = x => x) => {
     const timeData = Object.keys(json).reduce((data, t) => ([
         ...data,
-        new DataTypes.TimeData( json[t], moment(t, format).valueOf() )
+        new DataTypes.TimeData(json[t], moment(t, format).valueOf())
     ]), [])
-    .sort(lib.compareTimeData)
+    .sort(compareTimeData);
 
-    return callback(timeData)
-}
+    return callback(timeData);
+};
 
 const addDurationsToTimeData = (values) => {
     values.forEach((value, i) => {
-        value.setDuration(i + 1 === values.length ? 0 : values[i + 1].getTime() - value.getTime())
-    })
+        const isLast = i + 1 === values.length;
+
+        if (isLast) {
+            value.setDuration(0);
+        } else {
+            value.setDuration(values[i + 1].getTime() - value.getTime());
+        }
+    });
     
-    return values
-}
+    return values;
+};
 
 const getBGsFromJSON = (json) => getTimeDataFromJSON(
     json,
     Time.FORMAT_LONG
-)
+);
 
 const getBasalsFromJSON = (json, profile = 'Standard') => getTimeDataFromJSON(
     json['Basal Profile (' + profile + ')'],
     Time.FORMAT_SHORT
-)
+);
 
 const getNetBasalsFromJSON = (json) => getTimeDataFromJSON(
     json['Net Basals'],
     Time.FORMAT_LONG,
     addDurationsToTimeData
-)
+);
 
 const getBolusesFromJSON = (json) => getTimeDataFromJSON(
     json['Boluses'],
     Time.FORMAT_LONG
-)
+);
 
 const getIOBsFromJSON = (json) => getTimeDataFromJSON(
     json['IOB'],
     Time.FORMAT_LONG
-)
+);
 
 const getISFsFromJSON = (json) => getTimeDataFromJSON(
     json['ISF'],
     Time.FORMAT_SHORT
-)
+);
 
 const getCSFsFromJSON = (json) => getTimeDataFromJSON(
     json['CSF'],
     Time.FORMAT_SHORT
-)
+);
 
 const getBGTargetsFromJSON = (json) => getTimeDataFromJSON(
     json['BG Targets'],
     Time.FORMAT_SHORT
-)
+);
 
 const getPumpReservoirLevelsFromJSON = (json) => getTimeDataFromJSON(
     json['Pump']['Reservoir Levels'],
     Time.FORMAT_LONG
-)
+);
 
 const getPumpBatteryLevelsFromJSON = (json) => getTimeDataFromJSON(
     json['Pump']['Battery Levels'],
     Time.FORMAT_LONG
-)
+);
 
 const getCGMBatteryLevelsFromJSON = (json) => getTimeDataFromJSON(
     json['CGM']['Battery Levels'],
     Time.FORMAT_LONG
-)
+);
 
 const getCGMStatusesFromJSON = (json) => getTimeDataFromJSON(
     json['CGM']['Sensor Statuses'],
     Time.FORMAT_LONG
-)
+);
 
 const INIT_DATA_SUBSTATE = {
     isFetching: false,
     error: '',
     data: {},
-}
+};
 
 const INIT_DATA_STATE = {
     pump: {
@@ -127,14 +138,14 @@ const INIT_DATA_STATE = {
             },
         },
     },
-}
+};
 
 const DataReducer = (state = INIT_DATA_STATE, action) => {
     switch (action.type) {
-        case ActionTypes.FETCH_DATA_BG_PENDING:
-        case ActionTypes.FETCH_DATA_PUMP_PENDING:
-        case ActionTypes.FETCH_DATA_TREATMENT_PENDING:
-        case ActionTypes.FETCH_DATA_HISTORY_PENDING:
+        case FETCH_DATA_BG_PENDING:
+        case FETCH_DATA_PUMP_PENDING:
+        case FETCH_DATA_TREATMENT_PENDING:
+        case FETCH_DATA_HISTORY_PENDING:
             return {
                 ...state,
                 [action.meta.type]: {
@@ -142,12 +153,12 @@ const DataReducer = (state = INIT_DATA_STATE, action) => {
                     isFetching: true,
                     error: '',
                 },
-            }
+            };
 
-        case ActionTypes.FETCH_DATA_BG_REJECTED:
-        case ActionTypes.FETCH_DATA_PUMP_REJECTED:
-        case ActionTypes.FETCH_DATA_TREATMENT_REJECTED:
-        case ActionTypes.FETCH_DATA_HISTORY_REJECTED:
+        case FETCH_DATA_BG_REJECTED:
+        case FETCH_DATA_PUMP_REJECTED:
+        case FETCH_DATA_TREATMENT_REJECTED:
+        case FETCH_DATA_HISTORY_REJECTED:
             return {
                 ...state,
                 [action.meta.type]: {
@@ -155,9 +166,9 @@ const DataReducer = (state = INIT_DATA_STATE, action) => {
                     isFetching: false,
                     error: action.payload,
                 },
-            }
+            };
 
-        case ActionTypes.FETCH_DATA_BG_FULFILLED:
+        case FETCH_DATA_BG_FULFILLED:
             return {
                 ...state,
                 bgs: {
@@ -167,9 +178,9 @@ const DataReducer = (state = INIT_DATA_STATE, action) => {
                         bgs: getBGsFromJSON(action.payload),
                     },
                 },
-            }
+            };
 
-        case ActionTypes.FETCH_DATA_PUMP_FULFILLED:
+        case FETCH_DATA_PUMP_FULFILLED:
             return {
                 ...state,
                 pump: {
@@ -182,9 +193,9 @@ const DataReducer = (state = INIT_DATA_STATE, action) => {
                         csfs: getCSFsFromJSON(action.payload),
                     },
                 }
-            }
+            };
 
-        case ActionTypes.FETCH_DATA_TREATMENT_FULFILLED:
+        case FETCH_DATA_TREATMENT_FULFILLED:
             return {
                 ...state,
                 treatments: {
@@ -197,9 +208,9 @@ const DataReducer = (state = INIT_DATA_STATE, action) => {
                         cobs: [],
                     },
                 },
-            }
+            };
 
-        case ActionTypes.FETCH_DATA_HISTORY_FULFILLED:
+        case FETCH_DATA_HISTORY_FULFILLED:
             return {
                 ...state,
                 history: {
@@ -216,11 +227,11 @@ const DataReducer = (state = INIT_DATA_STATE, action) => {
                         },
                     },
                 },
-            }
+            };
 
         default:
-            return state
+            return state;
     }
-}
+};
 
-export default DataReducer
+export default DataReducer;

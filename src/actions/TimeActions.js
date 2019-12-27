@@ -1,16 +1,16 @@
-import * as ActionTypes from 'constants/ActionTypes'
+import { UPDATE_TIME, UPDATE_TIMESCALE, UPDATE_LAST_FETCH_TIME } from 'constants/ActionTypes';
 
 export const updateTime = () => ({
-    type: ActionTypes.UPDATE_TIME,
+    type: UPDATE_TIME,
     time: new Date(),
-})
+});
 
 export const updateTimescale = (scale) => ({
-    type: ActionTypes.UPDATE_TIMESCALE,
+    type: UPDATE_TIMESCALE,
     scale,
-})
+});
 
 export const updateLastDataFetch = () => ({
-    type: ActionTypes.UPDATE_LAST_DATA_FETCH,
+    type: UPDATE_LAST_FETCH_TIME,
     time: new Date(),
-})
+});
