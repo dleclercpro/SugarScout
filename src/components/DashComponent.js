@@ -10,7 +10,7 @@ const DashComponent = (props) => {
     if (!classes) { classes = []; }
 
     return (
-        <p className={`${name}${classes.reduce((str, cls) => { return str + ' ' + cls; }, '')}`}>
+        <p className={`dash-component ${name}${classes.reduce((str, cls) => { return str + ' ' + cls; }, '')}`}>
             <span className='title'>{label}:</span>
             {' '}
             <span className='value'>
