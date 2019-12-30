@@ -1,31 +1,29 @@
 import { FETCH_DATA_BG, FETCH_DATA_PUMP, FETCH_DATA_TREATMENT, FETCH_DATA_HISTORY } from 'constants/ActionTypes';
 
-const fetchData = (src, headers = { cache: 'no-store' }, callback = json => json) => {
-    return fetch(src, headers)
-        .then(response => response.json())
-        .then(json => callback(json))
+const fetchJSON = (src, headers = { cache: 'no-store' }) => {
+    return fetch(src, headers).then(response => response.json());
 };
 
-export const fetchDataBG = () => ({
+export const fetchBG = () => ({
     type: FETCH_DATA_BG,
     meta: { type: 'bgs' },
-    payload: fetchData('reports/BG.json'),
+    payload: fetchJSON('reports/BG.json'),
 });
 
-export const fetchDataPump = () => ({
+export const fetchPump = () => ({
     type: FETCH_DATA_PUMP,
     meta: { type: 'pump' },
-    payload: fetchData('reports/pump.json'),
+    payload: fetchJSON('reports/pump.json'),
 });
 
-export const fetchDataTreatment = () => ({
+export const fetchTreatment = () => ({
     type: FETCH_DATA_TREATMENT,
     meta: { type: 'treatments' },
-    payload: fetchData('reports/treatments.json'),
+    payload: fetchJSON('reports/treatments.json'),
 });
 
-export const fetchDataHistory = () => ({
+export const fetchHistory = () => ({
     type: FETCH_DATA_HISTORY,
     meta: { type: 'history' },
-    payload: fetchData('reports/history.json'),
+    payload: fetchJSON('reports/history.json'),
 });

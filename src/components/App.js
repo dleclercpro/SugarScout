@@ -23,11 +23,11 @@ class App extends Component {
         this.setState({
             timers: {
                 app: setInterval(updateTime, REFRESH_APP_RATE),
-                data: setInterval(this.fetchAllData, REFRESH_DATA_RATE),
+                data: setInterval(this.fetchData, REFRESH_DATA_RATE),
             },
         });
 
-        this.fetchAllData();
+        this.fetchData();
     }
 
     componentWillUnmount() {
@@ -38,20 +38,20 @@ class App extends Component {
         }
     }
 
-    fetchAllData = () => {
+    fetchData = () => {
         const {
-            fetchDataBG,
-            fetchDataPump,
-            fetchDataTreatment,
-            fetchDataHistory,
+            fetchBG,
+            fetchPump,
+            fetchTreatment,
+            fetchHistory,
             updateLastFetchTime
         } = this.props.actions;
 
         Promise.all([
-            fetchDataBG(),
-            fetchDataPump(),
-            fetchDataTreatment(),
-            fetchDataHistory()
+            fetchBG(),
+            fetchPump(),
+            fetchTreatment(),
+            fetchHistory()
         ])
         .then(() => {
             updateLastFetchTime();
