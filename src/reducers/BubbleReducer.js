@@ -27,8 +27,10 @@ const BubbleReducer = (state = INIT_BUBBLE_STATE, action) => {
 
         case MOVE_BUBBLE:
             const distanceFromMouse = 8;
-            let top = action.position.top - distanceFromMouse;
-            let left = action.position.left + distanceFromMouse;
+            let { top, left } = action.position;
+
+            top -= distanceFromMouse;
+            left += distanceFromMouse;
 
             if (top - state.height < 0) {
                 top += state.height + 2 * distanceFromMouse;

@@ -18,10 +18,15 @@ class Dot extends Component {
     }
 
     getPosY() {
-        const { range, value, innerHeight } = this.props;
+        const { range, value, innerHeight, isZero } = this.props;
 
         const dY = range[1] - range[0];
-        const dy = range[1] - value;
+        let dy = range[1];
+        
+        // Stick dot to baseline if zero
+        if (!isZero) {
+            dy -= value;
+        }
 
         return dy / dY * innerHeight;
     }

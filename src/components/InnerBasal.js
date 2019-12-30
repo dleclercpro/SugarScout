@@ -34,13 +34,13 @@ class InnerBasal extends Component {
             <section ref={this.node} className='inner inner--basal'>
                 <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`}>
                     {netBasals.map((nb, index) => (
-                        <NetBasalContainer key={index} time={nb.getTime()} value={nb.getValue()} duration={nb.getDuration()} />
+                        <NetBasalContainer key={index} time={nb.time} value={nb.value} duration={nb.duration} />
                     ))}
                     {boluses.map((b, index) => (
-                        <BolusContainer key={index} time={b.getTime()} value={b.getValue()} />
+                        <BolusContainer key={index} time={b.time} value={b.value} isZero />
                     ))}
                     {iobs.map((iob, index) => (
-                        <IOBContainer key={index} time={iob.getTime()} value={iob.getValue()} />
+                        <IOBContainer key={index} time={iob.time} value={iob.value} />
                     ))}
                 </svg>
             </section>

@@ -1,6 +1,6 @@
 import moment from 'moment';
 import * as Time from 'constants/Time';
-import * as DataTypes from 'constants/DataTypes';
+import { TimeData } from 'constants/DataTypes';
 import {
     FETCH_DATA_BG_PENDING, FETCH_DATA_BG_FULFILLED, FETCH_DATA_BG_REJECTED,
     FETCH_DATA_PUMP_PENDING, FETCH_DATA_PUMP_FULFILLED, FETCH_DATA_PUMP_REJECTED,
@@ -9,100 +9,10 @@ import {
 } from 'constants/ActionTypes';
 import { compareTimeData } from 'lib';
 
-const getTimeDataFromJSON = (json, format, callback = x => x) => {
-    const timeData = Object.keys(json).reduce((data, t) => ([
-        ...data,
-        new DataTypes.TimeData(json[t], moment(t, format).valueOf())
-    ]), [])
-    .sort(compareTimeData);
-
-    return callback(timeData);
-};
-
-const addDurationsToTimeData = (values) => {
-    values.forEach((value, i) => {
-        const isLast = i + 1 === values.length;
-
-        if (isLast) {
-            value.setDuration(0);
-        } else {
-            value.setDuration(values[i + 1].getTime() - value.getTime());
-        }
-    });
-    
-    return values;
-};
-
-const getBGsFromJSON = (json) => getTimeDataFromJSON(
-    json,
-    Time.FORMAT_LONG
-);
-
-const getBasalsFromJSON = (json, profile = 'Standard') => getTimeDataFromJSON(
-    json['Basal Profile (' + profile + ')'],
-    Time.FORMAT_SHORT
-);
-
-const getNetBasalsFromJSON = (json) => getTimeDataFromJSON(
-    json['Net Basals'],
-    Time.FORMAT_LONG,
-    addDurationsToTimeData
-);
-
-const getBolusesFromJSON = (json) => getTimeDataFromJSON(
-    json['Boluses'],
-    Time.FORMAT_LONG
-);
-
-const getIOBsFromJSON = (json) => getTimeDataFromJSON(
-    json['IOB'],
-    Time.FORMAT_LONG
-);
-
-const getISFsFromJSON = (json) => getTimeDataFromJSON(
-    json['ISF'],
-    Time.FORMAT_SHORT
-);
-
-const getCSFsFromJSON = (json) => getTimeDataFromJSON(
-    json['CSF'],
-    Time.FORMAT_SHORT
-);
-
-const getBGTargetsFromJSON = (json) => getTimeDataFromJSON(
-    json['BG Targets'],
-    Time.FORMAT_SHORT
-);
-
-const getPumpReservoirLevelsFromJSON = (json) => getTimeDataFromJSON(
-    json['Pump']['Reservoir Levels'],
-    Time.FORMAT_LONG
-);
-
-const getPumpBatteryLevelsFromJSON = (json) => getTimeDataFromJSON(
-    json['Pump']['Battery Levels'],
-    Time.FORMAT_LONG
-);
-
-const getCGMBatteryLevelsFromJSON = (json) => getTimeDataFromJSON(
-    json['CGM']['Battery Levels'],
-    Time.FORMAT_LONG
-);
-
-const getCGMStatusesFromJSON = (json) => getTimeDataFromJSON(
-    json['CGM']['Sensor Statuses'],
-    Time.FORMAT_LONG
-);
-
-const INIT_DATA_SUBSTATE = {
-    isFetching: false,
-    error: '',
-    data: {},
-};
-
 const INIT_DATA_STATE = {
     pump: {
-        ...INIT_DATA_SUBSTATE,
+        isFetching: false,
+        error: '',
         data: {
             basals: [],
             bgTargets: [],
@@ -111,13 +21,15 @@ const INIT_DATA_STATE = {
         },
     },
     bgs: {
-        ...INIT_DATA_SUBSTATE,
+        isFetching: false,
+        error: '',
         data: {
             bgs: [],
         },
     },
     treatments: {
-        ...INIT_DATA_SUBSTATE,
+        isFetching: false,
+        error: '',
         data: {
             boluses: [],
             netBasals: [],
@@ -126,7 +38,8 @@ const INIT_DATA_STATE = {
         },
     },
     history: {
-        ...INIT_DATA_SUBSTATE,
+        isFetching: false,
+        error: '',
         data: {
             pump: {
                 battery: [],
@@ -175,7 +88,7 @@ const DataReducer = (state = INIT_DATA_STATE, action) => {
                     isFetching: false,
                     error: '',
                     data: {
-                        bgs: getBGsFromJSON(action.payload),
+                        bgs: getBGs(action.payload),
                     },
                 },
             };
@@ -187,10 +100,10 @@ const DataReducer = (state = INIT_DATA_STATE, action) => {
                     isFetching: false,
                     error: '',
                     data: {
-                        basals: getBasalsFromJSON(action.payload),
-                        bgTargets: getBGTargetsFromJSON(action.payload),
-                        isfs: getISFsFromJSON(action.payload),
-                        csfs: getCSFsFromJSON(action.payload),
+                        basals: getBasals(action.payload),
+                        bgTargets: getBGTargets(action.payload),
+                        isfs: getISFs(action.payload),
+                        csfs: getCSFs(action.payload),
                     },
                 }
             };
@@ -202,9 +115,9 @@ const DataReducer = (state = INIT_DATA_STATE, action) => {
                     isFetching: false,
                     error: '',
                     data: {
-                        boluses: getBolusesFromJSON(action.payload),
-                        netBasals: getNetBasalsFromJSON(action.payload),
-                        iobs: getIOBsFromJSON(action.payload),
+                        boluses: getBoluses(action.payload),
+                        netBasals: getNetBasals(action.payload),
+                        iobs: getIOBs(action.payload),
                         cobs: [],
                     },
                 },
@@ -218,12 +131,12 @@ const DataReducer = (state = INIT_DATA_STATE, action) => {
                     error: '',
                     data: {
                         pump: {
-                            battery: getPumpBatteryLevelsFromJSON(action.payload),
-                            reservoir: getPumpReservoirLevelsFromJSON(action.payload),
+                            battery: getPumpBatteryLevels(action.payload),
+                            reservoir: getPumpReservoirLevels(action.payload),
                         },
                         cgm: {
-                            battery: getCGMBatteryLevelsFromJSON(action.payload),
-                            statuses: getCGMStatusesFromJSON(action.payload),
+                            battery: getCGMBatteryLevels(action.payload),
+                            statuses: getCGMStatuses(action.payload),
                         },
                     },
                 },
@@ -232,6 +145,70 @@ const DataReducer = (state = INIT_DATA_STATE, action) => {
         default:
             return state;
     }
+};
+
+const getTimeData = (json, format = Time.FORMAT_LONG) => {
+    return Object.keys(json).reduce((data, t) => ([
+        ...data,
+        new TimeData(json[t], moment(t, format).valueOf())
+    ]), []).sort(compareTimeData);
+};
+
+const addDurationsToTimeData = (values) => {
+    values.forEach((value, i) => {
+        const isLast = i + 1 === values.length;
+        value.duration = isLast ? 0 : values[i + 1].time - value.time;
+    });
+    
+    return values;
+};
+
+const getBGs = (json) => {
+    return getTimeData(json);
+};
+
+const getBasals = (json, profile = 'Standard') => {
+    return getTimeData(json['Basal Profile (' + profile + ')'], Time.FORMAT_SHORT);
+};
+
+const getNetBasals = (json) => {
+    return addDurationsToTimeData(getTimeData(json['Net Basals']));
+};
+
+const getBoluses = (json) => {
+    return getTimeData(json['Boluses']);
+};
+
+const getIOBs = (json) => {
+    return getTimeData(json['IOB']);
+};
+
+const getISFs = (json) => {
+    return getTimeData(json['ISF'], Time.FORMAT_SHORT);
+};
+
+const getCSFs = (json) => {
+    return getTimeData(json['CSF'], Time.FORMAT_SHORT);
+};
+
+const getBGTargets = (json) => {
+    return getTimeData(json['BG Targets'], Time.FORMAT_SHORT);
+};
+
+const getPumpReservoirLevels = (json) => {
+    return getTimeData(json['Pump']['Reservoir Levels']);
+};
+
+const getPumpBatteryLevels = (json) => {
+    return getTimeData(json['Pump']['Battery Levels']);
+};
+
+const getCGMBatteryLevels = (json) => {
+    return getTimeData(json['CGM']['Battery Levels']);
+};
+
+const getCGMStatuses = (json) => {
+    return getTimeData(json['CGM']['Sensor Statuses']);
 };
 
 export default DataReducer;

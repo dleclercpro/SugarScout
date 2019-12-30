@@ -208,7 +208,7 @@
             > .last-fetch {
                 display: none;
                 position: relative;
-                padding-left: 28px;
+                padding-left: 26px;
                 margin-bottom: 15px;
 
                 @include mq(width, desktop) {
@@ -221,21 +221,22 @@
 
                 &:before {
                     position: absolute;
-                    top: 50%;
+                    top: calc(50% + 1px);
                     left: 0;
                     transform: translate(0, -50%);
                     display: block;
                     content: '';
-                    background-image: url('../images/icons/icon-fetching.svg');
+                    background-image: url('../icons/icon-fetching.svg');
                     background-repeat: no-repeat;
                     width: 24px;
                     height: 24px;
                 }
 
                 &.is-expired {
+                    text-decoration: line-through;
 
                     &:before {
-                        background-image: url('../images/icons/icon-fetching--expired.svg');
+                        background-image: url('../icons/icon-fetching--expired.svg');
                     }
                 }
             }

@@ -32,7 +32,7 @@ class InnerBG extends Component {
             <div ref={this.node} className='inner inner--bg'>
                 <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`}>
                     {bgs.map((bg, index) => (
-                        <BGContainer key={index} time={bg.getTime()} value={bg.getValue()} />
+                        <BGContainer key={index} time={bg.time} value={bg.value} />
                     ))}
                 </svg>
             </div>

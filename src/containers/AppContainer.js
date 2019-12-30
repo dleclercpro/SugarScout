@@ -8,7 +8,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const AppContainer = connect(
-    () => {},
+    null,
     mapDispatchToProps,
 )(App);
 

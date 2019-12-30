@@ -33,7 +33,6 @@ class AxisTime extends Component {
             <Tick
                 key={index}
                 label={tick.label}
-                value={tick.value}
                 style={{}}
             />
         ));

@@ -48,13 +48,13 @@ const mapStateToProps = (state) => {
     return {
         expiration: {
             lastFetch: getExpiration(lastFetch.getTime(), MAX_AGE_LAST_FETCH),
-            bg: getExpiration(bg.getTime(), MAX_AGE_BG),
-            iob: getExpiration(iob.getTime(), MAX_AGE_IOB),
-            cob: getExpiration(cob.getTime(), MAX_AGE_COB),
-            reservoir: getExpiration(reservoir.getTime(), MAX_AGE_RESERVOIR),
+            bg: getExpiration(bg.time, MAX_AGE_BG),
+            iob: getExpiration(iob.time, MAX_AGE_IOB),
+            cob: getExpiration(cob.time, MAX_AGE_COB),
+            reservoir: getExpiration(reservoir.time, MAX_AGE_RESERVOIR),
             battery: {
-                pump: getExpiration(battery.pump.getTime(), MAX_AGE_PUMP_BATTERY),
-                cgm: getExpiration(battery.cgm.getTime(), MAX_AGE_CGM_BATTERY),
+                pump: getExpiration(battery.pump.time, MAX_AGE_PUMP_BATTERY),
+                cgm: getExpiration(battery.cgm.time, MAX_AGE_CGM_BATTERY),
             },
         },
 
@@ -64,13 +64,13 @@ const mapStateToProps = (state) => {
         },
 
         type: {
-            bg: getType(bg.getValue()),
-            reservoir: getReservoirType(reservoir.getValue()),
-            sage: getSAGEType(sage.getValue()),
-            cage: getCAGEType(cage.getValue()),
+            bg: getType(bg.value),
+            reservoir: getReservoirType(reservoir.value),
+            sage: getSAGEType(sage.value),
+            cage: getCAGEType(cage.value),
             battery: {
-                pump: getPumpBatteryType(battery.pump.getValue()),
-                cgm: getCGMBatteryType(battery.cgm.getValue()),
+                pump: getPumpBatteryType(battery.pump.value),
+                cgm: getCGMBatteryType(battery.cgm.value),
             },
         },
         
@@ -78,26 +78,26 @@ const mapStateToProps = (state) => {
         now: fmt.time(now.getTime(), FORMAT_SHORT),
         lastFetch: fmt.time(lastFetch.getTime(), FORMAT_SHORT),
         timeScales: scales,
-        bg: fmt.bg(bg.getValue()),
-        dbg: fmt.dbg(dbg.getValue()),
-        bgTrend: bgTrend.getValue(),
-        basal: fmt.basal(basal.getValue()),
-        isf: fmt.isf(isf.getValue()),
-        csf: fmt.csf(csf.getValue()),
-        iob: fmt.iob(iob.getValue()),
-        cob: fmt.cob(cob.getValue()),
-        reservoir: fmt.reservoir(reservoir.getValue()),
+        bg: fmt.bg(bg.value),
+        dbg: fmt.dbg(dbg.value),
+        bgTrend: bgTrend.value,
+        basal: fmt.basal(basal.value),
+        isf: fmt.isf(isf.value),
+        csf: fmt.csf(csf.value),
+        iob: fmt.iob(iob.value),
+        cob: fmt.cob(cob.value),
+        reservoir: fmt.reservoir(reservoir.value),
         battery: {
-            pump: fmt.pumpBattery(battery.pump.getValue()),
-            cgm: fmt.cgmBattery(battery.cgm.getValue()),
+            pump: fmt.pumpBattery(battery.pump.value),
+            cgm: fmt.cgmBattery(battery.cgm.value),
         },
         sage: {
-            days: fmt.ageDays(sage.getValue()),
-            hours: fmt.ageHours(sage.getValue())
+            days: fmt.ageDays(sage.value),
+            hours: fmt.ageHours(sage.value)
         },
         cage: {
-            days: fmt.ageDays(cage.getValue()),
-            hours: fmt.ageHours(cage.getValue())
+            days: fmt.ageDays(cage.value),
+            hours: fmt.ageHours(cage.value)
         },
     };
 };

@@ -26,7 +26,6 @@ class AxisBasal extends Component {
                 <Tick
                     key={index}
                     label={tick.label}
-                    value={tick.value}
                     style={this.getTickStyle(size, range)}
                 />
             );
