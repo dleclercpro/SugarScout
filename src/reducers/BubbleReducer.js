@@ -1,4 +1,4 @@
-import { RESET_BUBBLE, SHOW_BUBBLE, HIDE_BUBBLE, MOVE_BUBBLE, RESIZE_BUBBLE, UPDATE_BUBBLE_INFOS } from 'constants/ActionTypes';
+import { RESET_BUBBLE, SHOW_BUBBLE, HIDE_BUBBLE, MOVE_BUBBLE, RESIZE_BUBBLE, UPDATE_BUBBLE } from 'constants/ActionTypes';
 
 const INIT_BUBBLE_STATE = {
     status: 'hidden',
@@ -50,7 +50,7 @@ const BubbleReducer = (state = INIT_BUBBLE_STATE, action) => {
                 height: action.height,
             };
 
-        case UPDATE_BUBBLE_INFOS:
+        case UPDATE_BUBBLE:
             return {
                 ...state,
                 ...action.args,

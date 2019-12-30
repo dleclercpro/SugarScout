@@ -46,9 +46,9 @@ class NetBasal extends Component {
 
     handleMouseEnter = (e) => {
         const { time, value, duration } = this.props;
-        const { updateBubbleInfos, showBubble } = this.props.actions;
+        const { updateBubble, showBubble } = this.props.actions;
 
-        updateBubbleInfos({
+        updateBubble({
             target: 'netBasal',
             time: time,
             info: {

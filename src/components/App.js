@@ -9,30 +9,52 @@ class App extends Component {
 
     constructor(props) {
         super(props);
-        this.timer = null;
-        this.timerData = null;
+        this.state = {
+            timers: {
+                app: null,
+                data: null,
+            },
+        }
     }
 
     componentDidMount() {
-        this.timerData = setInterval(this.fetchAllData, REFRESH_DATA_RATE);
-        this.timer = setInterval(this.props.actions.updateTime, REFRESH_APP_RATE);
+        const { updateTime } = this.props.actions;
+
+        this.setState({
+            timers: {
+                app: setInterval(updateTime, REFRESH_APP_RATE),
+                data: setInterval(this.fetchAllData, REFRESH_DATA_RATE),
+            },
+        });
+
         this.fetchAllData();
     }
 
     componentWillUnmount() {
-        clearInterval(this.timerData);
-        clearInterval(this.timer);
+        const { timers } = this.state;
+
+        for (const timer of Object.values(timers)) {
+            clearInterval(timer);
+        }
     }
 
     fetchAllData = () => {
+        const {
+            fetchDataBG,
+            fetchDataPump,
+            fetchDataTreatment,
+            fetchDataHistory,
+            updateLastFetchTime
+        } = this.props.actions;
+
         Promise.all([
-            this.props.actions.fetchDataBG(),
-            this.props.actions.fetchDataPump(),
-            this.props.actions.fetchDataTreatment(),
-            this.props.actions.fetchDataHistory()
+            fetchDataBG(),
+            fetchDataPump(),
+            fetchDataTreatment(),
+            fetchDataHistory()
         ])
         .then(() => {
-            this.props.actions.updateLastDataFetch();
+            updateLastFetchTime();
         })
         .catch(error => {
             console.log('Could not fetch all data:\n' + error);

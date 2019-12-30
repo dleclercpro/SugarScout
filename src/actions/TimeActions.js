@@ -10,7 +10,7 @@ export const updateTimescale = (scale) => ({
     scale,
 });
 
-export const updateLastDataFetch = () => ({
+export const updateLastFetchTime = () => ({
     type: UPDATE_LAST_FETCH_TIME,
     time: new Date(),
 });

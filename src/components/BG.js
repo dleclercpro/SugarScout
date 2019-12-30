@@ -20,9 +20,9 @@ class BG extends Dot {
 
     handleMouseEnter = (e) => {
         const { time, value } = this.props;
-        const { updateBubbleInfos, showBubble } = this.props.actions;
+        const { updateBubble, showBubble } = this.props.actions;
 
-        updateBubbleInfos({
+        updateBubble({
             target: this.getClass(),
             time: time,
             info: {

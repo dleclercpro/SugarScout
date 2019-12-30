@@ -26,7 +26,7 @@ export const RESET_BUBBLE = 'RESET_BUBBLE';
 export const SHOW_BUBBLE = 'SHOW_BUBBLE';
 export const HIDE_BUBBLE = 'HIDE_BUBBLE';
 export const MOVE_BUBBLE = 'MOVE_BUBBLE';
-export const UPDATE_BUBBLE_INFOS = 'UPDATE_BUBBLE_INFOS';
+export const UPDATE_BUBBLE = 'UPDATE_BUBBLE';
 export const RESIZE_BUBBLE = 'RESIZE_BUBBLE';
 
 // Axes

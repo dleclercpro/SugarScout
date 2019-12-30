@@ -1,4 +1,4 @@
-import { RESET_BUBBLE, SHOW_BUBBLE, HIDE_BUBBLE, MOVE_BUBBLE, UPDATE_BUBBLE_INFOS, RESIZE_BUBBLE } from 'constants/ActionTypes';
+import { RESET_BUBBLE, SHOW_BUBBLE, HIDE_BUBBLE, MOVE_BUBBLE, UPDATE_BUBBLE, RESIZE_BUBBLE } from 'constants/ActionTypes';
 
 export const resetBubble = () => ({
     type: RESET_BUBBLE,
@@ -23,7 +23,7 @@ export const resizeBubble = (width, height) => ({
     height,
 });
 
-export const updateBubbleInfos = (args) => ({
-    type: UPDATE_BUBBLE_INFOS,
+export const updateBubble = (args) => ({
+    type: UPDATE_BUBBLE,
     args,
 });
