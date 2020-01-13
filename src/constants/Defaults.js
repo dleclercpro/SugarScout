@@ -34,8 +34,8 @@ export const CGM_BATTERY_LEVELS = {
 };
 
 export const SAGES = {
-    VERY_OLD: 6 * 24,
-    OLD: 4 * 24,
+    VERY_OLD: 8 * 24,
+    OLD: 6 * 24,
 };
 
 export const CAGES = {
